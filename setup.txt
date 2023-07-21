@@ -4,6 +4,7 @@ sudo npm install -g npm@9.8.1
 
 sudo npm i -g @looback/cli
 
+Same source code for rpi (aarch64) & pc (x86_64):
 {
   "greeting": "Hello from LoopBack",
   "date": "2023-07-21T15:04:11.139Z",
@@ -22,5 +23,27 @@ sudo npm i -g @looback/cli
     "referer": "http://localhost:3000/explorer/",
     "accept-encoding": "gzip, deflate, br",
     "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"
+  }
+}
+
+{
+  "greeting": "Hello from LoopBack",
+  "date": "2023-07-21T19:55:01.819Z",
+  "url": "/ping",
+  "headers": {
+    "host": "localhost:3000",
+    "connection": "keep-alive",
+    "sec-ch-ua": "\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"",
+    "accept": "application/json",
+    "dnt": "1",
+    "sec-ch-ua-mobile": "?0",
+    "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+    "sec-ch-ua-platform": "\"Linux\"",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:3000/explorer/",
+    "accept-encoding": "gzip, deflate, br",
+    "accept-language": "en,pt-BR;q=0.9,pt;q=0.8"
   }
 }
