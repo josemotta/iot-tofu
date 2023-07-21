@@ -1,4 +1,8 @@
-# back
+# Tofu board
+
+![tofu-board](https://github.com/josemotta/iot-tofu/assets/86032/d1160dd9-4dbf-4393-b48e-9dbde603c94b)
+
+## Backend
 
 This application is generated using [LoopBack 4 CLI](https://loopback.io/doc/en/lb4/Command-line-interface.html) with the
 [initial project layout](https://loopback.io/doc/en/lb4/Loopback-application-layout.html).
