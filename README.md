@@ -1,6 +1,6 @@
 # Tofu board
 
-![tofu-board](https://github.com/josemotta/iot-tofu/assets/86032/d1160dd9-4dbf-4393-b48e-9dbde603c94b)
+![tofu-board](https://github.com/josemotta/iot-tofu/assets/86032/cc103d69-08f9-42e8-bbb8-e5f05c1d34d2)
 
 ## Backend
 
