@@ -1,0 +1,26 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+
+  app:
+    build: .
+    container_name: back-end
+    #command: .docker/start.sh
+    volumes:
+      - .:/home/node/app
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 3000:3000
+    environment:
+      - HOST=0.0.0.0
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
