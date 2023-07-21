@@ -1,0 +1,26 @@
+sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - &&sudo apt-get install -y nodejs
+
+sudo npm install -g npm@9.8.1
+
+sudo npm i -g @looback/cli
+
+{
+  "greeting": "Hello from LoopBack",
+  "date": "2023-07-21T15:04:11.139Z",
+  "url": "/ping",
+  "headers": {
+    "host": "localhost:3000",
+    "connection": "keep-alive",
+    "sec-ch-ua": "\"Chromium\";v=\"113\", \"Not-A.Brand\";v=\"24\"",
+    "accept": "application/json",
+    "sec-ch-ua-mobile": "?0",
+    "user-agent": "Mozilla/5.0 (X11; CrOS aarch64 13597.84.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.95 Safari/537.36",
+    "sec-ch-ua-platform": "\"Linux\"",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "http://localhost:3000/explorer/",
+    "accept-encoding": "gzip, deflate, br",
+    "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"
+  }
+}
