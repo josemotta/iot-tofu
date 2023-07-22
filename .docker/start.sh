@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#cd /home/node/app
-#RUN npm install
+cd /home/node/app
+npm install
 
-tail -d dev/null
+tail -f /dev/null
