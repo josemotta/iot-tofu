@@ -15,7 +15,7 @@ services:
   app:
     build: .
     container_name: back-end
-    command: .docker/start.sh
+    #command: .docker/start.sh
     volumes:
       - .:/home/node/app
       #- /etc/localtime:/etc/localtime:ro
