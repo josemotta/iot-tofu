@@ -47,6 +47,7 @@ Same source code for rpi (aarch64) & pc (x86_64):
     "accept-language": "en,pt-BR;q=0.9,pt;q=0.8"
   }
 }
+<<<<<<< HEAD
 
 ----
 # BOOT SERVER
@@ -83,3 +84,5 @@ sudo systemctl enable dnsmasq
 sudo tcpdump -i eth0 port bootpc
 
 
+=======
+>>>>>>> 4900a0d865770fe93eb406bd1308e7dfa2c089a7

@@ -1,6 +1,15 @@
 # Check out https://hub.docker.com/_/node to select a new base image
 FROM node:18-slim
 
+<<<<<<< HEAD
+=======
+RUN apt update && apt install -y \
+    git \
+    curl
+
+RUN npm install -g @loopback/cli npm@9.8.1
+
+>>>>>>> 4900a0d865770fe93eb406bd1308e7dfa2c089a7
 # Set to a non-root built-in user `node`
 USER node
 
