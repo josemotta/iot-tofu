@@ -48,6 +48,12 @@ Same source code for rpi (aarch64) & pc (x86_64):
   }
 }
 
+# FORMAT NVME
+# https://www.raspberrypi.com/documentation/computers/compute-module.html#writing-to-the-emmc-linux
+
+sudo dd if=raw_os_image_of_your_choice.img of=/dev/nvme0n1 bs=4MiB
+
+
 # BOOT SERVER
 # Server configuration for client1
 # https://www.raspberrypi.com/documentation/computers/remote-access.html#network-boot-your-raspberry-pi
