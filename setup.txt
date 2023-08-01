@@ -84,4 +84,42 @@ sudo tcpdump -i eth0 port bootpc
 # mount -l
 /dev/nvme0n1p1 on /boot type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro) [bootfs]
 /dev/nvme0n1p2 on / type ext4 (rw,noatime) [rootfs]
+
+/dev/mmcblk0p1 on /media/jo/bootfs type vfat (rw,nosuid,nodev,relatime,uid=1000,gid=1000,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,showexec,utf8,flush,errors=remount-ro,uhelper=udisks2) [bootfs]
 /dev/mmcblk0p2 on /media/jo/rootfs type ext4 (rw,nosuid,nodev,relatime,errors=remount-ro,uhelper=udisks2) [rootfs]
+
+# SERVER STEPS
+#---------------------------------
+# server-step-fsdel $1
+#---------------------------------
+if [ $1 == "" ]; then
+  echo "Missing client id"
+  exit 1
+fi
+export CLIENT_ID=$1
+sudo rm -r /nfs/$CLIENT_ID
+
+#---------------------------------
+# server-step-fsgen $1
+#---------------------------------
+if [ $1 == "" ]; then
+  echo "Missing client id"
+  exit 1
+fi
+export CLIENT_ID=$1
+# Generate a copy from current fs to $CLIENT_ID
+sudo mkdir -p /nfs/$CLIENT_ID
+sudo apt install rsync
+sudo rsync -xa --progress --exclude /nfs / /nfs/$CLIENT_ID
+
+# Regenerate SSH host keys on the CLIENT_ID filesystem
+# by chrooting into it
+cd /nfs/$CLIENT_ID
+sudo mount --bind /dev dev
+sudo mount --bind /sys sys
+sudo mount --bind /proc proc
+sudo chroot .
+rm /etc/ssh/ssh_host_*
+dpkg-reconfigure openssh-server
+exit
+sudo umount dev sys proc
