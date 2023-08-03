@@ -16,9 +16,9 @@ jobs:
     - name: Build and push image to Dockerhub
       uses: docker/build-push-action@v4
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
+        # username: ${{ secrets.DOCKER_USERNAME }}
+        # password: ${{ secrets.DOCKER_PASSWORD }}
+        # repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
         tags: ${{ github.sha }}, latest
         platforms: linux/arm64
 
@@ -40,8 +40,8 @@ jobs:
     #     git config --local user.name "GitHub Action"
     #     git commit -am "Bump docker version"
 
-    # - name: Push
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     repository: josemottalopes/iot-tofu
+    - name: Push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
