@@ -58,12 +58,12 @@ typings/
 .env
 
 # Transpiled JavaScript files from Typescript
-/dist
-dist /
+dist/
 
 # Cache used by TypeScript's incremental build
 *.tsbuildinfo
 
 .npm-cache
 .docker/zsh/history/.zsh_history
+.docker/region
 __coverage/
