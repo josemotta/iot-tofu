@@ -64,6 +64,6 @@ dist/
 *.tsbuildinfo
 
 .npm-cache
-.docker/zsh/history/.zsh_history
 .docker/region
+.docker/ha
 __coverage/
