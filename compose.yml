@@ -15,7 +15,7 @@ services:
   app:
     build: .
     container_name: boot-back
-    image: ${{ secrets.DOCKER_USERNAME }}/boot-back:latest
+    image: josemottalopes/boot-back:latest
     #command: .docker/start.sh
     volumes:
       - .:/home/node/app
