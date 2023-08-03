@@ -25,7 +25,9 @@ jobs:
           push: true
           tags: ${{ github.sha }}, latest
           platforms: linux/arm64
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.PERSONAL_TOKEN }}
+          # github-token: ${{ secrets.GITHUB_TOKEN }}
 
     # steps:
     # - name: Checkout code
