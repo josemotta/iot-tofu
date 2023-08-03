@@ -22,6 +22,8 @@ jobs:
         tags: ${{ github.sha }}, latest
         platforms: linux/arm64
         push: true
+        github_token: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
 
     # - name: Setup Kustomize
     #   uses: imranismail/setup-kustomize@v1
@@ -41,8 +43,8 @@ jobs:
     #     git config --local user.name "GitHub Action"
     #     git commit -am "Bump docker version"
 
-    - name: Push
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.DOCKER_PASSWORD }}
-        repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
+    # - name: Push
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.DOCKER_PASSWORD }}
+    #     repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
