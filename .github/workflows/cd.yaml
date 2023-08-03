@@ -22,7 +22,7 @@ jobs:
         tags: ${{ github.sha }}, latest
         platforms: linux/arm64
         push: true
-        github-token: ${{ secrets.DOCKER_PASSWORD }}
+        github-token: ${{ secrets.PERSONAL_TOKEN }}
         # repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
 
     # - name: Setup Kustomize
