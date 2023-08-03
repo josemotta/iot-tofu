@@ -23,10 +23,10 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{ github.sha }}, latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/iot-tofu:{{ github.sha }}, ${{ secrets.DOCKER_USERNAME }}/iot-tofu:latest
           platforms: linux/arm64
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.PERSONAL_TOKEN }}
+          # secrets: |
+          #   GIT_AUTH_TOKEN=${{ secrets.PERSONAL_TOKEN }}
           # github-token: ${{ secrets.GITHUB_TOKEN }}
 
     # steps:
