@@ -21,6 +21,7 @@ jobs:
         # repository: ${{ secrets.DOCKER_USERNAME }}/iot-tofu
         tags: ${{ github.sha }}, latest
         platforms: linux/arm64
+        push: true
 
     # - name: Setup Kustomize
     #   uses: imranismail/setup-kustomize@v1
