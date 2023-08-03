@@ -1,7 +1,7 @@
 {
-  "name": "back",
-  "version": "0.0.1",
-  "description": "Tofu Backend",
+  "name": "boot-back",
+  "version": "0.0.2",
+  "description": "Boot Backend",
   "keywords": [
     "loopback-application",
     "loopback"
