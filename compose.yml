@@ -16,7 +16,7 @@ services:
     build: .
     container_name: boot-back
     image: josemottalopes/boot-back:latest
-    #command: .docker/start.sh
+    # command: .docker/start.sh
     volumes:
       - .:/home/node/app
       - .docker/region:/home/node/region

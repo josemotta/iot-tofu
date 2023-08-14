@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://www.raspberrypi.com/documentation/computers/remote-access.html#network-boot-your-raspberry-pi
 
 if [ $1 == "" ]; then
   echo Missing client id
