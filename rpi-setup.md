@@ -1,6 +1,8 @@
 
 ```sh
-# Create swapfile
+# Create bigger swapfile
+# https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-debian-11
+# https://nebl.io/neblio-university/enabling-increasing-raspberry-pi-swap/
 
 jo@region ~ $ sudo fallocate -l 2G /var/swapfile
 jo@region ~ $ ls -lh /var/swapfile 
