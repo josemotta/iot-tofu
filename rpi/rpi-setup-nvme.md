@@ -1,3 +1,5 @@
+```sh
+
 sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - &&sudo apt-get install -y nodejs
 
 sudo npm install -g npm@9.8.1
@@ -129,3 +131,5 @@ rm /etc/ssh/ssh_host_*
 dpkg-reconfigure openssh-server
 exit
 sudo umount dev sys proc
+
+```
