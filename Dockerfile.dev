@@ -11,7 +11,7 @@ RUN npm install -g @loopback/cli npm@9.8.1
 USER node
 
 # Create app directory (with user `node`)
-#RUN mkdir -p /home/node/app
+# RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
