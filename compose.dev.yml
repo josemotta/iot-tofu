@@ -13,14 +13,15 @@ services:
   #   network_mode: host
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     container_name: boot-back
     image: josemottalopes/boot-back:latest
-    command: .docker/start.sh
+    entrypoint: .docker/start.sh
     volumes:
       - .:/home/node/app
       - .docker/region:/home/node/region
-      - /etc/localtime:/etc/localtime:ro
     ports:
       - 3000:3000
     environment:

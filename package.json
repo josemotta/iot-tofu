@@ -1,6 +1,6 @@
 {
   "name": "boot-back",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Boot Backend",
   "keywords": [
     "loopback-application",
@@ -65,5 +65,13 @@
     "@loopback/eslint-config": "^14.0.2",
     "eslint": "^8.45.0",
     "typescript": "~5.1.6"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "watch": [
+      "src/"
+    ],
+    "ext": ".ts",
+    "exec": "npm start"
   }
 }

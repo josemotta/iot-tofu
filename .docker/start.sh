@@ -1,10 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
+npm config set cache /home/node/app/.npm-cache --global
 
 echo 'running .docker/start.sh'
 cd /home/node/app
 npm install
 
-tail -f /dev/null
+nodemon -L
 
-# Expected to run at dev console
-#npm run start
+# tail -f /dev/null
+# npm start
