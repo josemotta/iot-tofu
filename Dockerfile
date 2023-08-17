@@ -5,7 +5,7 @@ RUN apt update && apt install -y \
     git \
     curl
 
-# RUN npm install -g @loopback/cli npm@9.8.1
+RUN npm install -g @loopback/cli npm@9.8.1
 
 # Set to a non-root built-in user `node`
 USER node
