@@ -7,10 +7,10 @@ RUN apt update && apt install -y \
 
 RUN npm install -g @loopback/cli npm@9.8.1
 
-RUN mkdir -p /home/node/app
-
 # Set to a non-root built-in user `node`
 USER node
+
+RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
 
 # Install app dependencies
