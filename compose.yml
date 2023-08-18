@@ -22,7 +22,6 @@ services:
     volumes:
       - .:/home/node/app
       - .docker/region:/home/node/region
-      - /etc/localtime:/etc/localtime:ro
     ports:
       - 3000:3000
     environment:
