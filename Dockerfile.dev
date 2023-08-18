@@ -6,11 +6,11 @@ RUN apt update && apt install -y \
     curl \
     bash
 
-RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
-
-RUN npm config set cache /home/node/app/.npm-cache --global
-RUN npm install -g nodemon
 RUN npm install -g @loopback/cli npm@9.8.1
+RUN npm install -g nodemon
+
+RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
+RUN npm config set cache /home/node/app/.npm-cache --global
 
 # Set to a non-root built-in user `node`
 USER node

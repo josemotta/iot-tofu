@@ -3,7 +3,8 @@ FROM node:18-slim
 
 RUN apt update && apt install -y \
     git \
-    curl
+    curl \
+    bash
 
 RUN npm install -g @loopback/cli npm@9.8.1
 
