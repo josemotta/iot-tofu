@@ -2,6 +2,7 @@
 
 cd /home/node/app
 npm install
+npm run build
 
 nodemon -L
 
