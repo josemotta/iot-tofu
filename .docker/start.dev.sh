@@ -1,10 +1,8 @@
 #!/bin/bash
 
-cd /home/node/app
-npm install
-npm run build
-
 nodemon -L
 
 # tail -f /dev/null
+
+# cd /home/node/app
 # npm start
