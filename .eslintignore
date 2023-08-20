@@ -3,5 +3,4 @@ dist/
 __coverage/
 .eslintrc.js
 ecosystem.config.js
-.jest.config.test.js
 jest.config.ts
