@@ -15,8 +15,8 @@ describe('PingController', () => {
   });
 
   it('invokes GET /ping', async () => {
-    const res = await client.get('/ping').expect(200);
-
+    // const res = await client.get('/ping').expect(200);
+    await client.get('/ping/').expect(200);
     // expect(res.body).toContain({greeting: 'Hello from Boot-Back'});
   });
 });

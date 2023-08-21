@@ -1,15 +1,11 @@
 import '../../bootstrap';
-import {BackApplication} from '../..';
-import {
-  createRestAppClient,
-  givenHttpServerConfig,
-  Client,
-  supertest,
-} from '@loopback/testlab';
+import {BackApplication} from '../../index';
+import {givenHttpServerConfig, Client} from '@loopback/testlab';
 import config from '../../../config';
+import supertest from 'supertest';
+// import dbConfig from '../../datasources/esv7.datasource.config';
 
 export async function setupApplication(): Promise<AppWithClient> {
-
   const id = `${Math.round(Math.random() * 10000) + 10000}`;
   const restConfig = givenHttpServerConfig({
     // Customize the server configuration here.
@@ -26,9 +22,11 @@ export async function setupApplication(): Promise<AppWithClient> {
   const app = new BackApplication(options);
 
   await app.boot();
-  await app.start();
 
-  // const client = createRestAppClient(app);
+  // Eventual datasources here
+  // app.bind('datasources.esv7').to(testDb);
+
+  await app.start();
 
   const client = supertest(`http://127.0.0.1:${id}`);
 
@@ -39,3 +37,12 @@ export interface AppWithClient {
   app: BackApplication;
   client: Client;
 }
+
+// export const testDb = new Esv7DataSource({
+//   ...dbConfig,
+//   index: 'catalog-test',
+// });
+
+// export async function clearDb() {
+//   await testDb.deleteAllDocuments();
+// }
