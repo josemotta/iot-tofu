@@ -1,1 +1,1 @@
-export * from './catalog.datasource';
+export * from './category.datasource';

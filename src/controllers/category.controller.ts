@@ -20,10 +20,10 @@ import {
 import {Category} from '../models';
 import {CategoryRepository} from '../repositories';
 
-export class CatalogController {
+export class CategoryController {
   constructor(
     @repository(CategoryRepository)
-    public categoryRepository : CategoryRepository,
+    public categoryRepository: CategoryRepository,
   ) {}
 
   @post('/categories')
@@ -37,7 +37,6 @@ export class CatalogController {
         'application/json': {
           schema: getModelSchemaRef(Category, {
             title: 'NewCategory',
-            
           }),
         },
       },
@@ -52,9 +51,7 @@ export class CatalogController {
     description: 'Category model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Category) where?: Where<Category>,
-  ): Promise<Count> {
+  async count(@param.where(Category) where?: Where<Category>): Promise<Count> {
     return this.categoryRepository.count(where);
   }
 
@@ -106,7 +103,8 @@ export class CatalogController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Category, {exclude: 'where'}) filter?: FilterExcludingWhere<Category>
+    @param.filter(Category, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Category>,
   ): Promise<Category> {
     return this.categoryRepository.findById(id, filter);
   }

@@ -40,7 +40,7 @@ export interface AppWithClient {
 
 // export const testDb = new Esv7DataSource({
 //   ...dbConfig,
-//   index: 'catalog-test',
+//   index: 'category-test',
 // });
 
 // export async function clearDb() {
