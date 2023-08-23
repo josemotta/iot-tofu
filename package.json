@@ -3,8 +3,9 @@
   "version": "0.0.5",
   "description": "Boot Backend",
   "keywords": [
-    "loopback-application",
-    "loopback"
+    "iot",
+    "raspberry-pi",
+    "loopback-application"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -41,9 +42,9 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/josemotta/iot-tofu"
   },
-  "author": "",
+  "author": "Jose Motta",
   "license": "",
   "files": [
     "README.md",
@@ -54,7 +55,7 @@
   "dependencies": {
     "@loopback/boot": "^6.1.1",
     "@loopback/core": "^5.1.1",
-    "@loopback/repository": "^6.1.1",
+    "@loopback/repository": "^6.1.2",
     "@loopback/rest": "^13.1.1",
     "@loopback/rest-explorer": "^6.1.1",
     "@loopback/service-proxy": "^6.1.1",

@@ -39,6 +39,12 @@ export class BackApplication extends BootMixin(
         extensions: ['.controller.js'],
         nested: true,
       },
+      // controllers: {
+      //   // Customize ControllerBooter Conventions here
+      //   dirs: ['controllers'],
+      //   extensions: ['.controller.js', '.controller.ts'],
+      //   nested: true,
+      // },
     };
   }
 }
