@@ -13,6 +13,8 @@ RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
 USER node
 
 RUN mkdir -p /home/node/app
+RUN mkdir -p /home/node/app/region
+
 WORKDIR /home/node/app
 
 # Install app dependencies

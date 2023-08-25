@@ -5,6 +5,7 @@ npm-debug.log
 *.tsbuildinfo
 
 .npm-cache
-.docker/region/
 .docker/ha/
 __coverage/
+.env
+.env.region.db

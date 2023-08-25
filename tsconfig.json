@@ -4,8 +4,7 @@
   "extends": "@loopback/build/config/tsconfig.common.json",
   "compilerOptions": {
     "module": "commonjs",
-    "target": "ES2022",
-    "lib": ["ES2023"],
+    "target": "ES6",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
