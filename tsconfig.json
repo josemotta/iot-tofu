@@ -4,7 +4,7 @@
   "extends": "@loopback/build/config/tsconfig.common.json",
   "compilerOptions": {
     "module": "commonjs",
-    "target": "ES6",
+    "target": "ESNext",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -20,12 +20,23 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": false,
     "allowJs": true,
+    "moduleResolution": "Node",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+
+    "lib": [
+      "es2020"
+    ],
 
     "baseUrl": "./src",
     "outDir": "./dist",
     "rootDir": "./src"
   },
   "include": [
-    "./src"
-  ]
+    "src/**/*"
+  ],
+  "exclude": ["node_modules"]
 }

@@ -3,6 +3,9 @@
  * https://jestjs.io/docs/configuration
  */
 
+// Just replace mocha (and lb-mocha) with jest. You can find Jest configuration for loopback-next here:
+// https://github.com/loopbackio/loopback-next/blob/test/jest/jest.config.js
+
 import type {Config} from 'jest';
 
 const config: Config = {
@@ -100,6 +103,10 @@ const config: Config = {
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
+  modulePathIgnorePatterns: [
+    // Ignore compiled output, we want to run original TypeScript files
+    'dist',
+  ],
 
   // Activates notifications for test results
   // notify: false,
@@ -109,7 +116,7 @@ const config: Config = {
 
   // A preset that is used as a base for Jest's configuration
   // preset: undefined,
-  // preset: 'ts-jest',
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -142,6 +149,7 @@ const config: Config = {
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
+  setupFiles: ['<rootDir>/jest-bdd-setup.js'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   setupFilesAfterEnv: ['./__tests__/jest.ts'],
@@ -154,7 +162,7 @@ const config: Config = {
 
   // The test environment that will be used for testing
   // testEnvironment: "jest-environment-node",
-  // testEnvironment: 'node',
+  testEnvironment: 'node',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -169,9 +177,7 @@ const config: Config = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  testPathIgnorePatterns: ['/node_modules/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   testRegex: '.*\\..*spec\\.ts$',
@@ -183,20 +189,23 @@ const config: Config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
+  transform: {
+    '^.+\\.(t|j)sx?$': '@swc/jest',
+  },
   // transform: {
   //   "^.+\\.tsx?$": "esbuild-jest",
   // },
-  transform: {
-    '^.+\\.tsx?$': [
-      'esbuild-jest',
-      {
-        sourcemap: true,
-        loaders: {
-          '.spec.ts': 'tsx',
-        },
-      },
-    ],
-  },
+  // transform: {
+  //   '^.+\\.tsx?$': [
+  //     'esbuild-jest',
+  //     {
+  //       sourcemap: true,
+  //       loaders: {
+  //         '.spec.ts': 'tsx',
+  //       },
+  //     },
+  //   ],
+  // },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

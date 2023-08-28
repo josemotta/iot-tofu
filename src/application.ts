@@ -56,10 +56,25 @@ export class BackApplication extends BootMixin(
       controllers: {
         // Customize ControllerBooter Conventions here
         dirs: ['controllers'],
-        extensions: ['.controller.js'],
+        extensions: ['.controller.js', '.controller.ts'],
+        nested: true,
+      },
+      repositories: {
+        // Customize RepositoryBooter Conventions here
+        dirs: ['repositories'],
+        extensions: ['.repository.js', '.repository.ts'],
         nested: true,
       },
     };
+
+    // this.bootOptions = {
+    //   controllers: {
+    //     // Customize ControllerBooter Conventions here
+    //     dirs: ['controllers'],
+    //     extensions: ['.controller.js'],
+    //     nested: true,
+    //   },
+    // };
 
     // // Set up the custom sequence
     // this.sequence(MySequence);
@@ -76,18 +91,18 @@ export class BackApplication extends BootMixin(
     // this.projectRoot = __dirname;
     // // Customize @loopback/boot Booter Conventions here
     // this.bootOptions = {
-    //   controllers: {
-    //     // Customize ControllerBooter Conventions here
-    //     dirs: ['controllers'],
-    //     extensions: ['.controller.js'],
-    //     nested: true,
-    //   },
     //   // controllers: {
     //   //   // Customize ControllerBooter Conventions here
     //   //   dirs: ['controllers'],
-    //   //   extensions: ['.controller.js', '.controller.ts'],
+    //   //   extensions: ['.controller.js'],
     //   //   nested: true,
     //   // },
+    //   controllers: {
+    //     // Customize ControllerBooter Conventions here
+    //     dirs: ['controllers'],
+    //     extensions: ['.controller.js', '.controller.ts'],
+    //     nested: true,
+    //   },
     // };
   }
 

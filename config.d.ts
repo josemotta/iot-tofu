@@ -1,3 +1,4 @@
-export declare module 'config' {
+export {};
+declare module 'config' {
   const rest;
 }
