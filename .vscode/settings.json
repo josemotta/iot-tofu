@@ -1,0 +1,50 @@
+{
+    "editor.rulers": [
+      80
+    ],
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 2,
+    "editor.trimAutoWhitespace": true,
+    "editor.formatOnSave": true,
+    "files.exclude": {
+      "**/.DS_Store": true,
+      "**/.git": true,
+      "**/.hg": true,
+      "**/.svn": true,
+      "**/CVS": true,
+      "dist": true,
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "eslint.run": "onSave",
+    "eslint.nodePath": "./node_modules",
+    "eslint.validate": [
+      "javascript",
+      "typescript"
+    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBorder": "#ffbfc9",
+      "activityBar.activeBackground": "#7288ff",
+      "activityBar.background": "#7288ff",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#ffbfc9",
+      "activityBarBadge.foreground": "#15202b",
+      "commandCenter.border": "#e7e7e799",
+      "sash.hoverBorder": "#7288ff",
+      "statusBar.background": "#3f5dff",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#7288ff",
+      "statusBarItem.remoteBackground": "#3f5dff",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#3f5dff",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#3f5dff99",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.remoteColor": "#3f5dff"
+  }

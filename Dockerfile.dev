@@ -16,6 +16,8 @@ RUN npm config set cache /home/node/app/.npm-cache --global
 USER node
 
 RUN mkdir -p /home/node/app
+RUN mkdir -p /home/node/app/region
+
 WORKDIR /home/node/app
 
 # Install app dependencies

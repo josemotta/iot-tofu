@@ -3,7 +3,10 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type { Config } from "jest";
+// Just replace mocha (and lb-mocha) with jest. You can find Jest configuration for loopback-next here:
+// https://github.com/loopbackio/loopback-next/blob/test/jest/jest.config.js
+
+import type {Config} from 'jest';
 
 const config: Config = {
   displayName: {
@@ -23,7 +26,7 @@ const config: Config = {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
@@ -37,7 +40,7 @@ const config: Config = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -49,7 +52,7 @@ const config: Config = {
 
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
-    global: { statements: 80, branches: 80, functions: 80, lines: 80 },
+    global: {statements: 80, branches: 80, functions: 80, lines: 80},
   },
 
   // A path to a custom dependency extractor
@@ -100,6 +103,10 @@ const config: Config = {
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
+  modulePathIgnorePatterns: [
+    // Ignore compiled output, we want to run original TypeScript files
+    'dist',
+  ],
 
   // Activates notifications for test results
   // notify: false,
@@ -130,7 +137,7 @@ const config: Config = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  rootDir: "src",
+  rootDir: 'src',
 
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
@@ -142,9 +149,10 @@ const config: Config = {
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
+  setupFiles: ['<rootDir>/jest-bdd-setup.js'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ["./__tests__/jest.ts"],
+  setupFilesAfterEnv: ['./__tests__/jest.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -169,12 +177,10 @@ const config: Config = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  testPathIgnorePatterns: ['/node_modules/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  testRegex: ".*\\..*spec\\.ts$",
+  testRegex: '.*\\..*spec\\.ts$',
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
@@ -184,8 +190,22 @@ const config: Config = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "^.+\\.tsx?$": "esbuild-jest",
+    '^.+\\.(t|j)sx?$': '@swc/jest',
   },
+  // transform: {
+  //   "^.+\\.tsx?$": "esbuild-jest",
+  // },
+  // transform: {
+  //   '^.+\\.tsx?$': [
+  //     'esbuild-jest',
+  //     {
+  //       sourcemap: true,
+  //       loaders: {
+  //         '.spec.ts': 'tsx',
+  //       },
+  //     },
+  //   ],
+  // },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
