@@ -1,6 +1,7 @@
 import './bootstrap';
 import {RestServer} from '@loopback/rest';
-import {ApplicationConfig, BackApplication} from './application';
+import {BackApplication} from './application';
+import {ApplicationConfig} from '@loopback/core';
 import config from '../config';
 require('dotenv').config();
 
