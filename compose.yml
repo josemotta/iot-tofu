@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     container_name: boot-back
     image: josemottalopes/boot-back:latest
-    entrypoint: .docker/start.sh
+    # entrypoint: .docker/start.sh
     volumes:
       - .:/home/node/app
       # - .docker/region:/home/node/app/region
