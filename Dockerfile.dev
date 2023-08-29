@@ -12,8 +12,9 @@ RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
 RUN npm install -g nodemon
 RUN npm config set cache /home/node/app/.npm-cache --global
 
+# RUN AS ROOT!
 # Set to a non-root built-in user `node`
-USER node
+# USER node
 
 RUN mkdir -p /home/node/app
 RUN mkdir -p /home/node/app/region

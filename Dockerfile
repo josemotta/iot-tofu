@@ -9,8 +9,9 @@ RUN apt update && apt install -y \
 RUN npm install -g @loopback/cli npm@9.8.1
 RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
 
+# RUN AS ROOT!
 # Set to a non-root built-in user `node`
-USER node
+# USER node
 
 RUN mkdir -p /home/node/app
 RUN mkdir -p /home/node/app/region
