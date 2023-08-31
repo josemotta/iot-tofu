@@ -149,7 +149,7 @@ const config: Config = {
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
-  setupFiles: ['<rootDir>/jest-bdd-setup.js'],
+  // setupFiles: ['<rootDir>/jest-bdd-setup.js'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   setupFilesAfterEnv: ['./__tests__/jest.ts'],

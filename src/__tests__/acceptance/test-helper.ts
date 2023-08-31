@@ -3,6 +3,7 @@ import {BackApplication} from '../../index';
 import {givenHttpServerConfig, Client} from '@loopback/testlab';
 import config from '../../../config';
 import supertest from 'supertest';
+import {RegionDataSource} from '../../datasources';
 // import dbConfig from '../../datasources/esv7.datasource.config';
 
 export async function setupApplication(): Promise<AppWithClient> {
@@ -23,8 +24,8 @@ export async function setupApplication(): Promise<AppWithClient> {
 
   await app.boot();
 
-  // Eventual datasources here
-  // app.bind('datasources.esv7').to(testDb);
+  // Datasources here
+  app.bind('datasources.region').to(testDb);
 
   await app.start();
 
@@ -38,11 +39,8 @@ export interface AppWithClient {
   client: Client;
 }
 
-// export const testDb = new Esv7DataSource({
-//   ...dbConfig,
-//   index: 'category-test',
-// });
+export const testDb = new RegionDataSource();
 
-// export async function clearDb() {
-//   await testDb.deleteAllDocuments();
-// }
+export async function clearDb() {
+  await testDb.deleteAllDocuments();
+}

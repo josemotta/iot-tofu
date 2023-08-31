@@ -1,5 +1,6 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
+import {Client} from '@loopback/testlab';
 
 const config = {
   name: 'region',
@@ -25,5 +26,10 @@ export class RegionDataSource
     dsConfig: object = config,
   ) {
     super(dsConfig);
+  }
+
+  public async deleteAllDocuments() {
+    const client: Client = (this as any).adapter.db;
+    // await client.
   }
 }
