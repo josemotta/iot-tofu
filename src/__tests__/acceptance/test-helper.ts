@@ -3,7 +3,7 @@ import {BackApplication} from '../../index';
 import {givenHttpServerConfig, Client} from '@loopback/testlab';
 import config from '../../../config';
 import supertest from 'supertest';
-import {RegionDataSource} from 'datasources';
+import {RegionDataSource} from '../../datasources';
 // import dbConfig from '../../datasources/esv7.datasource.config';
 
 export async function setupApplication(): Promise<AppWithClient> {

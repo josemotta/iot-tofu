@@ -1,12 +1,12 @@
 // Adapted from https://github.com/loopbackio/loopback-datasource-juggler/blob/master/test/datasource.test.js
 
-import {Client} from '@loopback/testlab';
-import {BackApplication} from '../..';
-import {setupApplication} from '../../__tests__/acceptance/test-helper';
-import {RegionDataSource} from '../';
+// import {Client} from '@loopback/testlab';
+// import {BackApplication} from '../..';
+// import {setupApplication} from '../../__tests__/acceptance/test-helper';
+import {RegionDataSource as DataSource} from '../';
 
-describe('Datasource', () => {
-  let app: BackApplication;
+describe('regionDataSource', () => {
+  // let app: BackApplication;
   // let client: Client;
 
   beforeAll(async () => {
@@ -17,180 +17,182 @@ describe('Datasource', () => {
     // await app.stop();
   });
 
-  it('clones settings to prevent surprising changes in passed args', () => {
-    const config = {connector: 'memory'};
+  describe('constructor', () => {
+    it('clones settings to prevent surprising changes in passed args', () => {
+      const config = {connector: 'memory'};
 
-    const ds = new RegionDataSource(config);
-    ds.settings.extra = true;
+      const ds = new DataSource(config);
+      ds.settings.extra = true;
 
-    expect(config).toStrictEqual({connector: 'memory'});
-  });
-
-  it('reports helpful error when connector init throws', () => {
-    const throwingConnector = {
-      name: 'loopback-connector-throwing',
-      initialize: function (ds, cb) {
-        throw new Error('expected test error');
-      },
-    };
-
-    expect(() => {
-      // this is what LoopBack does
-      return new RegionDataSource({
-        name: 'dsname',
-        connector: throwingConnector,
-      });
-    }).toThrow(/loopback-connector-throwing/);
-  });
-
-  it('should retain the name assigned to it', () => {
-    const dataSource = new RegionDataSource({
-      name: 'myDataSource',
-      connector: 'memory',
+      expect(config).toStrictEqual({connector: 'memory'});
     });
 
-    expect(dataSource.name).toStrictEqual('myDataSource');
-  });
+    it('reports helpful error when connector init throws', () => {
+      const throwingConnector = {
+        name: 'loopback-connector-throwing',
+        initialize: function (ds, cb) {
+          throw new Error('expected test error');
+        },
+      };
 
-  it('should retain the name from the settings if no name is assigned', () => {
-    const dataSource = new RegionDataSource({
-      name: 'defaultDataSource',
-      connector: 'memory',
-    });
-
-    expect(dataSource.name).toStrictEqual('defaultDataSource');
-  });
-
-  it('should use the connector name if no name is provided', () => {
-    const dataSource = new RegionDataSource({
-      connector: 'memory',
-    });
-
-    expect(dataSource.name).toStrictEqual('memory');
-  });
-
-  it('should accept resolved connector', () => {
-    const mockConnector = {
-      name: 'loopback-connector-mock',
-      initialize: function (ds, cb) {
-        ds.connector = mockConnector;
-        return cb(null);
-      },
-    };
-    const dataSource = new RegionDataSource(mockConnector);
-
-    expect(dataSource.name).toStrictEqual('loopback-connector-mock');
-    expect(dataSource.connector).toStrictEqual(mockConnector);
-  });
-
-  it('should set states correctly with eager connect', done => {
-    const mockConnector = {
-      name: 'loopback-connector-mock',
-      initialize: function (ds, cb) {
-        ds.connector = mockConnector;
-        this.connect(cb);
-      },
-
-      connect: function (cb) {
-        process.nextTick(function () {
-          cb(null);
+      expect(() => {
+        // this is what LoopBack does
+        return new DataSource({
+          name: 'dsname',
+          connector: throwingConnector,
         });
-      },
-    };
-    const dataSource = new RegionDataSource(mockConnector);
-    // DataSource is instantiated
-    // connected: false, connecting: false, initialized: false
-    expect(dataSource.connected).toBeFalsy();
-    expect(dataSource.connecting).toBeFalsy();
-    expect(dataSource.initialized).toBeFalsy();
+      }).toThrow(/loopback-connector-throwing/);
+    });
 
-    dataSource.on('initialized', () => {
-      // DataSource is initialized with lazyConnect
-      // connected: false, connecting: false, initialized: true
+    it('should retain the name assigned to it', () => {
+      const dataSource = new DataSource({
+        name: 'myDataSource',
+        connector: 'memory',
+      });
+
+      expect(dataSource.name).toStrictEqual('myDataSource');
+    });
+
+    it('should retain the name from the settings if no name is assigned', () => {
+      const dataSource = new DataSource({
+        name: 'defaultDataSource',
+        connector: 'memory',
+      });
+
+      expect(dataSource.name).toStrictEqual('defaultDataSource');
+    });
+
+    it('should use the connector name if no name is provided', () => {
+      const dataSource = new DataSource({
+        connector: 'memory',
+      });
+
+      expect(dataSource.name).toStrictEqual('memory');
+    });
+
+    it('should accept resolved connector', () => {
+      const mockConnector = {
+        name: 'loopback-connector-mock',
+        initialize: (ds, cb) => {
+          ds.connector = mockConnector;
+          return cb(null);
+        },
+      };
+      const dataSource = new DataSource(mockConnector);
+
+      expect(dataSource.name).toStrictEqual('loopback-connector-mock');
+      expect(dataSource.connector).toStrictEqual(mockConnector);
+    });
+
+    it('should set states correctly with eager connect', done => {
+      const mockConnector = {
+        name: 'loopback-connector-mock',
+        initialize: function (ds, cb) {
+          ds.connector = mockConnector;
+          this.connect(cb);
+        },
+
+        connect: function (cb) {
+          process.nextTick(function () {
+            cb(null);
+          });
+        },
+      };
+      const dataSource = new DataSource(mockConnector);
+      // DataSource is instantiated
+      // connected: false, connecting: false, initialized: false
       expect(dataSource.connected).toBeFalsy();
       expect(dataSource.connecting).toBeFalsy();
-      expect(dataSource.initialized).toBeTruthy();
-    });
+      expect(dataSource.initialized).toBeFalsy();
 
-    dataSource.on('connected', () => {
-      // DataSource is now connected
-      // connected: true, connecting: false
-      expect(dataSource.connected).toBeTruthy();
-      expect(dataSource.connecting).toBeFalsy();
-    });
+      dataSource.on('initialized', () => {
+        // DataSource is initialized with lazyConnect
+        // connected: false, connecting: false, initialized: true
+        expect(dataSource.connected).toBeFalsy();
+        expect(dataSource.connecting).toBeFalsy();
+        expect(dataSource.initialized).toBeTruthy();
+      });
 
-    // Call connect() in next tick so that we'll receive initialized event
-    // first
-    process.nextTick(function () {
-      // At this point, the datasource is already connected by
-      // connector's (mockConnector) initialize function
-      dataSource.connect(function () {
+      dataSource.on('connected', () => {
         // DataSource is now connected
         // connected: true, connecting: false
         expect(dataSource.connected).toBeTruthy();
         expect(dataSource.connecting).toBeFalsy();
-        done();
       });
-      // As the datasource is already connected, no connecting will happen
-      // connected: true, connecting: false
-      expect(dataSource.connected).toBeTruthy();
-      expect(dataSource.connecting).toBeFalsy();
+
+      // Call connect() in next tick so that we'll receive initialized event
+      // first
+      process.nextTick(function () {
+        // At this point, the datasource is already connected by
+        // connector's (mockConnector) initialize function
+        dataSource.connect(function () {
+          // DataSource is now connected
+          // connected: true, connecting: false
+          expect(dataSource.connected).toBeTruthy();
+          expect(dataSource.connecting).toBeFalsy();
+          done();
+        });
+        // As the datasource is already connected, no connecting will happen
+        // connected: true, connecting: false
+        expect(dataSource.connected).toBeTruthy();
+        expect(dataSource.connecting).toBeFalsy();
+      });
     });
-  });
 
-  it('should set states correctly with deferred connect', done => {
-    const mockConnector = {
-      name: 'loopback-connector-mock',
-      initialize: (ds, cb) => {
-        ds.connector = mockConnector;
-        // Explicitly call back with false to denote connection is not ready
-        process.nextTick(function () {
-          cb(null, false);
-        });
-      },
+    it('should set states correctly with deferred connect', done => {
+      const mockConnector = {
+        name: 'loopback-connector-mock',
+        initialize: (ds, cb) => {
+          ds.connector = mockConnector;
+          // Explicitly call back with false to denote connection is not ready
+          process.nextTick(function () {
+            cb(null, false);
+          });
+        },
 
-      connect: function (cb) {
-        process.nextTick(function () {
-          cb(null);
-        });
-      },
-    };
-    const dataSource = new RegionDataSource(mockConnector);
-    // DataSource is instantiated
-    // connected: false, connecting: false, initialized: false
-    expect(dataSource.connected).toBeFalsy();
-    expect(dataSource.connecting).toBeFalsy();
-    expect(dataSource.initialized).toBeFalsy();
-
-    dataSource.on('initialized', function () {
-      // DataSource is initialized with lazyConnect
-      // connected: false, connecting: false, initialized: true
+        connect: function (cb) {
+          process.nextTick(function () {
+            cb(null);
+          });
+        },
+      };
+      const dataSource = new DataSource(mockConnector);
+      // DataSource is instantiated
+      // connected: false, connecting: false, initialized: false
       expect(dataSource.connected).toBeFalsy();
       expect(dataSource.connecting).toBeFalsy();
-      expect(dataSource.initialized).toBeTruthy();
-    });
+      expect(dataSource.initialized).toBeFalsy();
 
-    dataSource.on('connected', function () {
-      // DataSource is now connected
-      // connected: true, connecting: false
-      expect(dataSource.connected).toBeTruthy();
-      expect(dataSource.connecting).toBeFalsy();
-    });
+      dataSource.on('initialized', function () {
+        // DataSource is initialized with lazyConnect
+        // connected: false, connecting: false, initialized: true
+        expect(dataSource.connected).toBeFalsy();
+        expect(dataSource.connecting).toBeFalsy();
+        expect(dataSource.initialized).toBeTruthy();
+      });
 
-    // Call connect() in next tick so that we'll receive initialized event
-    // first
-    process.nextTick(() => {
-      dataSource.connect(() => {
+      dataSource.on('connected', function () {
         // DataSource is now connected
         // connected: true, connecting: false
         expect(dataSource.connected).toBeTruthy();
         expect(dataSource.connecting).toBeFalsy();
-        done();
       });
-      // As the datasource is not connected, connecting will happen
-      // connected: false, connecting: true
-      expect(dataSource.connected).toBeFalsy();
-      expect(dataSource.connecting).toBeTruthy();
+
+      // Call connect() in next tick so that we'll receive initialized event
+      // first
+      process.nextTick(() => {
+        dataSource.connect(() => {
+          // DataSource is now connected
+          // connected: true, connecting: false
+          expect(dataSource.connected).toBeTruthy();
+          expect(dataSource.connecting).toBeFalsy();
+          done();
+        });
+        // As the datasource is not connected, connecting will happen
+        // connected: false, connecting: true
+        expect(dataSource.connected).toBeFalsy();
+        expect(dataSource.connecting).toBeTruthy();
+      });
     });
   });
 
@@ -205,7 +207,7 @@ describe('Datasource', () => {
   //     },
   //   };
 
-  //   const dataSource = new RegionDataSource(mockConnector);
+  //   const dataSource = new DataSource(mockConnector);
   //   dataSource.on('connected', () => {
   //     // DataSource is now connected
   //     // connected: true, connecting: false
@@ -220,37 +222,31 @@ describe('Datasource', () => {
   // });
 });
 
-//   describe('deleteModelByName()', () => {
-//     it('removes the model from ModelBuilder registry', () => {
-//       const ds = new DataSource('ds', {connector: 'memory'});
+// describe('deleteModelByName()', () => {
+//   it('removes the model from ModelBuilder registry', () => {
+//     const ds = new DataSource('ds', {connector: 'memory'});
 
-//       ds.createModel('TestModel');
-//       Object.keys(ds.modelBuilder.models)
-//         .should.containEql('TestModel');
-//       Object.keys(ds.modelBuilder.definitions)
-//         .should.containEql('TestModel');
+//     ds.createModel('TestModel');
+//     Object.keys(ds.modelBuilder.models).should.containEql('TestModel');
+//     Object.keys(ds.modelBuilder.definitions).should.containEql('TestModel');
 
-//       ds.deleteModelByName('TestModel');
+//     ds.deleteModelByName('TestModel');
 
-//       Object.keys(ds.modelBuilder.models)
-//         .should.not.containEql('TestModel');
-//       Object.keys(ds.modelBuilder.definitions)
-//         .should.not.containEql('TestModel');
-//     });
-
-//     it('removes the model from connector registry', () => {
-//       const ds = new DataSource('ds', {connector: 'memory'});
-
-//       ds.createModel('TestModel');
-//       Object.keys(ds.connector._models)
-//         .should.containEql('TestModel');
-
-//       ds.deleteModelByName('TestModel');
-
-//       Object.keys(ds.connector._models)
-//         .should.not.containEql('TestModel');
-//     });
+//     Object.keys(ds.modelBuilder.models).should.not.containEql('TestModel');
+//     Object.keys(ds.modelBuilder.definitions).should.not.containEql('TestModel');
 //   });
+
+//   it('removes the model from connector registry', () => {
+//     const ds = new DataSource('ds', {connector: 'memory'});
+
+//     ds.createModel('TestModel');
+//     Object.keys(ds.connector._models).should.containEql('TestModel');
+
+//     ds.deleteModelByName('TestModel');
+
+//     Object.keys(ds.connector._models).should.not.containEql('TestModel');
+//   });
+// });
 
 //   describe('execute', () => {
 //     let ds;
