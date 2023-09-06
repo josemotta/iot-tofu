@@ -19,11 +19,11 @@
     "noFallthroughCasesInSwitch": false,
     "allowJs": true,
 
-    "baseUrl": "./src",
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "baseUrl": "src",
+    "outDir": "dist",
+    "rootDir": "src"
   },
   "include": [
-    "./src"
+    "src"
   ]
 }

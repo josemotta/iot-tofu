@@ -1,6 +1,6 @@
 // Adapted from https://github.com/loopbackio/loopback-datasource-juggler/blob/master/test/datasource.test.js
 
-import {RegionDataSource as DataSource} from '../';
+import {RegionDataSource as DataSource} from '../region.datasource';
 
 describe('DataSource', () => {
   describe('constructor', () => {
