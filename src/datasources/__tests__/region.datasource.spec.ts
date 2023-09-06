@@ -1,22 +1,8 @@
 // Adapted from https://github.com/loopbackio/loopback-datasource-juggler/blob/master/test/datasource.test.js
 
-// import {Client} from '@loopback/testlab';
-// import {BackApplication} from '../..';
-// import {setupApplication} from '../../__tests__/acceptance/test-helper';
 import {RegionDataSource as DataSource} from '../';
 
-describe('regionDataSource', () => {
-  // let app: BackApplication;
-  // let client: Client;
-
-  beforeAll(async () => {
-    // ({app, client} = await setupApplication());
-  });
-
-  afterAll(async () => {
-    // await app.stop();
-  });
-
+describe('DataSource', () => {
   describe('constructor', () => {
     it('clones settings to prevent surprising changes in passed args', () => {
       const config = {connector: 'memory'};

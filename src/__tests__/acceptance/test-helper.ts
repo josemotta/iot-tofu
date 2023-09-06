@@ -1,5 +1,5 @@
 import '../../bootstrap';
-import {BackApplication} from '../../index';
+import {BackApplication} from '../../application';
 import {givenHttpServerConfig, Client} from '@loopback/testlab';
 import config from '../../../config';
 import supertest from 'supertest';
