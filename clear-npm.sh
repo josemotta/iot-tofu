@@ -5,4 +5,4 @@ rm -rf .npm-cache
 rm -rf __coverage
 rm package-lock.json
 rm tsconfig.tsbuildinfo
-npm i
+#npm i

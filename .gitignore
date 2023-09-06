@@ -67,4 +67,4 @@ dist/
 .docker/region
 .docker/ha
 __coverage/
-.env.region.db
+.env.region*

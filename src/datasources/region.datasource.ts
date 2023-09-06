@@ -29,7 +29,8 @@ export class RegionDataSource
   }
 
   public async deleteAllDocuments() {
-    const client: Client = (this as any).adapter.db;
+    // const client: Client = (this as any).adapter.db;
     // await client.
+    // throw 'deleteAllDocuments not implemented';
   }
 }
