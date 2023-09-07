@@ -160,7 +160,7 @@ const config: Config = {
 
   // The test environment that will be used for testing
   // testEnvironment: "jest-environment-node",
-  testEnvironment: 'node',
+  // testEnvironment: 'node',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -175,7 +175,7 @@ const config: Config = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ['/node_modules/'],
+  // testPathIgnorePatterns: ['/node_modules/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   testRegex: '.*\\..*spec\\.ts$',
@@ -188,7 +188,13 @@ const config: Config = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.(t|j)sx?$': '@swc/jest',
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        // ts-jest configuration goes here
+      },
+    ],
+    // '^.+\\.(t|j)sx?$': '@swc/jest',
   },
   // transform: {
   //   "^.+\\.tsx?$": "esbuild-jest",

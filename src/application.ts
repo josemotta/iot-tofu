@@ -51,7 +51,7 @@ export class BackApplication extends BootMixin(
     this.component(EntityComponent);
 
     this.projectRoot = __dirname;
-    // Customize @loopback/boot Booter Conventions here
+
     this.bootOptions = {
       controllers: {
         // Customize ControllerBooter Conventions here
@@ -66,44 +66,6 @@ export class BackApplication extends BootMixin(
         nested: true,
       },
     };
-
-    // this.bootOptions = {
-    //   controllers: {
-    //     // Customize ControllerBooter Conventions here
-    //     dirs: ['controllers'],
-    //     extensions: ['.controller.js'],
-    //     nested: true,
-    //   },
-    // };
-
-    // // Set up the custom sequence
-    // this.sequence(MySequence);
-
-    // // Set up default home page
-    // this.static('/', path.join(__dirname, '../public'));
-
-    // // Customize @loopback/rest-explorer configuration here
-    // this.configure(RestExplorerBindings.COMPONENT).to({
-    //   path: '/explorer',
-    // });
-    // this.component(RestExplorerComponent);
-
-    // this.projectRoot = __dirname;
-    // // Customize @loopback/boot Booter Conventions here
-    // this.bootOptions = {
-    //   // controllers: {
-    //   //   // Customize ControllerBooter Conventions here
-    //   //   dirs: ['controllers'],
-    //   //   extensions: ['.controller.js'],
-    //   //   nested: true,
-    //   // },
-    //   controllers: {
-    //     // Customize ControllerBooter Conventions here
-    //     dirs: ['controllers'],
-    //     extensions: ['.controller.js', '.controller.ts'],
-    //     nested: true,
-    //   },
-    // };
   }
 
   async boot() {

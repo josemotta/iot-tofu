@@ -24,7 +24,16 @@
               "path": "/bin/bash"
             }
           }
-        }
+        },
+        // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "firsttris.vscode-jest-runner",
+        "ms-azuretools.vscode-docker",
+        "orta.vscode-jest",
+        "esbenp.prettier-vscode",
+        "ms-vscode.test-adapter-converter",
+        "hbenl.vscode-test-explorer"
+        ]
       }
     }
 
