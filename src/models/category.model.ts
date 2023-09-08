@@ -24,6 +24,7 @@ export class Category extends Entity {
     jsonSchema: {
       minLength: 1,
       maxLength: 255,
+      errorMessage: 'Name must be between 1 and 255 characters',
     },
   })
   name: string;
@@ -33,6 +34,7 @@ export class Category extends Entity {
     required: true,
     jsonSchema: {
       enum: [CategoryType.DIRECTOR, CategoryType.ACTOR],
+      errorMessage: 'Invalid type',
     },
   })
   type: string;
