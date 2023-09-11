@@ -194,22 +194,7 @@ const config: Config = {
         // ts-jest configuration goes here
       },
     ],
-    // '^.+\\.(t|j)sx?$': '@swc/jest',
   },
-  // transform: {
-  //   "^.+\\.tsx?$": "esbuild-jest",
-  // },
-  // transform: {
-  //   '^.+\\.tsx?$': [
-  //     'esbuild-jest',
-  //     {
-  //       sourcemap: true,
-  //       loaders: {
-  //         '.spec.ts': 'tsx',
-  //       },
-  //     },
-  //   ],
-  // },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
