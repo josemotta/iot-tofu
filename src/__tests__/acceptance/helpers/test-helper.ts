@@ -3,7 +3,7 @@ import {BackApplication} from '../../../application';
 import {givenHttpServerConfig, Client} from '@loopback/testlab';
 import config from '../../../../config';
 import supertest from 'supertest';
-import {testdb} from './testdb.datasource';
+import {testdb} from './test-datasource';
 
 export async function setupApplication(): Promise<AppWithClient> {
   const id = `${Math.round(Math.random() * 10000) + 10000}`;
