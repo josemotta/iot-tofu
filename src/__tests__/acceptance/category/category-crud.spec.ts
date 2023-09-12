@@ -22,7 +22,6 @@ describe('Category CRUD', () => {
   });
 
   it('Create & get a Category', async () => {
-    const uuid = new UniqueEntityId();
     const today = new Date();
     const cat = Category.fake()
       .aCategory()

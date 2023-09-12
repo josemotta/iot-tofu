@@ -3,4 +3,4 @@ dist/
 __coverage/
 .eslintrc.js
 jest.config.ts
-.env.region.db
+.env.region*
