@@ -1,9 +1,10 @@
-# node_modules/
+.dockerignore
+.git
+.gitignore
 npm-debug.log
+# node_modules/
 # dist/
-# Cache used by TypeScript's incremental build
-*.tsbuildinfo
-
+# *.tsbuildinfo
 .npm-cache
 .docker/ha/
 __coverage/

@@ -23,6 +23,8 @@ WORKDIR /home/node/app
 COPY --chown=node package*.json ./
 
 RUN npm install
+# TODO: test production install
+# RUN npm ci --only=prod
 
 # Bundle app source code
 COPY --chown=node . .

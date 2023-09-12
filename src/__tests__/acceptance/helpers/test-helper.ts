@@ -1,10 +1,9 @@
-import '../../bootstrap';
-import {BackApplication} from '../../application';
+import '../../../bootstrap';
+import {BackApplication} from '../../../application';
 import {givenHttpServerConfig, Client} from '@loopback/testlab';
-import config from '../../../config';
+import config from '../../../../config';
 import supertest from 'supertest';
-import {RegionDataSource} from '../../datasources';
-// import dbConfig from '../../datasources/esv7.datasource.config';
+import {testdb} from './testdb.datasource';
 
 export async function setupApplication(): Promise<AppWithClient> {
   const id = `${Math.round(Math.random() * 10000) + 10000}`;
@@ -25,7 +24,7 @@ export async function setupApplication(): Promise<AppWithClient> {
   await app.boot();
 
   // Datasources here
-  app.bind('datasources.region').to(testDb);
+  app.bind('datasources.region').to(testdb);
 
   await app.start();
 
@@ -34,13 +33,11 @@ export async function setupApplication(): Promise<AppWithClient> {
   return {app, client};
 }
 
+export function errorToMessage(bodyError: object): string {
+  return JSON.stringify(bodyError, null, 2);
+}
+
 export interface AppWithClient {
   app: BackApplication;
   client: Client;
-}
-
-export const testDb = new RegionDataSource();
-
-export async function clearDb() {
-  await testDb.deleteAllDocuments();
 }
