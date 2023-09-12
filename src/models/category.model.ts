@@ -1,5 +1,6 @@
 import {Entity, model, property} from '@loopback/repository';
 import {getModelSchemaRef} from '@loopback/rest';
+import {CategoryFakeBuilder} from '../__tests__/acceptance/category';
 
 export enum CategoryType {
   DIRECTOR = 1,
@@ -31,13 +32,13 @@ export class Category extends Entity {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
     jsonSchema: {
       enum: [CategoryType.DIRECTOR, CategoryType.ACTOR],
       errorMessage: 'Invalid type',
     },
   })
-  type: string;
+  type?: string;
 
   @property({
     type: 'string',
@@ -64,6 +65,10 @@ export class Category extends Entity {
 
   constructor(data?: Partial<Category>) {
     super(data);
+  }
+
+  static fake() {
+    return CategoryFakeBuilder;
   }
 }
 

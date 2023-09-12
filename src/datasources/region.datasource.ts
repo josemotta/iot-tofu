@@ -1,6 +1,6 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
-import {Client} from '@loopback/testlab';
+// import {Client} from '@loopback/testlab';
 
 const config = {
   name: 'region',
@@ -28,9 +28,9 @@ export class RegionDataSource
     super(dsConfig);
   }
 
-  public async deleteAllDocuments() {
-    // const client: Client = (this as any).adapter.db;
-    // await client.
-    // throw 'deleteAllDocuments not implemented';
-  }
+  // public async deleteAllDocuments() {
+  //   // const client: Client = (this as any).adapter.db;
+  //   // await client.
+  //   // throw 'deleteAllDocuments not implemented';
+  // }
 }
