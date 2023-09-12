@@ -11,7 +11,6 @@ describe('CategoriesController Validation (e2e)', () => {
   let client: Client;
   let category: Category;
   let categoryList: Category[];
-  let cJWT: string;
   let categoryRepo: CategoryRepository;
 
   beforeAll(async () => {
