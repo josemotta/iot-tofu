@@ -1,32 +1,32 @@
 import {Client} from '@loopback/testlab';
 import {BackApplication} from '../../../index';
-import {setupApplication, errorToMessage} from '../helpers/test-helper';
-import {Category} from '../../../models';
+import {setupApplication} from '../helpers/test-helper';
 import {ListCategoryFixture} from './fixtures';
-import {CategoryRepository} from 'repositories';
-import {givenEmptyDatabase} from '../helpers/database.helpers';
+import {givenEmptyDatabase} from '../helpers/database.helper';
+// import {Category} from '../../../models';
+// import {CategoryRepository} from 'repositories';
 
 describe('CategoriesController Validation (e2e)', () => {
   let app: BackApplication;
   let client: Client;
-  let category: Category;
-  let categoryList: Category[];
-  let categoryRepo: CategoryRepository;
+  // let category: Category;
+  // let categoryList: Category[];
+  // let categoryRepo: CategoryRepository;
 
   beforeAll(async () => {
     ({app, client} = await setupApplication());
-    categoryList = [];
-    categoryRepo = app.getSync('repositories.CategoryRepository');
+    // categoryList = [];
+    // categoryRepo = app.getSync('repositories.CategoryRepository');
 
     // start with an empty DB
     await givenEmptyDatabase();
 
     // a category
-    category = Category.fake()
-      .aCategory()
-      .withName('Movie')
-      .withCreated(new Date())
-      .build();
+    // category = Category.fake()
+    //   .aCategory()
+    //   .withName('Movie')
+    //   .withCreated(new Date())
+    //   .build();
   });
 
   afterAll(async () => {

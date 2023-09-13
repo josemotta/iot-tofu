@@ -2,23 +2,18 @@ import {BootMixin} from '@loopback/boot';
 import {Application, ApplicationConfig} from '@loopback/core';
 import {RestExplorerBindings} from '@loopback/rest-explorer';
 import {RepositoryMixin} from '@loopback/repository';
-import {
-  RestApplication,
-  RestBindings,
-  RestComponent,
-  RestServer,
-} from '@loopback/rest';
+import {RestBindings, RestComponent, RestServer} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
-import {Category} from './models';
-import {ValidatorService} from 'services/validator.services';
 import {
   EntityComponent,
   ValidatorsComponent,
   RestExplorerComponent,
 } from './components';
 import {ApiResourceProvider} from './providers/api-resources.provider';
+// import {Category} from './models';
+// import {ValidatorService} from 'services/validator.services';
 
 export {ApplicationConfig};
 

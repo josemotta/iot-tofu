@@ -1,20 +1,20 @@
 import {Client} from '@loopback/testlab';
 import {BackApplication} from '../../../index';
-import {setupApplication, errorToMessage} from '../helpers/test-helper';
+import {setupApplication} from '../helpers/test-helper';
 import {Category} from '../../../models';
-import {givenEmptyDatabase} from '../helpers/database.helpers';
-import {UniqueEntityId} from '../../../utils/unique-entity-id';
+import {givenEmptyDatabase} from '../helpers/database.helper';
+// import {UniqueEntityId} from '../../../utils/unique-entity-id';
 
 describe('Category CRUD', () => {
   let app: BackApplication;
   let client: Client;
   let category: Category;
-  let categoryList: Category[];
+  // let categoryList: Category[];
 
   beforeAll(async () => {
     ({app, client} = await setupApplication());
     await givenEmptyDatabase();
-    categoryList = [];
+    // categoryList = [];
   });
 
   afterAll(async () => {

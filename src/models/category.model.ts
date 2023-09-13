@@ -1,6 +1,6 @@
 import {Entity, model, property} from '@loopback/repository';
-import {getModelSchemaRef} from '@loopback/rest';
 import {CategoryFakeBuilder} from '../__tests__/acceptance/category';
+// import {getModelSchemaRef} from '@loopback/rest';
 
 export enum CategoryType {
   DIRECTOR = 1,
@@ -78,8 +78,8 @@ export interface CategoryRelations {
 
 export type CategoryWithRelations = Category & CategoryRelations;
 
-const schema = getModelSchemaRef(Category, {
-  title: 'NewCategory',
-  partial: true,
-});
+// const schema = getModelSchemaRef(Category, {
+//   title: 'NewCategory',
+//   partial: true,
+// });
 // console.dir(schema, {depth: 8});
