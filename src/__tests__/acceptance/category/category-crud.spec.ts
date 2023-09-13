@@ -2,7 +2,7 @@ import {Client} from '@loopback/testlab';
 import {BackApplication} from '../../../index';
 import {setupApplication, errorToMessage} from '../helpers/test-helper';
 import {Category} from '../../../models';
-import {givenEmptyDatabase} from '../helpers/database.helpers';
+import {givenEmptyDatabase} from '../helpers/database.helper';
 import {UniqueEntityId} from '../../../utils/unique-entity-id';
 
 describe('Category CRUD', () => {

@@ -4,7 +4,7 @@ import {setupApplication, errorToMessage} from '../helpers/test-helper';
 import {Category} from '../../../models';
 import {ListCategoryFixture} from './fixtures';
 import {CategoryRepository} from 'repositories';
-import {givenEmptyDatabase} from '../helpers/database.helpers';
+import {givenEmptyDatabase} from '../helpers/database.helper';
 
 describe('CategoriesController Validation (e2e)', () => {
   let app: BackApplication;

@@ -3,7 +3,7 @@ import {BackApplication} from '../../../index';
 import {setupApplication} from '../helpers/test-helper';
 import {Category} from '../../../models';
 import {ListCategoryFixture} from './fixtures';
-import {givenEmptyDatabase} from '../helpers/database.helpers';
+import {givenEmptyDatabase} from '../helpers/database.helper';
 
 describe('CategoriesController Filtering (e2e)', () => {
   let app: BackApplication;
