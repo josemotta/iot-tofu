@@ -20,11 +20,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push
+        env:
+          VERSION: node --print 'require("./package.json").version'
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/boot-back:${{ github.sha }}, ${{ secrets.DOCKER_USERNAME }}/boot-back:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/boot-back:${{ VERSION }}, ${{ secrets.DOCKER_USERNAME }}/boot-back:${{ github.sha }}, ${{ secrets.DOCKER_USERNAME }}/boot-back:latest
           platforms: linux/arm64
 
     # - name: Setup Kustomize
