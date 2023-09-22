@@ -1,26 +1,33 @@
 #!/bin/bash
 
-# https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
+
+# -# https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
+
+# -IP=$(ifconfig eth0 | grep "inet " | cut -d " " -f10)
+# -BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
+# -NETMASK=$(ifconfig eth0 | grep "inet " | cut -d " " -f13)
+
+# +IP=$(ifconfig eth0 | grep "inet addr" | cut -d " " -f 12 | cut -d ":" -f 2)
+# +BRD=$(ifconfig eth0 | grep "inet addr" | cut -d " " -f 14 | cut -d ":" -f 2)
+# +NETMASK=$(ifconfig eth0 | grep "inet addr" | cut -d " " -f 16 | cut -d ":" -f 2)
 
 set -e
 
-# sudo apt install -y python3 python3-pip ipcalc
-# sudo pip3 install tabulate
+sudo apt install -y python3 python3-pip ipcalc
+sudo pip3 install tabulate
 
 # Get network info
 NAMESERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | cut -d " " -f2)
 GATEWAY=$(ip -4 route | grep default | head -n 1 | cut -d " " -f3)
-IP=$(ifconfig eth0 | grep "inet " | cut -d " " -f10)
-BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
-NETMASK=$(ifconfig eth0 | grep "inet " | cut -d " " -f13)
+IP=$(ifconfig eth0 | grep "inet addr" | cut -d " " -f 12 | cut -d ":" -f 2)
+BRD=$(ifconfig eth0 | grep "inet addr" | cut -d " " -f 14 | cut -d ":" -f 2)
+NETMASK=$(ifconfig eth0 | grep "inet addr" | cut -d " " -f 16 | cut -d ":" -f 2)
 
 echo "IP: $IP"
 echo "Netmask: $NETMASK"
 echo "Broadcast: $BRD"
 echo "Nameserver: $NAMESERVER"
 echo "Gateway: $GATEWAY"
-
-exit
 
 echo "Setting static IP using above information"
 
