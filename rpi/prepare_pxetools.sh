@@ -7,7 +7,7 @@ set -e
 
 # RPI TOFU setup
 #		- commented for development
-#		- just needed to run once!
+#		- just run once!
 #
 # sudo apt update
 # sudo apt full-upgrade
@@ -34,6 +34,7 @@ DHCPRANGE=192.168.10.101,192.168.10.199,255.255.255.0,12h
 # BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
 
 RPI_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz'
+RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz'
 
 # RPI Tofu network
 #		There is a 'region' with local LAN including the Tofu & RPis.
@@ -97,13 +98,21 @@ tftp-no-fail
 pxe-service=0, "Raspberry Pi Boot", bootcode.bin
 EOF
 
-# Get latest Raspberry Pi OS lite image
-echo "Getting latest Raspberry Pi OS lite image to use as NFS root"
-sudo mkdir -p /nfs/base
-cd /nfs/base
-sudo wget -O raspios.img.xz https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz
+# Get Raspberry Pi OS lite images
+echo "Getting RPi OS lite images to use as NFS root"
+# lite_armhf
+sudo mkdir -p /nfs/bases/lite_armhf
+cd /nfs/bases/lite_armhf
+sudo wget -O raspios.img.xz $RPI_LITE_ARMHF
 sudo tar -xf raspios.img.xz
 sudo rm raspios.img.xz
+# lite_arm64
+sudo mkdir -p /nfs/bases/lite_arm64
+cd /nfs/bases/lite_arm64
+sudo wget -O raspios.img.xz $RPI_LITE_ARM64
+sudo tar -xf raspios.img.xz
+sudo rm raspios.img.xz
+
 cd /nfs
 sudo wget  -O /usr/local/sbin/pxetools https://datasheets.raspberrypi.org/soft/pxetools.py
 sudo chmod +x /usr/local/sbin/pxetools
