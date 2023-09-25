@@ -2,7 +2,7 @@
 
 # iot-tofu: based on link below but the network is supposed to be already set.
 # https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
-# iptables commands are commented, for this usecase the firewall is not necessary
+# iptables commands are commented, for this use case the firewall is not necessary
 
 import os
 import re
@@ -224,7 +224,7 @@ if __name__ == "__main__":
         exit("Please run with sudo or as root user")
 
     LAN = cmd('ip -4 addr show dev eth0 | grep inet | cut -d " " -f6 | xargs ipcalc | grep Network | cut -d " " -f4', print_cmd=False).rstrip()
-    NFS_IP = cmd('ifconfig eth0 | grep "inet addr" | cut -d " " -f 12 | cut -d ":" -f 2', print_cmd=False).rstrip()
+    NFS_IP = cmd('ifconfig eth0 | grep "inet " | cut -d " " -f10', print_cmd=False).rstrip()
 
     if len(sys.argv) == 1:
         print(HELP)

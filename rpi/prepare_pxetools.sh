@@ -1,14 +1,24 @@
 #!/bin/bash
 
-# iot-tofu: based on link below but the network is supposed to be already set.
-# https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
-# iptables commands are commented, for this usecase the firewall is not necessary
+# iot-tofu notes:
+#   - Based on link below but the network is supposed to be already set.
+#     https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
+#
+#   - The network is a 'region' with local LAN including the Tofu & RPis.
+#		- The local LAN connects to the main network, with Internet access.
+# 	- region router: dedicated LAN for Tofu & RPis (192.168.10.1)
+# 	- region dns: nameserver 127.0.0.1 to force dnsmasq dns
+# 	- main router: connected to Internet (192.168.1.254)
+# 	- main dns: 192.168.1.254 to be set at dnsmasq server
+#   - The 'iptables' commands are commented
+#   - For this use case, the firewall is not necessary yet
 
 set -e
 
 # RPI TOFU setup
-#		- commented for development
-#		- just run once!
+#		- installs below were commented for development
+#   - (TODO: split into separate scripts)
+#		- please uncomment and just run once!
 #
 # sudo apt update
 # sudo apt full-upgrade
@@ -34,24 +44,14 @@ DNSSERVER=192.168.1.254
 DHCPRANGE=192.168.10.101,192.168.10.199,255.255.255.0,12h
 # BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
 
+# Raspberry Pi OS bases to be downloaded
 RPI_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz'
 RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz'
 
-# RPI Tofu network
-#		There is a 'region' with local LAN including the Tofu & RPis.
-#		The local LAN connects to the main network, with Internet access.
-# 	- region router: dedicated LAN for Tofu & RPis (192.168.10.1)
-# 	- region dns: nameserver 127.0.0.1 to force dnsmasq dns
-# 	- main router: connected to Internet (192.168.1.254)
-# 	- main dns: 192.168.1.254 to be set at dnsmasq server
-#
-# IP: 192.168.10.10
-# Netmask: 255.255.255.0
-# Nameserver: 127.0.0.1
-# Gateway: 192.168.10.1
-# DNS: 192.168.1.254
-# DHCP range: 192.168.10.101,192.168.10.199,255.255.255.0,12h
-# Broadcast: 192.168.10.255
+# The pxetools code is supposed to be in this same folder
+# PXETOOLS=$(dirname "$0")
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
+PXETOOLS=$SCRIPT_DIR/pxetools.py
 
 echo "IP: $IP"
 echo "Netmask: $NETMASK"
@@ -59,15 +59,23 @@ echo "Nameserver: $NAMESERVER"
 echo "Gateway: $GATEWAY"
 echo "DNS: $DNSSERVER"
 echo "DHCP range: $DHCPRANGE"
+echo "Pxettols: $PXETOOLS"
 # echo "Broadcast: $BRD"
+
+# IP: 192.168.10.10
+# Netmask: 255.255.255.0
+# Nameserver: 127.0.0.1
+# Gateway: 192.168.10.1
+# DNS: 192.168.1.254
+# DHCP range: 192.168.10.101,192.168.10.199,255.255.255.0,12h
+# Pxettols: /home/jo/rpi/iot-tofu/rpi/pxetools.py
 
 exit
 # TODO:
 #		- check network values and exit if they are not ok
 #		- do not change network here
 
-# The 'interfaces' should be already set.
-
+# The 'interfaces' (or equivalent) should be already set:
 # cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
 # auto lo
 # iface lo inet loopback
@@ -96,7 +104,7 @@ log-queries
 enable-tftp
 tftp-root=/tftpboot
 tftp-no-fail
-pxe-service=0, "Raspberry Pi Boot", bootcode.bin
+pxe-service=0, "Raspberry Pi Boot"
 EOF
 
 # Get Raspberry Pi OS lite images
@@ -114,8 +122,8 @@ sudo wget -O raspios.img.xz $RPI_LITE_ARM64
 sudo tar -xf raspios.img.xz
 sudo rm raspios.img.xz
 
-cd /nfs
-sudo wget  -O /usr/local/sbin/pxetools https://datasheets.raspberrypi.org/soft/pxetools.py
+# Add pxetools code to Tofu
+sudo cp $PXETOOLS /usr/local/sbin/pxetools
 sudo chmod +x /usr/local/sbin/pxetools
 
 # # Flush any rules that might exist
