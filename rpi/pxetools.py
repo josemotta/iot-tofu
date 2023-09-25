@@ -110,19 +110,23 @@ def add():
     cmd("echo \"{}\" > {}/name".format(name, tftp_path))
 
     if img_choice:
-        cmd("mkdir -p /mnt/tmp")
-        cmd("kpartx -a -v {}".format(img), print_out=True)
-        time.sleep(1)
-        cmd("mount /dev/mapper/loop0p2 /mnt/tmp")
-        cmd("rsync -a /mnt/tmp/ {}/".format(nfs_path))
-        cmd("umount /mnt/tmp")
+        # cmd("mkdir -p /mnt/tmp")
+        # cmd("kpartx -a -v {}".format(img), print_out=True)
+        # time.sleep(1)
+        # cmd("mount /dev/mapper/loop0p2 /mnt/tmp")
+        # cmd("rsync -a /mnt/tmp/ {}/".format(nfs_path))
+        # cmd("umount /mnt/tmp")
+
+        cmd("sudo cp -r {}/* {}/".format(img, nfs_path), print_out=True)
+
         cmd("echo > {}/etc/fstab".format(nfs_path))
         cmd("cd {}/etc/init.d; rm dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
         cmd("cd {}/etc/systemd/system; rm -r dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
-        cmd("mount /dev/mapper/loop0p1 /mnt/tmp")
-        cmd("rsync -a --exclude bootcode.bin --exclude start.elf --exclude cmdline.txt /mnt/tmp/ {}/".format(tftp_path))
-        cmd("umount /mnt/tmp")
-        cmd("kpartx -d -v {}".format(img), print_out=True)
+
+        # cmd("mount /dev/mapper/loop0p1 /mnt/tmp")
+        # cmd("rsync -a --exclude bootcode.bin --exclude start.elf --exclude cmdline.txt /mnt/tmp/ {}/".format(tftp_path))
+        # cmd("umount /mnt/tmp")
+        # cmd("kpartx -d -v {}".format(img), print_out=True)
     else:
         print("You opted to prep your own system so please put files in:\n\t{}\n\t{}".format(tftp_path, nfs_path))
         print("I have wrote you a cmdline.txt so don't change it:")
