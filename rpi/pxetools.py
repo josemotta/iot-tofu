@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# iot-tofu: based on link below but the network is supposed to be already set.
+# https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
+# iptables commands are commented, for this usecase the firewall is not necessary
+
 import os
 import re
 import subprocess
@@ -20,8 +24,8 @@ def cmd(cmd, print_out=False, print_cmd=True, can_fail=False):
         print("# {}".format(cmd))
 
     out = None
-    
-    try:    
+
+    try:
         out = subprocess.check_output(cmd, shell=True).decode()
     except:
         if not can_fail:
@@ -31,7 +35,7 @@ def cmd(cmd, print_out=False, print_cmd=True, can_fail=False):
         print(out)
 
     return out
-        
+
 def add():
     serial = None
     if len(sys.argv) != 3:
@@ -39,21 +43,21 @@ def add():
             # Auto detect
             print("Will try and auto detect serial. Please plug in your Pi now!")
             cmd("systemctl stop dnsmasq")
-            cmd("iptables -t raw --flush")
+            # cmd("iptables -t raw --flush")
 
             try:
                 serial = cmd("get_serial", print_cmd=False).rstrip()
             except KeyboardInterrupt:
-                cmd("iptables-restore < /etc/iptables/rules.v4")
+                # cmd("iptables-restore < /etc/iptables/rules.v4")
                 cmd("systemctl start dnsmasq")
                 sys.exit()
 
             print("Found serial")
-            cmd("iptables-restore < /etc/iptables/rules.v4")
+            # cmd("iptables-restore < /etc/iptables/rules.v4")
             cmd("systemctl start dnsmasq")
     else:
         serial = sys.argv[2]
-    
+
     # Validate serial
     serial = serial.lstrip("0")
     if not re.search("^[0-9a-f]{8}$", serial):
@@ -62,12 +66,12 @@ def add():
     print("Serial: {}".format(serial))
     owner = input("Owner Name (ex Gordon): ")
     name = input("Name for pi: ")
-    
+
     print("Select a base image:")
     selection = ["I will prepare my own filesystem"] + os.listdir('/nfs/bases')
     for i in range (0, len(selection)):
         print("\t{}. {}".format(i + 1, selection[i]))
-    
+
     img_choice = input("Enter an option number: ")
 
     tftp_path = "/tftpboot/{}".format(serial)
@@ -84,22 +88,22 @@ def add():
         valid_img_choice = False
 
     if img_choice < 0 or img_choice > (len(selection) - 1) or (not valid_img_choice):
-        raise Exception("Invalid image choice {}".format(img_choice))    
+        raise Exception("Invalid image choice {}".format(img_choice))
 
     img = None
     if img_choice > 0:
-        img = "/nfs/bases/{}".format(selection[img_choice]) 
+        img = "/nfs/bases/{}".format(selection[img_choice])
 
     print("\nSetting up pi...\n")
 
-    cmd("iptables -t raw -I DHCP_clients -m mac --mac-source {0} -j ACCEPT".format(mac(serial))) 
-    cmd("iptables-save > /etc/iptables/rules.v4")
+    # cmd("iptables -t raw -I DHCP_clients -m mac --mac-source {0} -j ACCEPT".format(mac(serial)))
+    # cmd("iptables-save > /etc/iptables/rules.v4")
     cmd("mkdir {}".format(tftp_path))
     cmd("cp -r /tftpboot/base/* {}".format(tftp_path))
     cmd("mkdir {}".format(nfs_path))
     cmd("echo \"{} *(rw,sync,no_subtree_check,no_root_squash)\" >> /etc/exports".format(nfs_path))
     cmd("exportfs -a")
-    
+
     cmdline_txt = "dwc_otg.lpm_enable=0 root=/dev/nfs nfsroot={}:{} rw ip=dhcp rootwait elevator=deadline".format(NFS_IP, nfs_path)
     cmd("echo \"{}\" > {}/cmdline.txt".format(cmdline_txt, tftp_path))
     cmd("echo \"{}\" > {}/owner".format(owner, tftp_path))
@@ -128,10 +132,10 @@ def add():
 
 def remove():
     serial = sys.argv[2]
-    
+
     if not re.search("^[0-9a-f]{8}$", serial):
             raise Exception("Invalid serial number {}".format(serial))
-    
+
     sure = ""
     while sure != "Y" and sure != "N":
         sure = input("ARE YOU SURE YOU WANT TO DELETE {}? Y/N: ".format(serial))
@@ -139,14 +143,14 @@ def remove():
     if sure == "N":
         print("Aborting")
         return
-    
+
     cmd("rm -rf /tftpboot/{}".format(serial), can_fail=True)
 
     nfspath = "/nfs/{}".format(serial)
     cmd("rm -rf {}".format(nfspath), can_fail=True)
 
     print("Removing from /etc/exports")
-    with open("/etc/exports", 'r+') as f: 
+    with open("/etc/exports", 'r+') as f:
         export = f.read()
         f.seek(0)
 
@@ -157,18 +161,18 @@ def remove():
         f.truncate()
 
     mac_uppercase = mac(serial).upper()
-    print("Removing from iptables rules")
-    with open("/etc/iptables/rules.v4", 'r+') as f:
-        rules = f.read()
-        f.seek(0)
+    # print("Removing from iptables rules")
+    # with open("/etc/iptables/rules.v4", 'r+') as f:
+    #     rules = f.read()
+    #     f.seek(0)
 
-        for l in rules.splitlines():
-            if mac_uppercase not in l:
-                f.write(l + "\n")
+    #     for l in rules.splitlines():
+    #         if mac_uppercase not in l:
+    #             f.write(l + "\n")
 
-        f.truncate()
+    #     f.truncate()
 
-    cmd("iptables-restore < /etc/iptables/rules.v4")
+    # cmd("iptables-restore < /etc/iptables/rules.v4")
 
 def mac(serial):
     # MAC is least significant bits of serial
@@ -185,7 +189,7 @@ def mac(serial):
 
 def ip(mac):
     # Hacky way of getting IP from Mac Address
-    cmdstr = ("nmap -sn -PR --min-rate 5000 --max-retries=0 {0} " 
+    cmdstr = ("nmap -sn -PR --min-rate 5000 --max-retries=0 {0} "
               "| grep -i -B 2 {1} | head -n 1 |"
               " awk '{{print $5}}'").format(LAN, mac)
     ip = cmd(cmdstr, print_cmd=False)
@@ -208,7 +212,7 @@ def list():
     tbl = [["Serial", "Owner", "Name", "MAC", "IP"]]
     pis = os.listdir("/tftpboot")
     pis = [p for p in pis if p != "base" and p != "bootcode.bin"]
-    
+
     for p in pis:
         base = os.path.join("/tftpboot", p)
         tbl.append(["0x{}".format(p), file_or_none(base, "owner"), file_or_none(base, "name"), mac(p), ip(mac(p))])

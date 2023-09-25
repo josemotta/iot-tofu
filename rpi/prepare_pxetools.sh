@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Based on link below but the network is supposed to be already set.
+# iot-tofu: based on link below but the network is supposed to be already set.
 # https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
+# iptables commands are commented, for this usecase the firewall is not necessary
 
 set -e
 
@@ -117,19 +118,19 @@ cd /nfs
 sudo wget  -O /usr/local/sbin/pxetools https://datasheets.raspberrypi.org/soft/pxetools.py
 sudo chmod +x /usr/local/sbin/pxetools
 
-# Flush any rules that might exist
-sudo iptables -t raw --flush
+# # Flush any rules that might exist
+# sudo iptables -t raw --flush
 
-# Create the DHCP_clients chain in the 'raw' table
-sudo iptables -t raw -N DHCP_clients || true
+# # Create the DHCP_clients chain in the 'raw' table
+# sudo iptables -t raw -N DHCP_clients || true
 
-# Incoming DHCP, pass to chain processing DHCP
-sudo iptables -t raw -A PREROUTING -p udp --dport 67 -j DHCP_clients
+# # Incoming DHCP, pass to chain processing DHCP
+# sudo iptables -t raw -A PREROUTING -p udp --dport 67 -j DHCP_clients
 
-# Deny clients not in chain not listed above
-sudo iptables -t raw -A DHCP_clients -j DROP
+# # Deny clients not in chain not listed above
+# sudo iptables -t raw -A DHCP_clients -j DROP
 
-sudo iptables-save | sudo tee /etc/iptables/rules.v4
+# sudo iptables-save | sudo tee /etc/iptables/rules.v4
 
 # Disable DHCP client
 sudo systemctl stop dhcpcd
