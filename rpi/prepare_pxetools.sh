@@ -41,7 +41,7 @@ GATEWAY=$(ip -4 route | grep default | head -n 1 | cut -d " " -f3)
 IP=$(ifconfig eth0 | grep "inet " | cut -d " " -f10)
 NETMASK=$(ifconfig eth0 | grep "inet " | cut -d " " -f13)
 DNSSERVER=192.168.1.254
-DHCPRANGE=192.168.10.101,192.168.10.199,255.255.255.0,12h
+DHCPRANGE=192.168.10.50,192.168.10.99,255.255.255.0,12h
 # BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
 
 # Raspberry Pi OS bases to be downloaded
@@ -70,7 +70,7 @@ echo "Pxettols: $PXETOOLS"
 # DHCP range: 192.168.10.101,192.168.10.199,255.255.255.0,12h
 # Pxettols: /home/jo/rpi/iot-tofu/rpi/pxetools.py
 
-exit
+# exit
 # TODO:
 #		- check network values and exit if they are not ok
 #		- do not change network here
@@ -90,7 +90,6 @@ exit
 sudo mkdir -p /nfs
 sudo mkdir -p /tftpboot
 sudo cp -r /boot /tftpboot/base
-sudo cp /boot/bootcode.bin /tftpboot
 sudo chmod -R 777 /tftpboot
 
 echo "Writing dnsmasq.conf"
