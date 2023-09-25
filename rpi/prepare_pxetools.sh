@@ -7,7 +7,7 @@
 #   - The network is a 'region' with local LAN including the Tofu & RPis.
 #		- The local LAN connects to the main network, with Internet access.
 # 	- region router: dedicated LAN for Tofu & RPis (192.168.10.1)
-# 	- region dns: nameserver 127.0.0.1 to force dnsmasq dns
+# 	- region dns: nameserver 127.0.0.1 to force using dnsmasq dns
 # 	- main router: connected to Internet (192.168.1.254)
 # 	- main dns: 192.168.1.254 to be set at dnsmasq server
 #   - The 'iptables' commands are commented
@@ -16,9 +16,9 @@
 set -e
 
 # RPI TOFU setup
-#		- installs below were commented for development
-#   - (TODO: split into separate scripts)
-#		- please uncomment and just run once!
+#		- installs are commented
+#		- before the first run, please uncomment
+#   - TODO: split into a separate script
 #
 # sudo apt update
 # sudo apt full-upgrade
@@ -49,9 +49,20 @@ RPI_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz
 RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz'
 
 # The pxetools code is supposed to be in this same folder
-# PXETOOLS=$(dirname "$0")
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 PXETOOLS=$SCRIPT_DIR/pxetools.py
+
+#   - The 'interfaces' (or equivalent) should be already set:
+#     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
+#     auto lo
+#     iface lo inet loopback
+#
+#     auto eth0
+#     iface eth0 inet static
+#       address $IP
+#       netmask $NETMASK
+#       gateway $GATEWAY
+#     EOF
 
 echo "IP: $IP"
 echo "Netmask: $NETMASK"
@@ -70,22 +81,10 @@ echo "Pxettols: $PXETOOLS"
 # DHCP range: 192.168.10.101,192.168.10.199,255.255.255.0,12h
 # Pxettols: /home/jo/rpi/iot-tofu/rpi/pxetools.py
 
-# exit
-# TODO:
-#		- check network values and exit if they are not ok
-#		- do not change network here
-
-# The 'interfaces' (or equivalent) should be already set:
-# cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
-# auto lo
-# iface lo inet loopback
-
-# auto eth0
-# iface eth0 inet static
-# 	address $IP
-# 	netmask $NETMASK
-# 	gateway $GATEWAY
-# EOF
+echo "Check values and cancel if not ok."
+#	Network is not supposed to be changed down here
+read -p "Cancel? (y/n) " RESP
+if [ "$RESP" = "y" ]; then exit; fi
 
 sudo mkdir -p /nfs
 sudo mkdir -p /tftpboot

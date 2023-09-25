@@ -18,7 +18,10 @@ echo "Gateway: $GATEWAY"
 echo "DNS: $DNSSERVER"
 echo "Pxettols: $PXETOOLS"
 
-# exit
+echo "Check values and cancel if not ok."
+#	Network is not supposed to be changed down here
+read -p "Cancel? (y/n) " RESP
+if [ "$RESP" = "y" ]; then exit; fi
 
 sudo systemctl stop dnsmasq
 sudo systemctl disable dnsmasq
