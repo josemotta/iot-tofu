@@ -94,6 +94,7 @@ sudo chmod -R 777 /tftpboot
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
 interface=eth0
+no-resolv
 server=$DNSSERVER
 dhcp-range=$DHCPRANGE
 bind-interfaces
@@ -102,7 +103,7 @@ log-queries
 enable-tftp
 tftp-root=/tftpboot
 tftp-no-fail
-pxe-service=0, "Raspberry Pi Boot"
+pxe-service=0,"Raspberry Pi Boot"
 EOF
 
 # Get Raspberry Pi OS lite images
