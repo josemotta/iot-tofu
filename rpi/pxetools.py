@@ -104,7 +104,7 @@ def add():
     cmd("echo \"{} *(rw,sync,no_subtree_check,no_root_squash)\" >> /etc/exports".format(nfs_path))
     cmd("exportfs -a")
 
-    cmdline_txt = "dwc_otg.lpm_enable=0 root=/dev/nfs nfsroot={}:{} rw ip=dhcp rootwait elevator=deadline".format(NFS_IP, nfs_path)
+    cmdline_txt = "dwc_otg.lpm_enable=0 root=/dev/nfs nfsroot={}:{} rw ip=dhcp rootwait elevator=deadline nfsrootdebug".format(NFS_IP, nfs_path)
     cmd("echo \"{}\" > {}/cmdline.txt".format(cmdline_txt, tftp_path))
     cmd("echo \"{}\" > {}/owner".format(owner, tftp_path))
     cmd("echo \"{}\" > {}/name".format(name, tftp_path))
@@ -124,7 +124,7 @@ def add():
         cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hostname".format(name, nfs_path))
 
         # fstab
-        fstab_txt = "{}:{} /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n\n".format(NFS_IP, tftp_path)
+        fstab_txt = "{}:{} /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n".format(NFS_IP, tftp_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 
         # cmd("echo > {}/etc/fstab".format(nfs_path))

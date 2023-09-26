@@ -110,6 +110,7 @@ enable-tftp
 tftp-root=/tftpboot
 tftp-no-fail
 pxe-service=0,"Raspberry Pi Boot"
+dhcp-boot=pxelinux.0
 EOF
 
 # Get Raspberry Pi OS lite images
