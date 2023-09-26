@@ -119,7 +119,16 @@ def add():
 
         cmd("sudo cp -r {}/* {}/".format(img, nfs_path), print_out=True)
 
-        cmd("echo > {}/etc/fstab".format(nfs_path))
+        # hosts & hostname
+        cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hosts".format(name, nfs_path))
+        cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hostname".format(name, nfs_path))
+
+        # fstab
+        fstab_txt = "{}:{} /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n\n".format(NFS_IP, tftp_path)
+        cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
+
+        # cmd("echo > {}/etc/fstab".format(nfs_path))
+
         cmd("cd {}/etc/init.d; rm dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
         cmd("cd {}/etc/systemd/system; rm -r dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
 

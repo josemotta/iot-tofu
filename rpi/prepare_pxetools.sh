@@ -16,9 +16,10 @@
 set -e
 
 # RPI TOFU setup
-#		- installs are commented
-#		- before the first run, please uncomment
-#   - TODO: split into a separate script
+#		- initial setup is commented out below.
+#   - this script works together with reset_pxetools.sh
+#		- before the first run, uncomment install below, and run once.
+#   - TODO: split into a separate script.
 #
 # sudo apt update
 # sudo apt full-upgrade
@@ -81,7 +82,7 @@ echo "Pxettols: $PXETOOLS"
 # DHCP range: 192.168.10.101,192.168.10.199,255.255.255.0,12h
 # Pxettols: /home/jo/rpi/iot-tofu/rpi/pxetools.py
 
-echo "Check values and cancel if not ok."
+echo "Installing! Check values and cancel if not ok."
 #	Network is not supposed to be changed down here
 read -p "Cancel? (y/n) " RESP
 if [ "$RESP" = "y" ]; then exit; fi
@@ -90,6 +91,11 @@ sudo mkdir -p /nfs
 sudo mkdir -p /tftpboot
 sudo cp -r /boot /tftpboot/base
 sudo chmod -R 777 /tftpboot
+
+# Set minimum GPU memory 16MB, leaving remaining to ARM
+cat << EOF | sudo tee -a /tftpboot/base/config.txt
+gpu_mem=16
+EOF
 
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
@@ -145,11 +151,14 @@ sudo systemctl disable dhcpcd
 sudo systemctl restart networking
 
 # Start services
-sudo systemctl enable dnsmasq
-sudo systemctl restart dnsmasq
-sudo systemctl enable rpcbind
-sudo systemctl restart rpcbind
-sudo systemctl enable nfs-kernel-server
-sudo systemctl restart nfs-kernel-server
+sudo systemctl enable dnsmasq rpcbind nfs-kernel-server
+sudo systemctl restart dnsmasq rpcbind nfs-kernel-server
+
+# sudo systemctl enable dnsmasq
+# sudo systemctl restart dnsmasq
+# sudo systemctl enable rpcbind
+# sudo systemctl restart rpcbind
+# sudo systemctl enable nfs-kernel-server
+# sudo systemctl restart nfs-kernel-server
 
 echo "Now run sudo pxetools --add \$serial"
