@@ -17,12 +17,12 @@ sudo cp $PXETOOLS /usr/local/sbin/pxetools
 sudo chmod +x /usr/local/sbin/pxetools
 
 # Disable DHCP client
-sudo systemctl stop dhcpcd
-sudo systemctl disable dhcpcd
-sudo systemctl restart networking
+# sudo systemctl stop dhcpcd
+# sudo systemctl disable dhcpcd
+# sudo systemctl restart networking
 
 # Restart services
-sudo systemctl enable dnsmasq rpcbind nfs-kernel-server
+# sudo systemctl enable dnsmasq rpcbind nfs-kernel-server
 sudo systemctl restart dnsmasq rpcbind nfs-kernel-server
 
 echo "Now run sudo pxetools --add \$serial"

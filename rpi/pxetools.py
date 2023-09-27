@@ -106,7 +106,6 @@ def add():
 
     # cmdline_txt = "dwc_otg.lpm_enable=0 root=/dev/nfs nfsroot={}:{} rw ip=dhcp rootwait elevator=deadline nfsrootdebug".format(NFS_IP, nfs_path)
     cmdline_txt = "console=serial0,115200 console=tty root=/dev/nfs nfsroot={}:{},vers=4.1,proto=tcp rw ip=dhcp rootwait elevator=deadline nfsrootdebug\ncgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory".format(NFS_IP, nfs_path)
-
     cmd("echo \"{}\" > {}/cmdline.txt".format(cmdline_txt, tftp_path))
     cmd("echo \"{}\" > {}/owner".format(owner, tftp_path))
     cmd("echo \"{}\" > {}/name".format(name, tftp_path))
@@ -126,7 +125,15 @@ def add():
         cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hostname".format(name, nfs_path))
 
         # fstab
-        fstab_txt = "{}:{} /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n".format(NFS_IP, tftp_path)
+        # tofu:
+        #   proc            /proc           proc    defaults          0       0
+        #   PARTUUID=866a3e7c-01  /boot           vfat    defaults          0       2
+        #   PARTUUID=866a3e7c-02  /               ext4    defaults,noatime  0       1
+        # rpi:
+        #   192.168.10.10:/tftpboot/9f55bbfd /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0
+        #   proc /proc proc defaults 0 1
+
+        fstab_txt = "{}:{} /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 1\n".format(NFS_IP, tftp_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 
         cmd("cd {}/etc/init.d; rm dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
@@ -143,7 +150,7 @@ def add():
         print("I have wrote you a cmdline.txt so don't change it:")
         print(cmdline_txt)
 
-    print("Should be working. You might have to wait a couple of minutes before SSH lets you in")
+    print("Should be working, you might have to wait SSH lets you in.")
 
 def remove():
     serial = sys.argv[2]
