@@ -133,7 +133,7 @@ def add():
         #   192.168.10.10:/tftpboot/9f55bbfd /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0
         #   proc /proc proc defaults 0 1
 
-        fstab_txt = "{}:{} /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n".format(NFS_IP, tftp_path)
+        fstab_txt = "{}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n".format(NFS_IP, nfs_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 
         cmd("cd {}/etc/init.d; rm dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
