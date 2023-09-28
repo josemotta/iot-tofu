@@ -130,8 +130,9 @@ def add():
         #   PARTUUID=866a3e7c-01  /boot           vfat    defaults          0       2
         #   PARTUUID=866a3e7c-02  /               ext4    defaults,noatime  0       1
         # rpi:
-        #   192.168.10.10:/tftpboot/9f55bbfd /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0
-        #   proc /proc proc defaults 0 1
+        #   192.168.10.10:/nfs/9f55bbfd/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0
+        #   proc /proc proc defaults 0 0
+
 
         fstab_txt = "{}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n".format(NFS_IP, nfs_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
