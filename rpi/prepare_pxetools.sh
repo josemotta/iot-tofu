@@ -92,10 +92,13 @@ sudo mkdir -p /tftpboot
 sudo cp -r /boot /tftpboot/base
 sudo chmod -R 777 /tftpboot
 
-# Set minimum GPU memory 16MB, leaving remaining to ARM
-cat << EOF | sudo tee -a /tftpboot/base/config.txt
-gpu_mem=16
-EOF
+# Use base config.txt (extracted from this folder)
+sudo cp --remove-destination $SCRIPT_DIR/config.txt /tftpboot/base/config.txt
+
+# # Set minimum GPU memory 16MB, leaving remaining to ARM
+# cat << EOF | sudo tee -a /tftpboot/base/config.txt
+# gpu_mem=16
+# EOF
 
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
