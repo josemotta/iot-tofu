@@ -120,13 +120,13 @@ sudo mkdir -p /nfs/bases/lite_armhf
 cd /nfs/bases/lite_armhf
 sudo wget -O rpi_lite_armhf.xz $RPI_LITE_ARMHF
 sudo tar -xf rpi_lite_armhf.xz
-# sudo rm rpi_lite_armhf.xz
+sudo rm rpi_lite_armhf.xz
 # lite_arm64
 sudo mkdir -p /nfs/bases/lite_arm64
 cd /nfs/bases/lite_arm64
 sudo wget -O rpi_lite_arm64.xz $RPI_LITE_ARM64
 sudo tar -xf rpi_lite_arm64.xz
-# sudo rm rpi_lite_arm64.xz
+sudo rm rpi_lite_arm64.xz
 
 # Add pxetools code to Tofu
 sudo cp $PXETOOLS /usr/local/sbin/pxetools
