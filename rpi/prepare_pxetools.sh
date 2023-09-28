@@ -10,16 +10,16 @@
 # 	- region dns: nameserver 127.0.0.1 to force using dnsmasq dns
 # 	- main router: connected to Internet (192.168.1.254)
 # 	- main dns: 192.168.1.254 to be set at dnsmasq server
-#   - The 'iptables' commands are commented
-#   - For this use case, the firewall is not necessary yet
+#   - For this use case, the firewall is not necessary
+#   - Then 'iptables' commands are commented
 
 set -e
 
 # RPI TOFU setup
 #		- initial setup is commented out below.
 #   - this script works together with reset_pxetools.sh
-#		- before the first run, uncomment install below, and run once.
-#   - TODO: split into a separate script.
+#		- before the first run, uncomment install below
+#   - TODO: split into a separate script
 #
 # sudo apt update
 # sudo apt full-upgrade
@@ -95,11 +95,6 @@ sudo chmod -R 777 /tftpboot
 # Use base config.txt (extracted from this folder)
 sudo cp --remove-destination $SCRIPT_DIR/config.txt /tftpboot/base/config.txt
 
-# # Set minimum GPU memory 16MB, leaving remaining to ARM
-# cat << EOF | sudo tee -a /tftpboot/base/config.txt
-# gpu_mem=16
-# EOF
-
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
 interface=eth0
@@ -157,12 +152,5 @@ sudo systemctl restart networking
 # Start services
 sudo systemctl enable dnsmasq rpcbind nfs-kernel-server
 sudo systemctl restart dnsmasq rpcbind nfs-kernel-server
-
-# sudo systemctl enable dnsmasq
-# sudo systemctl restart dnsmasq
-# sudo systemctl enable rpcbind
-# sudo systemctl restart rpcbind
-# sudo systemctl enable nfs-kernel-server
-# sudo systemctl restart nfs-kernel-server
 
 echo "Now run sudo pxetools --add \$serial"
