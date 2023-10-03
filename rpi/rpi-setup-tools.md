@@ -81,7 +81,9 @@ sudo dd if=raw_os_image_of_your_choice.img of=/dev/nvme0n1 bs=4MiB
 /dev/mmcblk0p2 on /media/jo/rootfs type ext4 (rw,nosuid,nodev,relatime,errors=remount-ro,uhelper=udisks2) [rootfs]
 ```
 
-## utils
+## SSH host keys
+
+Based on [rapsberrypi tutorial](https://github.com/stweil/raspberrypi-documentation/blob/master/hardware/raspberrypi/bootmodes/net_tutorial.md) to regenerate ssh host keys on client filesystem:
 
 ```sh
 # Regenerate SSH host keys on the client filesystem
@@ -95,7 +97,11 @@ rm /etc/ssh/ssh_host_*
 dpkg-reconfigure openssh-server
 exit
 sudo umount dev sys proc
+```
 
+## utils
+
+```sh
 # Find the address of your router (or gateway)
 ip route | awk '/default/ {print $3}'
 
@@ -107,11 +113,7 @@ ip route | awk '/default/ {print $3}'
 sudo apt install tcpdump dnsmasq
 sudo systemctl enable dnsmasq
 sudo tcpdump -i eth0 port bootpc
-```
 
-## CLIENT_ID ops
-
-```sh
 # SERVER STEPS
 #---------------------------------
 # server-step-fsdel $1
