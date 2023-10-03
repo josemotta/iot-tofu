@@ -1,6 +1,6 @@
 # RPi boot loader
 
-Based on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#updating-the-eeprom-configuration) these steps update the RPI EEPROM configuration.
+Based on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#updating-the-eeprom-configuration) the following steps update the RPI EEPROM configuration.
 
 ## Check boot loader configuration
 
