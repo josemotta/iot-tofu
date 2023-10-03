@@ -21,7 +21,6 @@ This is a development platform using:
 - Main
   - router: connected to Internet (gateway 192.168.1.254)
   - dns: 192.168.1.254 to be set at dnsmasq server
-- Firewall is not needed yet, then original 'iptables' commands are commented here.
 
 ## Boot-Back
 
