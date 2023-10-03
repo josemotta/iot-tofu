@@ -1,12 +1,22 @@
-```sh
+# RPi setup
 
+## dev tools
+
+```sh
 sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - &&sudo apt-get install -y nodejs
 
 sudo npm install -g npm@9.8.1
 
 sudo npm i -g @looback/cli
+```
 
-Same source code for rpi (aarch64) & pc (x86_64):
+## Available for RPi and PC
+
+IBM Loopback allows the same API source code for rpi (aarch64) & pc (x86_64).
+
+### rpi (aarch64)
+
+```sh
 {
   "greeting": "Hello from LoopBack",
   "date": "2023-07-21T15:04:11.139Z",
@@ -27,7 +37,11 @@ Same source code for rpi (aarch64) & pc (x86_64):
     "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"
   }
 }
+```
 
+### pc (x86_64)
+
+```sh
 {
   "greeting": "Hello from LoopBack",
   "date": "2023-07-21T19:55:01.819Z",
@@ -49,22 +63,27 @@ Same source code for rpi (aarch64) & pc (x86_64):
     "accept-language": "en,pt-BR;q=0.9,pt;q=0.8"
   }
 }
+```
 
+## nvme.m2
+
+```sh
 # FORMAT NVME
 # https://www.raspberrypi.com/documentation/computers/compute-module.html#writing-to-the-emmc-linux
 
 sudo dd if=raw_os_image_of_your_choice.img of=/dev/nvme0n1 bs=4MiB
 
+# mount -l
+/dev/nvme0n1p1 on /boot type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro) [bootfs]
+/dev/nvme0n1p2 on / type ext4 (rw,noatime) [rootfs]
 
-# BOOT SERVER
-# Server configuration for client1
-# https://www.raspberrypi.com/documentation/computers/remote-access.html#network-boot-your-raspberry-pi
+/dev/mmcblk0p1 on /media/jo/bootfs type vfat (rw,nosuid,nodev,relatime,uid=1000,gid=1000,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,showexec,utf8,flush,errors=remount-ro,uhelper=udisks2) [bootfs]
+/dev/mmcblk0p2 on /media/jo/rootfs type ext4 (rw,nosuid,nodev,relatime,errors=remount-ro,uhelper=udisks2) [rootfs]
+```
 
-# Generate a copy from current fs to client1
-sudo mkdir -p /nfs/client1
-sudo apt install rsync
-sudo rsync -xa --progress --exclude /nfs / /nfs/client1
+## utils
 
+```sh
 # Regenerate SSH host keys on the client filesystem
 # by chrooting into it
 cd /nfs/client1
@@ -88,14 +107,11 @@ ip route | awk '/default/ {print $3}'
 sudo apt install tcpdump dnsmasq
 sudo systemctl enable dnsmasq
 sudo tcpdump -i eth0 port bootpc
+```
 
-# mount -l
-/dev/nvme0n1p1 on /boot type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,errors=remount-ro) [bootfs]
-/dev/nvme0n1p2 on / type ext4 (rw,noatime) [rootfs]
+## CLIENT_ID ops
 
-/dev/mmcblk0p1 on /media/jo/bootfs type vfat (rw,nosuid,nodev,relatime,uid=1000,gid=1000,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,showexec,utf8,flush,errors=remount-ro,uhelper=udisks2) [bootfs]
-/dev/mmcblk0p2 on /media/jo/rootfs type ext4 (rw,nosuid,nodev,relatime,errors=remount-ro,uhelper=udisks2) [rootfs]
-
+```sh
 # SERVER STEPS
 #---------------------------------
 # server-step-fsdel $1

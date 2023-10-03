@@ -4,14 +4,16 @@
 #   - Based on link below but the network is supposed to be already set.
 #     https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools
 #
-#   - The network is a 'region' with local LAN including the Tofu & RPis.
-#		- The local LAN connects to the main network, with Internet access.
-# 	- region router: dedicated LAN for Tofu & RPis (192.168.10.1)
-# 	- region dns: nameserver 127.0.0.1 to force using dnsmasq dns
-# 	- main router: connected to Internet (192.168.1.254)
-# 	- main dns: 192.168.1.254 to be set at dnsmasq server
-#   - For this use case, the firewall is not necessary
-#   - Then 'iptables' commands are commented
+#   - The main network has a 'region' based on a local LAN that includes the Tofu & RPis.
+#   - Tofu is the boot server for dozens RPis.
+#		- Each region LAN connects to the main network & then to the Internet.
+# 	- Region
+#       router: dedicated LAN for Tofu & RPis (192.168.10.1)
+# 	    dns: nameserver 127.0.0.1 to force using dnsmasq dns
+# 	- Main
+#       router: connected to Internet (gateway 192.168.1.254)
+# 	    dns: 192.168.1.254 to be set at dnsmasq server
+#   - Firewall is not needed yet, then original 'iptables' commands are commented here.
 
 set -e
 
@@ -83,6 +85,7 @@ echo "Pxettols: $PXETOOLS"
 # Pxettols: /home/jo/rpi/iot-tofu/rpi/pxetools.py
 
 echo "Installing! Check values and cancel if not ok."
+
 #	Network is not supposed to be changed down here
 read -p "Cancel? (y/n) " RESP
 if [ "$RESP" = "y" ]; then exit; fi
@@ -92,7 +95,7 @@ sudo mkdir -p /tftpboot
 sudo cp -r /boot /tftpboot/base
 sudo chmod -R 777 /tftpboot
 
-# Use base config.txt (extracted from this folder)
+# Use "config.txt" extracted from this folder
 sudo cp --remove-destination $SCRIPT_DIR/config.txt /tftpboot/base/config.txt
 
 echo "Writing dnsmasq.conf"
@@ -126,7 +129,7 @@ sudo wget -O rpi_lite_arm64.xz $RPI_LITE_ARM64
 sudo tar -xf rpi_lite_arm64.xz
 sudo rm rpi_lite_arm64.xz
 
-# Add pxetools code to Tofu
+# Install pxetools
 sudo cp $PXETOOLS /usr/local/sbin/pxetools
 sudo chmod +x /usr/local/sbin/pxetools
 
