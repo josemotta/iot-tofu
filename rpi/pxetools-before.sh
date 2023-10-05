@@ -19,9 +19,8 @@ set -e
 
 # RPI TOFU setup
 #		- initial setup is commented out below.
-#   - this script works together with reset_pxetools.sh
-#		- before the first run, uncomment install below
-#   - TODO: split into a separate script
+#   - since this script works together with reset_pxetools.sh
+#		- before the very first run, please uncomment install below
 #
 # sudo apt update
 # sudo apt full-upgrade
@@ -39,6 +38,9 @@ set -e
 # sudo pip3 install tabulate
 # curl -fsSL https://get.docker.com -o get-docker.sh
 # sudo sh get-docker.sh
+# sudo groupadd docker
+# sudo usermod -aG docker $USER
+# Note: Reboot for user membership evaluation
 
 # Get network info. It should be already set!
 NAMESERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | cut -d " " -f2)
