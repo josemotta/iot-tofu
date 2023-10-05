@@ -37,6 +37,8 @@ set -e
 # 	kpartx \
 # 	rsync
 # sudo pip3 install tabulate
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sudo sh get-docker.sh
 
 # Get network info. It should be already set!
 NAMESERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | cut -d " " -f2)
