@@ -10,7 +10,7 @@ This is a development platform using:
 
 The architecture is based on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools) but the network is supposed to be already set as follows:
 
-- There is a network conected through the cloud, composed of 'regions'.
+- There is a main network conected through the cloud, composed of 'regions'.
 - Each 'region' has a local LAN that includes a boot server handling up to dozens RPis.
 - Tofu is the boot server for all RPis in the regional LAN.
 - Each RPi has sensors & actuators for an Internet of Things application.

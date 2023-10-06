@@ -55,9 +55,10 @@ DHCPRANGE=192.168.10.50,192.168.10.99,255.255.255.0,12h
 RPI_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz'
 RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz'
 
-# The pxetools code is supposed to be in this same folder
+# The pxetools code & config.txt are supposed to be in this folder
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 PXETOOLS=$SCRIPT_DIR/pxetools.py
+CONFIG=$SCRIPT_DIR/config.txt
 
 #   - The 'interfaces' (or equivalent) should be already set:
 #     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
@@ -100,7 +101,7 @@ sudo cp -r /boot /tftpboot/base
 sudo chmod -R 777 /tftpboot
 
 # Use "config.txt" extracted from this folder
-sudo cp --remove-destination $SCRIPT_DIR/config.txt /tftpboot/base/config.txt
+sudo cp --remove-destination $CONFIG /tftpboot/base/config.txt
 
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
