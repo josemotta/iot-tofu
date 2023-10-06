@@ -8,13 +8,13 @@ This is a development platform using:
 
 ![tofu-board](https://github.com/josemotta/iot-tofu/assets/86032/cc103d69-08f9-42e8-bbb8-e5f05c1d34d2)
 
-- Based on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools) but the network is supposed to be already set.
+The architecture is based on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools) but the network is supposed to be already set as follows:
 
-- The main network is composed of 'regions'.
-- Each 'region' has a local LAN that includes the Tofu itself and up to dozens RPis.
+- There is a network conected through the cloud, composed of 'regions'.
+- Each 'region' has a local LAN that includes a boot server handling up to dozens RPis.
 - Tofu is the boot server for all RPis in the regional LAN.
 - Each RPi has sensors & actuators for an Internet of Things application.
-- Each region connects to the main network & then to the Internet.
+- Each region connects to the main network & then to the Internet cloud.
 - Region
   - router: dedicated LAN for Tofu & RPis (192.168.10.1)
   - dns: nameserver 127.0.0.1 to force using dnsmasq dns
