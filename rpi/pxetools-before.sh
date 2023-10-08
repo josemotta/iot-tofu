@@ -59,6 +59,7 @@ RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 PXETOOLS=$SCRIPT_DIR/pxetools.py
 CONFIG=$SCRIPT_DIR/config.txt
+FSGEN=$SCRIPT_DIR/fsgen.sh
 
 #   - The 'interfaces' (or equivalent) should be already set:
 #     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
@@ -102,6 +103,8 @@ sudo chmod -R 777 /tftpboot
 
 # Use "config.txt" extracted from this folder
 sudo cp --remove-destination $CONFIG /tftpboot/base/config.txt
+sudo cp --remove-destination $FSGEN /nfs/fsgen.sh
+sudo chmod +x /nfs/fsgen.sh
 
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
