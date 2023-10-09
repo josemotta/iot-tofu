@@ -17,10 +17,10 @@
 
 set -e
 
-# RPI TOFU setup
-#		- initial setup is commented out below.
-#   - since this script works together with reset_pxetools.sh
-#		- before the very first run, please uncomment install below
+# Start of initial setup: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#		- some setup lines are commented out below, please see also reset_pxetools.sh
+#		- BEFORE the very FIRST run, please uncomment lines below
+#   - but they do not need to be executed more than once per installation
 #
 # sudo apt update
 # sudo apt full-upgrade
@@ -36,11 +36,31 @@ set -e
 # 	kpartx \
 # 	rsync
 # sudo pip3 install tabulate
+
+# Docker is supposed to be installed just once
 # curl -fsSL https://get.docker.com -o get-docker.sh
 # sudo sh get-docker.sh
 # sudo groupadd docker
 # sudo usermod -aG docker $USER
-# Note: Reboot for user membership evaluation
+
+# Set a pipe to run commands from the docker container
+# https://stackoverflow.com/questions/32163955/how-to-run-shell-script-on-host-from-docker-container
+mkdir /home/$USER/pipe && mkfifo /home/$USER/pipe/rpipe
+
+cat << EOF | sudo tee /home/$USER/pipe/rpipe.sh
+#!/bin/bash
+while true; do eval "$(cat /home/$USER/pipe/rpipe)" &> /home/$USER/pipe/rpipe.txt; done
+EOF
+
+cat << EOF | sudo tee /home/$USER/pipe/rpipe.crontab
+@reboot /home/$USER/pipe/rpipe.sh
+EOF
+
+crontab -u $USER /home/$USER/pipe/rpipe.crontab
+
+#  - please reboot after running, for user membership & crontab evaluation
+#  - after the VERY FIRST run, you can comment these lines until here
+# End of initial setup: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 # Get network info. It should be already set!
 NAMESERVER=$(cat /etc/resolv.conf | grep nameserver | head -n 1 | cut -d " " -f2)
