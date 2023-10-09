@@ -43,21 +43,6 @@ set -e
 # sudo groupadd docker
 # sudo usermod -aG docker $USER
 
-# Set a pipe to run commands from the docker container
-# https://stackoverflow.com/questions/32163955/how-to-run-shell-script-on-host-from-docker-container
-mkdir /home/$USER/pipe && mkfifo /home/$USER/pipe/rpipe
-
-cat << EOF | sudo tee /home/$USER/pipe/rpipe.sh
-#!/bin/bash
-while true; do eval "$(cat /home/$USER/pipe/rpipe)" &> /home/$USER/pipe/rpipe.txt; done
-EOF
-
-cat << EOF | sudo tee /home/$USER/pipe/rpipe.crontab
-@reboot /home/$USER/pipe/rpipe.sh
-EOF
-
-crontab -u $USER /home/$USER/pipe/rpipe.crontab
-
 #  - please reboot after running, for user membership & crontab evaluation
 #  - after the VERY FIRST run, you can comment these lines until here
 # End of initial setup: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -80,6 +65,19 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 PXETOOLS=$SCRIPT_DIR/pxetools.py
 CONFIG=$SCRIPT_DIR/config.txt
 FSGEN=$SCRIPT_DIR/fsgen.sh
+PIPE=$SCRIPT_DIR/pipe.sh
+
+# Set a pipe to run commands from the docker container
+# https://stackoverflow.com/questions/32163955/how-to-run-shell-script-on-host-from-docker-container
+mkdir /home/$USER/pipe && mkfifo /home/$USER/pipe/pipe
+
+cat << EOF | sudo tee /home/$USER/pipe/pipe.crontab
+@reboot /home/$USER/pipe/pipe.sh
+EOF
+
+crontab -u $USER /home/$USER/pipe/pipe.crontab
+
+sudo cp --remove-destination $PIPE /home/$USER/pipe/pipe.sh
 
 #   - The 'interfaces' (or equivalent) should be already set:
 #     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
