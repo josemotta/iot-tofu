@@ -119,19 +119,7 @@ def add():
         # cmd("umount /mnt/tmp")
 
         cmd("sudo cp -r {}/* {}/".format(img, nfs_path), print_out=True)
-
-        cmd("sudo /nfs/fsgen.sh {} {}".format(img, nfs_path), print_out=True)
-
-        # # Regenerate SSH host keys on the nfs by chrooting into it
-        # cmd("cd {}/".format(nfs_path))
-        # cmd("mount --bind /dev dev")
-        # cmd("mount --bind /sys sys")
-        # cmd("mount --bind /proc proc")
-        # cmd("chroot .")
-        # cmd("rm /etc/ssh/ssh_host_*")
-        # cmd("dpkg-reconfigure openssh-server")
-        # cmd("exit")
-        # cmd("umount dev sys proc")
+        cmd("/nfs/fsgen.sh {} {}".format(img, nfs_path), print_out=True)
 
         # hosts & hostname
         cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hosts".format(name, nfs_path))

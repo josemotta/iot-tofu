@@ -90,7 +90,6 @@ if [ "$RESP" = "y" ]; then exit; fi
 # #!/bin/bash
 # while true; do eval "$(cat ~/pipe/pipe)" &> ~/pipe/pipe.txt; done
 
-sudo rm -r ~/pipe
 mkdir ~/pipe && mkfifo ~/pipe/pipe
 cat << EOF | tee ~/pipe/pipe.crontab
 @reboot ~/pipe/pipe.sh
