@@ -15,8 +15,9 @@ export CLIENT_FS=$2
 
 # Generate a copy from current fs to $CLIENT_ID
 sudo mkdir -p $CLIENT_FS
+sudo cp -r $BASE_FS/* $CLIENT_FS/
 #sudo apt install rsync
-sudo rsync -xa --progress $BASE_FS $CLIENT_FS
+#sudo rsync -xa --progress $BASE_FS $CLIENT_FS
 
 # Regenerate SSH host keys on the CLIENT_ID filesystem
 # by chrooting into it
@@ -24,10 +25,7 @@ cd $CLIENT_FS
 sudo mount --bind /dev dev
 sudo mount --bind /sys sys
 sudo mount --bind /proc proc
-sudo chroot .
-rm /etc/ssh/ssh_host_*
-dpkg-reconfigure openssh-server
-exit
+sudo chroot . ./fs-ssh.sh
 sudo umount dev sys proc
 
 echo Generated fs for $CLIENT_FS

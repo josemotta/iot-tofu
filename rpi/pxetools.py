@@ -118,7 +118,7 @@ def add():
         # cmd("rsync -a /mnt/tmp/ {}/".format(nfs_path))
         # cmd("umount /mnt/tmp")
 
-        cmd("sudo cp -r {}/* {}/".format(img, nfs_path), print_out=True)
+        # cmd("sudo cp -r {}/* {}/".format(img, nfs_path), print_out=True)
         cmd("/nfs/fsgen.sh {} {}".format(img, nfs_path), print_out=True)
 
         # hosts & hostname

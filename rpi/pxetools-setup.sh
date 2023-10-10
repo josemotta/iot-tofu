@@ -36,7 +36,8 @@ RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz
 # Setup files supposed to be in this folder:
 PXETOOLS=$SCRIPT_DIR/pxetools.py  # app to add, remove & list RPis
 CONFIG=$SCRIPT_DIR/config.txt     # default RPi config to be used in boot
-FSGEN=$SCRIPT_DIR/fsgen.sh        # fs generator with SSH host keys
+FSGEN=$SCRIPT_DIR/fs-gen.sh       # fs generator - main
+FSSSH=$SCRIPT_DIR/fs-ssh.sh        # fs generator - SSH host keys
 PIPE=$SCRIPT_DIR/pipe.sh          # named pipe method to run commands
 
 #   - The 'interfaces' (or equivalent) should be already set:
@@ -112,8 +113,10 @@ sudo chmod -R 777 /tftpboot
 echo ""
 echo "Applying files extracted from this folder"
 sudo cp --remove-destination $CONFIG /tftpboot/base/config.txt
-sudo cp --remove-destination $FSGEN /nfs/fsgen.sh
-sudo chmod +x /nfs/fsgen.sh
+sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
+sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
+sudo chmod +x /nfs/fs-gen.sh
+sudo chmod +x /nfs/fs-ssh.sh
 echo ""
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
