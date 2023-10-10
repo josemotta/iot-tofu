@@ -13,14 +13,15 @@ if [ $2 == "" ]; then
 fi
 export CLIENT_FS=$2
 
-# Generate a copy from current fs to $CLIENT_ID
+# Generate a copy from base fs to $CLIENT_FS
 sudo mkdir -p $CLIENT_FS
 sudo cp -r $BASE_FS/* $CLIENT_FS/
+sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
+
 #sudo apt install rsync
 #sudo rsync -xa --progress $BASE_FS $CLIENT_FS
 
-# Regenerate SSH host keys on the CLIENT_ID filesystem
-# by chrooting into it
+# Regenerate SSH host keys on CLIENT_FS
 cd $CLIENT_FS
 sudo mount --bind /dev dev
 sudo mount --bind /sys sys
