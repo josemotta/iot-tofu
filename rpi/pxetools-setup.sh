@@ -109,7 +109,7 @@ sudo mkdir -p /tftpboot
 sudo cp -r /boot /tftpboot/base
 sudo chmod -R 777 /tftpboot
 
-# Apply files extracted from this folder
+# Apply files extracted from this folder & SSH
 echo ""
 echo "Applying files extracted from this folder"
 sudo cp --remove-destination $CONFIG /tftpboot/base/config.txt
@@ -117,6 +117,8 @@ sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
+sudo touch /tftpboot/base/ssh
+
 echo ""
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
