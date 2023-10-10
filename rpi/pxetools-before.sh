@@ -71,13 +71,14 @@ PIPE=$SCRIPT_DIR/pipe.sh
 # https://stackoverflow.com/questions/32163955/how-to-run-shell-script-on-host-from-docker-container
 mkdir /home/$USER/pipe && mkfifo /home/$USER/pipe/pipe
 
-cat << EOF | sudo tee /home/$USER/pipe/pipe.crontab
+cat << EOF | tee /home/$USER/pipe/pipe.crontab
 @reboot /home/$USER/pipe/pipe.sh
 EOF
 
 crontab -u $USER /home/$USER/pipe/pipe.crontab
 
-sudo cp --remove-destination $PIPE /home/$USER/pipe/pipe.sh
+cp --remove-destination $PIPE /home/$USER/pipe/pipe.sh
+chmod +x /home/$USER/pipe/pipe.sh
 
 #   - The 'interfaces' (or equivalent) should be already set:
 #     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
