@@ -32,7 +32,7 @@ sudo rm $PXETOOLS
 sudo rm -r /nfs
 sudo rm -r /tftpboot
 crontab -r
-sudo rm -r /home/$USER/rpipe
+sudo rm -r ~/pipe
 
 cat << EOF | sudo tee /etc/exports
 # /etc/exports: the access control list for filesystems which may be exported
