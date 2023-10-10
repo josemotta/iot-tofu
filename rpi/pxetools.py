@@ -134,7 +134,6 @@ def add():
         #   192.168.10.10:/nfs/9f55bbfd/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0
         #   proc /proc proc defaults 0 0
 
-
         fstab_txt = "{}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n".format(NFS_IP, nfs_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 

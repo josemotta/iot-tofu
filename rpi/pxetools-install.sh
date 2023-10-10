@@ -73,4 +73,4 @@ echo "Pxettols: $PXETOOLS"
 # DHCP range: 192.168.10.101,192.168.10.199,255.255.255.0,12h
 # Pxettols: /home/jo/rpi/iot-tofu/rpi/pxetools.py
 
-echo "These values will be used in setup."
+echo "These are the default values in pxetools-setup.sh"
