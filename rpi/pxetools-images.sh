@@ -23,16 +23,16 @@ cd /nfs/bases/lite_arm64
 sudo wget -O rpi_lite_arm64.xz $RPI_LITE_ARM64
 sudo tar -xf rpi_lite_arm64.xz
 sudo rm rpi_lite_arm64.xz
-# armhf
-sudo mkdir -p /nfs/bases/armhf
-cd /nfs/bases/armhf
-sudo wget -O rpi_armhf.xz $RPI_ARMHF
-sudo tar -xf rpi_armhf.xz
-sudo rm rpi_armhf.xz
-# arm64
-sudo mkdir -p /nfs/bases/arm64
-cd /nfs/bases/arm64
-sudo wget -O rpi_arm64.xz $RPI_ARM64
-sudo tar -xf rpi_arm64.xz
-sudo rm rpi_arm64.xz
+# # armhf
+# sudo mkdir -p /nfs/bases/armhf
+# cd /nfs/bases/armhf
+# sudo wget -O rpi_armhf.xz $RPI_ARMHF
+# sudo tar -xf rpi_armhf.xz
+# sudo rm rpi_armhf.xz
+# # arm64
+# sudo mkdir -p /nfs/bases/arm64
+# cd /nfs/bases/arm64
+# sudo wget -O rpi_arm64.xz $RPI_ARM64
+# sudo tar -xf rpi_arm64.xz
+# sudo rm rpi_arm64.xz
 fi
