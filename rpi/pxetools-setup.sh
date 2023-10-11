@@ -29,10 +29,6 @@ DNSSERVER=192.168.1.254
 DHCPRANGE=192.168.10.50,192.168.10.99,255.255.255.0,12h
 # BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
 
-# Raspberry Pi OS bases to be downloaded:
-RPI_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz'
-RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz'
-
 # Setup files supposed to be in this folder:
 PXETOOLS=$SCRIPT_DIR/pxetools.py  # app to add, remove & list RPis
 CONFIG=$SCRIPT_DIR/config.txt     # default RPi config to be used in boot
@@ -119,6 +115,12 @@ sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
 sudo touch /tftpboot/base/ssh
 
+# Configure a default user for all RPis
+# https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user
+sudo cat << EOF | tee /tftpboot/base/userconf.txt
+jo:$6$PL4aSoIKGMuiZ93i$iiqqVkexrkULJixXax/z/mL70HzTnawF9wtrqiqu6x2lPpKHikCR1xZF3rTb9Q2qNl81vV1nh1y9o3MxfQ/TC.
+EOF
+
 echo ""
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
@@ -136,21 +138,12 @@ pxe-service=0,"Raspberry Pi Boot"
 dhcp-boot=pxelinux.0
 EOF
 
-# Get Raspberry Pi OS lite images
+# Get Raspberry Pi OS images
 echo ""
-echo "Getting RPi OS lite images"
-# lite_armhf
-sudo mkdir -p /nfs/bases/lite_armhf
-cd /nfs/bases/lite_armhf
-sudo wget -O rpi_lite_armhf.xz $RPI_LITE_ARMHF
-sudo tar -xf rpi_lite_armhf.xz
-sudo rm rpi_lite_armhf.xz
-# lite_arm64
-sudo mkdir -p /nfs/bases/lite_arm64
-cd /nfs/bases/lite_arm64
-sudo wget -O rpi_lite_arm64.xz $RPI_LITE_ARM64
-sudo tar -xf rpi_lite_arm64.xz
-sudo rm rpi_lite_arm64.xz
+echo "Getting Raspberry Pi OS images"
+if [ ! -d /nfs/bases ]; then
+  source ./pxetools-images.sh
+fi
 
 # Install pxetools
 echo ""
