@@ -10,9 +10,10 @@ dpkg-reconfigure openssh-server
 # https://stackoverflow.com/questions/43235179/how-to-execute-ssh-keygen-without-prompt
 ssh-keygen -q -t rsa -N '' <<< $'\ny' >/dev/null 2>&1
 
+# add aliases to default .bashrc
 cat << EOF >> /etc/skel/.bashrc
 
-# some more ls aliases
+# some more aliases
 alias ll='ls -al'
 
 alias dps='docker ps'
