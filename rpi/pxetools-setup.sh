@@ -116,11 +116,12 @@ sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
 sudo touch /tftpboot/base/ssh
 
-# Configure a default user for all RPis
+# Configure the default user for all RPis as $LOGNAME:$LOGNAME
 # https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user
-sudo cat << EOF | tee /tftpboot/base/userconf.txt
-jo:$6$PL4aSoIKGMuiZ93i$iiqqVkexrkULJixXax/z/mL70HzTnawF9wtrqiqu6x2lPpKHikCR1xZF3rTb9Q2qNl81vV1nh1y9o3MxfQ/TC.
-EOF
+# sudo cat << EOF | tee /tftpboot/base/userconf.txt
+# jo:$6$PL4aSoIKGMuiZ93i$iiqqVkexrkULJixXax/z/mL70HzTnawF9wtrqiqu6x2lPpKHikCR1xZF3rTb9Q2qNl81vV1nh1y9o3MxfQ/TC.:
+# EOF
+echo $LOGNAME:$(echo $LOGNAME | openssh passwd -6 -stdin) > /tftpboot/base/userconf.txt
 
 echo ""
 echo "Writing dnsmasq.conf"
