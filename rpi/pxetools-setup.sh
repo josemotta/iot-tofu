@@ -121,7 +121,8 @@ sudo touch /tftpboot/base/ssh
 # sudo cat << EOF | tee /tftpboot/base/userconf.txt
 # jo:$6$PL4aSoIKGMuiZ93i$iiqqVkexrkULJixXax/z/mL70HzTnawF9wtrqiqu6x2lPpKHikCR1xZF3rTb9Q2qNl81vV1nh1y9o3MxfQ/TC.:
 # EOF
-echo $LOGNAME:$(echo $LOGNAME | openssh passwd -6 -stdin) > /tftpboot/base/userconf.txt
+echo $LOGNAME: > /tftpboot/base/userconf.txt
+echo $LOGNAME | openssh passwd -6 -stdin >> /tftpboot/base/userconf.txt
 
 echo ""
 echo "Writing dnsmasq.conf"
