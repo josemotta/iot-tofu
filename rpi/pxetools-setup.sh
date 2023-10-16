@@ -30,11 +30,12 @@ DHCPRANGE=192.168.10.50,192.168.10.99,255.255.255.0,12h
 # BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
 
 # Setup files supposed to be in this folder:
-PXETOOLS=$SCRIPT_DIR/pxetools.py  # app to add, remove & list RPis
-CONFIG=$SCRIPT_DIR/config.txt     # default RPi config to be used in boot
-FSGEN=$SCRIPT_DIR/fs-gen.sh       # fs generator - main
-FSSSH=$SCRIPT_DIR/fs-ssh.sh       # fs generator - SSH host keys
-PIPE=$SCRIPT_DIR/pipe.sh          # named pipe method to run commands
+PXETOOLS=$SCRIPT_DIR/pxetools.py      # app to add, remove & list RPis
+CONFIG=$SCRIPT_DIR/config.txt         # default RPi config to be used in boot
+FSGEN=$SCRIPT_DIR/fs-gen.sh           # fs generator - main
+FSSSH=$SCRIPT_DIR/fs-ssh.sh           # fs generator - SSH host keys
+PIPE=$SCRIPT_DIR/pipe.sh              # named pipe method to run commands
+IMAGES=$SCRIPT_DIR/pxetools-images.sh # RPi OS bases to be downloaded
 
 #   - The 'interfaces' (or equivalent) should be already set:
 #     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
@@ -142,7 +143,7 @@ EOF
 echo ""
 echo "Getting Raspberry Pi OS images"
 if [ ! -d /nfs/bases ]; then
-  source ./pxetools-images.sh
+  source $IMAGES
 fi
 
 # Install pxetools
