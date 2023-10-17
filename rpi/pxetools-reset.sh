@@ -29,8 +29,14 @@ sudo rm /etc/dnsmasq.d/dnsmasq.conf
 sudo rm /etc/exports
 sudo rm $PXETOOLS
 
-sudo rm -r /nfs
+# Cleaning
+# sudo rm -r /nfs
+# keep bases to optimize image downloading (dev)
+sudo rm -r /nfs/9f55bbfd
+sudo rm -r /nfs/a10cd2e5
+# boot
 sudo rm -r /tftpboot
+# pipe
 crontab -r
 sudo rm -r ~/pipe
 

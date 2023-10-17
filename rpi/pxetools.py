@@ -64,8 +64,8 @@ def add():
             raise Exception("Invalid serial number {}".format(serial))
 
     print("Serial: {}".format(serial))
-    owner = input("Owner Name (ex Gordon): ")
-    name = input("Name for pi: ")
+    owner = input("Owner name: ")
+    name = input("Pi name: ")
 
     print("Select a base image:")
     selection = ["I will prepare my own filesystem"] + os.listdir('/nfs/bases')

@@ -23,4 +23,6 @@ alias dcd='docker compose down'
 
 alias gs='git status --show-stash'
 alias gc='git commit -am '
+
+alias temp='vcgencmd measure_temp'
 EOF
