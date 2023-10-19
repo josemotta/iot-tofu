@@ -7,7 +7,8 @@ fi
 export BASE_FS=$1
 
 KEYS=$BASE_FS/etc/ssh/ssh_host_rsa_key.pub
-OWNER_HOME=/home/jo
+OWNER=$(<$BASE_FS/boot/owner)
+OWNER_HOME=$BASE_FS/home/$OWNER
 
 #
 # known_hosts
