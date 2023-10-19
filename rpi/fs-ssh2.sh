@@ -7,6 +7,7 @@ fi
 export BASE_FS=$1
 
 KEYS=$BASE_FS/etc/ssh/ssh_host_rsa_key.pub
+OWNER_HOME=/home/jo
 
 #
 # known_hosts
@@ -27,7 +28,7 @@ if [ ! -d /etc/ssh/known_hosts ]; then
   touch /etc/ssh/known_hosts
   chmod 644 /etc/ssh/known_hosts
 fi
-cat $KEYS >> /etc/ssh/known_hosts
+ssh-keygen -l -E md5 -f  $KEYS >> /etc/ssh/known_hosts
 
 #
 # authorized_keys
@@ -45,8 +46,8 @@ ssh-keyscan -H -t rsa localhost >> $BASE_FS/$HOME/.ssh/authorized_keys
 # copy rpi keys to boot server
 # $KEYS ---> $HOME/.ssh/authorized_keys
 echo "boot server authorized_keys setup"
-if [ ! -d /home/jo/.ssh/authorized_keys ]; then
-  touch /home/jo/.ssh/authorized_keys
-  chmod 644 /home/jo/.ssh/authorized_keys
+if [ ! -d $OWNER_HOME/.ssh/authorized_keys ]; then
+  touch $OWNER_HOME/.ssh/authorized_keys
+  chmod 644 $OWNER_HOME/.ssh/authorized_keys
 fi
-cat $KEYS >> /home/jo/.ssh/authorized_keys
+ssh-keygen -l -E md5 -f $KEYS >> $OWNER_HOME/.ssh/authorized_keys
