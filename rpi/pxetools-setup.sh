@@ -116,12 +116,16 @@ sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
 sudo touch /tftpboot/base/ssh
 
-# Configure the default user for all RPis as $LOGNAME:$LOGNAME
+# Configure the default user for all RPis.
+#
+# The user & password are based on the current logged user: $USER:$USER
+#
 # https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user
-# sudo cat << EOF | tee /tftpboot/base/userconf.txt
-# jo:$6$PL4aSoIKGMuiZ93i$iiqqVkexrkULJixXax/z/mL70HzTnawF9wtrqiqu6x2lPpKHikCR1xZF3rTb9Q2qNl81vV1nh1y9o3MxfQ/TC.:
-# EOF
+# https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/headless.adoc
+
 echo $USER:$(echo $USER | openssl passwd -6 -stdin) > /tftpboot/base/userconf.txt
+
+# Configure dnsmasq with DHCP, TFTP & DNS servers
 
 echo ""
 echo "Writing dnsmasq.conf"
