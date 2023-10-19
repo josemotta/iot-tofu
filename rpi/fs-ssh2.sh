@@ -19,7 +19,7 @@ chmod 644 $BASE_FS/etc/ssh/known_hosts
 ssh-keyscan -H -t rsa localhost >> $BASE_FS/etc/ssh/known_hosts
 
 # copy rpi keys to boot server
-# $BASE_FS/$KEYS ---> /etc/ssh/known_hosts
+# $KEYS ---> /etc/ssh/known_hosts
 if [ ! -d /etc/ssh/known_hosts ]; then
   touch /etc/ssh/known_hosts
   chmod 644 /etc/ssh/known_hosts
@@ -39,7 +39,7 @@ chmod 600 $BASE_FS/$HOME/.ssh/authorized_keys
 ssh-keyscan -H -t rsa localhost >> $BASE_FS/$HOME/.ssh/authorized_keys
 
 # copy rpi keys to boot server
-# $BASE_FS/$KEYS ---> ~/.ssh/authorized_keys
+# $KEYS ---> ~/.ssh/authorized_keys
 if [ ! -d ~/.ssh/authorized_keys ]; then
   touch ~/.ssh/authorized_keys
   chmod 644 ~/.ssh/authorized_keys

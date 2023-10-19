@@ -39,6 +39,8 @@ sudo rm -r /tftpboot
 # pipe
 crontab -r
 sudo rm -r ~/pipe
+sudo rm /etc/ssh/known_hosts
+sudo rm ~/.ssh/authorized_keys
 
 cat << EOF | sudo tee /etc/exports
 # /etc/exports: the access control list for filesystems which may be exported
