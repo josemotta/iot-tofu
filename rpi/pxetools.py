@@ -121,9 +121,6 @@ def add():
         # file system generator
         cmd("/nfs/fs-gen.sh {} {}".format(img, nfs_path), print_out=True)
 
-        # ssh known_hosts & authorized_keys
-        cmd("/nfs/fs-ssh2.sh {}".format(nfs_path), print_out=True)
-
         # hosts & hostname
         cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hosts".format(name, nfs_path))
         cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hostname".format(name, nfs_path))
@@ -144,6 +141,9 @@ def add():
         cmd("cd {}/etc/systemd/system; rm -r dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
 
         cmd("sudo cp -r {}/* {}/boot".format(tftp_path, nfs_path), print_out=True)
+
+        # ssh known_hosts & authorized_keys
+        cmd("/nfs/fs-ssh2.sh {}".format(nfs_path), print_out=True)
 
         # cmd("mount /dev/mapper/loop0p1 /mnt/tmp")
         # cmd("rsync -a --exclude bootcode.bin --exclude start.elf --exclude cmdline.txt /mnt/tmp/ {}/".format(tftp_path))
