@@ -40,7 +40,7 @@ sudo rm -r /tftpboot
 crontab -r
 sudo rm -r ~/pipe
 sudo rm /etc/ssh/known_hosts
-sudo rm ~/.ssh/known_hosts
+#sudo rm ~/.ssh/known_hosts
 sudo rm ~/.ssh/authorized_keys
 
 cat << EOF | sudo tee /etc/exports
