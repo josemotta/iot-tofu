@@ -16,19 +16,26 @@ OWNER_HOME=/home/jo
 # copy boot server keys to rpi
 # $KEYS ---> $BASE_FS/etc/ssh/known_hosts
 echo ""
-echo "rpi known_hosts setup"
+echo "rpi system-wide known_hosts setup"
 touch $BASE_FS/etc/ssh/known_hosts
 chmod 644 $BASE_FS/etc/ssh/known_hosts
 ssh-keyscan -H -t rsa localhost >> $BASE_FS/etc/ssh/known_hosts
 
 # copy rpi keys to boot server
 # $KEYS ---> /etc/ssh/known_hosts
-echo "boot server known_hosts setup"
+echo "boot server system-wide known_hosts setup"
 if [ ! -d /etc/ssh/known_hosts ]; then
   touch /etc/ssh/known_hosts
   chmod 644 /etc/ssh/known_hosts
 fi
-ssh-keygen -l -E md5 -f  $KEYS >> /etc/ssh/known_hosts
+ssh-keygen -l -E md5 -f $KEYS >> /etc/ssh/known_hosts
+
+echo "boot server local-client known_hosts setup"
+if [ ! -d ~/.ssh/known_hosts ]; then
+  touch ~/.ssh/known_hosts
+  chmod 644 ~/.ssh/known_hosts
+fi
+ssh-keygen -l -E md5 -f $KEYS >> ~/.ssh/known_hosts
 
 #
 # authorized_keys
