@@ -48,8 +48,8 @@ ssh-keyscan -H -t rsa localhost >> $BASE_FS/$HOME/.ssh/authorized_keys
 # $KEYS ---> $HOME/.ssh/authorized_keys
 echo ""
 echo "boot server authorized_keys setup"
-if [ ! -d $HOME/.ssh/authorized_keys ]; then
-  touch $HOME/.ssh/authorized_keys
-  chmod 644 $HOME/.ssh/authorized_keys
+if [ ! -d /home/jo/.ssh/authorized_keys ]; then
+  touch /home/jo/.ssh/authorized_keys
+  chmod 644 /home/jo/.ssh/authorized_keys
 fi
-cat $KEYS >> $HOME/.ssh/authorized_keys
+cat $KEYS >> /home/jo/.ssh/authorized_keys
