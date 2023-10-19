@@ -45,11 +45,11 @@ chmod 600 $BASE_FS/$HOME/.ssh/authorized_keys
 ssh-keyscan -H -t rsa localhost >> $BASE_FS/$HOME/.ssh/authorized_keys
 
 # copy rpi keys to boot server
-# $KEYS ---> ~/.ssh/authorized_keys
+# $KEYS ---> $HOME/.ssh/authorized_keys
 echo ""
 echo "boot server authorized_keys setup"
-if [ ! -d ~/.ssh/authorized_keys ]; then
-  touch ~/.ssh/authorized_keys
-  chmod 644 ~/.ssh/authorized_keys
+if [ ! -d $HOME/.ssh/authorized_keys ]; then
+  touch $HOME/.ssh/authorized_keys
+  chmod 644 $HOME/.ssh/authorized_keys
 fi
-cat $KEYS >> ~/.ssh/authorized_keys
+cat $KEYS >> $HOME/.ssh/authorized_keys

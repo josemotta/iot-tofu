@@ -23,8 +23,10 @@ sudo chmod +x /usr/local/sbin/pxetools
 
 sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
+sudo cp --remove-destination $FSSSH /nfs/fs-ssh2.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
+sudo chmod +x /nfs/fs-ssh2.sh
 
 # Restart
 sudo systemctl restart dnsmasq rpcbind nfs-kernel-server
