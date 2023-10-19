@@ -14,12 +14,16 @@ KEYS=$BASE_FS/etc/ssh/ssh_host_rsa_key.pub
 
 # copy boot server keys to rpi
 # $KEYS ---> $BASE_FS/etc/ssh/known_hosts
+echo ""
+echo "rpi known_hosts setup"
 touch $BASE_FS/etc/ssh/known_hosts
 chmod 644 $BASE_FS/etc/ssh/known_hosts
 ssh-keyscan -H -t rsa localhost >> $BASE_FS/etc/ssh/known_hosts
 
 # copy rpi keys to boot server
 # $KEYS ---> /etc/ssh/known_hosts
+echo ""
+echo "boot server known_hosts setup"
 if [ ! -d /etc/ssh/known_hosts ]; then
   touch /etc/ssh/known_hosts
   chmod 644 /etc/ssh/known_hosts
@@ -32,6 +36,8 @@ cat $KEYS >> /etc/ssh/known_hosts
 
 # copy boot server keys to rpi
 # $KEYS ---> $BASE_FS/$HOME/.ssh/authorized_keys
+echo ""
+echo "rpi authorized_keys setup"
 mkdir -p $BASE_FS/$HOME/.ssh
 chmod 700 $BASE_FS/$HOME/.ssh
 touch $BASE_FS/$HOME/.ssh/authorized_keys
@@ -40,6 +46,8 @@ ssh-keyscan -H -t rsa localhost >> $BASE_FS/$HOME/.ssh/authorized_keys
 
 # copy rpi keys to boot server
 # $KEYS ---> ~/.ssh/authorized_keys
+echo ""
+echo "boot server authorized_keys setup"
 if [ ! -d ~/.ssh/authorized_keys ]; then
   touch ~/.ssh/authorized_keys
   chmod 644 ~/.ssh/authorized_keys
