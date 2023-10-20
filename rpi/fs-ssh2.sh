@@ -16,14 +16,14 @@ RPI_USR_KNOWN_HOSTS=$RPI_USR_HOME/.ssh/known_hosts
 RPI_USR_AUTHORIZED_KEYS=$RPI_USR_HOME/.ssh/authorized_keys
 RPI_USR_KEY=$RPI_USR_HOME/.ssh/id_rsa.pub
 RPI_SYS_KEY=$BASE_FS/etc/ssh/ssh_host_rsa_key.pub
-RPI_SYS_KNOWN_HOSTS=$BASE_FS/etc/ssh/known_hosts
+RPI_SYS_KNOWN_HOSTS=$BASE_FS/etc/ssh/ssh_known_hosts
 
 SRV_USR_HOME=/home/$OWNER
 SRV_USR_KNOWN_HOSTS=$SRV_USR_HOME/.ssh/known_hosts
 SRV_USR_AUTHORIZED_KEYS=$SRV_USR_HOME/.ssh/authorized_keys
 SRV_USR_KEY=$SRV_USR_HOME/.ssh/id_rsa.pub
 SRV_SYS_KEY=/etc/ssh/ssh_host_rsa_key.pub
-SRV_SYS_KNOWN_HOSTS=/etc/ssh/known_hosts
+SRV_SYS_KNOWN_HOSTS=/etc/ssh/ssh_known_hosts
 
 if [ ! -d $RPI_USR_HOME/.ssh ]; then
   mkdir -p $RPI_USR_HOME/.ssh
