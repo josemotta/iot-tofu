@@ -6,56 +6,60 @@ if [ $1 == "" ]; then
 fi
 export BASE_FS=$1
 
-KEYS=$BASE_FS/etc/ssh/ssh_host_rsa_key.pub
 OWNER=$(<$BASE_FS/boot/owner)
-OWNER_HOME=$BASE_FS/home/$OWNER
+KEY=ssh_host_rsa_key.pub
+
+RPI_KEY=$BASE_FS/etc/ssh/$KEY
+RPI_OWNER_HOME=$BASE_FS/home/$OWNER
+RPI_AUTHORIZED_KEYS=$RPI_OWNER_HOME/.ssh/authorized_keys
+
+SRV_KEY=/etc/ssh/$KEY
+SRV_OWNER_HOME=/home/$OWNER
+SRV_AUTHORIZED_KEYS=$SRV_OWNER_HOME/.ssh/authorized_keys
+SRV_KNOWN_HOSTS=$SRV_OWNER_HOME/.ssh/known_hosts
 
 #
 # known_hosts
 #
 
-# copy boot server keys to rpi
-# $KEYS ---> $BASE_FS/etc/ssh/known_hosts
-echo ""
-echo "rpi system-wide known_hosts setup"
+# rpi system-wide known_hosts: boot server -> rpi
+# $SRV_KEY ---> $BASE_FS/etc/ssh/known_hosts
 touch $BASE_FS/etc/ssh/known_hosts
 chmod 644 $BASE_FS/etc/ssh/known_hosts
-ssh-keyscan -H -t rsa localhost >> $BASE_FS/etc/ssh/known_hosts
+ssh-keygen -l -E md5 -f $SRV_KEY >> $BASE_FS/etc/ssh/known_hosts
 
-# copy rpi keys to boot server
-# $KEYS ---> /etc/ssh/known_hosts
-echo "boot server system-wide known_hosts setup"
+# boot server system-wide known_hosts: rpi -> boot server
+# $RPI_KEY ---> /etc/ssh/known_hosts
 if [ ! -d /etc/ssh/known_hosts ]; then
   touch /etc/ssh/known_hosts
   chmod 644 /etc/ssh/known_hosts
 fi
-ssh-keygen -l -E md5 -f $KEYS >> /etc/ssh/known_hosts
+ssh-keygen -l -E md5 -f $RPI_KEY >> /etc/ssh/known_hosts
 
-echo "boot server local-client known_hosts setup"
-if [ ! -d ~/.ssh/known_hosts ]; then
-  touch ~/.ssh/known_hosts
-  chmod 644 ~/.ssh/known_hosts
+# boot server local-client known_hosts: rpi -> boot server
+# $RPI_KEY ---> ~/.ssh/known_hosts
+if [ ! -d $SRV_KNOWN_HOSTS ]; then
+  touch $SRV_KNOWN_HOSTS
+  chmod 644 $SRV_KNOWN_HOSTS
 fi
-ssh-keygen -l -E md5 -f $KEYS >> ~/.ssh/known_hosts
+ssh-keygen -l -E md5 -f $RPI_KEY >> $SRV_KNOWN_HOSTS
 
 #
 # authorized_keys
 #
 
-# copy boot server keys to rpi
-# $KEYS ---> $BASE_FS/$HOME/.ssh/authorized_keys
-echo "rpi authorized_keys setup"
-mkdir -p $BASE_FS/$OWNER_HOME/.ssh
-chmod 700 $BASE_FS/$OWNER_HOME/.ssh
-touch $BASE_FS/$OWNER_HOME/.ssh/authorized_keys
-chmod 600 $BASE_FS/$OWNER_HOME/.ssh/authorized_keys
-ssh-keyscan -H -t rsa localhost >> $BASE_FS/$OWNER_HOME/.ssh/authorized_keys
+# boot server -> rpi
+# $SRV_KEY ---> $BASE_FS/home/$OWNER/.ssh/authorized_keys
+mkdir -p $RPI_OWNER_HOME/.ssh
+chmod 700 $RPI_OWNER_HOME/.ssh
+touch $RPI_AUTHORIZED_KEYS
+chmod 600 $RPI_AUTHORIZED_KEYS
+ssh-keygen -l -E md5 -f $SRV_KEY >> $RPI_AUTHORIZED_KEYS
 
-# copy rpi keys to boot server
-# $KEYS ---> $HOME/.ssh/authorized_keys
-echo "boot server authorized_keys setup"
-if [ ! -d $OWNER_HOME/.ssh/authorized_keys ]; then
-  touch $OWNER_HOME/.ssh/authorized_keys
-  chmod 644 $OWNER_HOME/.ssh/authorized_keys
+# rpi -> boot server
+# $RPI_KEY ---> ~/.ssh/authorized_keys
+if [ ! -d $SRV_AUTHORIZED_KEYS ]; then
+  touch $SRV_AUTHORIZED_KEYS
+  chmod 644 $SRV_AUTHORIZED_KEYS
 fi
-ssh-keygen -l -E md5 -f $KEYS >> $OWNER_HOME/.ssh/authorized_keys
+ssh-keygen -l -E md5 -f $RPI_KEY >> $SRV_AUTHORIZED_KEYS
