@@ -45,11 +45,11 @@ ssh-keygen -l -E md5 -f $KEYS >> ~/.ssh/known_hosts
 # copy boot server keys to rpi
 # $KEYS ---> $BASE_FS/$HOME/.ssh/authorized_keys
 echo "rpi authorized_keys setup"
-mkdir -p $BASE_FS/$HOME/.ssh
-chmod 700 $BASE_FS/$HOME/.ssh
-touch $BASE_FS/$HOME/.ssh/authorized_keys
-chmod 600 $BASE_FS/$HOME/.ssh/authorized_keys
-ssh-keyscan -H -t rsa localhost >> $BASE_FS/$HOME/.ssh/authorized_keys
+mkdir -p $BASE_FS/$OWNER_HOME/.ssh
+chmod 700 $BASE_FS/$OWNER_HOME/.ssh
+touch $BASE_FS/$OWNER_HOME/.ssh/authorized_keys
+chmod 600 $BASE_FS/$OWNER_HOME/.ssh/authorized_keys
+ssh-keyscan -H -t rsa localhost >> $BASE_FS/$OWNER_HOME/.ssh/authorized_keys
 
 # copy rpi keys to boot server
 # $KEYS ---> $HOME/.ssh/authorized_keys
