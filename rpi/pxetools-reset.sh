@@ -39,9 +39,11 @@ sudo rm -r /tftpboot
 # pipe
 crontab -r
 sudo rm -r ~/pipe
-sudo rm /etc/ssh/known_hosts
-#sudo rm ~/.ssh/known_hosts
-sudo rm ~/.ssh/authorized_keys
+sudo rm -f /etc/ssh/known_hosts
+sudo rm -f ~/.ssh/authorized_keys
+
+# do not remove all, keep github among others
+#sudo rm -f ~/.ssh/known_hosts
 
 cat << EOF | sudo tee /etc/exports
 # /etc/exports: the access control list for filesystems which may be exported
