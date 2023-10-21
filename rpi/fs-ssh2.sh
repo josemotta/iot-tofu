@@ -6,10 +6,16 @@ if [ $1 == "" ]; then
 fi
 export BASE_FS=$1
 
-# - Boot server should supply rsa key: ~/.ssh/id_rsa.pub
-# - Owner account name is a parameter supplied by pxetools
+# SSH setup for known_hosts & authorized_keys files
+# - There are system-wide & owner-user 'known-hosts' for RPi & boot server
+# - There are owner-user 'authorized_keys' for RPi & boot server
+# Notes:
+# - Owner user at boot server should supply a rsa key: ~/.ssh/id_rsa.pub
+# - Owner account name is a parameter set by pxetools: /boot/owner
+# - RPi hostname is a parameter set by pxetools: /boot/name == /etc/hostname
 
 OWNER=$(<$BASE_FS/boot/owner)
+RPI_HOSTNAME=$(<$BASE_FS/boot/name)
 
 RPI_USR_HOME=$BASE_FS/home/$OWNER
 RPI_USR_KNOWN_HOSTS=$RPI_USR_HOME/.ssh/known_hosts
@@ -25,6 +31,14 @@ SRV_USR_KEY=$SRV_USR_HOME/.ssh/id_rsa.pub
 SRV_SYS_KEY=/etc/ssh/ssh_host_rsa_key.pub
 SRV_SYS_KNOWN_HOSTS=/etc/ssh/ssh_known_hosts
 
+#
+# .ssh
+#
+if [ ! -f SRV_USR_KEY ]; then
+  echo Missing .ssh/id_rsa.pub at boot server for user: $OWNER
+  exit 1
+fi
+
 if [ ! -d $RPI_USR_HOME/.ssh ]; then
   mkdir -p $RPI_USR_HOME/.ssh
   chown $OWNER:$OWNER $RPI_USR_HOME/.ssh
@@ -34,23 +48,23 @@ fi
 #
 # known_hosts
 #
-if [ ! -d $RPI_USR_KNOWN_HOSTS ]; then
+if [ ! -f $RPI_USR_KNOWN_HOSTS ]; then
   touch $RPI_USR_KNOWN_HOSTS
   chmod 644 $RPI_USR_KNOWN_HOSTS
   chown $OWNER:$OWNER $RPI_USR_KNOWN_HOSTS
 fi
 
-if [ ! -d $RPI_SYS_KNOWN_HOSTS ]; then
+if [ ! -f $RPI_SYS_KNOWN_HOSTS ]; then
   touch $RPI_SYS_KNOWN_HOSTS
   chmod 644 $RPI_SYS_KNOWN_HOSTS
 fi
 
-if [ ! -d $SRV_SYS_KNOWN_HOSTS ]; then
+if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
   touch $SRV_SYS_KNOWN_HOSTS
   chmod 644 $SRV_SYS_KNOWN_HOSTS
 fi
 
-if [ ! -d $SRV_USR_KNOWN_HOSTS ]; then
+if [ ! -f $SRV_USR_KNOWN_HOSTS ]; then
   touch $SRV_USR_KNOWN_HOSTS
   chmod 644 $SRV_USR_KNOWN_HOSTS
   chown $OWNER:$OWNER $SRV_USR_KNOWN_HOSTS
@@ -71,13 +85,13 @@ ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_KNOWN_HOSTS
 #
 # authorized_keys
 #
-if [ ! -d $SRV_USR_AUTHORIZED_KEYS ]; then
+if [ ! -f $SRV_USR_AUTHORIZED_KEYS ]; then
   touch $SRV_USR_AUTHORIZED_KEYS
   chmod 644 $SRV_USR_AUTHORIZED_KEYS
   chown $OWNER:$OWNER $SRV_USR_AUTHORIZED_KEYS
 fi
 
-if [ ! -d $RPI_USR_AUTHORIZED_KEYS ]; then
+if [ ! -f $RPI_USR_AUTHORIZED_KEYS ]; then
   touch $RPI_USR_AUTHORIZED_KEYS
   chmod 644 $RPI_USR_AUTHORIZED_KEYS
   chown $OWNER:$OWNER $RPI_USR_AUTHORIZED_KEYS
