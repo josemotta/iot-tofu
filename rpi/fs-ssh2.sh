@@ -112,9 +112,11 @@ fi
 #ssh-keygen -l -E md5 -f $SRV_SYS_KEY >> $RPI_USR_AUTHORIZED_KEYS
 KEYSTRING=$(<$SRV_SYS_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
+ssh-keygen -H -f $RPI_USR_AUTHORIZED_KEYS
 
 # rpi -> boot server
 # $RPI_SYS_KEY ---> ~/.ssh/authorized_keys
 #ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_AUTHORIZED_KEYS
 KEYSTRING=$(<$RPI_SYS_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
+ssh-keygen -H -f $SRV_USR_AUTHORIZED_KEYS
