@@ -39,7 +39,7 @@ sudo rm -r /tftpboot
 # pipe
 crontab -r
 sudo rm -r ~/pipe
-sudo rm -f /etc/ssh/known_hosts
+sudo rm -f /etc/ssh/ssh_known_hosts
 sudo rm -f ~/.ssh/authorized_keys
 
 # do not remove all, keep github among others
