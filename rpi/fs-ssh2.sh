@@ -87,7 +87,7 @@ ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
 # boot server local-client known_hosts: rpi -> boot server
 # $RPI_SYS_KEY ---> ~/.ssh/known_hosts
-# ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_KNOWN_HOSTS
+#ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_KNOWN_HOSTS
 KEYSTRING=$(<$RPI_SYS_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
 ssh-keygen -H -f $SRV_USR_KNOWN_HOSTS
@@ -109,8 +109,12 @@ fi
 
 # boot server -> rpi
 # $SRV_SYS_KEY ---> $BASE_FS/home/$OWNER/.ssh/authorized_keys
-ssh-keygen -l -E md5 -f $SRV_SYS_KEY >> $RPI_USR_AUTHORIZED_KEYS
+#ssh-keygen -l -E md5 -f $SRV_SYS_KEY >> $RPI_USR_AUTHORIZED_KEYS
+KEYSTRING=$(<$SRV_SYS_KEY)
+echo "[$RPI_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
 
 # rpi -> boot server
 # $RPI_SYS_KEY ---> ~/.ssh/authorized_keys
-ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_AUTHORIZED_KEYS
+#ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_AUTHORIZED_KEYS
+KEYSTRING=$(<$RPI_SYS_KEY)
+echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
