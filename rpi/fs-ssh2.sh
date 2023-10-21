@@ -34,7 +34,7 @@ SRV_SYS_KNOWN_HOSTS=/etc/ssh/ssh_known_hosts
 #
 # .ssh
 #
-if [ ! -f SRV_USR_KEY ]; then
+if [ ! -f $SRV_USR_KEY ]; then
   echo Missing .ssh/id_rsa.pub at boot server for user: $OWNER
   exit 1
 fi
