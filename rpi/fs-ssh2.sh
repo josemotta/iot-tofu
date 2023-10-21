@@ -15,7 +15,8 @@ export BASE_FS=$1
 # - RPi hostname is a parameter set by pxetools: /boot/name == /etc/hostname
 
 OWNER=$(<$BASE_FS/boot/owner)
-RPI_HOSTNAME=$(<$BASE_FS/boot/name)
+RPI_HOSTNAME=$(<$BASE_FS/etc/hostname)
+SRV_HOSTNAME=$(</etc/hostname)
 
 RPI_USR_HOME=$BASE_FS/home/$OWNER
 RPI_USR_KNOWN_HOSTS=$RPI_USR_HOME/.ssh/known_hosts
@@ -72,15 +73,21 @@ fi
 
 # rpi system-wide known_hosts: boot server -> rpi
 # $SRV_SYS_KEY ---> $BASE_FS/etc/ssh/known_hosts
-ssh-keygen -l -E md5 -f $SRV_SYS_KEY >> $RPI_SYS_KNOWN_HOSTS
+#ssh-keygen -l -E md5 -f $SRV_SYS_KEY >> $RPI_SYS_KNOWN_HOSTS
+echo "[$SRV_HOSTNAME] $SRV_SYS_KEY" >> $RPI_SYS_KNOWN_HOSTS
+ssh-keygen -H -f $RPI_SYS_KNOWN_HOSTS
 
 # boot server system-wide known_hosts: rpi -> boot server
 # $RPI_SYS_KEY ---> /etc/ssh/known_hosts
-ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_SYS_KNOWN_HOSTS
+#ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_SYS_KNOWN_HOSTS
+echo "[$RPI_HOSTNAME] $RPI_SYS_KEY" >> $SRV_SYS_KNOWN_HOSTS
+ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
 # boot server local-client known_hosts: rpi -> boot server
 # $RPI_SYS_KEY ---> ~/.ssh/known_hosts
-ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_KNOWN_HOSTS
+# ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_USR_KNOWN_HOSTS
+echo "[$RPI_HOSTNAME] $RPI_SYS_KEY" >> $SRV_USR_KNOWN_HOSTS
+ssh-keygen -H -f $SRV_USR_KNOWN_HOSTS
 
 #
 # authorized_keys
