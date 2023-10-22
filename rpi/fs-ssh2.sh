@@ -49,6 +49,7 @@ if [ ! -d $RPI_USR_SSH ]; then
 fi
 
 ssh-keygen -q -t rsa -N '' -f $RPI_USR_SSH/id_rsa
+sleep 1
 
 #
 # known_hosts
