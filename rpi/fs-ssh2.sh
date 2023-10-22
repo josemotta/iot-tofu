@@ -50,6 +50,7 @@ fi
 
 ssh-keygen -q -t rsa -N '' -f $RPI_USR_SSH/id_rsa
 sleep 1
+chown $OWNER:$OWNER $RPI_USR_SSH $RPI_USR_SSH/id_rsa*
 
 #
 # known_hosts
@@ -131,11 +132,16 @@ KEYSTRING=$(<$RPI_USR_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
 ssh-keygen -H -f $SRV_USR_AUTHORIZED_KEYS
 
-# Keep owner user settings
+# Keep user settings
 chown $OWNER:$OWNER $RPI_USR_KNOWN_HOSTS
 chown $OWNER:$OWNER $RPI_USR_AUTHORIZED_KEYS
 chown $OWNER:$OWNER $SRV_USR_KNOWN_HOSTS
 chown $OWNER:$OWNER $SRV_USR_AUTHORIZED_KEYS
+
+rm $RPI_USR_KNOWN_HOSTS.old
+rm $RPI_USR_AUTHORIZED_KEYS.old
+rm $SRV_USR_KNOWN_HOSTS.old
+rm $SRV_USR_AUTHORIZED_KEYS.old
 
 # First try, not recognized as valid known_hosts format
 #ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_SYS_KNOWN_HOSTS
