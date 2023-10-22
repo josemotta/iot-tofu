@@ -50,7 +50,7 @@ fi
 
 ssh-keygen -q -t rsa -N '' -f $RPI_USR_SSH/id_rsa
 sleep 1
-chown $OWNER:$OWNER $RPI_USR_SSH $RPI_USR_SSH/id_rsa*
+chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
 
 #
 # known_hosts
