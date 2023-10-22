@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This folder:
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
+
 if [ $1 == "" ]; then
   echo Missing base fs
   exit 1
@@ -21,6 +24,7 @@ SRV_HOSTNAME=$(</etc/hostname)
 
 RPI_USR_HOME=$BASE_FS/home/$OWNER
 RPI_USR_SSH=$RPI_USR_HOME/.ssh
+RPI_USR_SSH_CONFIG=$RPI_USR_SSH/ssh_config.d
 RPI_USR_KNOWN_HOSTS=$RPI_USR_SSH/known_hosts
 RPI_USR_AUTHORIZED_KEYS=$RPI_USR_SSH/authorized_keys
 RPI_USR_KEY=$RPI_USR_SSH/id_rsa.pub
@@ -51,6 +55,11 @@ fi
 ssh-keygen -q -t rsa -N '' -f $RPI_USR_SSH/id_rsa
 sleep 1
 chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
+
+#
+# enable host based authentication on RPi
+#
+cp $SCRIPT_DIR/ssh_config.conf $RPI_USR_SSH_CONFIG/config.conf
 
 #
 # known_hosts
