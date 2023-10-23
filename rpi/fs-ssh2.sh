@@ -62,8 +62,15 @@ chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
 #
 # enable host based authentication
 #
-cp $SCRIPT_DIR/ssh_config.conf $RPI_SSH_CONFIG/config.conf
-cp $SCRIPT_DIR/ssh_config.conf $SRV_SSH_CONFIG/config.conf
+cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
+EnableSSHKeySign yes
+HostbasedAuthentication yes
+EOF
+
+cat << EOF | sudo tee $SRV_SSH_CONFIG/config.conf
+EnableSSHKeySign yes
+HostbasedAuthentication yes
+EOF
 
 #
 # known_hosts
@@ -155,6 +162,8 @@ rm $RPI_USR_KNOWN_HOSTS.old
 rm $RPI_USR_AUTHORIZED_KEYS.old
 rm $SRV_USR_KNOWN_HOSTS.old
 rm $SRV_USR_AUTHORIZED_KEYS.old
+
+systemctl restart sshd
 
 # First try, not recognized as valid known_hosts format
 #ssh-keygen -l -E md5 -f $RPI_SYS_KEY >> $SRV_SYS_KNOWN_HOSTS

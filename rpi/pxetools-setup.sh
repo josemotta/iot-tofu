@@ -183,8 +183,8 @@ sudo systemctl disable dhcpcd
 sudo systemctl restart networking
 
 # Start services
-sudo systemctl enable dnsmasq rpcbind nfs-kernel-server sshd
-sudo systemctl restart dnsmasq rpcbind nfs-kernel-server sshd
+sudo systemctl enable dnsmasq rpcbind nfs-kernel-server
+sudo systemctl restart dnsmasq rpcbind nfs-kernel-server
 
 echo ""
 echo "Now run sudo pxetools --add \$serial"
