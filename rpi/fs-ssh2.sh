@@ -24,7 +24,6 @@ SRV_HOSTNAME=$(</etc/hostname)
 
 RPI_USR_HOME=$BASE_FS/home/$OWNER
 RPI_USR_SSH=$RPI_USR_HOME/.ssh
-RPI_USR_SSH_CONFIG=$RPI_USR_SSH/ssh_config.d
 RPI_USR_KNOWN_HOSTS=$RPI_USR_SSH/known_hosts
 RPI_USR_AUTHORIZED_KEYS=$RPI_USR_SSH/authorized_keys
 RPI_USR_KEY=$RPI_USR_SSH/id_rsa.pub
@@ -32,11 +31,15 @@ RPI_SYS_KEY=$BASE_FS/etc/ssh/ssh_host_rsa_key.pub
 RPI_SYS_KNOWN_HOSTS=$BASE_FS/etc/ssh/ssh_known_hosts
 
 SRV_USR_HOME=/home/$OWNER
-SRV_USR_KNOWN_HOSTS=$SRV_USR_HOME/.ssh/known_hosts
-SRV_USR_AUTHORIZED_KEYS=$SRV_USR_HOME/.ssh/authorized_keys
-SRV_USR_KEY=$SRV_USR_HOME/.ssh/id_rsa.pub
+SRV_USR_SSH=$SRV_USR_HOME/.ssh
+SRV_USR_KNOWN_HOSTS=$SRV_USR_SSH/known_hosts
+SRV_USR_AUTHORIZED_KEYS=$SRV_USR_SSH/authorized_keys
+SRV_USR_KEY=$SRV_USR_SSH/id_rsa.pub
 SRV_SYS_KEY=/etc/ssh/ssh_host_rsa_key.pub
 SRV_SYS_KNOWN_HOSTS=/etc/ssh/ssh_known_hosts
+
+RPI_SSH_CONFIG=$RPI_USR_SSH/ssh_config.d
+SRV_SSH_CONFIG=$SRV_USR_SSH/ssh_config.d
 
 #
 # .ssh & RPi owner key
@@ -57,9 +60,10 @@ sleep 1
 chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
 
 #
-# enable host based authentication on RPi
+# enable host based authentication
 #
-cp $SCRIPT_DIR/ssh_config.conf $RPI_USR_SSH_CONFIG/config.conf
+cp $SCRIPT_DIR/ssh_config.conf $RPI_SSH_CONFIG/config.conf
+cp $SCRIPT_DIR/ssh_config.conf $SRV_SSH_CONFIG/config.conf
 
 #
 # known_hosts

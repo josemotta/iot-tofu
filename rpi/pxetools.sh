@@ -29,6 +29,6 @@ sudo chmod +x /nfs/fs-ssh.sh
 sudo chmod +x /nfs/fs-ssh2.sh
 
 # Restart
-sudo systemctl restart dnsmasq rpcbind nfs-kernel-server
+sudo systemctl restart dnsmasq rpcbind nfs-kernel-server sshd
 
 echo "Now run sudo pxetools --add \$serial"
