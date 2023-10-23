@@ -17,6 +17,7 @@ export BASE_FS=$1
 # Notes:
 # - Owner account name is a parameter set by pxetools: /boot/owner
 # - RPi hostname is a parameter set by pxetools: /boot/name == /etc/hostname
+# - there's no hash at known_hosts to speed up dev: hashknownhosts no
 
 # owner
 OWNER=$(<$BASE_FS/boot/owner)
@@ -75,11 +76,13 @@ chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
 # https://www.golinuxcloud.com/configure-ssh-host-based-authentication-linux/
 #
 cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
+HashKnownHosts no
 EnableSSHKeySign yes
 HostbasedAuthentication yes
 EOF
 
 cat << EOF | sudo tee $SRV_SSH_CONFIG/config.conf
+HashKnownHosts no
 EnableSSHKeySign yes
 HostbasedAuthentication yes
 EOF
@@ -145,9 +148,9 @@ KEYSTRING=$(<$SRV_SYS_RSA_KEY)
 echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
 KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
 echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
-KEYSTRING=$(<$SRV_USR_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
-ssh-keygen -H -f $RPI_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$SRV_USR_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
+# ssh-keygen -H -f $RPI_SYS_KNOWN_HOSTS
 
 # system-wide known_hosts: rpi -> boot server
 # $RPI_xxx_KEY ---> /etc/ssh/known_hosts
@@ -155,21 +158,21 @@ KEYSTRING=$(<$RPI_SYS_RSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
 KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-KEYSTRING=$(<$RPI_USR_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$RPI_USR_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+# ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
 # local-client known_hosts: boot server -> rpi
 # $SRV_USR_KEY ---> $BASE_FS/home/$OWNER/.ssh/known_hosts
 KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
 echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
-ssh-keygen -H -f $RPI_USR_KNOWN_HOSTS
+# ssh-keygen -H -f $RPI_USR_KNOWN_HOSTS
 
 # local-client known_hosts: rpi -> boot server
 # $RPI_USR_KEY ---> ~/.ssh/known_hosts
 KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
-ssh-keygen -H -f $SRV_USR_KNOWN_HOSTS
+# ssh-keygen -H -f $SRV_USR_KNOWN_HOSTS
 
 #
 # authorized_keys
@@ -188,17 +191,21 @@ fi
 # $SRV_SYS_RSA_KEY ---> $BASE_FS/home/$OWNER/.ssh/authorized_keys
 KEYSTRING=$(<$SRV_SYS_RSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
+KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
+echo "[$RPI_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
 KEYSTRING=$(<$SRV_USR_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
-ssh-keygen -H -f $RPI_USR_AUTHORIZED_KEYS
+# ssh-keygen -H -f $RPI_USR_AUTHORIZED_KEYS
 
 # rpi -> boot server
 # $RPI_SYS_RSA_KEY ---> ~/.ssh/authorized_keys
 KEYSTRING=$(<$RPI_SYS_RSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
+KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
+echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
 KEYSTRING=$(<$RPI_USR_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
-ssh-keygen -H -f $SRV_USR_AUTHORIZED_KEYS
+# ssh-keygen -H -f $SRV_USR_AUTHORIZED_KEYS
 
 # Keep user settings
 chown $OWNER:$OWNER $RPI_USR_KNOWN_HOSTS
@@ -206,10 +213,10 @@ chown $OWNER:$OWNER $RPI_USR_AUTHORIZED_KEYS
 chown $OWNER:$OWNER $SRV_USR_KNOWN_HOSTS
 chown $OWNER:$OWNER $SRV_USR_AUTHORIZED_KEYS
 
-rm $RPI_USR_KNOWN_HOSTS.old
-rm $RPI_USR_AUTHORIZED_KEYS.old
-rm $SRV_USR_KNOWN_HOSTS.old
-rm $SRV_USR_AUTHORIZED_KEYS.old
+# rm $RPI_USR_KNOWN_HOSTS.old
+# rm $RPI_USR_AUTHORIZED_KEYS.old
+# rm $SRV_USR_KNOWN_HOSTS.old
+# rm $SRV_USR_AUTHORIZED_KEYS.old
 
 systemctl restart sshd
 
