@@ -47,6 +47,9 @@ SRV_SYS_KNOWN_HOSTS=$SRV_SYS_SSH/ssh_known_hosts
 # ssh config
 RPI_SSH_CONFIG=$RPI_SYS_SSH/ssh_config.d
 SRV_SSH_CONFIG=$SRV_SYS_SSH/ssh_config.d
+# sshd config
+RPI_SSHD_CONFIG=$RPI_SYS_SSH/sshd_config.d
+SRV_SSHD_CONFIG=$SRV_SYS_SSH/sshd_config.d
 
 #
 # .ssh & RPi owner key
@@ -77,6 +80,16 @@ EOF
 cat << EOF | sudo tee $SRV_SSH_CONFIG/config.conf
 EnableSSHKeySign yes
 HostbasedAuthentication yes
+EOF
+
+cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
+HostbasedAuthentication yes
+#IgnoreRhosts no
+EOF
+
+cat << EOF | sudo tee $SRV_SSHD_CONFIG/config.conf
+HostbasedAuthentication yes
+#IgnoreRhosts no
 EOF
 
 #
