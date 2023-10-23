@@ -18,28 +18,35 @@ export BASE_FS=$1
 # - Owner account name is a parameter set by pxetools: /boot/owner
 # - RPi hostname is a parameter set by pxetools: /boot/name == /etc/hostname
 
+# owner
 OWNER=$(<$BASE_FS/boot/owner)
+RPI_USR_HOME=$BASE_FS/home/$OWNER
+SRV_USR_HOME=/home/$OWNER
+
+# hostname
 RPI_HOSTNAME=$(<$BASE_FS/etc/hostname)
 SRV_HOSTNAME=$(</etc/hostname)
-
-RPI_USR_HOME=$BASE_FS/home/$OWNER
+# RPi owner user
 RPI_USR_SSH=$RPI_USR_HOME/.ssh
 RPI_USR_KNOWN_HOSTS=$RPI_USR_SSH/known_hosts
 RPI_USR_AUTHORIZED_KEYS=$RPI_USR_SSH/authorized_keys
 RPI_USR_KEY=$RPI_USR_SSH/id_rsa.pub
-RPI_SYS_KEY=$BASE_FS/etc/ssh/ssh_host_rsa_key.pub
-RPI_SYS_KNOWN_HOSTS=$BASE_FS/etc/ssh/ssh_known_hosts
-
-SRV_USR_HOME=/home/$OWNER
+# RPi system wide
+RPI_SYS_SSH=$BASE_FS/etc/ssh
+RPI_SYS_KEY=$RPI_SYS_SSH/ssh_host_rsa_key.pub
+RPI_SYS_KNOWN_HOSTS=$RPI_SYS_SSH/ssh_known_hosts
+# Boot server owner user
 SRV_USR_SSH=$SRV_USR_HOME/.ssh
 SRV_USR_KNOWN_HOSTS=$SRV_USR_SSH/known_hosts
 SRV_USR_AUTHORIZED_KEYS=$SRV_USR_SSH/authorized_keys
 SRV_USR_KEY=$SRV_USR_SSH/id_rsa.pub
-SRV_SYS_KEY=/etc/ssh/ssh_host_rsa_key.pub
-SRV_SYS_KNOWN_HOSTS=/etc/ssh/ssh_known_hosts
-
-RPI_SSH_CONFIG=$RPI_USR_SSH/ssh_config.d
-SRV_SSH_CONFIG=$SRV_USR_SSH/ssh_config.d
+# Boot server system wide
+SRV_SYS_SSH=$SRV_USR_HOME/etc/ssh
+SRV_SYS_KEY=$SRV_SYS_SSH/ssh_host_rsa_key.pub
+SRV_SYS_KNOWN_HOSTS=$SRV_SYS_SSH/ssh_known_hosts
+# ssh config
+RPI_SSH_CONFIG=$RPI_SYS_SSH/ssh_config.d
+SRV_SSH_CONFIG=$SRV_SYS_SSH/ssh_config.d
 
 #
 # .ssh & RPi owner key
