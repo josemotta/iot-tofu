@@ -22,7 +22,6 @@ export BASE_FS=$1
 OWNER=$(<$BASE_FS/boot/owner)
 RPI_USR_HOME=$BASE_FS/home/$OWNER
 SRV_USR_HOME=/home/$OWNER
-
 # hostname
 RPI_HOSTNAME=$(<$BASE_FS/etc/hostname)
 SRV_HOSTNAME=$(</etc/hostname)
@@ -86,6 +85,7 @@ EOF
 cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
 HostbasedAuthentication yes
 PubkeyAuthentication no
+UseDNS yes
 #IgnoreRhosts no
 Match User $OWNER
   PasswordAuthentication no
@@ -101,6 +101,7 @@ EOF
 cat << EOF | sudo tee $SRV_SSHD_CONFIG/config.conf
 HostbasedAuthentication yes
 PubkeyAuthentication no
+UseDNS yes
 #IgnoreRhosts no
 Match User $OWNER
   PasswordAuthentication no
