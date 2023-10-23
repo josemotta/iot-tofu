@@ -161,13 +161,13 @@ ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
 # local-client known_hosts: boot server -> rpi
 # $SRV_USR_KEY ---> $BASE_FS/home/$OWNER/.ssh/known_hosts
-KEYSTRING=$(<$SRV_USR_KEY)
+KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
 echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
 ssh-keygen -H -f $RPI_USR_KNOWN_HOSTS
 
 # local-client known_hosts: rpi -> boot server
 # $RPI_USR_KEY ---> ~/.ssh/known_hosts
-KEYSTRING=$(<$RPI_USR_KEY)
+KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
 ssh-keygen -H -f $SRV_USR_KNOWN_HOSTS
 
