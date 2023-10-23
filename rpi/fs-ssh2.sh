@@ -71,6 +71,7 @@ chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
 
 #
 # enable host based authentication
+# https://www.golinuxcloud.com/configure-ssh-host-based-authentication-linux/
 #
 cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
 EnableSSHKeySign yes
@@ -85,11 +86,29 @@ EOF
 cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
 HostbasedAuthentication yes
 #IgnoreRhosts no
+Match User $OWNER
+  PasswordAuthentication no
+  HostbasedAuthentication yes
+#Match User rahul
+#  HostbasedAuthentication no
+#  PasswordAuthentication no
+#  PubkeyAuthentication yes
+Match all
+  PasswordAuthentication yes
 EOF
 
 cat << EOF | sudo tee $SRV_SSHD_CONFIG/config.conf
 HostbasedAuthentication yes
 #IgnoreRhosts no
+Match User $OWNER
+  PasswordAuthentication no
+  HostbasedAuthentication yes
+#Match User rahul
+#  HostbasedAuthentication no
+#  PasswordAuthentication no
+#  PubkeyAuthentication yes
+Match all
+  PasswordAuthentication yes
 EOF
 
 #
