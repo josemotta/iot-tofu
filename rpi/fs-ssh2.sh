@@ -41,7 +41,7 @@ SRV_USR_KNOWN_HOSTS=$SRV_USR_SSH/known_hosts
 SRV_USR_AUTHORIZED_KEYS=$SRV_USR_SSH/authorized_keys
 SRV_USR_KEY=$SRV_USR_SSH/id_rsa.pub
 # Boot server system wide
-SRV_SYS_SSH=$SRV_USR_HOME/etc/ssh
+SRV_SYS_SSH=/etc/ssh
 SRV_SYS_KEY=$SRV_SYS_SSH/ssh_host_rsa_key.pub
 SRV_SYS_KNOWN_HOSTS=$SRV_SYS_SSH/ssh_known_hosts
 # ssh config
