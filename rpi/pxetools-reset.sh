@@ -45,8 +45,8 @@ sudo rm -f ~/.ssh/authorized_keys
 # do not remove all, keep github among others
 #sudo rm -f ~/.ssh/known_hosts
 
-if [ ! -d /home/$USER/original-ssh ]; then
-  sudo cp -p /home/$USER/original-ssh/known_hosts /home/$USER/.ssh/known_hosts
+if [ ! -d ~/original-ssh ]; then
+  sudo cp -p ~/original-ssh/known_hosts ~/.ssh/known_hosts
 fi
 
 cat << EOF | sudo tee /etc/exports
