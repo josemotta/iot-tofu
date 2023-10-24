@@ -134,10 +134,10 @@ echo ""
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
 interface=eth0
-no-resolv
+#no-resolv
 server=$DNSSERVER
 dhcp-range=$DHCPRANGE
-bind-interfaces
+#bind-interfaces
 log-dhcp
 log-queries
 enable-tftp
@@ -145,6 +145,10 @@ tftp-root=/tftpboot
 tftp-no-fail
 pxe-service=0,"Raspberry Pi Boot"
 dhcp-boot=pxelinux.0
+domain-needed
+bogus-priv
+expand-hosts
+domain=net.local
 EOF
 
 # Get Raspberry Pi OS images
