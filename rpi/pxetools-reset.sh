@@ -42,11 +42,10 @@ sudo rm -r ~/pipe
 sudo rm -f /etc/ssh/ssh_known_hosts
 sudo rm -f ~/.ssh/authorized_keys
 
-# do not remove all, keep github among others
+# do not remove to keep github among others
 #sudo rm -f ~/.ssh/known_hosts
-
-if [ ! -d ~/original-ssh ]; then
-  sudo cp -p ~/original-ssh/known_hosts ~/.ssh/known_hosts
+if [ -d ~/original-ssh ]; then
+  cp ~/original-ssh/known_hosts ~/.ssh/known_hosts
 fi
 
 cat << EOF | sudo tee /etc/exports
