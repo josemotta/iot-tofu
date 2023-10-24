@@ -10,6 +10,10 @@ NETMASK=$(ifconfig eth0 | grep "inet " | cut -d " " -f13)
 DNSSERVER=192.168.1.254
 PXETOOLS=/usr/local/sbin/pxetools
 
+# owner
+OWNER=$(<$BASE_FS/boot/owner)
+SRV_USR_HOME=/home/$OWNER
+
 echo "Resetting:"
 echo "IP: $IP"
 echo "Netmask: $NETMASK"
@@ -46,7 +50,7 @@ sudo rm -f ~/.ssh/authorized_keys
 #sudo rm -f ~/.ssh/known_hosts
 
 if [ ! -d ~/original-ssh ]; then
-  cp -p ~/original-ssh/known_hosts ~/.ssh/known_hosts
+  cp -p ~/original-ssh/known_hosts /home/$OWNER/.ssh/known_hosts
 fi
 
 cat << EOF | sudo tee /etc/exports
