@@ -46,7 +46,7 @@ sudo rm -f ~/.ssh/authorized_keys
 #sudo rm -f ~/.ssh/known_hosts
 
 if [ ! -d /home/$USER/original-ssh ]; then
-  cp -p /home/$USER/original-ssh/known_hosts /home/$USER/.ssh/known_hosts
+  sudo cp -p /home/$USER/original-ssh/known_hosts /home/$USER/.ssh/known_hosts
 fi
 
 cat << EOF | sudo tee /etc/exports
