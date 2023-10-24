@@ -45,6 +45,10 @@ sudo rm -f ~/.ssh/authorized_keys
 # do not remove all, keep github among others
 #sudo rm -f ~/.ssh/known_hosts
 
+if [ ! -d ~/original-ssh ]; then
+  cp -p ~/original-ssh/known_hosts ~/.ssh/known_hosts
+fi
+
 cat << EOF | sudo tee /etc/exports
 # /etc/exports: the access control list for filesystems which may be exported
 #		to NFS clients.  See exports(5).
