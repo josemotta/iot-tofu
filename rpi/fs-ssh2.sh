@@ -79,12 +79,14 @@ cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
 HashKnownHosts no
 EnableSSHKeySign yes
 HostbasedAuthentication yes
+EnableSSHKeysign yes
 EOF
 
 cat << EOF | sudo tee $SRV_SSH_CONFIG/config.conf
 HashKnownHosts no
 EnableSSHKeySign yes
 HostbasedAuthentication yes
+EnableSSHKeysign yes
 EOF
 
 cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
