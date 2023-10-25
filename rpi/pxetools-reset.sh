@@ -29,10 +29,24 @@ sudo rm /etc/dnsmasq.d/dnsmasq.conf
 sudo rm /etc/exports
 sudo rm $PXETOOLS
 
-sudo rm -r /nfs
+# Cleaning
+# sudo rm -r /nfs
+# keep bases to optimize image downloading (dev)
+sudo rm -r /nfs/9f55bbfd
+sudo rm -r /nfs/a10cd2e5
+# boot
 sudo rm -r /tftpboot
+# pipe
 crontab -r
 sudo rm -r ~/pipe
+sudo rm -f /etc/ssh/ssh_known_hosts
+sudo rm -f ~/.ssh/authorized_keys
+
+# do not remove to keep github among others
+#sudo rm -f ~/.ssh/known_hosts
+if [ -d ~/original-ssh ]; then
+  cp ~/original-ssh/known_hosts ~/.ssh/known_hosts
+fi
 
 cat << EOF | sudo tee /etc/exports
 # /etc/exports: the access control list for filesystems which may be exported

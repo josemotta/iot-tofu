@@ -30,11 +30,13 @@ DHCPRANGE=192.168.10.50,192.168.10.99,255.255.255.0,12h
 # BRD=$(ifconfig eth0 | grep "inet " | cut -d " " -f16)
 
 # Setup files supposed to be in this folder:
-PXETOOLS=$SCRIPT_DIR/pxetools.py  # app to add, remove & list RPis
-CONFIG=$SCRIPT_DIR/config.txt     # default RPi config to be used in boot
-FSGEN=$SCRIPT_DIR/fs-gen.sh       # fs generator - main
-FSSSH=$SCRIPT_DIR/fs-ssh.sh       # fs generator - SSH host keys
-PIPE=$SCRIPT_DIR/pipe.sh          # named pipe method to run commands
+PXETOOLS=$SCRIPT_DIR/pxetools.py      # app to add, remove & list RPis
+CONFIG=$SCRIPT_DIR/config.txt         # default RPi config to be used in boot
+FSGEN=$SCRIPT_DIR/fs-gen.sh           # fs generator - main
+FSSSH=$SCRIPT_DIR/fs-ssh.sh           # fs generator - SSH host keys
+FSSSH2=$SCRIPT_DIR/fs-ssh2.sh         # fs generator - known hosts
+PIPE=$SCRIPT_DIR/pipe.sh              # named pipe method to run commands
+IMAGES=$SCRIPT_DIR/pxetools-images.sh # RPi OS bases to be downloaded
 
 #   - The 'interfaces' (or equivalent) should be already set:
 #     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
@@ -111,24 +113,31 @@ echo "Applying files extracted from this folder"
 sudo cp --remove-destination $CONFIG /tftpboot/base/config.txt
 sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
+sudo cp --remove-destination $FSSSH2 /nfs/fs-ssh2.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
+sudo chmod +x /nfs/fs-ssh2.sh
 sudo touch /tftpboot/base/ssh
 
-# Configure a default user for all RPis
+# Configure the default user for all RPis.
+#
+# The user & password are based on the current logged user: $USER:$USER
+#
 # https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user
-sudo cat << EOF | tee /tftpboot/base/userconf.txt
-jo:$6$PL4aSoIKGMuiZ93i$iiqqVkexrkULJixXax/z/mL70HzTnawF9wtrqiqu6x2lPpKHikCR1xZF3rTb9Q2qNl81vV1nh1y9o3MxfQ/TC.
-EOF
+# https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/configuration/headless.adoc
+
+echo $USER:$(echo $USER | openssl passwd -6 -stdin) > /tftpboot/base/userconf.txt
+
+# Configure dnsmasq with DHCP, TFTP & DNS servers
 
 echo ""
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
 interface=eth0
-no-resolv
+#no-resolv
 server=$DNSSERVER
 dhcp-range=$DHCPRANGE
-bind-interfaces
+#bind-interfaces
 log-dhcp
 log-queries
 enable-tftp
@@ -136,13 +145,17 @@ tftp-root=/tftpboot
 tftp-no-fail
 pxe-service=0,"Raspberry Pi Boot"
 dhcp-boot=pxelinux.0
+domain-needed
+bogus-priv
+expand-hosts
+domain=net.local
 EOF
 
 # Get Raspberry Pi OS images
 echo ""
 echo "Getting Raspberry Pi OS images"
 if [ ! -d /nfs/bases ]; then
-  source ./pxetools-images.sh
+  source $IMAGES
 fi
 
 # Install pxetools

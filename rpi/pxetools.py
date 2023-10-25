@@ -64,8 +64,8 @@ def add():
             raise Exception("Invalid serial number {}".format(serial))
 
     print("Serial: {}".format(serial))
-    owner = input("Owner Name (ex Gordon): ")
-    name = input("Name for pi: ")
+    owner = input("Owner name: ")
+    name = input("Pi name: ")
 
     print("Select a base image:")
     selection = ["I will prepare my own filesystem"] + os.listdir('/nfs/bases')
@@ -118,7 +118,7 @@ def add():
         # cmd("rsync -a /mnt/tmp/ {}/".format(nfs_path))
         # cmd("umount /mnt/tmp")
 
-        # cmd("sudo cp -r {}/* {}/".format(img, nfs_path), print_out=True)
+        # file system generator
         cmd("/nfs/fs-gen.sh {} {}".format(img, nfs_path), print_out=True)
 
         # hosts & hostname
@@ -141,6 +141,9 @@ def add():
         cmd("cd {}/etc/systemd/system; rm -r dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
 
         cmd("sudo cp -r {}/* {}/boot".format(tftp_path, nfs_path), print_out=True)
+
+        # ssh known_hosts & authorized_keys
+        cmd("/nfs/fs-ssh2.sh {}".format(nfs_path), print_out=True)
 
         # cmd("mount /dev/mapper/loop0p1 /mnt/tmp")
         # cmd("rsync -a --exclude bootcode.bin --exclude start.elf --exclude cmdline.txt /mnt/tmp/ {}/".format(tftp_path))
