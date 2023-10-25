@@ -32,6 +32,7 @@ RPI_USR_KNOWN_HOSTS=$RPI_USR_SSH/known_hosts
 RPI_USR_AUTHORIZED_KEYS=$RPI_USR_SSH/authorized_keys
 RPI_USR_KEY=$RPI_USR_SSH/id_rsa.pub
 # RPi system wide
+RPI_SYS=$BASE_FS/etc
 RPI_SYS_SSH=$BASE_FS/etc/ssh
 RPI_SYS_RSA_KEY=$RPI_SYS_SSH/ssh_host_rsa_key.pub
 RPI_SYS_ECDSA_KEY=$RPI_SYS_SSH/ssh_host_ecdsa_key.pub
@@ -42,6 +43,7 @@ SRV_USR_KNOWN_HOSTS=$SRV_USR_SSH/known_hosts
 SRV_USR_AUTHORIZED_KEYS=$SRV_USR_SSH/authorized_keys
 SRV_USR_KEY=$SRV_USR_SSH/id_rsa.pub
 # Boot server system wide
+SRV_SYS=/etc
 SRV_SYS_SSH=/etc/ssh
 SRV_SYS_RSA_KEY=$SRV_SYS_SSH/ssh_host_rsa_key.pub
 SRV_SYS_ECDSA_KEY=$SRV_SYS_SSH/ssh_host_ecdsa_key.pub
@@ -121,13 +123,13 @@ Match all
   PasswordAuthentication yes
 EOF
 
-cat << EOF | sudo tee $RPI_SYS_SSH/shosts.equiv
+cat << EOF | sudo tee $RPI_SYS/shosts.equiv
 rpi2.net.local
 rpi4.net.local
 region2.net.local
 EOF
 
-cat << EOF | sudo tee $SRV_SYS_SSH/shosts.equiv
+cat << EOF | sudo tee $SRV_SYS/shosts.equiv
 rpi2.net.local
 rpi4.net.local
 region2.net.local
