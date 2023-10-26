@@ -162,7 +162,11 @@ if [ ! -f $SRV_USR_KNOWN_HOSTS ]; then
 fi
 
 if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
-  touch $SRV_SYS_KNOWN_HOSTS
+  if [ -d ~/original-ssh ]; then
+    cp ~/original-ssh/known_hosts $SRV_SYS_KNOWN_HOSTS
+  else
+    touch $SRV_SYS_KNOWN_HOSTS
+  fi
   chmod 644 $SRV_SYS_KNOWN_HOSTS
   KEYSTRING=$(<$SRV_SYS_RSA_KEY)
   echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
