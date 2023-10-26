@@ -145,15 +145,15 @@ region2
 EOF
 
 cat << EOF | sudo tee $RPI_SYS/hosts.equiv
-rpi2
-rpi4
-region2
+rpi2 jo
+rpi4 jo
+region2 jo
 EOF
 
 cat << EOF | sudo tee $SRV_SYS/hosts.equiv
-rpi2
-rpi4
-region2
+rpi2 jo
+rpi4 jo
+region2 jo
 EOF
 
 #
