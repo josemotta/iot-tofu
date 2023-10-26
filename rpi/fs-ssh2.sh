@@ -162,8 +162,8 @@ if [ ! -f $SRV_USR_KNOWN_HOSTS ]; then
 fi
 
 if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
-  if [ -d ~/original-ssh ]; then
-    cp ~/original-ssh/known_hosts $SRV_SYS_KNOWN_HOSTS
+  if [ -d $SRV_USR_HOME/original-ssh ]; then
+    cp $SRV_USR_HOME/original-ssh/known_hosts $SRV_SYS_KNOWN_HOSTS
   else
     touch $SRV_SYS_KNOWN_HOSTS
   fi
