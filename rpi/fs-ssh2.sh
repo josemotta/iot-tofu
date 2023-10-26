@@ -101,7 +101,7 @@ EOF
 cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
 HostbasedAuthentication yes
 PubkeyAuthentication no
-UseDNS no
+UseDNS yes
 IgnoreRhosts no
 AcceptEnv -LC_* -LANG*
 Match User $OWNER
@@ -118,7 +118,7 @@ EOF
 cat << EOF | sudo tee $SRV_SSHD_CONFIG/config.conf
 HostbasedAuthentication yes
 PubkeyAuthentication no
-UseDNS no
+UseDNS yes
 IgnoreRhosts no
 AcceptEnv -LC_* -LANG*
 Match User $OWNER
