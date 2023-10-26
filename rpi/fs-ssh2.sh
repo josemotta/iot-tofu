@@ -78,17 +78,20 @@ chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
 #
 # enable host based authentication
 # https://www.golinuxcloud.com/configure-ssh-host-based-authentication-linux/
+# https://stackoverflow.com/questions/29609371/how-not-to-pass-the-locale-through-an-ssh-connection-command
 #
 cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
 HashKnownHosts no
 HostbasedAuthentication yes
 EnableSSHKeysign yes
+SendEnv -LC_* -LANG*
 EOF
 
 cat << EOF | sudo tee $SRV_SSH_CONFIG/config.conf
 HashKnownHosts no
 HostbasedAuthentication yes
 EnableSSHKeysign yes
+SendEnv -LC_* -LANG*
 EOF
 
 cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
@@ -96,6 +99,7 @@ HostbasedAuthentication yes
 PubkeyAuthentication no
 UseDNS yes
 IgnoreRhosts no
+AcceptEnv -LC_* -LANG*
 Match User $OWNER
   PasswordAuthentication no
   HostbasedAuthentication yes
@@ -112,6 +116,7 @@ HostbasedAuthentication yes
 PubkeyAuthentication no
 UseDNS yes
 IgnoreRhosts no
+AcceptEnv -LC_* -LANG*
 Match User $OWNER
   PasswordAuthentication no
   HostbasedAuthentication yes
@@ -124,15 +129,15 @@ Match all
 EOF
 
 cat << EOF | sudo tee $RPI_SYS/shosts.equiv
-rpi2.net.local
-rpi4.net.local
-region2.net.local
+rpi2
+rpi4
+region2
 EOF
 
 cat << EOF | sudo tee $SRV_SYS/shosts.equiv
-rpi2.net.local
-rpi4.net.local
-region2.net.local
+rpi2
+rpi4
+region2
 EOF
 
 #
@@ -148,28 +153,37 @@ if [ ! -f $RPI_SYS_KNOWN_HOSTS ]; then
   chmod 644 $RPI_SYS_KNOWN_HOSTS
 fi
 
-if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
-  touch $SRV_SYS_KNOWN_HOSTS
-  chmod 644 $SRV_SYS_KNOWN_HOSTS
-fi
-
 if [ ! -f $SRV_USR_KNOWN_HOSTS ]; then
   touch $SRV_USR_KNOWN_HOSTS
   chmod 644 $SRV_USR_KNOWN_HOSTS
 fi
 
-# system-wide known_hosts: boot server -> rpi
-# $SRV_xxx_KEY ---> $BASE_FS/etc/ssh/known_hosts
-KEYSTRING=$(<$SRV_SYS_RSA_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
-KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
-KEYSTRING=$(<$SRV_USR_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
-# ssh-keygen -H -f $RPI_SYS_KNOWN_HOSTS
+if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
+  touch $SRV_SYS_KNOWN_HOSTS
+  chmod 644 $SRV_SYS_KNOWN_HOSTS
+  KEYSTRING=$(<$SRV_SYS_RSA_KEY)
+  echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+  KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
+  echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+  KEYSTRING=$(<$SRV_USR_KEY)
+  echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+  # ssh-keygen -H -f $RPI_SYS_KNOWN_HOSTS
+fi
 
-# system-wide known_hosts: rpi -> boot server
-# $RPI_xxx_KEY ---> /etc/ssh/known_hosts
+#
+# authorized_keys
+#
+if [ ! -f $RPI_USR_AUTHORIZED_KEYS ]; then
+  touch $RPI_USR_AUTHORIZED_KEYS
+  chmod 644 $RPI_USR_AUTHORIZED_KEYS
+fi
+
+if [ ! -f $SRV_USR_AUTHORIZED_KEYS ]; then
+  touch $SRV_USR_AUTHORIZED_KEYS
+  chmod 644 $SRV_USR_AUTHORIZED_KEYS
+fi
+
+# add RPi keys to both know_hosts & authorized_keys
 KEYSTRING=$(<$RPI_SYS_RSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
 KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
@@ -178,58 +192,71 @@ KEYSTRING=$(<$RPI_USR_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
 # ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
-# local-client known_hosts: boot server -> rpi
-# $SRV_USR_KEY ---> $BASE_FS/home/$OWNER/.ssh/known_hosts
-KEYSTRING=$(<$SRV_SYS_RSA_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
-KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
-KEYSTRING=$(<$SRV_USR_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
-# ssh-keygen -H -f $RPI_USR_KNOWN_HOSTS
+cp $SRV_SYS_KNOWN_HOSTS $RPI_SYS_KNOWN_HOSTS
+cp $SRV_SYS_KNOWN_HOSTS $RPI_USR_KNOWN_HOSTS
+cp $SRV_SYS_KNOWN_HOSTS $SRV_USR_KNOWN_HOSTS
+cp $SRV_SYS_KNOWN_HOSTS $SRV_USR_AUTHORIZED_KEYS
+cp $SRV_SYS_KNOWN_HOSTS $RPI_USR_AUTHORIZED_KEYS
 
-# local-client known_hosts: rpi -> boot server
-# $RPI_USR_KEY ---> ~/.ssh/known_hosts
-KEYSTRING=$(<$RPI_SYS_RSA_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
-KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
-KEYSTRING=$(<$RPI_USR_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
-# ssh-keygen -H -f $SRV_USR_KNOWN_HOSTS
+# # system-wide known_hosts: boot server -> rpi
+# # $SRV_xxx_KEY ---> $BASE_FS/etc/ssh/known_hosts
+# KEYSTRING=$(<$SRV_SYS_RSA_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$SRV_USR_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_SYS_KNOWN_HOSTS
+# # ssh-keygen -H -f $RPI_SYS_KNOWN_HOSTS
 
-#
-# authorized_keys
-#
-if [ ! -f $SRV_USR_AUTHORIZED_KEYS ]; then
-  touch $SRV_USR_AUTHORIZED_KEYS
-  chmod 644 $SRV_USR_AUTHORIZED_KEYS
-fi
+# # system-wide known_hosts: rpi -> boot server
+# # $RPI_xxx_KEY ---> /etc/ssh/known_hosts
+# KEYSTRING=$(<$RPI_SYS_RSA_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$RPI_USR_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+# # ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
-if [ ! -f $RPI_USR_AUTHORIZED_KEYS ]; then
-  touch $RPI_USR_AUTHORIZED_KEYS
-  chmod 644 $RPI_USR_AUTHORIZED_KEYS
-fi
+# # local-client known_hosts: boot server -> rpi
+# # $SRV_USR_KEY ---> $BASE_FS/home/$OWNER/.ssh/known_hosts
+# KEYSTRING=$(<$SRV_SYS_RSA_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
+# KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
+# KEYSTRING=$(<$SRV_USR_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_KNOWN_HOSTS
+# # ssh-keygen -H -f $RPI_USR_KNOWN_HOSTS
 
-# boot server -> rpi
-# $SRV_SYS_RSA_KEY ---> $BASE_FS/home/$OWNER/.ssh/authorized_keys
-KEYSTRING=$(<$SRV_SYS_RSA_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
-KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
-KEYSTRING=$(<$SRV_USR_KEY)
-echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
-# ssh-keygen -H -f $RPI_USR_AUTHORIZED_KEYS
+# # local-client known_hosts: rpi -> boot server
+# # $RPI_USR_KEY ---> ~/.ssh/known_hosts
+# KEYSTRING=$(<$RPI_SYS_RSA_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
+# KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
+# KEYSTRING=$(<$RPI_USR_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_KNOWN_HOSTS
+# # ssh-keygen -H -f $SRV_USR_KNOWN_HOSTS
 
-# rpi -> boot server
-# $RPI_SYS_RSA_KEY ---> ~/.ssh/authorized_keys
-KEYSTRING=$(<$RPI_SYS_RSA_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
-KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
-KEYSTRING=$(<$RPI_USR_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
-# ssh-keygen -H -f $SRV_USR_AUTHORIZED_KEYS
+# # boot server -> rpi
+# # $SRV_SYS_RSA_KEY ---> $BASE_FS/home/$OWNER/.ssh/authorized_keys
+# KEYSTRING=$(<$SRV_SYS_RSA_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
+# KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
+# KEYSTRING=$(<$SRV_USR_KEY)
+# echo "[$SRV_HOSTNAME] $KEYSTRING" >> $RPI_USR_AUTHORIZED_KEYS
+# # ssh-keygen -H -f $RPI_USR_AUTHORIZED_KEYS
+
+# # rpi -> boot server
+# # $RPI_SYS_RSA_KEY ---> ~/.ssh/authorized_keys
+# KEYSTRING=$(<$RPI_SYS_RSA_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
+# KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
+# KEYSTRING=$(<$RPI_USR_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_USR_AUTHORIZED_KEYS
+# # ssh-keygen -H -f $SRV_USR_AUTHORIZED_KEYS
 
 # Keep user settings
 chown $OWNER:$OWNER $RPI_USR_KNOWN_HOSTS
