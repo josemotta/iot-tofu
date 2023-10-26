@@ -59,7 +59,7 @@ SRV_SSHD_CONFIG=$SRV_SYS_SSH/sshd_config.d
 #
 # single hosts for all
 #
-cp /etc/hosts $BASE_FS/etc/hosts
+cp -p /etc/hosts $BASE_FS/etc/hosts
 
 #
 # generate RPi owner rsa key
@@ -149,26 +149,26 @@ EOF
 #
 if [ ! -f $RPI_USR_KNOWN_HOSTS ]; then
   touch $RPI_USR_KNOWN_HOSTS
-  chmod 644 $RPI_USR_KNOWN_HOSTS
+  chmod 600 $RPI_USR_KNOWN_HOSTS
 fi
 
 if [ ! -f $RPI_SYS_KNOWN_HOSTS ]; then
   touch $RPI_SYS_KNOWN_HOSTS
-  chmod 644 $RPI_SYS_KNOWN_HOSTS
+  chmod 600 $RPI_SYS_KNOWN_HOSTS
 fi
 
 if [ ! -f $SRV_USR_KNOWN_HOSTS ]; then
   touch $SRV_USR_KNOWN_HOSTS
-  chmod 644 $SRV_USR_KNOWN_HOSTS
+  chmod 600 $SRV_USR_KNOWN_HOSTS
 fi
 
 if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
   if [ -d $SRV_USR_HOME/original-ssh ]; then
-    cp $SRV_USR_HOME/original-ssh/known_hosts $SRV_SYS_KNOWN_HOSTS
+    cp -p $SRV_USR_HOME/original-ssh/known_hosts $SRV_SYS_KNOWN_HOSTS
   else
     touch $SRV_SYS_KNOWN_HOSTS
   fi
-  chmod 644 $SRV_SYS_KNOWN_HOSTS
+  chmod 600 $SRV_SYS_KNOWN_HOSTS
   KEYSTRING=$(<$SRV_SYS_RSA_KEY)
   echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
   KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
@@ -185,12 +185,12 @@ fi
 #
 if [ ! -f $RPI_USR_AUTHORIZED_KEYS ]; then
   touch $RPI_USR_AUTHORIZED_KEYS
-  chmod 644 $RPI_USR_AUTHORIZED_KEYS
+  chmod 600 $RPI_USR_AUTHORIZED_KEYS
 fi
 
 if [ ! -f $SRV_USR_AUTHORIZED_KEYS ]; then
   touch $SRV_USR_AUTHORIZED_KEYS
-  chmod 644 $SRV_USR_AUTHORIZED_KEYS
+  chmod 600 $SRV_USR_AUTHORIZED_KEYS
 fi
 
 # add RPi keys to both know_hosts & authorized_keys
@@ -202,11 +202,11 @@ KEYSTRING=$(<$RPI_USR_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
 # ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
-cp $SRV_SYS_KNOWN_HOSTS $RPI_SYS_KNOWN_HOSTS
-cp $SRV_SYS_KNOWN_HOSTS $RPI_USR_KNOWN_HOSTS
-cp $SRV_SYS_KNOWN_HOSTS $SRV_USR_KNOWN_HOSTS
-cp $SRV_SYS_KNOWN_HOSTS $SRV_USR_AUTHORIZED_KEYS
-cp $SRV_SYS_KNOWN_HOSTS $RPI_USR_AUTHORIZED_KEYS
+cp -p $SRV_SYS_KNOWN_HOSTS $RPI_SYS_KNOWN_HOSTS
+cp -p $SRV_SYS_KNOWN_HOSTS $RPI_USR_KNOWN_HOSTS
+cp -p $SRV_SYS_KNOWN_HOSTS $SRV_USR_KNOWN_HOSTS
+cp -p $SRV_SYS_KNOWN_HOSTS $SRV_USR_AUTHORIZED_KEYS
+cp -p $SRV_SYS_KNOWN_HOSTS $RPI_USR_AUTHORIZED_KEYS
 
 # # system-wide known_hosts: boot server -> rpi
 # # $SRV_xxx_KEY ---> $BASE_FS/etc/ssh/known_hosts
