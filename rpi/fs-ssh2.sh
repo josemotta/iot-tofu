@@ -144,6 +144,18 @@ rpi4
 region2
 EOF
 
+cat << EOF | sudo tee $RPI_SYS/hosts.equiv
+rpi2
+rpi4
+region2
+EOF
+
+cat << EOF | sudo tee $SRV_SYS/hosts.equiv
+rpi2
+rpi4
+region2
+EOF
+
 #
 # known_hosts
 #
