@@ -56,10 +56,13 @@ RPI_SSHD_CONFIG=$RPI_SYS_SSH/sshd_config.d
 SRV_SSHD_CONFIG=$SRV_SYS_SSH/sshd_config.d
 
 #
-# hosts, .ssh & RPi owner key
+# single hosts for all
 #
 cp /etc/hosts $BASE_FS/etc/hosts
 
+#
+# generate RPi owner rsa key
+#
 if [ ! -f $SRV_USR_KEY ]; then
   echo Missing .ssh/id_rsa.pub at boot server for user: $OWNER
   exit 1
