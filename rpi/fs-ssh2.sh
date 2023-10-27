@@ -22,11 +22,12 @@ export BASE_FS=$1
 # - side effect is that only last added RPi & boot server have full setup
 # - to update the RPi setup just remove/add it again
 
-# owner
+# Boot server IP
+SRV_IP=ifconfig eth0 | grep "inet " | cut -d " " -f10
+# owner, home & hostname
 OWNER=$(<$BASE_FS/boot/owner)
 RPI_USR_HOME=$BASE_FS/home/$OWNER
 SRV_USR_HOME=/home/$OWNER
-# hostname
 RPI_HOSTNAME=$(<$BASE_FS/etc/hostname)
 SRV_HOSTNAME=$(</etc/hostname)
 # RPi owner user
@@ -195,7 +196,7 @@ if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
   # KEYSTRING=$(<$SRV_SYS_RSA_KEY)
   # echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
   KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
-  echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+  echo "[$SRV_HOSTNAME,$SRV_IP] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
   # KEYSTRING=$(<$SRV_SYS_ED25519_KEY)
   # echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
   # KEYSTRING=$(<$SRV_USR_KEY)
