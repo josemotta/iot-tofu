@@ -18,6 +18,9 @@ export BASE_FS=$1
 # - Owner account name is a parameter set by pxetools: /boot/owner
 # - RPi hostname is a parameter set by pxetools: /boot/name == /etc/hostname
 # - there's no hash at known_hosts to speed up dev: hashknownhosts no
+# - setup has incremental changes that are added to every new RPi
+# - side effect is that only last added RPi & boot server have full setup
+# - to update the RPi setup just remove/add it again
 
 # owner
 OWNER=$(<$BASE_FS/boot/owner)
@@ -59,10 +62,10 @@ SRV_SSHD_CONFIG=$SRV_SYS_SSH/sshd_config.d
 #
 # single hosts for all
 #
-cp -p /etc/hosts $BASE_FS/etc/hosts
+cp -p $SRV_SYS/hosts $RPI_SYS/hosts
 
 #
-# generate RPi owner rsa key
+# generate rsa key for RPi owner
 #
 if [ ! -f $SRV_USR_KEY ]; then
   echo Missing .ssh/id_rsa.pub at boot server for user: $OWNER
@@ -81,40 +84,34 @@ chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
 
 #
 # enable host based authentication
+#  - owner 'user' able to login with no passwords at boot server & all RPis
+#  - trying to keep same setup for boot server & all RPis
+#  - just need the ECDSA keys for host based authentication
+#  - using a single file with all ECDSA keys for all known_hosts & authorized_keys
 # https://www.golinuxcloud.com/configure-ssh-host-based-authentication-linux/
 # https://stackoverflow.com/questions/29609371/how-not-to-pass-the-locale-through-an-ssh-connection-command
+# https://www.iana.org/assignments/ssh-parameters/ssh-parameters.xhtml
 #
-cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
-HashKnownHosts no
-HostbasedAuthentication yes
-EnableSSHKeysign yes
-SendEnv -LC_* -LANG*
-EOF
 
+if [ ! -f $SRV_SSH_CONFIG/config.conf ]; then
 cat << EOF | sudo tee $SRV_SSH_CONFIG/config.conf
 HashKnownHosts no
 HostbasedAuthentication yes
 EnableSSHKeysign yes
 SendEnv -LC_* -LANG*
 EOF
+fi
 
-cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
-HostbasedAuthentication yes
-PubkeyAuthentication no
-UseDNS yes
-IgnoreRhosts no
-AcceptEnv -LC_* -LANG*
-Match User $OWNER
-  PasswordAuthentication no
-  HostbasedAuthentication yes
-#Match User rahul
-#  HostbasedAuthentication no
-#  PasswordAuthentication no
-#  PubkeyAuthentication yes
-Match all
-  PasswordAuthentication yes
-EOF
+cp -p $SRV_SSH_CONFIG/config.conf $RPI_SSH_CONFIG/config.conf
 
+# cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
+# HashKnownHosts no
+# HostbasedAuthentication yes
+# EnableSSHKeysign yes
+# SendEnv -LC_* -LANG*
+# EOF
+
+if [ ! -f $SRV_SSHD_CONFIG/config.conf ]; then
 cat << EOF | sudo tee $SRV_SSHD_CONFIG/config.conf
 HostbasedAuthentication yes
 PubkeyAuthentication no
@@ -131,30 +128,44 @@ Match User $OWNER
 Match all
   PasswordAuthentication yes
 EOF
+fi
 
-cat << EOF | sudo tee $RPI_SYS/shosts.equiv
-rpi2
-rpi4
-region2
-EOF
+cp -p $SRV_SSHD_CONFIG/config.conf $RPI_SSHD_CONFIG/config.conf
 
-cat << EOF | sudo tee $SRV_SYS/shosts.equiv
-rpi2
-rpi4
-region2
-EOF
+# cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
+# HostbasedAuthentication yes
+# PubkeyAuthentication no
+# UseDNS yes
+# IgnoreRhosts no
+# AcceptEnv -LC_* -LANG*
+# Match User $OWNER
+#   PasswordAuthentication no
+#   HostbasedAuthentication yes
+# #Match User rahul
+# #  HostbasedAuthentication no
+# #  PasswordAuthentication no
+# #  PubkeyAuthentication yes
+# Match all
+#   PasswordAuthentication yes
+# EOF
 
-cat << EOF | sudo tee $RPI_SYS/hosts.equiv
-rpi2 jo
-rpi4 jo
-region2 jo
-EOF
+if [ ! -f $SRV_SYS/shosts.equiv ]; then
+  echo "$SRV_HOSTNAME" >> $SRV_SYS/shosts.equiv
+fi
+echo "$RPI_HOSTNAME" >> $SRV_SYS/shosts.equiv
+cp -p $SRV_SYS/shosts.equiv $RPI_SYS/shosts.equiv
 
-cat << EOF | sudo tee $SRV_SYS/hosts.equiv
-rpi2 jo
-rpi4 jo
-region2 jo
-EOF
+if [ ! -f $SRV_SYS/hosts.equiv ]; then
+  echo "$SRV_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+fi
+echo "$RPI_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+cp -p $SRV_SYS/hosts.equiv $RPI_SYS/hosts.equiv
+
+# cat << EOF | sudo tee $RPI_SYS/hosts.equiv
+# rpi2 $OWNER
+# rpi4 $OWNER
+# region2 $OWNER
+# EOF
 
 #
 # known_hosts
@@ -181,14 +192,14 @@ if [ ! -f $SRV_SYS_KNOWN_HOSTS ]; then
     touch $SRV_SYS_KNOWN_HOSTS
   fi
   chmod 600 $SRV_SYS_KNOWN_HOSTS
-  KEYSTRING=$(<$SRV_SYS_RSA_KEY)
-  echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+  # KEYSTRING=$(<$SRV_SYS_RSA_KEY)
+  # echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
   KEYSTRING=$(<$SRV_SYS_ECDSA_KEY)
   echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-  KEYSTRING=$(<$SRV_SYS_ED25519_KEY)
-  echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-  KEYSTRING=$(<$SRV_USR_KEY)
-  echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+  # KEYSTRING=$(<$SRV_SYS_ED25519_KEY)
+  # echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+  # KEYSTRING=$(<$SRV_USR_KEY)
+  # echo "[$SRV_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
   # ssh-keygen -H -f $RPI_SYS_KNOWN_HOSTS
 fi
 
@@ -206,12 +217,12 @@ if [ ! -f $SRV_USR_AUTHORIZED_KEYS ]; then
 fi
 
 # add RPi keys to both know_hosts & authorized_keys
-KEYSTRING=$(<$RPI_SYS_RSA_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$RPI_SYS_RSA_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
 KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
 echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-KEYSTRING=$(<$RPI_USR_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+# KEYSTRING=$(<$RPI_USR_KEY)
+# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
 # ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
 
 cp -p $SRV_SYS_KNOWN_HOSTS $RPI_SYS_KNOWN_HOSTS
