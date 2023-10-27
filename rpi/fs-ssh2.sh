@@ -23,7 +23,7 @@ export BASE_FS=$1
 # - to update the RPi setup just remove/add it again
 
 # Boot server IP
-SRV_IP=ifconfig eth0 | grep "inet " | cut -d " " -f10
+SRV_IP=$(ifconfig eth0 | grep "inet " | cut -d " " -f10)
 # owner, home & hostname
 OWNER=$(<$BASE_FS/boot/owner)
 RPI_USR_HOME=$BASE_FS/home/$OWNER
