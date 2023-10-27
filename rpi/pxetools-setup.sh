@@ -134,10 +134,8 @@ echo ""
 echo "Writing dnsmasq.conf"
 cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
 interface=eth0
-#no-resolv
 server=$DNSSERVER
 dhcp-range=$DHCPRANGE
-#bind-interfaces
 log-dhcp
 log-queries
 enable-tftp
@@ -145,10 +143,17 @@ tftp-root=/tftpboot
 tftp-no-fail
 pxe-service=0,"Raspberry Pi Boot"
 dhcp-boot=pxelinux.0
-domain-needed
-bogus-priv
 expand-hosts
-domain=net.local
+domain=net.local,192.168.10.0/24
+#domain-needed
+#bogus-priv
+# Keep comments below if you want dnsmasq to:
+#  1. read /etc/hosts
+#no-hosts
+#  2. read/etc/resolv.conf
+#no-resolv
+#  3. bind the wildcard address,then discard requests that it shouldn't reply to
+#bind-interfaces
 EOF
 
 # Get Raspberry Pi OS images
