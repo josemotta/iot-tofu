@@ -15,11 +15,11 @@ export CLIENT_FS=$2
 
 # Generate a copy from base fs to $CLIENT_FS
 sudo mkdir -p $CLIENT_FS
-sudo cp -r $BASE_FS/* $CLIENT_FS/
-sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
+sudo rsync -xa --progress $BASE_FS $CLIENT_FS
+#sudo cp -r $BASE_FS/* $CLIENT_FS/
 
-#sudo apt install rsync
-#sudo rsync -xa --progress $BASE_FS $CLIENT_FS
+# install script for ssh initializaton
+sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
 
 # Regenerate SSH host keys on CLIENT_FS
 cd $CLIENT_FS
