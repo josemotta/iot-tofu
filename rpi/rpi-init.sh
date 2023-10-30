@@ -1,16 +1,19 @@
 #!/bin/bash
 
+# Choose wisely
 sudo apt update
 sudo apt full-upgrade
-sudo rpi-update
-sudo rpi-eeprom-update -d -a
+# sudo rpi-update
+# sudo rpi-eeprom-update -d -a
 
+# Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 
+# Docker compose for RPi with homeassistant
 cat << EOF | sudo tee /home/$USER/compose.yml
 version: '3'
 services:
