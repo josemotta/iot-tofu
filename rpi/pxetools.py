@@ -137,10 +137,10 @@ def add():
         fstab_txt = "{}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\nproc /proc proc defaults 0 0\n".format(NFS_IP, nfs_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 
-        cmd("cd {}/etc/init.d; rm dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
+        cmd("cd {}/etc/init.d; rm -f dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
         cmd("cd {}/etc/systemd/system; rm -r dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
 
-        cmd("sudo cp -r {}/* {}/boot".format(tftp_path, nfs_path), print_out=True)
+        cmd("sudo cp -rf {}/* {}/boot".format(tftp_path, nfs_path), print_out=True)
 
         # ssh known_hosts & authorized_keys
         cmd("/nfs/fs-ssh2.sh {}".format(nfs_path), print_out=True)
