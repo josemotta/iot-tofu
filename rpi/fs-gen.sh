@@ -1,6 +1,9 @@
 #!/bin/bash
 # Adapted from https://www.raspberrypi.com/documentation/computers/remote-access.html#network-boot-your-raspberry-pi
 
+# This folder:
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
+
 if [ $1 == "" ]; then
   echo Missing base fs
   exit 1
@@ -12,6 +15,8 @@ if [ $2 == "" ]; then
   exit 1
 fi
 export CLIENT_FS=$2
+
+$RPI_INIT=$SCRIPT_DIR/rpi-init.sh
 
 # Generate a copy from base fs to $CLIENT_FS
 sudo mkdir -p $CLIENT_FS
@@ -27,5 +32,8 @@ sudo mount --bind /sys sys
 sudo mount --bind /proc proc
 sudo chroot . ./fs-ssh.sh
 sudo umount dev sys proc
+
+# install script for rpi initializaton
+sudo cp $RPI_INIT $CLIENT_FS/
 
 echo Generated fs for $CLIENT_FS
