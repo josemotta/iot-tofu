@@ -15,7 +15,7 @@ export CLIENT_FS=$2
 
 # Generate a copy from base fs to $CLIENT_FS
 sudo mkdir -p $CLIENT_FS
-sudo rsync -xa --progress $BASE_FS $CLIENT_FS
+sudo rsync -xa $BASE_FS $CLIENT_FS
 #sudo cp -r $BASE_FS/* $CLIENT_FS/
 
 # install script for ssh initializaton
