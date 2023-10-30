@@ -16,16 +16,13 @@ if [ $2 == "" ]; then
 fi
 export CLIENT_FS=$2
 
-$RPI_INIT=$SCRIPT_DIR/rpi-init.sh
-
 # Generate a copy from base fs to $CLIENT_FS
 sudo mkdir -p $CLIENT_FS
 sudo rsync -xa $BASE_FS/ $CLIENT_FS/
 
-# install script for ssh initializaton
+# install scripts for ssh & rpi initializaton
 sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
-# install script for rpi initializaton
-sudo cp $RPI_INIT $CLIENT_FS/
+sudo cp /nfs/rpi-init.sh $CLIENT_FS/
 
 # Regenerate SSH host keys on CLIENT_FS
 cd $CLIENT_FS

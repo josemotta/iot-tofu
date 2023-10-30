@@ -37,6 +37,7 @@ FSSSH=$SCRIPT_DIR/fs-ssh.sh           # fs generator - SSH host keys
 FSSSH2=$SCRIPT_DIR/fs-ssh2.sh         # fs generator - known hosts
 PIPE=$SCRIPT_DIR/pipe.sh              # named pipe method to run commands
 IMAGES=$SCRIPT_DIR/pxetools-images.sh # RPi OS bases to be downloaded
+RPINIT=$SCRIPT_DIR/rpi-init.sh        # RPi initialization
 
 #   - The 'interfaces' (or equivalent) should be already set:
 #     cat << EOF | sudo tee /etc/network/interfaces.d/interfaces
@@ -114,9 +115,11 @@ sudo cp --remove-destination $CONFIG /tftpboot/base/config.txt
 sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
 sudo cp --remove-destination $FSSSH2 /nfs/fs-ssh2.sh
+sudo cp --remove-destination $RPINIT /nfs/rpi-init.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
 sudo chmod +x /nfs/fs-ssh2.sh
+sudo chmod +x /nfs/rpi-init.sh
 sudo touch /tftpboot/base/ssh
 
 # Configure the default user for all RPis.
