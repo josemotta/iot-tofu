@@ -138,7 +138,7 @@ def add():
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 
         cmd("cd {}/etc/init.d; rm -f dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
-        cmd("cd {}/etc/systemd/system; rm -r dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
+        cmd("cd {}/etc/systemd/system; rm -rf dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
 
         cmd("sudo cp -rf {}/* {}/boot".format(tftp_path, nfs_path), print_out=True)
 
