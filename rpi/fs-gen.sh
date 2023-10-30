@@ -24,6 +24,8 @@ sudo rsync -xa $BASE_FS/ $CLIENT_FS/
 
 # install script for ssh initializaton
 sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
+# install script for rpi initializaton
+sudo cp $RPI_INIT $CLIENT_FS/
 
 # Regenerate SSH host keys on CLIENT_FS
 cd $CLIENT_FS
@@ -32,8 +34,5 @@ sudo mount --bind /sys sys
 sudo mount --bind /proc proc
 sudo chroot . ./fs-ssh.sh
 sudo umount dev sys proc
-
-# install script for rpi initializaton
-sudo cp $RPI_INIT $CLIENT_FS/
 
 echo Generated fs for $CLIENT_FS
