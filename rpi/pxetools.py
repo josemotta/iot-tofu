@@ -119,7 +119,7 @@ def add():
         # cmd("umount /mnt/tmp")
 
         # file system generator
-        cmd("/nfs/fs-gen.sh {} {}".format(img, nfs_path), print_out=True)
+        cmd("/nfs/fs-gen.sh {}/ {}".format(img, nfs_path), print_out=True)
 
         # hosts & hostname
         cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hosts".format(name, nfs_path))
