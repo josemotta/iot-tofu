@@ -136,6 +136,7 @@ cat << EOF | sudo tee /etc/dnsmasq.d/dnsmasq.conf
 interface=eth0
 server=$DNSSERVER
 dhcp-range=$DHCPRANGE
+dhcp-option=option:router,$GATEWAY
 log-dhcp
 log-queries
 enable-tftp
