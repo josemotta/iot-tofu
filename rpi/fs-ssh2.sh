@@ -138,7 +138,7 @@ fi
 if [ ! -f $SRV_SYS/shosts.equiv ]; then
   echo "$SRV_HOSTNAME" >> $SRV_SYS/shosts.equiv
 fi
-case `grep -Fwq "$SRV_SYS/shosts.equiv" "$RPI_HOSTNAME" >/dev/null; echo $?` in
+case `grep -Fwq "$RPI_HOSTNAME" "$SRV_SYS/shosts.equiv" >/dev/null; echo $?` in
   0)
     # found: do nothing
     ;;
@@ -156,7 +156,7 @@ cp -p $SRV_SYS/shosts.equiv $RPI_SYS/shosts.equiv
 if [ ! -f $SRV_SYS/hosts.equiv ]; then
   echo "$SRV_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
 fi
-case `grep -Fwq "$SRV_SYS/hosts.equiv" "$RPI_HOSTNAME" >/dev/null; echo $?` in
+case `grep -Fwq "$RPI_HOSTNAME" "$SRV_SYS/hosts.equiv" >/dev/null; echo $?` in
   0)
     # found: do nothing
     ;;
@@ -225,7 +225,7 @@ if [ ! -f $SRV_USR_AUTHORIZED_KEYS ]; then
 fi
 
 # add key if it does not exist
-case `grep -Fwq "$SRV_SYS_KNOWN_HOSTS" "$RPI_HOSTNAME" >/dev/null; echo $?` in
+case `grep -Fwq "$RPI_HOSTNAME" "$SRV_SYS_KNOWN_HOSTS" >/dev/null; echo $?` in
   0)
     # found: do nothing
     ;;
