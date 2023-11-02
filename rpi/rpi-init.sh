@@ -10,7 +10,7 @@ sudo apt full-upgrade
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo chmod +x get-docker.sh
 # keys Y N
-sudo sh get-docker.sh
+sudo sh get-docker.sh <<< $'Y\nN\n'
 sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
