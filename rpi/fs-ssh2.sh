@@ -73,6 +73,9 @@ if [ ! -f $SRV_USR_KEY ]; then
   exit 1
 fi
 
+# owner owns its home
+sudo chown $OWNER:$OWNER RPI_USR_HOME
+
 if [ ! -d $RPI_USR_SSH ]; then
   mkdir -p $RPI_USR_SSH
   chown $OWNER:$OWNER $RPI_USR_SSH
