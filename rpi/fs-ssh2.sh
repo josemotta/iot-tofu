@@ -79,9 +79,11 @@ if [ ! -d $RPI_USR_SSH ]; then
   chmod 700 $RPI_USR_SSH
 fi
 
-ssh-keygen -q -t rsa -N '' -f $RPI_USR_SSH/id_rsa
-sleep 1
-chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
+if [ ! -f $RPI_USR_SSH/id_rsa ]; then
+  ssh-keygen -q -t rsa -N '' -f $RPI_USR_SSH/id_rsa
+  sleep 1
+  chown $OWNER:$OWNER $RPI_USR_SSH/id_rsa*
+fi
 
 #
 # enable host based authentication
@@ -103,14 +105,9 @@ SendEnv -LC_* -LANG*
 EOF
 fi
 
-cp -p $SRV_SSH_CONFIG/config.conf $RPI_SSH_CONFIG/config.conf
-
-# cat << EOF | sudo tee $RPI_SSH_CONFIG/config.conf
-# HashKnownHosts no
-# HostbasedAuthentication yes
-# EnableSSHKeysign yes
-# SendEnv -LC_* -LANG*
-# EOF
+if [ ! -f $RPI_SSH_CONFIG/config.conf ]; then
+  cp -p $SRV_SSH_CONFIG/config.conf $RPI_SSH_CONFIG/config.conf
+fi
 
 if [ ! -f $SRV_SSHD_CONFIG/config.conf ]; then
 cat << EOF | sudo tee $SRV_SSHD_CONFIG/config.conf
@@ -131,42 +128,52 @@ Match all
 EOF
 fi
 
-cp -p $SRV_SSHD_CONFIG/config.conf $RPI_SSHD_CONFIG/config.conf
+if [ ! -f $RPI_SSHD_CONFIG/config.conf ]; then
+  cp -p $SRV_SSHD_CONFIG/config.conf $RPI_SSHD_CONFIG/config.conf
+fi
 
-# cat << EOF | sudo tee $RPI_SSHD_CONFIG/config.conf
-# HostbasedAuthentication yes
-# PubkeyAuthentication no
-# UseDNS yes
-# IgnoreRhosts no
-# AcceptEnv -LC_* -LANG*
-# Match User $OWNER
-#   PasswordAuthentication no
-#   HostbasedAuthentication yes
-# #Match User rahul
-# #  HostbasedAuthentication no
-# #  PasswordAuthentication no
-# #  PubkeyAuthentication yes
-# Match all
-#   PasswordAuthentication yes
-# EOF
+# Add hostname setup where it does not exist
 
+# /etc/shosts.equiv
 if [ ! -f $SRV_SYS/shosts.equiv ]; then
   echo "$SRV_HOSTNAME" >> $SRV_SYS/shosts.equiv
 fi
-echo "$RPI_HOSTNAME" >> $SRV_SYS/shosts.equiv
+case `grep -Fwq "$SRV_SYS/shosts.equiv" "$RPI_HOSTNAME" >/dev/null; echo $?` in
+  0)
+    # found: do nothing
+    ;;
+  1)
+    # not found: add RPi hostname
+    echo "$RPI_HOSTNAME" >> $SRV_SYS/shosts.equiv
+    ;;
+  *)
+    # error: do nothing
+    ;;
+esac
 cp -p $SRV_SYS/shosts.equiv $RPI_SYS/shosts.equiv
 
+# /etc/hosts.equiv
 if [ ! -f $SRV_SYS/hosts.equiv ]; then
   echo "$SRV_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
 fi
-echo "$RPI_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+case `grep -Fwq "$SRV_SYS/hosts.equiv" "$RPI_HOSTNAME" >/dev/null; echo $?` in
+  0)
+    # found: do nothing
+    ;;
+  1)
+    # not found: add RPi hostname
+    echo "$RPI_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+    ;;
+  *)
+    # error: do nothing
+    ;;
+esac
 cp -p $SRV_SYS/hosts.equiv $RPI_SYS/hosts.equiv
 
-# cat << EOF | sudo tee $RPI_SYS/hosts.equiv
-# rpi2 $OWNER
-# rpi4 $OWNER
-# region2 $OWNER
-# EOF
+# Example: $RPI_SYS/hosts.equiv
+#   region2 $OWNER
+#   rpi2 $OWNER
+#   rpi4 $OWNER
 
 #
 # known_hosts
@@ -217,14 +224,20 @@ if [ ! -f $SRV_USR_AUTHORIZED_KEYS ]; then
   chmod 600 $SRV_USR_AUTHORIZED_KEYS
 fi
 
-# add RPi keys to both know_hosts & authorized_keys
-# KEYSTRING=$(<$RPI_SYS_RSA_KEY)
-# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
-echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-# KEYSTRING=$(<$RPI_USR_KEY)
-# echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
-# ssh-keygen -H -f $SRV_SYS_KNOWN_HOSTS
+# add key if it does not exist
+case `grep -Fwq "$SRV_SYS_KNOWN_HOSTS" "$RPI_HOSTNAME" >/dev/null; echo $?` in
+  0)
+    # found: do nothing
+    ;;
+  1)
+    # not found: add key
+    KEYSTRING=$(<$RPI_SYS_ECDSA_KEY)
+    echo "[$RPI_HOSTNAME] $KEYSTRING" >> $SRV_SYS_KNOWN_HOSTS
+    ;;
+  *)
+    # error: do nothing
+    ;;
+esac
 
 cp -p $SRV_SYS_KNOWN_HOSTS $RPI_SYS_KNOWN_HOSTS
 cp -p $SRV_SYS_KNOWN_HOSTS $RPI_USR_KNOWN_HOSTS
@@ -304,6 +317,3 @@ chown $OWNER:$OWNER $SRV_USR_AUTHORIZED_KEYS
 # rm $SRV_USR_AUTHORIZED_KEYS.old
 
 systemctl restart sshd
-
-# First try, not recognized as valid known_hosts format
-#ssh-keygen -l -E md5 -f $RPI_SYS_RSA_KEY >> $SRV_SYS_KNOWN_HOSTS
