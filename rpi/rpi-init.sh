@@ -8,6 +8,8 @@ sudo apt full-upgrade
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
+sudo chmod +x get-docker.sh
+# keys Y N
 sudo sh get-docker.sh
 sudo groupadd docker
 sudo usermod -aG docker $USER
