@@ -35,6 +35,7 @@ CONFIG=$SCRIPT_DIR/config.txt         # default RPi config to be used in boot
 FSGEN=$SCRIPT_DIR/fs-gen.sh           # fs generator - main
 FSSSH=$SCRIPT_DIR/fs-ssh.sh           # fs generator - SSH host keys
 FSSSH2=$SCRIPT_DIR/fs-ssh2.sh         # fs generator - known hosts
+FSUSB=$SCRIPT_DIR/fs-usb.sh           # fs generator - USB storage for docker
 PIPE=$SCRIPT_DIR/pipe.sh              # named pipe method to run commands
 IMAGES=$SCRIPT_DIR/pxetools-images.sh # RPi OS bases to be downloaded
 RPINIT=$SCRIPT_DIR/rpi-init.sh        # RPi initialization
@@ -115,10 +116,12 @@ sudo cp --remove-destination $CONFIG /tftpboot/base/config.txt
 sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
 sudo cp --remove-destination $FSSSH2 /nfs/fs-ssh2.sh
+sudo cp --remove-destination $FSUSB /nfs/fs-usb.sh
 sudo cp --remove-destination $RPINIT /nfs/rpi-init.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
 sudo chmod +x /nfs/fs-ssh2.sh
+sudo chmod +x /nfs/fs-usb.sh
 sudo chmod +x /nfs/rpi-init.sh
 sudo touch /tftpboot/base/ssh
 
