@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Choose wisely
-sudo apt update
+# Choose wisely, 'docker install' already gets the latest update.
+# sudo apt update
 # sudo apt full-upgrade
 # sudo rpi-update
 # sudo rpi-eeprom-update -d -a
