@@ -16,13 +16,18 @@ if [ $2 == "" ]; then
 fi
 export CLIENT_FS=$2
 
+OWNER=$(<$CLIENT_FS/boot/owner)
+RPI_USR_HOME=$CLIENT_FS/home/$OWNER
+
 # Generate a copy from base fs to $CLIENT_FS
 sudo mkdir -p $CLIENT_FS
 sudo rsync -xa $BASE_FS/ $CLIENT_FS/
 
 # install scripts for ssh & rpi initializaton
 sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
-sudo cp /nfs/rpi-init.sh $CLIENT_FS/
+sudo cp /nfs/rpi-init.sh $RPI_USR_HOME
+sudo chown $OWNER:$OWNER $RPI_USR_HOME/rpi-init.sh
+sudo chmod +x $RPI_USR_HOME/rpi-init.sh
 
 # Regenerate SSH host keys on CLIENT_FS
 cd $CLIENT_FS

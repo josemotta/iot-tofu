@@ -137,10 +137,11 @@ def add():
 
         cmd("/nfs/fs-usb.sh {}".format(nfs_path), print_out=True)
 
-        fstab_txt = "{}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\n \
-                    proc /proc proc defaults 0 0\n \
-                    /dev/sda1 /var/lib/docker ext4 noatime 0 1\n" \
-                    .format(NFS_IP, nfs_path)
+        fstab_txt = "\
+        {}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\n \
+        proc /proc proc defaults 0 0\n \
+        /dev/sda1 /var/lib/docker ext4 noatime 0 1\n" \
+        .format(NFS_IP, nfs_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 
         cmd("cd {}/etc/init.d; rm -f dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
