@@ -9,7 +9,8 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 PXETOOLS=$SCRIPT_DIR/pxetools.py  # app to add, remove & list RPis
 CONFIG=$SCRIPT_DIR/config.txt     # default RPi config to be used in boot
 FSGEN=$SCRIPT_DIR/fs-gen.sh       # fs generator - main
-FSSSH=$SCRIPT_DIR/fs-ssh.sh        # fs generator - SSH host keys
+FSSSH=$SCRIPT_DIR/fs-ssh.sh       # fs generator - SSH host keys
+FSUSB=$SCRIPT_DIR/fs-usb.sh       # fs generator - USB storage for docker
 PIPE=$SCRIPT_DIR/pipe.sh          # named pipe method to run commands
 
 echo "Pxettols: $PXETOOLS"
@@ -24,9 +25,11 @@ sudo chmod +x /usr/local/sbin/pxetools
 sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh2.sh
+sudo cp --remove-destination $FSUSB /nfs/fs-ssh2.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
 sudo chmod +x /nfs/fs-ssh2.sh
+sudo chmod +x /nfs/fs-usb.sh
 
 # Restart
 sudo systemctl restart dnsmasq rpcbind nfs-kernel-server sshd
