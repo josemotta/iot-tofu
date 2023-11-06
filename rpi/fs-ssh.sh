@@ -10,13 +10,6 @@ dpkg-reconfigure openssh-server
 # https://stackoverflow.com/questions/43235179/how-to-execute-ssh-keygen-without-prompt
 ssh-keygen -q -t rsa -N '' <<< $'\ny' >/dev/null 2>&1
 
-# Config locale
-cat << EOF > sudo tee /etc/default/locale
-LANG=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-LANGUAGE=en_US.UTF-8
-EOF
-
 # add aliases to default .bashrc
 cat << EOF >> /etc/skel/.bashrc
 

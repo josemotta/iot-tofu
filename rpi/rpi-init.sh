@@ -8,13 +8,11 @@
 # sudo rpi-eeprom-update -d -a
 
 # Config locale
-cat << EOF >> sudo tee /etc/locale
+cat << EOF >> sudo tee /etc/default/locale
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 LANGUAGE=en_US.UTF-8
 EOF
-
-locale
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
