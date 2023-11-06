@@ -16,9 +16,10 @@ if [ $2 == "" ]; then
 fi
 export CLIENT_FS=$2
 
-while [ -f $CLIENT_FS/boot/owner ]
-do
-  sleep .1
+TIMEOUT=0
+until [ $TIMEOUT -eq 3 ] || [ ! -f $CLIENT_FS/boot/owner ]; do
+  sleep $(( TIMEOUT++ ))
+  echo "The fs-gen is waiting for boot/owner"
 done
 
 OWNER=$(<$CLIENT_FS/boot/owner)
