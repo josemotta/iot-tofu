@@ -323,4 +323,10 @@ chown $OWNER:$OWNER $SRV_USR_AUTHORIZED_KEYS
 # rm $SRV_USR_KNOWN_HOSTS.old
 # rm $SRV_USR_AUTHORIZED_KEYS.old
 
+# Add rpi initialization
+sudo cp /nfs/rpi-init.sh $RPI_USR_HOME
+sudo chown $OWNER:$OWNER $RPI_USR_HOME/rpi-init.sh
+sudo chmod +x $RPI_USR_HOME/rpi-init.sh
+
+# Start services
 systemctl restart sshd

@@ -20,14 +20,8 @@ export CLIENT_FS=$2
 sudo mkdir -p $CLIENT_FS
 sudo rsync -xa $BASE_FS/ $CLIENT_FS/
 
-OWNER=$(<$CLIENT_FS/boot/owner)
-RPI_USR_HOME=$CLIENT_FS/home/$OWNER
-
 # install scripts for ssh & rpi initializaton
 sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
-sudo cp /nfs/rpi-init.sh $RPI_USR_HOME
-sudo chown $OWNER:$OWNER $RPI_USR_HOME/rpi-init.sh
-sudo chmod +x $RPI_USR_HOME/rpi-init.sh
 
 # Regenerate SSH host keys on CLIENT_FS
 cd $CLIENT_FS
