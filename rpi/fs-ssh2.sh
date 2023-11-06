@@ -323,6 +323,13 @@ chown $OWNER:$OWNER $SRV_USR_AUTHORIZED_KEYS
 # rm $SRV_USR_KNOWN_HOSTS.old
 # rm $SRV_USR_AUTHORIZED_KEYS.old
 
+# Config locale
+cat << EOF | sudo tee $RPI_SYS/default/locale
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+EOF
+
 # Add rpi initialization
 sudo cp /nfs/rpi-init.sh $RPI_USR_HOME
 sudo chown $OWNER:$OWNER $RPI_USR_HOME/rpi-init.sh
