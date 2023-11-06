@@ -17,8 +17,8 @@ EOF
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo chmod +x get-docker.sh
-# keys Y N
-sudo sh get-docker.sh <<< $'Y\nN\n'
+# keys Y N? <<< $'Y\nN\n'
+sudo sh get-docker.sh
 #sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker

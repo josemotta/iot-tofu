@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# This folder:
-#SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
-
 rm -f /etc/ssh/ssh_host_*
 dpkg-reconfigure openssh-server
 

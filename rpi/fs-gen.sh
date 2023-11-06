@@ -20,7 +20,7 @@ export CLIENT_FS=$2
 sudo mkdir -p $CLIENT_FS
 sudo rsync -xa $BASE_FS/ $CLIENT_FS/
 
-# install scripts for ssh & rpi initializaton
+# install scripts for ssh
 sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
 
 # Regenerate SSH host keys on CLIENT_FS
