@@ -113,7 +113,7 @@ def add():
     if img_choice:
         # cmd("mkdir -p /mnt/tmp")
         # cmd("kpartx -a -v {}".format(img), print_out=True)
-        # time.sleep(1)
+        time.sleep(1)
         # cmd("mount /dev/mapper/loop0p2 /mnt/tmp")
         # cmd("rsync -a /mnt/tmp/ {}/".format(nfs_path))
         # cmd("umount /mnt/tmp")
