@@ -16,18 +16,12 @@ if [ $2 == "" ]; then
 fi
 export CLIENT_FS=$2
 
-TIMEOUT=0
-until [ $TIMEOUT -eq 3 ] || [ ! -f $CLIENT_FS/boot/owner ]; do
-  sleep $(( TIMEOUT++ ))
-  echo "The fs-gen is waiting for boot/owner"
-done
-
-OWNER=$(<$CLIENT_FS/boot/owner)
-RPI_USR_HOME=$CLIENT_FS/home/$OWNER
-
 # Generate a copy from base fs to $CLIENT_FS
 sudo mkdir -p $CLIENT_FS
 sudo rsync -xa $BASE_FS/ $CLIENT_FS/
+
+OWNER=$(<$CLIENT_FS/boot/owner)
+RPI_USR_HOME=$CLIENT_FS/home/$OWNER
 
 # install scripts for ssh & rpi initializaton
 sudo cp /nfs/fs-ssh.sh $CLIENT_FS/
