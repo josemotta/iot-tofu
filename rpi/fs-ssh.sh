@@ -11,7 +11,7 @@ dpkg-reconfigure openssh-server
 ssh-keygen -q -t rsa -N '' <<< $'\ny' >/dev/null 2>&1
 
 # Config locale
-cat << EOF >> sudo tee /etc/locale
+cat << EOF > sudo tee /etc/default/locale
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 LANGUAGE=en_US.UTF-8
