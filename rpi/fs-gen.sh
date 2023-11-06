@@ -16,6 +16,11 @@ if [ $2 == "" ]; then
 fi
 export CLIENT_FS=$2
 
+while [ -f $CLIENT_FS/boot/owner ]
+do
+  sleep .1
+done
+
 OWNER=$(<$CLIENT_FS/boot/owner)
 RPI_USR_HOME=$CLIENT_FS/home/$OWNER
 
