@@ -42,6 +42,9 @@ sudo rm -r ~/pipe
 sudo rm -f /etc/ssh/ssh_known_hosts
 sudo rm -f ~/.ssh/authorized_keys
 
+sudo rm -f /etc/shosts.equiv
+sudo rm -f /etc/hosts.equiv
+
 # do not remove to keep github among others
 #sudo rm -f ~/.ssh/known_hosts
 if [ -d ~/original-ssh ]; then
