@@ -1,10 +1,20 @@
 #!/bin/bash
 
-# Choose wisely, 'docker install' already gets the latest update.
+# Choose wisely the necessary updates!
+# Remember that 'docker install' below starts with an update.
 # sudo apt update
 # sudo apt full-upgrade
 # sudo rpi-update
 # sudo rpi-eeprom-update -d -a
+
+# Config locale
+cat << EOF >> sudo tee /etc/locale
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+EOF
+
+locale
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
