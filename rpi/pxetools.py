@@ -137,7 +137,7 @@ def add():
         #   /dev/sda1 /var/lib/docker ext4 noatime 0 1
 
         # Skip this for now, better to use commands to format & clear usb
-        cmd("/nfs/fs-usb.sh {}".format(nfs_path), print_out=True)
+        # cmd("/nfs/fs-usb.sh {}".format(nfs_path), print_out=True)
 
         fstab_txt = "\
         {}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\n \
