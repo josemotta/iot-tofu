@@ -13,12 +13,11 @@
 # LC_ALL=en_US.UTF-8
 # LANGUAGE=en_US.UTF-8
 # EOF
-sudo raspi-config do_change_locale en_US.UTF-8 nonint
+#sudo raspi-config do_change_locale en_US.UTF-8 nonint
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo chmod +x get-docker.sh
-# keys Y N? <<< $'Y\nN\n'
 sudo sh get-docker.sh
 #sudo groupadd docker
 sudo usermod -aG docker $USER
