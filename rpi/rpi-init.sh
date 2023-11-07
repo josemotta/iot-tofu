@@ -11,7 +11,7 @@
 #sudo raspi-config do_change_locale en_US.UTF-8 nonint
 
 # Clear docker folder
-rm -r /var/lib/docker/*
+sudo rm -r /var/lib/docker/*
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
