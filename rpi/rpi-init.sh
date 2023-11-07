@@ -7,9 +7,6 @@
 # sudo rpi-update
 # sudo rpi-eeprom-update -d -a
 
-# Config locale
-#sudo raspi-config do_change_locale en_US.UTF-8 nonint
-
 # Clear docker folder
 sudo rm -r /var/lib/docker/*
 
