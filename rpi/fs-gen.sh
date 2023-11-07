@@ -28,7 +28,8 @@ cd $CLIENT_FS
 sudo mount --bind /dev dev
 sudo mount --bind /sys sys
 sudo mount --bind /proc proc
+sudo mount --bind /etc etc
 sudo chroot . ./fs-ssh.sh
-sudo umount dev sys proc
+sudo umount dev sys proc etc
 
 echo Generated fs for $CLIENT_FS
