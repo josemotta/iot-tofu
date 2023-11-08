@@ -11,7 +11,7 @@ RPI_ARM64='https://downloads.raspberrypi.org/raspios_arm64/root.tar.xz'
 # Get Raspberry Pi OS lite images
 
 echo ""
-echo "Getting RPi OS images"
+echo "Get RPi OS images"
 
 # lite_armhf
 if [ ! -d /nfs/bases/lite_armhf ]; then
