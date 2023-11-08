@@ -3,8 +3,8 @@
 # Raspberry Pi OS bases to be downloaded:
 RPI_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz'
 RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz'
-RPI_OLDSTABLE_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_oldstable_lite_armhf/'
-RPI_OLDSTABLE_LITE_ARM64='https://downloads.raspberrypi.org/raspios_oldstable_lite_arm64/'
+RPI_OLDSTABLE_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_oldstable_lite_armhf/root.tar.xz'
+RPI_OLDSTABLE_LITE_ARM64='https://downloads.raspberrypi.org/raspios_oldstable_lite_arm64/root.tar.xz'
 RPI_ARMHF='https://downloads.raspberrypi.org/raspios_armhf/root.tar.xz'
 RPI_ARM64='https://downloads.raspberrypi.org/raspios_arm64/root.tar.xz'
 
