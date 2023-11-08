@@ -166,9 +166,7 @@ EOF
 # Get Raspberry Pi OS images
 echo ""
 echo "Getting Raspberry Pi OS images"
-if [ ! -d /nfs/bases ]; then
-  source $IMAGES
-fi
+source $IMAGES
 
 # Install pxetools
 echo ""
