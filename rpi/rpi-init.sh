@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Choose wisely the necessary updates!
-# Remember that 'docker install' below starts with an update.
-# sudo apt update
-# sudo apt full-upgrade
+sudo apt update
+sudo apt full-upgrade
 # sudo rpi-update
 # sudo rpi-eeprom-update -d -a
 
