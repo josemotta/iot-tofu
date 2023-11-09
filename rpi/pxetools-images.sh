@@ -4,9 +4,11 @@
 RPI_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz'
 RPI_LITE_ARM64='https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz'
 RPI_OLDSTABLE_LITE_ARMHF='https://downloads.raspberrypi.org/raspios_oldstable_lite_armhf/root.tar.xz'
-RPI_OLDSTABLE_LITE_ARM64='https://downloads.raspberrypi.org/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2023-10-10/2023-05-03-raspios-bullseye-arm64-lite.img.xz'
+# RPI_OLDSTABLE_LITE_ARM64='https://downloads.raspberrypi.org/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2023-10-10/2023-05-03-raspios-bullseye-arm64-lite.img.xz'
 RPI_ARMHF='https://downloads.raspberrypi.org/raspios_armhf/root.tar.xz'
 RPI_ARM64='https://downloads.raspberrypi.org/raspios_arm64/root.tar.xz'
+
+RPI_OLDSTABLE_LITE_ARM64='https://downloads.raspberrypi.com/raspios_arm64/images/raspios_arm64-2023-10-10/2023-10-10-raspios-bookworm-arm64.img.xz'
 
 # Get Raspberry Pi OS lite images
 
@@ -42,7 +44,7 @@ if [ ! -d /nfs/bases/oldstable_lite_arm64 ]; then
 sudo mkdir -p /nfs/bases/oldstable_lite_arm64
 cd /nfs/bases/oldstable_lite_arm64
 sudo wget -O rpi_oldstable_lite_arm64.xz $RPI_OLDSTABLE_LITE_ARM64
-sudo tar -xf rpi_oldstable_lite_arm64.xz
+sudo xz -df rpi_oldstable_lite_arm64.xz
 sudo rm rpi_oldstable_lite_arm64.xz
 fi
 # # armhf
