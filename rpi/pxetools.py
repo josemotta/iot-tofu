@@ -128,7 +128,7 @@ def add():
         # The API expects to save a RPi OS to the nfs/bases and reuse it on a new RPi
         # Then we should not trust that base is the RPi boot original (with raspberrypi)
         # There is a 'single hosts for all' that will be set below at fs-ssh2
-        cmd("echo \"{}\" > {}/etc/hostname".format(name, nfs_path))
+        cmd("sudo echo \"{}\" > {}/etc/hostname".format(name, nfs_path))
 
         # fstab
         # tofu:
