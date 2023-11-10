@@ -125,7 +125,7 @@ def add():
         # hosts & hostname
         # cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hosts".format(name, nfs_path))
         # cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hostname".format(name, nfs_path))
-        # The API expects save a RPi OS to the nfs/bases and reuse it on a new RPi
+        # The API expects to save a RPi OS to the nfs/bases and reuse it on a new RPi
         # Then we should not trust that base is the RPi boot original (with raspberrypi)
         # There is a 'single hosts for all' that will be set below at fs-ssh2
         cmd("echo \"{}\" > {}/etc/hostname".format(name, nfs_path))
