@@ -12,6 +12,7 @@ FSGEN=$SCRIPT_DIR/fs-gen.sh       # fs generator - main
 FSSSH=$SCRIPT_DIR/fs-ssh.sh       # fs generator - SSH host keys
 FSUSB=$SCRIPT_DIR/fs-usb.sh       # fs generator - USB storage for docker
 PIPE=$SCRIPT_DIR/pipe.sh          # named pipe method to run commands
+RPINIT=$SCRIPT_DIR/rpi-init.sh    # RPi initialization
 
 echo "Pxettols: $PXETOOLS"
 echo "Reinstalling! Check values and cancel if not ok."
@@ -26,10 +27,12 @@ sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh2.sh
 sudo cp --remove-destination $FSUSB /nfs/fs-ssh2.sh
+sudo cp --remove-destination $RPINIT /nfs/rpi-init.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
 sudo chmod +x /nfs/fs-ssh2.sh
 sudo chmod +x /nfs/fs-usb.sh
+sudo chmod +x /nfs/rpi-init.sh
 
 # Restart
 sudo systemctl restart dnsmasq rpcbind nfs-kernel-server sshd
