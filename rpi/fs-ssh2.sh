@@ -113,7 +113,7 @@ EOF
 fi
 
 if [ ! -f $RPI_SSH_CONFIG/config.conf ]; then
-  cp -p $SRV_SSH_CONFIG/config.conf $RPI_SSH_CONFIG/config.conf
+  sudo cp -p $SRV_SSH_CONFIG/config.conf $RPI_SSH_CONFIG/config.conf
 fi
 
 if [ ! -f $SRV_SSHD_CONFIG/config.conf ]; then
@@ -136,7 +136,7 @@ EOF
 fi
 
 if [ ! -f $RPI_SSHD_CONFIG/config.conf ]; then
-  cp -p $SRV_SSHD_CONFIG/config.conf $RPI_SSHD_CONFIG/config.conf
+  sudo cp -p $SRV_SSHD_CONFIG/config.conf $RPI_SSHD_CONFIG/config.conf
 fi
 
 # Add hostname setup where it does not exist
