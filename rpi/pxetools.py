@@ -120,10 +120,15 @@ def add():
 
         # file system generator
         cmd("/nfs/fs-gen.sh {} {}".format(img, nfs_path), print_out=True)
+        cmd("sudo cp -rf {}/* {}/boot".format(tftp_path, nfs_path), print_out=True)
 
         # hosts & hostname
-        cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hosts".format(name, nfs_path))
-        cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hostname".format(name, nfs_path))
+        # cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hosts".format(name, nfs_path))
+        # cmd("sudo sed -i s/raspberrypi/{}/g {}/etc/hostname".format(name, nfs_path))
+        # The API expects to save a RPi OS to the nfs/bases and reuse it on a new RPi
+        # Then we should not trust that base is the RPi boot original (with raspberrypi)
+        # There is a 'single hosts for all' that will be set below at fs-ssh2
+        cmd("sudo echo \"{}\" > {}/etc/hostname".format(name, nfs_path))
 
         # fstab
         # tofu:
@@ -135,7 +140,8 @@ def add():
         #   proc /proc proc defaults 0 0
         #   /dev/sda1 /var/lib/docker ext4 noatime 0 1
 
-        cmd("/nfs/fs-usb.sh {}".format(nfs_path), print_out=True)
+        # Skip this for now, better to use commands to format & clear usb
+        # cmd("/nfs/fs-usb.sh {}".format(nfs_path), print_out=True)
 
         fstab_txt = "\
         {}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\n \
@@ -146,8 +152,6 @@ def add():
 
         cmd("cd {}/etc/init.d; rm -f dhcpcd dphys-swapfile raspi-config resize2fs_once".format(nfs_path))
         cmd("cd {}/etc/systemd/system; rm -rf dhcp* multi-user.target.wants/dhcp*".format(nfs_path))
-
-        cmd("sudo cp -rf {}/* {}/boot".format(tftp_path, nfs_path), print_out=True)
 
         # ssh known_hosts & authorized_keys
         cmd("/nfs/fs-ssh2.sh {}".format(nfs_path), print_out=True)

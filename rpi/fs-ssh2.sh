@@ -74,7 +74,11 @@ if [ ! -f $SRV_USR_KEY ]; then
 fi
 
 # owner owns its home
-sudo chown $OWNER:$OWNER RPI_USR_HOME
+if [ ! -d $RPI_USR_HOME ]; then
+  mkdir -p $RPI_USR_HOME
+  chown $OWNER:$OWNER $RPI_USR_HOME
+  chmod 755 $RPI_USR_HOME
+fi
 
 if [ ! -d $RPI_USR_SSH ]; then
   mkdir -p $RPI_USR_SSH
@@ -109,7 +113,7 @@ EOF
 fi
 
 if [ ! -f $RPI_SSH_CONFIG/config.conf ]; then
-  cp -p $SRV_SSH_CONFIG/config.conf $RPI_SSH_CONFIG/config.conf
+  sudo cp -p $SRV_SSH_CONFIG/config.conf $RPI_SSH_CONFIG/config.conf
 fi
 
 if [ ! -f $SRV_SSHD_CONFIG/config.conf ]; then
@@ -132,46 +136,46 @@ EOF
 fi
 
 if [ ! -f $RPI_SSHD_CONFIG/config.conf ]; then
-  cp -p $SRV_SSHD_CONFIG/config.conf $RPI_SSHD_CONFIG/config.conf
+  sudo cp -p $SRV_SSHD_CONFIG/config.conf $RPI_SSHD_CONFIG/config.conf
 fi
 
 # Add hostname setup where it does not exist
 
 # /etc/shosts.equiv
 if [ ! -f $SRV_SYS/shosts.equiv ]; then
-  echo "$SRV_HOSTNAME" >> $SRV_SYS/shosts.equiv
+  sudo echo "$SRV_HOSTNAME" >> $SRV_SYS/shosts.equiv
 fi
-case `grep -Fwq "$RPI_HOSTNAME" "$SRV_SYS/shosts.equiv" >/dev/null; echo $?` in
+case `grep -Fw "$RPI_HOSTNAME" "$SRV_SYS/shosts.equiv" >/dev/null; echo $?` in
   0)
     # found: do nothing
     ;;
   1)
     # not found: add RPi hostname
-    echo "$RPI_HOSTNAME" >> $SRV_SYS/shosts.equiv
+    sudo echo "$RPI_HOSTNAME" >> $SRV_SYS/shosts.equiv
     ;;
   *)
     # error: do nothing
     ;;
 esac
-cp -p $SRV_SYS/shosts.equiv $RPI_SYS/shosts.equiv
+sudo cp -p $SRV_SYS/shosts.equiv $RPI_SYS/shosts.equiv
 
 # /etc/hosts.equiv
 if [ ! -f $SRV_SYS/hosts.equiv ]; then
-  echo "$SRV_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+  sudo echo "$SRV_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
 fi
-case `grep -Fwq "$RPI_HOSTNAME" "$SRV_SYS/hosts.equiv" >/dev/null; echo $?` in
+case `grep -Fw "$RPI_HOSTNAME" "$SRV_SYS/hosts.equiv" >/dev/null; echo $?` in
   0)
     # found: do nothing
     ;;
   1)
     # not found: add RPi hostname
-    echo "$RPI_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+    sudo echo "$RPI_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
     ;;
   *)
     # error: do nothing
     ;;
 esac
-cp -p $SRV_SYS/hosts.equiv $RPI_SYS/hosts.equiv
+sudo cp -p $SRV_SYS/hosts.equiv $RPI_SYS/hosts.equiv
 
 # Example: $RPI_SYS/hosts.equiv
 #   region2 $OWNER
@@ -319,4 +323,10 @@ chown $OWNER:$OWNER $SRV_USR_AUTHORIZED_KEYS
 # rm $SRV_USR_KNOWN_HOSTS.old
 # rm $SRV_USR_AUTHORIZED_KEYS.old
 
+# Add rpi initialization
+sudo cp /nfs/rpi-init.sh $RPI_USR_HOME
+sudo chown $OWNER:$OWNER $RPI_USR_HOME/rpi-init.sh
+sudo chmod +x $RPI_USR_HOME/rpi-init.sh
+
+# Start services
 systemctl restart sshd

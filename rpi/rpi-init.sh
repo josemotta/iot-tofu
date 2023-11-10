@@ -1,22 +1,24 @@
 #!/bin/bash
 
-# Choose wisely, 'docker install' already gets the latest update.
-# sudo apt update
-# sudo apt full-upgrade
+# Choose wisely the necessary updates!
+sudo apt update
+sudo apt full-upgrade
 # sudo rpi-update
 # sudo rpi-eeprom-update -d -a
+
+# Clear docker folder
+sudo rm -r /var/lib/docker/*
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo chmod +x get-docker.sh
-# keys Y N
-sudo sh get-docker.sh <<< $'Y\nN\n'
+sudo sh get-docker.sh
 #sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 
 # Docker compose for RPi with homeassistant
-cat << EOF | sudo tee /home/$USER/compose.yml
+cat << EOF | tee ~/compose.yml
 version: '3'
 services:
   homeassistant:
@@ -30,6 +32,22 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
+EOF
+
+# add aliases to default .bashrc
+cat << EOF >> ~/.bashrc
+# some aliases
+alias ll='ls -al'
+
+alias dps='docker ps'
+alias dcu='docker compose up'
+alias dcud='docker compose up -d'
+alias dcd='docker compose down'
+
+# alias gs='git status --show-stash'
+# alias gc='git commit -am '
+
+alias temp='vcgencmd measure_temp'
 EOF
 
 echo "RPi initialized, please reboot."
