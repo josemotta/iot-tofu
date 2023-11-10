@@ -143,7 +143,7 @@ fi
 
 # /etc/shosts.equiv
 if [ ! -f $SRV_SYS/shosts.equiv ]; then
-  echo "$SRV_HOSTNAME" >> $SRV_SYS/shosts.equiv
+  sudo echo "$SRV_HOSTNAME" >> $SRV_SYS/shosts.equiv
 fi
 case `grep -Fw "$RPI_HOSTNAME" "$SRV_SYS/shosts.equiv" >/dev/null; echo $?` in
   0)
@@ -151,17 +151,17 @@ case `grep -Fw "$RPI_HOSTNAME" "$SRV_SYS/shosts.equiv" >/dev/null; echo $?` in
     ;;
   1)
     # not found: add RPi hostname
-    echo "$RPI_HOSTNAME" >> $SRV_SYS/shosts.equiv
+    sudo echo "$RPI_HOSTNAME" >> $SRV_SYS/shosts.equiv
     ;;
   *)
     # error: do nothing
     ;;
 esac
-cp -p $SRV_SYS/shosts.equiv $RPI_SYS/shosts.equiv
+sudo cp -p $SRV_SYS/shosts.equiv $RPI_SYS/shosts.equiv
 
 # /etc/hosts.equiv
 if [ ! -f $SRV_SYS/hosts.equiv ]; then
-  echo "$SRV_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+  sudo echo "$SRV_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
 fi
 case `grep -Fw "$RPI_HOSTNAME" "$SRV_SYS/hosts.equiv" >/dev/null; echo $?` in
   0)
@@ -169,13 +169,13 @@ case `grep -Fw "$RPI_HOSTNAME" "$SRV_SYS/hosts.equiv" >/dev/null; echo $?` in
     ;;
   1)
     # not found: add RPi hostname
-    echo "$RPI_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
+    sudo echo "$RPI_HOSTNAME $OWNER" >> $SRV_SYS/hosts.equiv
     ;;
   *)
     # error: do nothing
     ;;
 esac
-cp -p $SRV_SYS/hosts.equiv $RPI_SYS/hosts.equiv
+sudo cp -p $SRV_SYS/hosts.equiv $RPI_SYS/hosts.equiv
 
 # Example: $RPI_SYS/hosts.equiv
 #   region2 $OWNER
