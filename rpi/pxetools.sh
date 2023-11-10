@@ -26,7 +26,7 @@ sudo chmod +x /usr/local/sbin/pxetools
 sudo cp --remove-destination $FSGEN /nfs/fs-gen.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh.sh
 sudo cp --remove-destination $FSSSH /nfs/fs-ssh2.sh
-sudo cp --remove-destination $FSUSB /nfs/fs-ssh2.sh
+sudo cp --remove-destination $FSUSB /nfs/fs-usb.sh
 sudo cp --remove-destination $RPINIT /nfs/rpi-init.sh
 sudo chmod +x /nfs/fs-gen.sh
 sudo chmod +x /nfs/fs-ssh.sh
