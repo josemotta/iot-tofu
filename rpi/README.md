@@ -21,9 +21,15 @@ rpi/pxetools-install.sh
 # do the initial setup
 rpi/pxetools-setup.sh
 
-# then start adding/removing RPis by serial number
+# then start adding, listing, and removing RPis by serial number
 sudo pxetools --add 9f55bbfd
 sudo pxetools --add a10cd2e5
+
+sudo pxetools --list
+Serial      Owner    Name    MAC                IP
+----------  -------  ------  -----------------  ---------
+0x9f55bbfd  jo       rpi4    b8:27:eb:55:bb:fd  Not found
+0xa10cd2e5  jo       rpi2    b8:27:eb:0c:d2:e5  Not found
 
 sudo pxetools --remove 9f55bbfd
 sudo pxetools --remove a10cd2e5
