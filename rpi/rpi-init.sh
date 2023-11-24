@@ -8,7 +8,9 @@ sudo rpi-update
 # sudo rpi-eeprom-update -d -a
 
 # Clear docker folder
-sudo rm -r /var/lib/docker/*
+if [ -d /var/lib/docker ]; then
+  sudo rm -r /var/lib/docker/*
+fi
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
