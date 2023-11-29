@@ -21,6 +21,7 @@ services:
     # entrypoint: .docker/start.sh
     volumes:
       - .:/home/node/app
+      - /home/jo/pipe:/hostpipe
       # - .docker/region:/home/node/app/region
     ports:
       - 3000:3000
