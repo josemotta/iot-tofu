@@ -20,6 +20,7 @@ services:
     # image: josemottalopes/boot-back:latest
     entrypoint: .docker/start.dev.sh
     volumes:
+      - /home/jo/pipe:/hostpipe
       - .:/home/node/app
       # - .docker/region:/home/node/app/region
     ports:
@@ -29,4 +30,4 @@ services:
     restart: unless-stopped
     privileged: true
     # user: 0:0
-    network_mode: host
+    # network_mode: host

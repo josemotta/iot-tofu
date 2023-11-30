@@ -1,13 +1,16 @@
 #!/bin/bash
 
 # Choose wisely the necessary updates!
+# Docker install below starts with an update.
 sudo apt update
 sudo apt full-upgrade
-# sudo rpi-update
+sudo rpi-update
 # sudo rpi-eeprom-update -d -a
 
 # Clear docker folder
-sudo rm -r /var/lib/docker/*
+if [ -d /var/lib/docker ]; then
+  sudo rm -r /var/lib/docker/*
+fi
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh

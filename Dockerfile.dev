@@ -1,6 +1,8 @@
 # Check out https://hub.docker.com/_/node to select a new base image
 FROM node:20.5-bullseye-slim
 
+VOLUME /hostpipe
+
 RUN apt update && apt install -y \
     git \
     curl \
