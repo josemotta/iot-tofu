@@ -30,4 +30,4 @@ services:
     restart: unless-stopped
     privileged: true
     # user: 0:0
-    network_mode: host
+    # network_mode: host
