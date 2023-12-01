@@ -22,7 +22,6 @@ services:
     volumes:
       - /home/jo/pipe:/hostpipe
       - .:/home/node/app
-      # - .docker/region:/home/node/app/region
     ports:
       - 3000:3000
     environment:
