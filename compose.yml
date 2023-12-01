@@ -1,27 +1,27 @@
 version: '3'
 services:
-  homeassistant:
-    container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
-    volumes:
-      - .docker/ha/config:/config
-      - /etc/localtime:/etc/localtime:ro
-    ports:
-      - 8123:8123
-    restart: unless-stopped
-    privileged: true
-    network_mode: host
+  # homeassistant:
+  #   container_name: homeassistant
+  #   image: "ghcr.io/home-assistant/home-assistant:stable"
+  #   volumes:
+  #     - .docker/ha/config:/config
+  #     - /etc/localtime:/etc/localtime:ro
+  #   ports:
+  #     - 8123:8123
+  #   restart: unless-stopped
+  #   privileged: true
+  #   network_mode: host
 
   app:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: boot-back
-    image: josemottalopes/boot-back:latest
-    # entrypoint: .docker/start.sh
+    # image: josemottalopes/boot-back:latest
+    entrypoint: .docker/start.sh
     volumes:
-      - .:/home/node/app
       - /home/jo/pipe:/hostpipe
+      - .:/home/node/app
     ports:
       - 3000:3000
     environment:
