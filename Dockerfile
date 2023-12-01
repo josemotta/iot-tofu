@@ -11,6 +11,9 @@ RUN apt update && apt install -y \
 RUN npm install -g @loopback/cli npm@10.2.4
 RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
 
+RUN npm install -g nodemon
+RUN npm config set cache /home/node/app/.npm-cache --global
+
 # Set to a non-root built-in user `node`
 USER node
 
@@ -25,8 +28,6 @@ WORKDIR /home/node/app
 COPY --chown=node package*.json ./
 
 RUN npm install
-# TODO: test production install
-# RUN npm ci --only=prod
 
 # Bundle app source code
 COPY --chown=node . .
