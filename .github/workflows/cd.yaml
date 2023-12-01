@@ -25,27 +25,3 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/boot-back:${{ github.sha }}, ${{ secrets.DOCKER_USERNAME }}/boot-back:latest
           platforms: linux/arm64
-
-    # - name: Setup Kustomize
-    #   uses: imranismail/setup-kustomize@v1
-    #   with:
-    #     kustomize-version: "3.6.1"
-
-    # - name: Update Kubernetes resources
-    #   env:
-    #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-    #   run: |
-    #     cd k8s
-    #     kustomize edit set image goserver=$DOCKER_USERNAME/boot-back:$GITHUB_SHA
-
-    # - name: Commit
-    #   run: |
-    #     git config --local user.email "action@github.com"
-    #     git config --local user.name "GitHub Action"
-    #     git commit -am "Bump docker version"
-
-    # - name: Push
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.DOCKER_PASSWORD }}
-    #     repository: ${{ secrets.DOCKER_USERNAME }}/boot-back
