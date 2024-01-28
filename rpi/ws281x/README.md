@@ -1,16 +1,16 @@
-# Ws281x Service
+## Ws281x Service
 
 Back-end for the led strip manager.
 
 Based on https://github.com/jamesridgway/home-office-lights2.
 
-## Install
+### Install
 
 ```
 sudo install-ws281x.sh ws281x.service
 
 ```
-## Packages
+### Packages
 
 Added to /usr/local/lib/python3.9/dist-packages.
 
@@ -28,7 +28,7 @@ zipp>=0.5           3.17.0
 MarkupSafe>=2.0     2.1.4
 ```
 
-## Using
+### Using
 
 The examples below turn off the leds and set them with color and brightness.
 
