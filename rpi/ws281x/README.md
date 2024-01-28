@@ -10,7 +10,7 @@ Based on https://github.com/jamesridgway/home-office-lights2.
 sudo install-ws281x.sh ws281x.service
 
 ```
-### Packages
+### Libs installed
 
 Added to /usr/local/lib/python3.9/dist-packages.
 
