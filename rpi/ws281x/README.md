@@ -26,3 +26,16 @@ importlib-metadata  7.0.1
 zipp>=0.5           3.17.0
 MarkupSafe>=2.0     2.1.4
 ```
+
+# Examples
+
+The examples below turn off the leds and set them with color and brightness.
+
+```
+curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
+
+curl -d '{"on":true, "hue":360, "sat":100, "brightness":255}' \
+     -H "Content-Type: application/json" \
+     -X POST http://127.0.0.1:5000/led-strip
+
+```
