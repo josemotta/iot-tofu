@@ -43,7 +43,7 @@ curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/'
 curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip'
 ```
 
-#### Set whole led strip color & brightness (/led-strip/{on, hue, sat, brightness})
+#### Set whole led strip color & brightness: /led-strip/{on, hue, sat, brightness}
 
 ```
 curl -d '{"on":true, "hue":360, "sat":100, "brightness":255} \
@@ -51,7 +51,7 @@ curl -d '{"on":true, "hue":360, "sat":100, "brightness":255} \
      -X POST http://127.0.0.1:5000/led-strip'
 ```
 
-#### Turn off the led strip (/led-strip/{"on":false})
+#### Turn off the led strip: /led-strip/{"on":false}
 
 ```
 curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip'
