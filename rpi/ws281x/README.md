@@ -33,17 +33,17 @@ The commands below turn on/off the leds & set their color and brightness.
 
 ```
 # Show Ws281x back-end version
-curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/
+curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/'
 
 # Show led strip status
-curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
+curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip'
 
 # Set color & brightness for the whole led strip
-curl -d '{"on":true, "hue":360, "sat":100, "brightness":255}' \
+curl -d '{"on":true, "hue":360, "sat":100, "brightness":255} \
      -H "Content-Type: application/json" \
-     -X POST http://127.0.0.1:5000/led-strip
+     -X POST http://127.0.0.1:5000/led-strip'
 
 # Turn off the led strip
-curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
+curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip'
 
 ```
