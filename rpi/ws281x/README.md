@@ -31,7 +31,7 @@ MarkupSafe>=2.0     2.1.4
 
 The API is shown below to turn on/off the leds & set their color and brightness.
 
-#### Show Ws281x back-end version: /
+#### Show version: /
 
 ```
 curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/'
