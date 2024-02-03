@@ -29,6 +29,13 @@ class StripManager:
             self.strip.show()
         self.on = True
 
+    def fill(self, r, g, b, first, size, brightness=255):
+        self.strip.setBrightness(brightness)
+        for i in range(first, first + size):
+            self.strip.setPixelColor(i, Color(r, g, b))
+            self.strip.show()
+        self.on = True
+
     def alert(self, r, g, b, wait_ms=50, iterations=10):
         for j in range(iterations):
             for q in range(3):
