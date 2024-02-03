@@ -34,13 +34,13 @@ The API is shown below to turn on/off the leds & set their color and brightness.
 #### Show version: /
 
 ```
-curl -d -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/
+curl http://127.0.0.1:5000/
 ```
 
 #### Show led strip status: /led-strip
 
 ```
-curl -d -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
+curl http://127.0.0.1:5000/led-strip
 ```
 
 #### Set whole led strip color & brightness: /led-strip/{on, hue, sat, brightness}
