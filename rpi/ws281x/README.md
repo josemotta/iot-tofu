@@ -1,8 +1,8 @@
 ## Ws281x Service
 
-Back-end for the led strip manager.
+Back-end for the Ws281x led strip manager at RPIs managed by the boot server. It is inspired on James' job described at https://github.com/jamesridgway/home-office-lights2.
 
-Based on https://github.com/jamesridgway/home-office-lights2.
+Please note it is expected to be installed at RPIs, not at the Tofu boot server.
 
 ### Install
 
@@ -10,6 +10,7 @@ Based on https://github.com/jamesridgway/home-office-lights2.
 sudo install-ws281x.sh ws281x.service
 
 ```
+
 ### Libs installed
 
 Added to /usr/local/lib/python3.9/dist-packages.
@@ -30,13 +31,21 @@ MarkupSafe>=2.0     2.1.4
 
 ### Using
 
-The examples below turn off the leds and set them with color and brightness.
+The commands below turn on/off the leds & set their color and brightness.
 
 ```
-curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
+# Show Ws281x back-end version
+curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/
 
+# Show led strip status
+curl -d '-H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
+
+# Set color & brightness for the whole led strip
 curl -d '{"on":true, "hue":360, "sat":100, "brightness":255}' \
      -H "Content-Type: application/json" \
      -X POST http://127.0.0.1:5000/led-strip
+
+# Turn off the led strip
+curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
 
 ```

@@ -1,4 +1,7 @@
 #!/bin/bash
+
+#Add Ws281x led strips at RPIs managed by the boot server.
+
 set -e
 cd "$(dirname "$0")"
 
