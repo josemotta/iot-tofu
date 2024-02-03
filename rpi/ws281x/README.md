@@ -1,8 +1,8 @@
 ## Ws281x Service
 
-Back-end for the Ws281x led strip manager at RPIs managed by the boot server. It is inspired on James' job described at https://github.com/jamesridgway/home-office-lights2.
+Back-end for the Ws281x led strip manager at RPIs managed by the boot server. It is based on James Ridgway's [home-office-lights2](https://github.com/jamesridgway/home-office-lights2).
 
-Please note it is expected to be installed at RPIs, not at the Tofu boot server.
+Please note this is expected to be installed at RPIs. It was not tested at Tofu boot server.
 
 ### Install
 
