@@ -38,7 +38,7 @@ def status():
 
 
 @app.route("/led-strip", methods=['POST'])
-def toggle():
+def fill():
     body = request.get_json()
     print(json.dumps(body, indent=2))
     hue = 0.0
@@ -53,12 +53,12 @@ def toggle():
     if 'on' in body:
         on = bool(body["on"])
     rgb = colorsys.hsv_to_rgb(hue, sat, 1.0)
-    rgb_r = int(rgb[0] * 255)
-    rgb_g = int(rgb[1] * 255)
-    rgb_b = int(rgb[2] * 255)
+    # rgb_r = int(rgb[0] * 255)
+    # rgb_g = int(rgb[1] * 255)
+    # rgb_b = int(rgb[2] * 255)
     if on:
         # print(f'Setting colour to {rgb_r} {rgb_g} {rgb_b}')
-        pixels.fill((0, 255, 0))
+        pixels.fill(rgb)
     else:
         pixels.fill((0, 0, 0))
     pixels.write()
