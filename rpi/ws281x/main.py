@@ -25,8 +25,11 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return 'Back-end ws281x v0.1'
+def hello():
+    return {
+        'name': "Back-end for ws281x led-strip",
+        'version': "0.1"
+    }
 
 
 @app.route("/led-strip")
