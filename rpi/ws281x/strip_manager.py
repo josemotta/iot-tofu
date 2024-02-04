@@ -29,7 +29,7 @@ class StripManager:
             self.strip.show()
         self.on = True
 
-    def fill(self, r, g, b, first, size, brightness=255):
+    def fill(self, r, g, b, first, size=1, brightness=255):
         self.strip.setBrightness(brightness)
         for i in range(first, first + size):
             self.strip.setPixelColor(i, Color(r, g, b))
