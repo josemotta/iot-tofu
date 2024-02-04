@@ -1,7 +1,7 @@
 import time
 import neopixel
 
-from rpi_ws281x import Adafruit_NeoPixel, Color
+# from rpi_ws281x import Adafruit_NeoPixel, Color
 
 
 class StripManager:
@@ -33,11 +33,22 @@ class StripManager:
         # self.strip.begin()
         self.on = False
 
-    def solid_color(self, r, g, b, brightness=255):
-        self.strip.setBrightness(brightness)
-        for i in range(self.strip.numPixels()):
-            self.strip[i] = Color(r, g, b)
-            # self.strip.show()
+    def set_brightness(color, brightness=1):
+        r, g, b = color
+        r = int(r * brightness)
+        g = int(g * brightness)
+        b = int(b * brightness)
+        return (r, g, b)
+
+    def solid_color(self, r, g, b, brightness=1):
+        color = (255, 0, 0)  # Red color
+        # color = set_brightness(color)
+        self.strip.fill(color, brightness)
+        self.strip.write()
+        # self.strip.setBrightness(brightness)
+        # for i in range(self.strip.numPixels()):
+        #     self.strip[i] = Color(r, g, b)
+        #     # self.strip.show()
         self.on = True
 
     # def fill(self, r, g, b, first, size=1, brightness=255):
