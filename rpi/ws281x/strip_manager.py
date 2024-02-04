@@ -19,9 +19,11 @@ class StripManager:
         # True to invert the signal (when using NPN transistor level shift)
         led_invert = False
         led_channel = 0  # set to '1' for GPIOs 13, 19, 41, 45 or 53
-        return StripManager(led_count, led_pin, led_freq_hz, led_dma, led_invert, led_brightness, led_channel)
+        # return StripManager(led_count, led_pin, led_freq_hz, led_dma, led_invert, led_brightness, led_channel)
+        return StripManager(led_count, led_pin)
 
-    def __init__(self, led_count, led_pin, led_freq_hz, led_dma, led_invert, led_brightness, led_channel):
+    # def __init__(self, led_count, led_pin, led_freq_hz, led_dma, led_invert, led_brightness, led_channel):
+    def __init__(self, led_count, led_pin):
         self.strip = neopixel.NeoPixel(led_pin, led_count)
         # led_freq_hz,
         # led_dma,
