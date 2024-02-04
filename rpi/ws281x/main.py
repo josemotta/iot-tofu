@@ -57,7 +57,7 @@ def fill():
     rgb_g = int(rgb[1] * 255)
     rgb_b = int(rgb[2] * 255)
     if on:
-        pixels.fill((rgb_b, rgb_g, rgb_r))
+        pixels.fill((rgb_r, rgb_g, rgb_b))
     else:
         pixels.fill((0, 0, 0))
     pixels.write()
