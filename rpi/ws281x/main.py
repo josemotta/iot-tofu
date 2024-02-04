@@ -50,16 +50,18 @@ def toggle():
         sat = body['sat'] / 100.0
     if 'brightness' in body:
         brightness = int(body["brightness"])
+    if 'on' in body:
+        on = bool(body["on"])
     rgb = colorsys.hsv_to_rgb(hue, sat, 1.0)
     rgb_r = int(rgb[0] * 255)
     rgb_g = int(rgb[1] * 255)
     rgb_b = int(rgb[2] * 255)
-    if body['on']:
+    if on:
         # print(f'Setting colour to {rgb_r} {rgb_g} {rgb_b}')
-        # strip_manager.solid_color(rgb_r, rgb_g, rgb_b, brightness)
-        pixels.fill((255, 0, 0))
-    # else:
-    #     strip_manager.clear()
+        pixels.fill((0, 255, 0))
+    else:
+        pixels.fill((0, 0, 0))
+    pixels.write()
     return stat()
 
 # @app.route("/led-strip/fill", methods=['POST'])
