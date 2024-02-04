@@ -1,6 +1,6 @@
 import colorsys
 import json
-from flask import Flask, jsonify, request
+from flask import Flask, request
 import board
 import neopixel
 # import time
