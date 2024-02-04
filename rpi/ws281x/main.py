@@ -16,7 +16,7 @@ num_pixels = 20
 ORDER = neopixel.RGB
 
 pixels = neopixel.NeoPixel(
-    pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
+    pixel_pin, num_pixels, brightness=0.2, auto_write=True, pixel_order=ORDER
 )
 
 on = False
@@ -52,12 +52,9 @@ def fill():
         brightness = int(body["brightness"])
     if 'on' in body:
         on = bool(body["on"])
-    rgb = colorsys.hsv_to_rgb(hue, sat, 1.0)
-    rgb_r = int(rgb[0] * 255)
-    rgb_g = int(rgb[1] * 255)
-    rgb_b = int(rgb[2] * 255)
+    rgb = tuple(round(i * 255) for i in colorsys.hsv_to_rgb(hue, sat, 1.0))
     if on:
-        pixels.fill((rgb_r, rgb_g, rgb_b))
+        pixels.fill(rgb)
     else:
         pixels.fill((0, 0, 0))
     pixels.write()
