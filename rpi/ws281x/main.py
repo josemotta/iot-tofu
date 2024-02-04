@@ -53,12 +53,11 @@ def fill():
     if 'on' in body:
         on = bool(body["on"])
     rgb = colorsys.hsv_to_rgb(hue, sat, 1.0)
-    # rgb_r = int(rgb[0] * 255)
-    # rgb_g = int(rgb[1] * 255)
-    # rgb_b = int(rgb[2] * 255)
+    rgb_r = int(rgb[0] * 255)
+    rgb_g = int(rgb[1] * 255)
+    rgb_b = int(rgb[2] * 255)
     if on:
-        # print(f'Setting colour to {rgb_r} {rgb_g} {rgb_b}')
-        pixels.fill(rgb)
+        pixels.fill((rgb_r, rgb_g, rgb_b))
     else:
         pixels.fill((0, 0, 0))
     pixels.write()
