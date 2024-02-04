@@ -19,7 +19,7 @@ pixels = neopixel.NeoPixel(
     pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
 )
 
-status = False
+on = False
 
 app = Flask(__name__)
 
@@ -31,7 +31,7 @@ def hello_world():
 
 @app.route("/led-strip")
 def status():
-    return jsonify(status)
+    return stat()
 
 
 # @app.route("/led-strip", methods=['POST'])
@@ -89,6 +89,11 @@ def status():
 #     #     strip_manager.clear()
 
 #     return jsonify(strip_manager.status())
+
+def stat():
+    return {
+        'on': on
+    }
 
 
 if __name__ == '__main__':
