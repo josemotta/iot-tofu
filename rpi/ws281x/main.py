@@ -1,9 +1,9 @@
 import colorsys
 import json
 from flask import Flask, jsonify, request
-import time
 import board
 import neopixel
+# import time
 
 # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
 # NeoPixels must be connected to D10, D12, D18 or D21 to work.
@@ -52,7 +52,8 @@ def fill():
         brightness = int(body["brightness"])
     if 'on' in body:
         on = bool(body["on"])
-    rgb = tuple(round(i * 255) for i in colorsys.hsv_to_rgb(hue, sat, 1.0))
+    rgb = tuple(round(i * 255)
+                for i in colorsys.hsv_to_rgb(hue, sat, brightness/255.0))
     if on:
         pixels.fill(rgb)
     else:
