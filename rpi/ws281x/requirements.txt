@@ -1,2 +1,3 @@
 flask
 rpi_ws281x >= 5.0.0
+adafruit-circuitpython-neopixel >= 6.3.11
