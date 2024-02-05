@@ -66,7 +66,8 @@ def fill():
     else:
         color = (0, 0, 0)
     if size:
-        pixels[first:first+size] = color
+        for i in range(first, first+size):
+            pixels[i] = color
     else:
         pixels.fill(color)
     return stat()
