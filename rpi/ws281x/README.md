@@ -60,11 +60,21 @@ curl -d '{"on":true, "hue":360, "sat":100, "brightness":255, "first": 2, "size":
      -X POST http://127.0.0.1:5000/led-strip
 ```
 
-#### Turn off the led strip
+#### Turn off the whole led strip
 
 - /led-strip/{on}
 
 ```
 curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
 
+```
+
+#### Turn off a led strip segment
+
+- /led-strip/{on, first, size}
+
+```
+curl -d '{"on":false, "first": 2, "size": 5}' \
+     -H "Content-Type: application/json" \
+     -X POST http://127.0.0.1:5000/led-strip
 ```
