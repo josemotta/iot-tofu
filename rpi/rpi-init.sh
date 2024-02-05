@@ -53,4 +53,6 @@ alias dcd='docker compose down'
 alias temp='vcgencmd measure_temp'
 EOF
 
+source ~/.bashrc
+
 echo "RPi initialized, please reboot."
