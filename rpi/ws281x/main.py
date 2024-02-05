@@ -55,10 +55,10 @@ def fill():
     rgb = tuple(round(i * 255)
                 for i in colorsys.hsv_to_rgb(hue, sat, brightness/255.0))
     if on:
-        pixels.fill(rgb)
+        color = rgb
     else:
-        pixels.fill((0, 0, 0))
-    # pixels.show()
+        color = (0, 0, 0)
+    pixels.fill(color)
     return stat()
 
 
