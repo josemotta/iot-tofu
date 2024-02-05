@@ -58,7 +58,7 @@ def fill():
         pixels.fill(rgb)
     else:
         pixels.fill((0, 0, 0))
-    pixels.show()
+    # pixels.show()
     return stat()
 
 
