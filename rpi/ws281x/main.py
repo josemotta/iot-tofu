@@ -56,8 +56,12 @@ def fill():
         on = bool(body["on"])
     if 'first' in body:
         first = body['first']
+        if first >= num_pixels:
+            first = 0
     if 'size' in body:
         size = body['size']
+        if first+size >= num_pixels:
+            size = 0
 
     rgb = tuple(round(i * 255)
                 for i in colorsys.hsv_to_rgb(hue, sat, brightness/255.0))
