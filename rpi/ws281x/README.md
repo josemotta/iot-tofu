@@ -16,25 +16,33 @@ sudo iot-tofu/rpi/ws281x/install-ws281x.sh ws281x.service
 
 The API is shown below to turn on/off the leds & set their color and brightness.
 
-#### Show version: /
+#### Show version
+
+- /
 
 ```
 curl http://127.0.0.1:5000/
 ```
 
-#### Show led strip status: /led-strip
+#### Show led strip status
+
+- /led-strip
 
 ```
 curl http://127.0.0.1:5000/led-strip
 ```
 
-#### Turn on white led strip: /led-strip/{on}
+#### Turn on white led strip
+
+- /led-strip/{on}
 
 ```
 curl -d '{"on":true}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
 ```
 
-#### Set led strip color & brightness: /led-strip/{on, hue, sat, brightness}
+#### Set led strip color & brightness
+
+- /led-strip/{on, hue, sat, brightness}
 
 ```
 curl -d '{"on":true, "hue":360, "sat":100, "brightness":255}' \
@@ -42,7 +50,19 @@ curl -d '{"on":true, "hue":360, "sat":100, "brightness":255}' \
      -X POST http://127.0.0.1:5000/led-strip
 ```
 
-#### Turn off the led strip: /led-strip/{on}
+#### Set led strip segment with color & brightness
+
+- /led-strip/{on, hue, sat, brightness, first, size}
+
+```
+curl -d '{"on":true, "hue":360, "sat":100, "brightness":255, "first": 2, "size": 5}' \
+     -H "Content-Type: application/json" \
+     -X POST http://127.0.0.1:5000/led-strip
+```
+
+#### Turn off the led strip
+
+- /led-strip/{on}
 
 ```
 curl -d '{"on":false}' -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/led-strip
