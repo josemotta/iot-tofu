@@ -32,6 +32,11 @@ def hello():
     }
 
 
+@app.route("/led-strip")
+def status():
+    return stat()
+
+
 @app.route("/led-strip", methods=['POST'])
 def fill():
     body = request.get_json()
@@ -81,7 +86,13 @@ def fill():
                 start += line
     else:
         pixels.fill(color)
-    return
+    return stat()
+
+
+def stat():
+    return {
+        'on': on
+    }
 
 
 if __name__ == '__main__':
