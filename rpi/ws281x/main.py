@@ -81,6 +81,7 @@ def fill():
                 start += line
     else:
         pixels.fill(color)
+    return
 
 
 if __name__ == '__main__':
