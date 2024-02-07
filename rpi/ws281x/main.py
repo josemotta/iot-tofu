@@ -46,6 +46,7 @@ def fill():
     brightness = 255
     first = 0
     size = 0
+    line = 0
     if 'hue' in body:
         hue = body['hue'] / 360.0
     if 'sat' in body:
@@ -62,6 +63,10 @@ def fill():
         size = body['size']
         if first+size >= num_pixels:
             size = 0
+    if 'line' in body:
+        line = body['line']
+        if line >= num_pixels:
+            line = 0
 
     rgb = tuple(round(i * 255)
                 for i in colorsys.hsv_to_rgb(hue, sat, brightness/255.0))
@@ -69,9 +74,16 @@ def fill():
         color = rgb
     else:
         color = (0, 0, 0)
+
     if size:
         for i in range(first, first+size):
             pixels[i] = color
+        if line:
+            start = first + line
+            while start < num_pixels:
+                for i in range(start, start+size):
+                    pixels[i] = color
+                start += line
     else:
         pixels.fill(color)
     return stat()
