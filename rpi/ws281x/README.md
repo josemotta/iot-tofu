@@ -21,9 +21,7 @@ The API parameters are detailed below. The operations are used to turn on/off th
 - **first, size**: a segment starting at 'first' pixel with 'size' pixels
 - **line**: if not zero, keep repeating the operation, skipping 'line' pixels
 
-- If 'hue & sat' are not provided, the white color is applied.
-- If 'size' is not provided, the whole led strip is applied.
-- If 'line' is not provided, the operation is done just once.
+If 'hue & sat' are not provided, the white color is applied. If 'size' is not provided, the whole led strip is applied. If 'line' is not provided, the operation is done just once.
 
 #### Show version
 
