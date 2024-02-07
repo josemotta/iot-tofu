@@ -8,7 +8,8 @@ This APi is going to be used by Homeassistant, see more about [using a template]
 
 ```
 git clone https://github.com/josemotta/iot-tofu
-sudo iot-tofu/rpi/ws281x/install-ws281x.sh ws281x.service
+cd iot-tofu/rpi/ws281x
+sudo ./install-ws281x.sh ws281x.service
 
 ```
 
