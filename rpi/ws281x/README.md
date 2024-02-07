@@ -14,7 +14,16 @@ sudo iot-tofu/rpi/ws281x/install-ws281x.sh ws281x.service
 
 ### Using the API
 
-The API is shown below to turn on/off the leds & set their color and brightness.
+The API parameters are detailed below. The operations are used to turn on/off the leds & set their color and brightness. 'First & size' parameters allows managing a pixel segment, and the 'line' parameter allows repetition in a simplified matrix behaviour.
+
+- **on**: true or false, indicates if pixels should be turned on or off
+- **hue, sat**: hue and saturation to be set
+- **first, size**: a segment starting at 'first' pixel with 'size' pixels
+- **line**: if not zero, keep repeating the operation, skipping 'line' pixels
+
+- If 'hue & sat' are not provided, the white color is applied.
+- If 'size' is not provided, the whole led strip is applied.
+- If 'line' is not provided, the operation is done just once.
 
 #### Show version
 
