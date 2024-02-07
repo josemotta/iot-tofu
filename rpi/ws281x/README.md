@@ -100,10 +100,10 @@ curl -d '{"on":false, "first": 2, "size": 5}' \
 
 #### Turn off a column of led strip segments
 
-- /led-strip/{on, hue, sat, brightness, first, size, line}
+- /led-strip/{on, first, size, line}
 
 ```
-curl -d '{"on":false, "hue":360, "sat":100, "brightness":255, "first": 0, "size": 3, "line" : 9}' \
+curl -d '{"on":false, "first": 0, "size": 3, "line" : 9}' \
      -H "Content-Type: application/json" \
      -X POST http://127.0.0.1:5000/led-strip
 ```
