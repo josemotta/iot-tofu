@@ -33,8 +33,8 @@ def hello():
 
 
 @app.route("/led-strip")
-def status():
-    return stat()
+def status(on):
+    return stat(on)
 
 
 @app.route("/led-strip", methods=['POST'])
@@ -86,10 +86,10 @@ def fill():
                 start += line
     else:
         pixels.fill(color)
-    return stat()
+    return stat(on)
 
 
-def stat():
+def stat(on):
     return {
         'on': on
     }
