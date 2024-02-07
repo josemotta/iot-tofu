@@ -31,6 +31,14 @@ If 'hue & sat' are not provided, the white color is applied. If 'size' is not pr
 curl http://127.0.0.1:5000/
 ```
 
+#### Show led strip status
+
+- /led-strip
+
+```
+curl http://127.0.0.1:5000/led-strip
+```
+
 #### Turn on white led strip
 
 - /led-strip/{on}
