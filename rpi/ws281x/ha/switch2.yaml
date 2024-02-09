@@ -1,0 +1,27 @@
+
+- platform: rest
+  name: stair_led_down
+  resource: http://127.0.0.1:5000/led-strip
+  body_on: '{"first": "0","size": "2","line": "5","on": true, "hue": {{ states("input_number.office_led_strip_hue") }}, "sat": {{ states("input_number.office_led_strip_sat") }}, "brightness": {{ states("input_number.office_led_strip_brightness") }}}'
+  body_off: '{"first": "0","size": "2","line": "5","on": false}'
+  is_on_template: "{{ value_json.on }}"
+  headers:
+    Content-Type: application/json
+
+- platform: rest
+  name: stair_led_up
+  resource: http://127.0.0.1:5000/led-strip
+  body_on: '{"first": "2","size": "2","line": "5","on": true, "hue": {{ states("input_number.office_led_strip_hue") }}, "sat": {{ states("input_number.office_led_strip_sat") }}, "brightness": {{ states("input_number.office_led_strip_brightness") }}}'
+  body_off: '{"first": "2","size": "2","line": "5","on": false}'
+  is_on_template: "{{ value_json.on }}"
+  headers:
+    Content-Type: application/json
+
+- platform: rest
+  name: stair_led_wall
+  resource: http://127.0.0.1:5000/led-strip
+  body_on: '{"first": "4","size": "1","line": "5","on": true, "hue": {{ states("input_number.office_led_strip_hue") }}, "sat": {{ states("input_number.office_led_strip_sat") }}, "brightness": {{ states("input_number.office_led_strip_brightness") }}}'
+  body_off: '{"first": "4","size": "1","line": "5","on": false}'
+  is_on_template: "{{ value_json.on }}"
+  headers:
+    Content-Type: application/json
