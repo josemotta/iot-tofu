@@ -11,8 +11,8 @@ scene: !include scenes.yaml
 
 # Unflashed SONOFF devices
 sonoff:
-  username: josemotta@bampli.com
-  password: tiagomotta
+  username: xuser
+  password: xpass
   reload: always
 
 switch: !include switch.yaml
