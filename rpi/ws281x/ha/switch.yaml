@@ -1,0 +1,28 @@
+- platform: rest
+  name: office_led_strip
+  resource: http://127.0.0.1:5000/led-strip
+  body_on: {{ strip_body() }}
+  body_off: '{"on": false}'
+  is_on_template: "{{ value_json.on }}"
+  headers:
+    Content-Type: application/json
+
+{% macro strip_body() -%}
+    >
+    '{"on": true,
+      "hue": {{ states("input_number.office_led_strip_hue") }},
+      "sat": {{ states("input_number.office_led_strip_sat") }},
+      "brightness": {{ states("input_number.office_led_strip_brightness") }}
+    }'
+{%- endmacro %}
+
+# - platform: rest
+#   name: office_led_strip
+#   resource: http://127.0.0.1:5000/led-strip
+#   body_on: '{"on": true, "hue": {{ states("input_number.office_led_strip_hue") }}, "sat": {{ states("input_number.office_led_strip_sat") }}, "brightness": {{ states("input_number.office_led_strip_brightness") }}}'
+#   body_off: '{"on": false}'
+#   is_on_template: "{{ value_json.on }}"
+#   headers:
+#     Content-Type: application/json
+
+
