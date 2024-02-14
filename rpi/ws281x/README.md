@@ -1,6 +1,6 @@
 ## Back-end for ws281x led-strip
 
-Back-end for the Ws281x led-strip connected to a RPI 4. It is supposed that this RPI is managed by the Tofu boot server. The idea was inspired by the [home-office-lights2](https://github.com/jamesridgway/home-office-lights2) but then upgraded to a supercharged version of the original driver.
+Back-end for the [Ws281x led-strip](https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf) connected to a RPI 4. It is supposed that this RPI is managed by the Tofu boot server. The idea was inspired by the [home-office-lights2](https://github.com/jamesridgway/home-office-lights2) but then upgraded to a supercharged version of the original driver.
 
 This APi is going to be used by Homeassistant, see more about [using a template](https://www.jamesridgway.co.uk/using-a-template-light-to-control-a-custom-light-in-home-assistant/). Please note this is expected to be installed at RPIs, not at Tofu boot server.
 
