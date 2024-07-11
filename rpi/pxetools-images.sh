@@ -18,7 +18,7 @@ echo "Get RPi OS images"
 if [ ! -d /nfs/bases/rpi_11_bullseye_lite_arm64 ]; then
 sudo mkdir -p /nfs/bases/rpi_11_bullseye_lite_arm64
 cd /nfs/bases/rpi_11_bullseye_lite_arm64
-sudo wget -O rpi_11_bullseye_arm64 $RPI_11_BULLSEYE_LITE_ARM64
+sudo wget -O rpi_11_bullseye_lite_arm64 $RPI_11_BULLSEYE_LITE_ARM64
 sudo tar -xf rpi_11_bullseye_lite_arm64
 sudo rm rpi_11_bullseye_lite_arm64
 fi
