@@ -7,7 +7,12 @@
 # RPI_ARM64='https://downloads.raspberrypi.org/raspios_arm64/root.tar.xz'
 
 # Raspberry Pi OS bases to be downloaded:
-RPI_12_BOOKWORM_LITE_ARM64='https://downloads.raspberrypi.com/raspios_lite_arm64/root.tar.xz'
+
+#The link below downloads the Debian GNU/Linux 11 (bullseye)
+#RPI_12_BOOKWORM_LITE_ARM64='https://downloads.raspberrypi.com/raspios_lite_arm64/root.tar.xz'
+
+#This is the latest available Linux 12 (bookworm)
+RPI_12_BOOKWORM_LITE_ARM64='https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-07-04/2024-07-04-raspios-bookworm-arm64-lite.img.xz'
 
 # Get Raspberry Pi OS lite images
 

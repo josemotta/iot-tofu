@@ -22,7 +22,6 @@ sudo systemctl enable docker
 
 # Docker compose for RPi with homeassistant
 cat << EOF | tee ~/compose.yml
-version: '3'
 services:
   homeassistant:
     container_name: homeassistant
