@@ -9,6 +9,15 @@
 
 RPI_11_BULLSEYE_LITE_ARM64='https://downloads.raspberrypi.com/raspios_lite_arm64/root.tar.xz'
 
+# Please note this code is good for RPi OS 11 (bullseye). For version 12 (bookworm) changes are needed:
+#
+# - [config.txt](https://www.raspberrypi.com/documentation/computers/config_txt.html#what-is-config-txt)
+#   Instead of the BIOS found on a conventional PC, Raspberry Pi devices use a configuration file
+#   called config.txt. The GPU reads config.txt before the Arm CPU and Linux initialise.
+#   Raspberry Pi OS 12 bookworm looks for this file in the boot partition, located at /boot/firmware/.
+#   Prior to Raspberry Pi OS 12 Bookworm, Raspberry Pi OS stored the boot partition at /boot/.
+#   Current code stores config.txt at /boot/.
+
 # Get Raspberry Pi OS lite images
 
 echo ""
