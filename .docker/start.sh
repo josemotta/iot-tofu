@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# nodemon -L
+nodemon -L
+# Is it necessary another second before restart?
+# nodemon -L --delay 2
 
 tail -f /dev/null
 
