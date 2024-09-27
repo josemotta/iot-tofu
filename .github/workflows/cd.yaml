@@ -1,3 +1,6 @@
+# The Tofu Raspberry Pi is used as self-hosted runner that deploys & manages to execute jobs from GitHub Actions.
+# https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/adding-self-hosted-runners
+
 name: CDGitops
 
 on:
