@@ -1,5 +1,5 @@
 # Check out https://hub.docker.com/_/node to select a new base image
-FROM node:22.9-bullseye-slim
+FROM node:20.10-bullseye-slim
 
 VOLUME /hostpipe
 
