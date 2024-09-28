@@ -8,7 +8,8 @@ RUN apt update && apt install -y \
     curl \
     bash
 
-RUN npm install -g @loopback/cli npm@10.8.3
+RUN npm install -g npm@10.8.3
+RUN npm install -g @loopback/cli
 RUN touch /root/.bashrc | echo "PS1='\w\$ '" >> /root/.bashrc
 
 RUN npm install -g nodemon
