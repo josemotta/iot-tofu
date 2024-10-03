@@ -42,6 +42,11 @@ export class Category extends Entity {
 
   @property({
     type: 'string',
+    required: false,
+    jsonSchema: {
+      nullable: true,
+    },
+    default: null,
   })
   description?: string;
 
