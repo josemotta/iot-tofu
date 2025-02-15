@@ -1,0 +1,3 @@
+smbus2
+flask
+VL53L1X2

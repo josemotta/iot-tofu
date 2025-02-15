@@ -1,0 +1,109 @@
+- platform: template
+  lights:
+
+    stair_led_down:
+      friendly_name: "Stair Led Down"
+      value_template: "{{ states('switch.stair_led_down') == 'on' }}"
+      color_template: "({{ states('input_number.office_led_strip_hue') | int}}, {{ states('input_number.office_led_strip_sat') | int}})"
+      turn_off:
+        service: switch.turn_off
+        target:
+          entity_id: switch.stair_led_down
+      turn_on:
+        service: switch.turn_on
+        target:
+          entity_id: switch.stair_led_down
+      set_level:
+        - service: input_number.set_value
+          data:
+            value: "{{ brightness }}"
+            entity_id: input_number.office_led_strip_brightness
+        - service: switch.turn_on
+          data_template:
+            entity_id:
+              - switch.stair_led_down
+      set_color:
+        - service: input_number.set_value
+          data:
+            value: "{{ h }}"
+            entity_id: input_number.office_led_strip_hue
+        - service: input_number.set_value
+          data:
+            value: "{{ s }}"
+            entity_id: input_number.office_led_strip_sat
+        - service: switch.turn_on
+          data_template:
+            entity_id:
+              - switch.stair_led_down
+
+    stair_led_up:
+      friendly_name: "Stair Led Up"
+      value_template: "{{ states('switch.stair_led_up') == 'on' }}"
+      color_template: "({{ states('input_number.office_led_strip_hue') | int}}, {{ states('input_number.office_led_strip_sat') | int}})"
+      turn_off:
+        service: switch.turn_off
+        target:
+          entity_id: switch.stair_led_up
+      turn_on:
+        service: switch.turn_on
+        target:
+          entity_id: switch.stair_led_up
+      set_level:
+        - service: input_number.set_value
+          data:
+            value: "{{ brightness }}"
+            entity_id: input_number.office_led_strip_brightness
+        - service: switch.turn_on
+          data_template:
+            entity_id:
+              - switch.stair_led_up
+      set_color:
+        - service: input_number.set_value
+          data:
+            value: "{{ h }}"
+            entity_id: input_number.office_led_strip_hue
+        - service: input_number.set_value
+          data:
+            value: "{{ s }}"
+            entity_id: input_number.office_led_strip_sat
+        - service: switch.turn_on
+          data_template:
+            entity_id:
+              - switch.stair_led_up
+
+    stair_led_wall:
+      friendly_name: "Stair Led Wall"
+      value_template: "{{ states('switch.stair_led_wall') == 'on' }}"
+      color_template: "({{ states('input_number.office_led_strip_hue') | int}}, {{ states('input_number.office_led_strip_sat') | int}})"
+      turn_off:
+        service: switch.turn_off
+        target:
+          entity_id: switch.stair_led_wall
+      turn_on:
+        service: switch.turn_on
+        target:
+          entity_id: switch.stair_led_wall
+      set_level:
+        - service: input_number.set_value
+          data:
+            value: "{{ brightness }}"
+            entity_id: input_number.office_led_strip_brightness
+        - service: switch.turn_on
+          data_template:
+            entity_id:
+              - switch.stair_led_wall
+      set_color:
+        - service: input_number.set_value
+          data:
+            value: "{{ h }}"
+            entity_id: input_number.office_led_strip_hue
+        - service: input_number.set_value
+          data:
+            value: "{{ s }}"
+            entity_id: input_number.office_led_strip_sat
+        - service: switch.turn_on
+          data_template:
+            entity_id:
+              - switch.stair_led_wall
+
+
