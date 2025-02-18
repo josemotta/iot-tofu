@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import VL53L1X2
+import qwiic_vl53l1x
 import time
 from datetime import datetime
 
@@ -10,7 +10,7 @@ import RPi.GPIO as GPIO
 ADDRESS_1 = 0x29
 
 # GPIO pins connected to the sensors SHUTX pins
-SHUTX_PIN_1 = 16
+SHUTX_PIN_1 = 23
 
 # Arbitrary sensor id-s, should be unique for each sensor
 sensor_id_1 = 1111
@@ -29,20 +29,25 @@ GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
 time.sleep(0.01)
 
 # Init VL53L1X sensor
-tof = VL53L1X2.VL53L1X()
-tof.open()
-tof.add_sensor(sensor_id_1, ADDRESS_1)
+tof = qwiic_vl53l1x.QwiicVL53L1X()
 
-tof.start_ranging(sensor_id_1, 1)
+# Set distance mode short (long = 2)
+tof.set_distance_mode(1)
 
-for _ in range(0,20):
-    distance_mm_1 = tof.get_distance(sensor_id_1)
-    print("Time: {}\tSensor 1: {} mm".format(datetime.utcnow().strftime("%S.%f"), distance_mm_1))
-    time.sleep(0.001)
-tof.stop_ranging(sensor_id_1)
+# tof.open()
+# tof.add_sensor(sensor_id_1, ADDRESS_1)
+# tof.start_ranging(sensor_id_1, 1)
+
+for _ in range(0, 20):
+    tof.start_ranging()
+    time.sleep(.01)
+    distance_mm = tof.get_distance()
+    print("Sensor: {} mm".format(distance_mm))
+    time.sleep(0.01)
+    tof.stop_ranging()
 
 # Clean-up
-tof.close()
+# tof.close()
 
 GPIO.output(SHUTX_PIN_1, GPIO.LOW)
 
