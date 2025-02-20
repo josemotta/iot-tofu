@@ -19,8 +19,8 @@ pip install -r requirements.txt
 echo "---- Configuration"
 cp vl53l1x.service /lib/systemd/system/vl53l1x.service
 #rm -r /srv/vl53l1x
-mkdir /srv/vl53l1x
-cp -r . /srv/vl53l1x
+#mkdir /srv/vl53l1x
+cp -u . /srv/vl53l1x
 
 echo "---- Restart"
 sudo systemctl daemon-reload
