@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 echo "---- Configuration"
 cp vl53l1x.service /lib/systemd/system/vl53l1x.service
-rm -f /srv/vl53l1x
+rm -f -r /srv/vl53l1x
 mkdir /srv/vl53l1x
 cp -r . /srv/vl53l1x
 
