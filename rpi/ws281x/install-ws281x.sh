@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 echo "---- Configuration"
 cp ws281x.service /lib/systemd/system/ws281x.service
-rm -r /srv/ws281x
+rm -f -r /srv/ws281x
 mkdir /srv/ws281x
 cp -r . /srv/ws281x
 
