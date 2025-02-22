@@ -1,5 +1,5 @@
 from flask import Flask, request
-import board
+# import board
 
 on = False
 
