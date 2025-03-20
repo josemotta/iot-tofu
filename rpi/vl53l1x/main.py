@@ -1,3 +1,5 @@
+import time
+import qwiic_vl53l1x
 from flask import Flask, request
 # import board
 
@@ -12,6 +14,30 @@ def hello():
         'name': "Back-end for VL53L1X Time-of-Flight (ToF) laser-ranging sensor.",
         'version': "0.1"
     }
+
+
+@app.route('test')
+def test():
+
+    print("VL53L1X Qwiic Test\n")
+    ToF = qwiic_vl53l1x.QwiicVL53L1X()
+    if (ToF.sensor_init() == None):		    # Begin returns 0 on a good init
+        print("Sensor online!\n")
+
+    while True:
+        try:
+            ToF.start_ranging()				# Write configuration bytes to initiate measurement
+            time.sleep(.005)
+            distance = ToF.get_distance()   # Get the result of the measurement from the sensor
+            time.sleep(.005)
+            ToF.stop_ranging()
+
+            print("Distance(mm): %s " % (distance))
+
+        except Exception as e:
+            print(e)
+
+    return stat()
 
 
 def stat():
