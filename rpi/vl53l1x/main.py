@@ -16,7 +16,7 @@ def hello():
     }
 
 
-@app.route('test')
+@app.route('/test')
 def test():
 
     print("VL53L1X Qwiic Test\n")
