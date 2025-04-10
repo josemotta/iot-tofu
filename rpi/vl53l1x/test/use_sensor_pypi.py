@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import qwiic_vl53l1x
+import qwiic
 import time
 from datetime import datetime
 
@@ -29,7 +29,7 @@ GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
 time.sleep(0.01)
 
 # Init VL53L1X sensor
-tof = qwiic_vl53l1x.QwiicVL53L1X()
+tof = qwiic.QwiicVL53L1X()
 
 # Set distance mode short (long = 2)
 tof.set_distance_mode(1)

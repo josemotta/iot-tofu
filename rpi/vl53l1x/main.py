@@ -1,5 +1,6 @@
 import time
-import qwiic_vl53l1x
+import qwiic
+# import sparkfun_qwiic_vl53l1x
 from flask import Flask, request
 # import board
 
@@ -20,7 +21,7 @@ def hello():
 def test():
 
     print("VL53L1X Qwiic Test\n")
-    ToF = qwiic_vl53l1x.QwiicVL53L1X()
+    ToF = qwiic.QwiicVL53L1X()
     if (ToF.sensor_init() == None):		    # Begin returns 0 on a good init
         print("Sensor online!\n")
 
