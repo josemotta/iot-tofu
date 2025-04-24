@@ -19,6 +19,8 @@ def hello():
 
 @app.route('/status')
 def status():
+    results = qwiic.list_devices()
+    print(results)
     return {
         'name': "Status from VL53L1X Time-of-Flight (ToF) laser-ranging sensor.",
         'version': "0.1",
