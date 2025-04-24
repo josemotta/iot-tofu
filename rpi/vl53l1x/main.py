@@ -23,7 +23,8 @@ def hello():
 
 @app.route('/status')
 def status():
-    GPIO.setwarnings(False)
+    print("Start status ...\n")
+    GPIO.setwarnings(True)
 
     # Setup GPIO for shutdown pins on
     GPIO.setmode(GPIO.BCM)
@@ -51,7 +52,7 @@ def status():
 
 @app.route('/test')
 def test():
-    GPIO.setwarnings(False)
+    GPIO.setwarnings(True)
 
     # Setup GPIO for shutdown pins on
     GPIO.setmode(GPIO.BCM)
