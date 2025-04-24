@@ -33,7 +33,7 @@ def test():
 
     print("VL53L1X Qwiic Test\n")
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
-    if (ToF.sensor_init(debug=1) == None):		    # Begin returns 0 on a good init
+    if (ToF.sensor_init() == None):		    # Begin returns 0 on a good init
         print("Sensor online!\n")
 
     while True:
