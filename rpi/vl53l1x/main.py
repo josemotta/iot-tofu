@@ -37,6 +37,11 @@ def status():
 
     results = qwiic.list_devices()
     print(results)
+
+    connectedDevices = qwiic.scan()
+    print(connectedDevices)
+
+    print("End status ...\n")
     return {
         'name': "Status from VL53L1X Time-of-Flight (ToF) laser-ranging sensor.",
         'version': "0.1",
