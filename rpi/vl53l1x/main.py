@@ -1,6 +1,7 @@
 import time
 import qwiic
 import qwiic_vl53l1x
+import RPi.GPIO as GPIO
 from flask import Flask, request
 # import board
 
