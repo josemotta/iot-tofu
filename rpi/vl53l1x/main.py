@@ -1,6 +1,6 @@
 import time
 import qwiic
-# import sparkfun_qwiic_vl53l1x
+import qwiic_vl53l1x
 from flask import Flask, request
 # import board
 
@@ -17,11 +17,20 @@ def hello():
     }
 
 
+@app.route('/status')
+def status():
+    return {
+        'name': "Status from VL53L1X Time-of-Flight (ToF) laser-ranging sensor.",
+        'version': "0.1",
+        'status': "stat"
+    }
+
+
 @app.route('/test')
 def test():
 
     print("VL53L1X Qwiic Test\n")
-    ToF = qwiic.QwiicVL53L1X()
+    ToF = qwiic_vl53l1x.QwiicVL53L1X()
     if (ToF.sensor_init() == None):		    # Begin returns 0 on a good init
         print("Sensor online!\n")
 

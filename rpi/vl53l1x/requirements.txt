@@ -1,6 +1,6 @@
 smbus2
 flask
 RPi.GPIO
-qwiic
-#sparkfun_qwiic_i2c
-#sparkfun_qwiic_vl53l1x
+sparkfun_qwiic
+sparkfun_qwiic_i2c
+sparkfun_qwiic_vl53l1x
