@@ -4,6 +4,9 @@ import qwiic_vl53l1x
 from flask import Flask, request
 # import board
 
+# GPIO-21 pin connected to the sensor SHUTX pin
+SHUTX_PIN_1 = 21
+
 on = False
 
 app = Flask(__name__)
@@ -19,6 +22,18 @@ def hello():
 
 @app.route('/status')
 def status():
+    GPIO.setwarnings(False)
+
+    # Setup GPIO for shutdown pins on
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(SHUTX_PIN_1, GPIO.OUT)
+
+    # Reset sensor
+    GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+    time.sleep(0.01)
+    GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    time.sleep(0.01)
+
     results = qwiic.list_devices()
     print(results)
     return {
