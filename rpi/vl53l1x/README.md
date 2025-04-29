@@ -6,6 +6,7 @@ For more details, please check:
 
 - This component uses Qwiic sparkfun-qwiic-vl53l1x at https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
 - VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
+- ST docs: https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html#documentation
 - Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
 
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
