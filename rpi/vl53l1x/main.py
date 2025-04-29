@@ -43,7 +43,7 @@ def status():
     # ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
     # mode = ToF.get_distance_mode()
 
-    print("devices", results, "scan", scan, "mode", mode)
+    print("devices", results, "scan", scan)
     print("End status ...\n")
 
     return {
