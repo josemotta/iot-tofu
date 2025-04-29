@@ -62,8 +62,8 @@ def test():
     # Reset sensor
     GPIO.output(SHUTX_PIN_1, GPIO.LOW)
     time.sleep(0.01)
-    # GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-    # time.sleep(0.01)
+    GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    time.sleep(0.01)
 
     print("VL53L1X Qwiic Test\n")
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
