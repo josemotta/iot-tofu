@@ -15,6 +15,7 @@ For more details, please check:
 - SparkFun: https://www.sparkfun.com/sparkfun-distance-sensor-breakout-4-meter-vl53l1x-qwiic.html
 - SparkFun Schematics: https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf
 - SparkFun Qwiic Hat: https://cdn.sparkfun.com/assets/b/6/8/c/8/Qwiic_HAT_for_Raspberry_Pi.pdf
+- SparkFun Github: https://github.com/sparkfun/qwiic_vl53l1x_py
 - Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
 
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
