@@ -1,4 +1,4 @@
-## Back-end for VL53L1X Time-of-Flight (ToF) laser-ranging sensor.
+## Backend for VL53L1X Time-of-Flight (ToF) laser-ranging sensor.
 
 The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor on the market with accurate ranging up to 4 m and fast ranging frequency up to 50 Hz.
 
