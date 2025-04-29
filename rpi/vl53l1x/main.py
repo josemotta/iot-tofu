@@ -44,11 +44,10 @@ def status():
 
     print("End status ...\n")
     return {
-        'name': "Status from VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
-        'version': "0.1",
-        'list_devices': results,
+        'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
+        'devices': results,
         'scan': scan,
-        'status': "on"
+        'version': "0.1"
     }
 
 
