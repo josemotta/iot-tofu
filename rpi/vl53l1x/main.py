@@ -73,14 +73,14 @@ def test():
     while True:
         try:
             GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-            time.sleep(0.01)
+            time.sleep(0.1)
             ToF.start_ranging()				# Write configuration bytes to initiate measurement
-            time.sleep(.005)
+            time.sleep(.05)
             distance = ToF.get_distance()   # Get the result of the measurement from the sensor
-            time.sleep(.005)
+            time.sleep(.05)
             ToF.stop_ranging()
             GPIO.output(SHUTX_PIN_1, GPIO.LOW)
-            time.sleep(0.01)
+            time.sleep(0.1)
 
             print("Distance(mm): %s " % (distance))
 
