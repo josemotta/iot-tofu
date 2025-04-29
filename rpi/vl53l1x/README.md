@@ -6,6 +6,7 @@ For more details, please check:
 
 - This component uses Qwiic sparkfun-qwiic-vl53l1x at https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
 - VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
+- PyPi: https://pypi.org/project/sparkfun-qwiic-vl53l1x/
 - ST docs: https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html#documentation
 - ST manual: https://www.st.com/resource/en/user_manual/um2356-vl53l1x-api-user-manual-stmicroelectronics.pdf
 - ST app: https://www.st.com/resource/en/application_presentation/ultra-low-power-tof-sensors.pdf
