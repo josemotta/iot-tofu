@@ -6,6 +6,7 @@ For more details, please check:
 
 - Qwiic_VL53L1X_Py API: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
 - API Reference: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/apiref.html
+- SparkFun API docs: https://docs.sparkfun.com/qwiic_vl53l1x_py/index.html
 - VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
 - PyPi: https://pypi.org/project/sparkfun-qwiic-vl53l1x/
 - ST docs: https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html#documentation
