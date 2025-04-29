@@ -4,9 +4,9 @@ The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, en
 
 For more details, please check:
 
-- https://github.com/josemotta/vl53l1x-python.
-- This revision uses the latest Qwiic sparkfun-qwiic-vl53l1x at https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
-- VL53L1X Datasheet at https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
+- This component uses Qwiic sparkfun-qwiic-vl53l1x at https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
+- VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
+- Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
 
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
 
