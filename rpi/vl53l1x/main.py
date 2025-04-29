@@ -11,8 +11,6 @@ VERSION = "0.1"
 # GPIO-21 pin connected to the sensor SHUTX pin
 SHUTX_PIN_1 = 21
 
-on = False
-
 app = Flask(__name__)
 
 
