@@ -2,9 +2,13 @@
 
 The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor on the market with accurate ranging up to 4 m and fast ranging frequency up to 50 Hz.
 
-For more details, please check https://github.com/josemotta/vl53l1x-python. This revision uses the latest Qwiic sparkfun-qwiic-vl53l1x at https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
+For more details, please check:
 
-Please note this is expected _to be installed at RPIs_, not at Tofu boot server.
+- https://github.com/josemotta/vl53l1x-python.
+- This revision uses the latest Qwiic sparkfun-qwiic-vl53l1x at https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
+- VL53L1X Datasheet at https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
+
+Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
 
 ### Install backend
 
