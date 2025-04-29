@@ -25,6 +25,10 @@ The API parameters are detailed below.
 
 ```
 curl http://127.0.0.1:5000/
+{
+     "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
+     "version": "0.1"
+}
 ```
 
 #### Show Qwiic VL53L1X status
@@ -35,7 +39,6 @@ Call Qwiic methods list_devices() and scan(), returning their results.
 
 ```
 curl http://127.0.0.1:5000/status
-
 {
      "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
      "devices": [[41, "Qwiic 4m Distance Sensor (ToF)", "QwiicVL53L1X"]],
@@ -52,7 +55,6 @@ Takes 10 measures within 1 second and return the mean value.
 
 ```
 curl http://127.0.0.1:5000/status
-
 {
      "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
      "distance": 70.1,

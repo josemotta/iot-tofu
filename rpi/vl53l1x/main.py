@@ -19,7 +19,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     return {
-        'name': "Back-end for VL53L1X Time-of-Flight (ToF) laser-ranging sensor.",
+        'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
         'version': VERSION
     }
 
