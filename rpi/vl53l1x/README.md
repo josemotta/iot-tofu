@@ -6,7 +6,7 @@ For more details, please check https://github.com/josemotta/vl53l1x-python. This
 
 Please note this is expected _to be installed at RPIs_, not at Tofu boot server.
 
-### Install
+### Install backend
 
 ```
 git clone https://github.com/josemotta/iot-tofu
@@ -15,9 +15,16 @@ sudo ./install-vl53l1x.sh
 
 ```
 
+### Reinstall and restart backend
+
+```
+sudo ./restart-vl53l1x.sh
+
+```
+
 ### Using the API
 
-The API parameters are detailed below.
+The API calls & responses are detailed below.
 
 #### Show version
 
