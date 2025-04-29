@@ -38,15 +38,16 @@ def status():
     time.sleep(0.01)
 
     results = qwiic.list_devices()
-    print(results)
-
     scan = qwiic.scan()
-    print(scan)
+    mode = qwiic.get_distance_mode()
 
+    print("devices", results, "scan", scan, "mode", mode)
     print("End status ...\n")
+
     return {
         'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
         'devices': results,
+        'mode': mode,
         'scan': scan,
         'version': VERSION
     }

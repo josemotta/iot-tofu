@@ -63,6 +63,7 @@ curl http://127.0.0.1:5000/status
 {
      "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
      "devices": [[41, "Qwiic 4m Distance Sensor (ToF)", "QwiicVL53L1X"]],
+     "mode": 2,
      "scan": [41],
      "version": "0.1"
 }
