@@ -78,8 +78,8 @@ def test():
     i = 0
     distance = 0
 
-    GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-    time.sleep(0.1)
+    # GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    # time.sleep(0.1)
 
     while i < 10:
         try:
