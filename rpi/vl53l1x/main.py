@@ -53,46 +53,57 @@ def status():
 
 @app.route('/test')
 def test():
-    GPIO.setwarnings(True)
+    print("VL53L1X Qwiic Test\n")
 
-    # Setup GPIO for shutdown pins on
+    # Set GPIO for shutdown pin
+    GPIO.setwarnings(True)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(SHUTX_PIN_1, GPIO.OUT)
 
-    # Reset sensor
+    # Reset sensor and enable it
     GPIO.output(SHUTX_PIN_1, GPIO.LOW)
-    time.sleep(0.01)
+    time.sleep(0.1)
     GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-    time.sleep(0.01)
+    time.sleep(0.1)
 
-    print("VL53L1X Qwiic Test\n")
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
-    if (ToF.sensor_init() == None):		    # Begin returns 0 on a good init
+
+    if (ToF.sensor_init() == None):  # returns 0 on a good init
         print("Sensor online!\n")
 
-    while True:
-        try:
-            GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-            time.sleep(0.1)
-            ToF.start_ranging()				# Write configuration bytes to initiate measurement
-            time.sleep(.05)
-            distance = ToF.get_distance()   # Get the result of the measurement from the sensor
-            time.sleep(.05)
-            ToF.stop_ranging()
-            GPIO.output(SHUTX_PIN_1, GPIO.LOW)
-            time.sleep(0.1)
+    # Test takes 10 measures and return the mean value
+    i = 0
+    distance = 0
 
+    GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    time.sleep(0.1)
+
+    while i < 10:
+        try:
+            i += 1
+            # Write configuration bytes to initiate measurement
+            ToF.start_ranging()
+            time.sleep(.05)
+            # Get the result of the measurement from the sensor
+            distance += ToF.get_distance()/10
+            time.sleep(.05)
+            # Write configuration bytes to finish measurement
+            ToF.stop_ranging()
+            time.sleep(.05)
             print("Distance(mm): %s " % (distance))
 
         except Exception as e:
             print(e)
 
-    return stat()
+    # Disable sensor
+    GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+    time.sleep(0.1)
 
-
-def stat():
     return {
-        'on': on
+        'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
+        'distance': distance,
+        'scan': scan,
+        'version': "0.1"
     }
 
 
