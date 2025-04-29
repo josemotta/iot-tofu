@@ -54,7 +54,7 @@ Takes 10 measures within 1 second and return the mean value.
 - /test
 
 ```
-curl http://127.0.0.1:5000/status
+curl http://127.0.0.1:5000/test
 {
      "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
      "distance": 70.1,
