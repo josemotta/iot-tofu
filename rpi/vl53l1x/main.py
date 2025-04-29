@@ -5,6 +5,9 @@ import RPi.GPIO as GPIO
 from flask import Flask, request
 # import board
 
+# Back-end for VL53L1X Time-of-Flight (ToF) laser-ranging sensor
+VERSION = "0.1"
+
 # GPIO-21 pin connected to the sensor SHUTX pin
 SHUTX_PIN_1 = 21
 
@@ -17,7 +20,7 @@ app = Flask(__name__)
 def hello():
     return {
         'name': "Back-end for VL53L1X Time-of-Flight (ToF) laser-ranging sensor.",
-        'version': "0.1"
+        'version': VERSION
     }
 
 
@@ -47,7 +50,7 @@ def status():
         'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
         'devices': results,
         'scan': scan,
-        'version': "0.1"
+        'version': VERSION
     }
 
 
@@ -102,8 +105,7 @@ def test():
     return {
         'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
         'distance': distance,
-        'scan': scan,
-        'version': "0.1"
+        'version': VERSION
     }
 
 
