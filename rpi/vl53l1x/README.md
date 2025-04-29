@@ -10,6 +10,7 @@ For more details, please check:
 - ST docs: https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html#documentation
 - ST manual: https://www.st.com/resource/en/user_manual/um2356-vl53l1x-api-user-manual-stmicroelectronics.pdf
 - ST app: https://www.st.com/resource/en/application_presentation/ultra-low-power-tof-sensors.pdf
+- SparkFun: https://www.sparkfun.com/sparkfun-distance-sensor-breakout-4-meter-vl53l1x-qwiic.html
 - Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
 
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
