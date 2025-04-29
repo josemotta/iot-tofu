@@ -62,8 +62,8 @@ def test():
     # Reset sensor
     GPIO.output(SHUTX_PIN_1, GPIO.LOW)
     time.sleep(0.01)
-    GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-    time.sleep(0.01)
+    # GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    # time.sleep(0.01)
 
     print("VL53L1X Qwiic Test\n")
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
@@ -72,11 +72,15 @@ def test():
 
     while True:
         try:
+            GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+            time.sleep(0.01)
             ToF.start_ranging()				# Write configuration bytes to initiate measurement
             time.sleep(.005)
             distance = ToF.get_distance()   # Get the result of the measurement from the sensor
             time.sleep(.005)
             ToF.stop_ranging()
+            GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+            time.sleep(0.01)
 
             print("Distance(mm): %s " % (distance))
 
