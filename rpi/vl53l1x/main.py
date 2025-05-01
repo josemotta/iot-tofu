@@ -78,9 +78,9 @@ def test():
         print("Waiting for sensor ...")
         w = 0
         while not (ToF.sensor_init() == None):
-            w += 1
+            w += 10
             time.sleep(.01)  # wait 10 ms
-        print(" ... online after %s ms\n" % (w * 10))
+        print(" ... online after %s ms\n" % w)
 
     # Test takes 10 measures and return the mean value
     i = 0
