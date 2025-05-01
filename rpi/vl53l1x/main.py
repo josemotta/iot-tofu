@@ -66,11 +66,12 @@ def test():
 
     # Reset sensor and enable it
     GPIO.output(SHUTX_PIN_1, GPIO.LOW)
-    time.sleep(0.1)
+    time.sleep(0.1)  # wait 100 ms
     GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-    time.sleep(0.1)
+    time.sleep(0.1)  # wait 100 ms
 
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
+    time.sleep(0.01)  # wait 10 ms
 
     if (ToF.sensor_init() == None):  # returns 0 on a good init
         print("Sensor online!\n")
@@ -80,7 +81,7 @@ def test():
         while not (ToF.sensor_init() == None):
             w += 1
             time.sleep(.01)  # wait 10 ms
-        print(" ... online after %s ms " % (w * 10))
+        print(" ... online after %s ms\n" % (w * 10))
 
     # Test takes 10 measures and return the mean value
     i = 0
