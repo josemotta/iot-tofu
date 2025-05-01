@@ -71,7 +71,6 @@ def test():
     time.sleep(0.1)  # wait 100 ms
 
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
-    time.sleep(0.05)  # wait 50 ms
 
     if (ToF.sensor_init() == None):  # returns 0 on a good init
         print("Sensor online!\n")
