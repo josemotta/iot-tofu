@@ -82,3 +82,11 @@ curl http://127.0.0.1:5000/test
      "version": "0.1"
 }
 ```
+
+### Measure every second
+
+Continuous testing.
+
+```
+watch -x -n 1 curl http://127.0.0.1:5000/test
+```
