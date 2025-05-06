@@ -26,3 +26,6 @@ rest:
     - name: 'chip'
       value_template: '{{ value_json['chip'] }}'
       device_class: specs
+    - name: 'version'
+      value_template: '{{ value_json['version'] }}'
+      device_class: specs
