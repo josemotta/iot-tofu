@@ -29,7 +29,9 @@ sudo ./install-vl53l1x.sh
 
 ```
 
-Please check the ha folder for the RPI Homeassistant configuration for a 'distance sensor'.
+### Homeassistant
+
+Please check the ha folder for an example of the Homeassistant configuration for a 'distance sensor'.
 
 ### Using the API
 
