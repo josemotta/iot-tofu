@@ -20,7 +20,7 @@ For more details, please check:
 
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
 
-### Install backend
+### Install backend at RPI
 
 ```
 git clone https://github.com/josemotta/iot-tofu
@@ -29,12 +29,7 @@ sudo ./install-vl53l1x.sh
 
 ```
 
-### Reinstall and restart backend
-
-```
-sudo ./restart-vl53l1x.sh
-
-```
+Please check the ha folder for the RPI Homeassistant configuration for a 'distance sensor'.
 
 ### Using the API
 
@@ -89,4 +84,11 @@ Continuous testing.
 
 ```
 watch -x -n 1 curl http://127.0.0.1:5001/test
+```
+
+### Reinstall and restart backend
+
+```
+sudo ./restart-vl53l1x.sh
+
 ```
