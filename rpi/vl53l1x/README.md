@@ -4,10 +4,10 @@ The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, en
 
 For more details, please check:
 
+- VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
 - Qwiic_VL53L1X_Py API: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
 - API Reference: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/apiref.html
 - SparkFun API docs: https://docs.sparkfun.com/qwiic_vl53l1x_py/index.html
-- VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
 - PyPi: https://pypi.org/project/sparkfun-qwiic-vl53l1x/
 - ST docs: https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html#documentation
 - ST manual: https://www.st.com/resource/en/user_manual/um2356-vl53l1x-api-user-manual-stmicroelectronics.pdf
