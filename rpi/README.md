@@ -2,7 +2,7 @@
 
 This section considers an existing network conected through the cloud, composed of 'regions'. Each 'region' has a local LAN that includes a boot server handling up dozens RPis. Each RPi may have sensors & actuators for an IoT (Internet of Things) application.
 
-### An IoT Region with a Boot Server for several Rpis
+#### An IoT Region with a Boot Server for several Rpis
 
 ![Alt text](region.png)
 
