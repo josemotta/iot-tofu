@@ -4,7 +4,7 @@ This section considers an existing network conected through the cloud, composed 
 
 #### IoT Region with Boot Server for Rpis
 
-![IoT Region](region.png)
+![Alt text](region.png)
 
 The code in this folder is expected to be executed by the boot server and RPis. The IoT project expects to run docker containers in all them. The RPis 3 & 4 models do not depend on their unreliable SD disks for system disk. Instead, the SSD disk from the dedicated boot server will be used remotely in the regional LAN.
 
