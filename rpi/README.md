@@ -12,7 +12,7 @@ This folder provides the IoT OS support for the API and the corresponding boot b
 
 ## Operating instructions
 
-The only requirement is that the boot server should initiate with the latest RPI OS installed. The IoT Boot API & Services are installed just once at the boot server. After the initial setup, it is posible to start adding & removing RPis to the local LAN, based on their serial numbers. This workflow is shown below:
+The only requirement is that the boot server should initiate with the latest RPI OS installed. The IoT Boot API & Services are installed just once at the boot server. After the initial setup, it is then possible to start adding & removing RPis to the local LAN, based on their serial numbers. This workflow is shown below:
 
 ```
 # clone the repo
