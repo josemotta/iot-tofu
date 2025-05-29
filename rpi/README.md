@@ -1,4 +1,4 @@
-# Iot OS
+# IoT OS
 
 This section considers an existing network conected through the cloud, composed of 'regions'. Each 'region' has a local LAN powered by PoE (Power over Ethernet) that connects the boot server and several RPis. Each RPi may have sensors & actuators for an IoT (Internet of Things) application.
 
