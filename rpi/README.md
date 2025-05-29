@@ -10,9 +10,9 @@ The code in this folder is expected to be executed by the boot server and RPis. 
 
 This folder provides the IoT OS support for the API and the corresponding boot backend. The scripts are based on the remote boot architecture described on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools). Some scripts are supposed to be activated directly by the API primitives. Others are just guidelines for the API code. During the development, the scripts were tested successfully using command lines.
 
-## Scripts
+## Operating instructions
 
-The boot server initiates with the latest RPI OS installed. The services are installed just once at the boot server. Then, it is possible to do an initial setup in order to start adding RPis based on their serial numbers. This workflow is shown below:
+The only requirement is that the boot server should initiate with the latest RPI OS installed. The IoT Boot API & Services are installed just once at the boot server. After the initial setup, it is posible to start adding & removing RPis to the local LAN, based on their serial numbers. This workflow is shown below:
 
 ```
 # clone the repo
