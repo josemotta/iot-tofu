@@ -21,10 +21,10 @@ The architecture, based on [raspberrypi.com](https://www.raspberrypi.com/documen
 - Tofu is the boot server for all RPis in the regional LAN.
 - Each RPi has sensors & actuators for an Internet of Things application.
 - Each region connects to the main network & then to the cloud.
-- Region
+- Local LAN for each Region
   - router: dedicated LAN for Tofu & RPis (192.168.10.1 for example)
   - dns: nameserver 127.0.0.1 to force using dnsmasq dns
-- Main
+- Main LAN connected to the Cloud
   - router: connected to Internet (gateway 192.168.1.254 for example)
   - dns: 192.168.1.254 to be set at dnsmasq server
 
