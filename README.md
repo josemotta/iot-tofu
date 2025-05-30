@@ -44,7 +44,7 @@ Note: The current version did not complete the backend yet, since it was waiting
 
 ## IoT OS
 
-The code in the 'rpi' folder is expected to be executed by the boot server and RPis. It provides the IoT OS support for the API and the corresponding boot backend. The scripts are based on the remote boot architecture described on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools).
+The code in the 'rpi' folder is expected to be executed by the boot server and RPis. It provides the IoT OS support for the API and the corresponding boot backend, based on the remote boot architecture described on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools).
 
 ### Operating instructions
 
