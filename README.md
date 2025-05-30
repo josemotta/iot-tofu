@@ -9,6 +9,8 @@ This is an IoT development platform using:
 
 ![tofu-board](https://github.com/josemotta/iot-tofu/assets/86032/cc103d69-08f9-42e8-bbb8-e5f05c1d34d2)
 
+## IoT Distributed Architecture
+
 The architecture, based on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools), considers a distributed network connected through the cloud, composed of 'regions'. Each 'region' has a local LAN powered by PoE (Power over Ethernet) that connects the boot server and several RPis. Each RPi may have sensors & actuators for an IoT (Internet of Things) application.
 
 #### IoT Region with Boot Server for Rpis
