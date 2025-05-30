@@ -7,7 +7,7 @@ This is an IoT development platform using:
 - an IoT OS support for the API and the corresponding boot backend, and
 - several frontends based on [HomeAssistant](https://www.home-assistant.io/) framework as an example.
 
-The RPis should not depend on their unreliable SD disks for system disk. Instead, the SSD disk from the dedicated boot server will be used remotely in a local LAN.
+The RPis should not depend on their unreliable SD disks for system disk. Instead, the SSD disk from the dedicated boot server will be used remotely in a local LAN for all RPis.
 
 ![tofu-board](https://github.com/josemotta/iot-tofu/assets/86032/cc103d69-08f9-42e8-bbb8-e5f05c1d34d2)
 
