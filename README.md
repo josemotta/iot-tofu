@@ -32,7 +32,7 @@ The architecture, based on [raspberrypi.com](https://www.raspberrypi.com/documen
 
 ## Boot-Back
 
-This is the backend. It may run on x86-64 machines for development but the final app runs on the Tofu Raspberry Pi board.
+This is the backend. It may run on x86-64 machines for development but the final app runs on the Tofu Raspberry Pi.
 
 ### LoopBack 4
 
