@@ -1,7 +1,3 @@
-# VL53L1X Time Of Flight (ToF) sensor
-# Distance up to 4 m
-# https://github.com/sparkfun/Qwiic_Distance_VL53L1X
-
 import time
 import qwiic
 import qwiic_vl53l1x

@@ -1,0 +1,6 @@
+smbus2
+flask
+RPi.GPIO
+sparkfun_qwiic
+sparkfun_qwiic_i2c
+htu21df

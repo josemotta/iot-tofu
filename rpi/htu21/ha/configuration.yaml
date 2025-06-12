@@ -1,0 +1,31 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# Unflashed SONOFF devices
+#sonoff:
+#  username: xuser
+#  password: xpass
+#  reload: always
+
+rest:
+  resource: 'http://127.0.0.1:5001/test'
+  scan_interval: 2
+  sensor:
+    - name: 'distance'
+      value_template: '{{ value_json['distance'] | round(1) }}'
+      device_class: distance
+      unit_of_measurement: 'mm'
+    - name: 'chip'
+      value_template: '{{ value_json['chip'] }}'
+      device_class: specs
+    - name: 'version'
+      value_template: '{{ value_json['version'] }}'
+      device_class: specs
