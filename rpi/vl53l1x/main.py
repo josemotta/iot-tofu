@@ -13,7 +13,13 @@ from flask import Flask, request
 VERSION = "0.1"
 
 # GPIO-21 pin connected to the sensor SHUTX pin
-SHUTX_PIN_1 = 21
+# SHUTX_PIN_1 = 21
+#
+# A T T E N T I O N !   Please note that SHUTX connection to RPI bus was removed from project.
+# Tests demonstrated that it is not necessary to reset sensor before each measure.
+# The VL53L1X qwiic provides a fixed 2K2 pull-up resistor for XSHUT, keeping it high all times.
+# Then, GPIO-21 may be released from reset function and can be used for other purposes.
+# The code related to SHUTX below is being commented for this reason.
 
 app = Flask(__name__)
 
@@ -32,14 +38,14 @@ def status():
     GPIO.setwarnings(True)
 
     # Setup GPIO for shutdown pins on
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(SHUTX_PIN_1, GPIO.OUT)
+    # GPIO.setmode(GPIO.BCM)
+    # GPIO.setup(SHUTX_PIN_1, GPIO.OUT)
 
     # Reset sensor
-    GPIO.output(SHUTX_PIN_1, GPIO.LOW)
-    time.sleep(0.01)
-    GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-    time.sleep(0.01)
+    # GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+    # time.sleep(0.01)
+    # GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    # time.sleep(0.01)
 
     results = qwiic.list_devices()
     scan = qwiic.scan()
@@ -64,15 +70,15 @@ def test():
     print("VL53L1X Qwiic Test\n")
 
     # Set GPIO for shutdown pin
-    GPIO.setwarnings(True)
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(SHUTX_PIN_1, GPIO.OUT)
+    # GPIO.setwarnings(True)
+    # GPIO.setmode(GPIO.BCM)
+    # GPIO.setup(SHUTX_PIN_1, GPIO.OUT)
 
     # Reset sensor and enable it
-    GPIO.output(SHUTX_PIN_1, GPIO.LOW)
-    time.sleep(0.1)  # wait 100 ms
-    GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
-    time.sleep(0.1)  # wait 100 ms
+    # GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+    # time.sleep(0.1)  # wait 100 ms
+    # GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    # time.sleep(0.1)  # wait 100 ms
 
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
 
@@ -86,7 +92,7 @@ def test():
             time.sleep(.01)  # wait 10 ms
         print(" ... online after %d ms\n" % w)
 
-    # Test takes 10 measures and return the mean value
+    # Take 10 measures in ~600 ms & return the mean value
     i = 0
     distance = 0
 
@@ -98,21 +104,21 @@ def test():
             i += 1
             # Write configuration bytes to initiate measurement
             ToF.start_ranging()
-            time.sleep(.05)
+            time.sleep(.02)
             # Get the result of the measurement from the sensor
             distance += ToF.get_distance()/10
-            time.sleep(.05)
+            time.sleep(.02)
             # Write configuration bytes to finish measurement
             ToF.stop_ranging()
-            time.sleep(.05)
+            time.sleep(.02)
             print("Distance(mm): %s " % (distance))
 
         except Exception as e:
             print(e)
 
     # Disable sensor
-    GPIO.output(SHUTX_PIN_1, GPIO.LOW)
-    time.sleep(0.1)
+    # GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+    # time.sleep(0.1)
 
     return {
         'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
