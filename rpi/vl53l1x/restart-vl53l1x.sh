@@ -10,8 +10,8 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
-echo "---- Requirements"
-pip install -r requirements.txt
+#echo "---- Requirements"
+#pip install -r requirements.txt
 
 echo "---- Configuration"
 rm -f /lib/systemd/system/vl53l1x.service
