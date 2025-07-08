@@ -17,7 +17,7 @@ VERSION = "0.1"
 #
 # A T T E N T I O N !   Please note that SHUTX connection to RPI bus was removed from project.
 # Tests demonstrated that it is not necessary to reset sensor before each measure.
-# The [VL53L1X qwiic schematic](https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf) shows a fixed 2K2 pull-up resistor for XSHUT, keeping it high all times.
+# The VL53L1X qwiic schematic shows a fixed 2K2 pull-up resistor for XSHUT, keeping it high all times.
 # Then, original GPIO-21 may be released from on/off function and can be used for other purposes.
 # The code related to SHUTX below is being commented for this reason.
 # More details: https://community.st.com/t5/imaging-sensors/vl53l1x-xshut-pin/td-p/101168
