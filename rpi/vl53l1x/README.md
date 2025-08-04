@@ -7,7 +7,6 @@ Sensor VL53L0/1XV2:
 ![Circuit](https://ae01.alicdn.com/kf/HTB1aBBpdL2H8KJjy1zkq6xr7pXae.jpg)
 
 - Spec: https://cdn.awsli.com.br/945/945993/arquivos/vl53l0x.pdf
-- Projeto: https://www.usinainfo.com.br/blog/projeto-com-sensor-de-distancia-vl53l0x-e-arduino-para-alta-precisao/
 
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
 
@@ -108,3 +107,4 @@ Then, original GPIO-21 was released and can be used for other purposes. The code
 - SparkFun Qwiic Hat: https://cdn.sparkfun.com/assets/b/6/8/c/8/Qwiic_HAT_for_Raspberry_Pi.pdf
 - SparkFun Github: https://github.com/sparkfun/qwiic_vl53l1x_py
 - Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
+- Projeto: https://www.usinainfo.com.br/blog/projeto-com-sensor-de-distancia-vl53l0x-e-arduino-para-alta-precisao/
