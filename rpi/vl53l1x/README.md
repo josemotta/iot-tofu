@@ -19,6 +19,14 @@ For more details, please check:
 - SparkFun Github: https://github.com/sparkfun/qwiic_vl53l1x_py
 - Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
 
+Sensor VL53L0/1XV2:
+
+![Circuit](https://ae01.alicdn.com/kf/HTB1aBBpdL2H8KJjy1zkq6xr7pXae.jpg)
+
+- Spec: https://cdn.awsli.com.br/945/945993/arquivos/vl53l0x.pdf
+- VL53L0/1XV2: https://www.usinainfo.com.br/index.php?controller=attachment&id_attachment=476
+- Projeto: https://www.usinainfo.com.br/blog/projeto-com-sensor-de-distancia-vl53l0x-e-arduino-para-alta-precisao/
+
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
 
 ### Install backend at RPI
