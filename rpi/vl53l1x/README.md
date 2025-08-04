@@ -21,6 +21,8 @@ For more details, please check:
 
 Sensor VL53L0/1XV2:
 
+![Chip](https://www.usinainfo.com.br/1033644-thickbox_default/sensor-de-distancia-a-laser-vl53l0x-de-alta-precisao-4-a-200cm.jpg)
+
 ![Circuit](https://ae01.alicdn.com/kf/HTB1aBBpdL2H8KJjy1zkq6xr7pXae.jpg)
 
 - Spec: https://cdn.awsli.com.br/945/945993/arquivos/vl53l0x.pdf
