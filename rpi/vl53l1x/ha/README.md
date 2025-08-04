@@ -1,6 +1,6 @@
 # Homeassistant
 
-An example of the Homeassistant configuration for a 'distance sensor'.
+Check the [configuration](configuration.yaml) for an example of Homeassistant 'distance sensor'.
 
 ## VL53L1X Time-of-Flight (ToF) laser-ranging sensor.
 
