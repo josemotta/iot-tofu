@@ -6,7 +6,9 @@ Sensor VL53L0/1XV2:
 
 ![Circuit](https://ae01.alicdn.com/kf/HTB1aBBpdL2H8KJjy1zkq6xr7pXae.jpg)
 
+- Schematic: https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf
 - Spec: https://cdn.awsli.com.br/945/945993/arquivos/vl53l0x.pdf
+- Order: https://pt.aliexpress.com/item/1005005643165013.html?spm=a2g0o.order_detail.order_detail_item.3.1da64c7fk9Ju0o
 
 Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
 
