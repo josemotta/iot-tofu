@@ -89,7 +89,7 @@ sudo ./restart-vl53l1x.sh
 
 ## XSHUT (shutdown pin)
 
-Please note that SHUTX connection to RPI bus was modified from project. Tests demonstrated that it is not necessary to reset sensor before each measure. The [VL53L1X qwiic schematic](https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf) shows a fixed 2K2 pull-up resistor for XSHUT, keeping it high all times.
+Please note that SHUTX connection to RPI bus was modified from project. Tests demonstrated that it is not necessary to reset sensor before each measure. The [VL53L1X qwiic schematic](https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf) shows a fixed 10K pull-up resistor R2 for XSHUT, keeping it high all times.
 
 Then, original GPIO-21 was released and can be used for other purposes. The code related to SHUTX is commented for this reason.
 
