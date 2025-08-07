@@ -10,7 +10,7 @@ The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, en
 
 ### Install backend at RPI
 
-Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
+Please note this backend is expected to be **installed at RPIs** with proper sensor, not at Tofu boot server.
 
 ```
 git clone https://github.com/josemotta/iot-tofu
