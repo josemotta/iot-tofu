@@ -57,7 +57,7 @@ curl http://127.0.0.1:5001/status
 
 #### Test Qwiic VL53L1X
 
-Takes 10 measures quickly and return the mean value.
+Take 10 measures sequentially in 60 ms intervals and return the mean value.
 
 - /test
 
