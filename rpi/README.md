@@ -9,7 +9,7 @@ This section considers an existing network conected to the cloud, composed of 'r
 - Each 'region' has a local LAN powered by Power over Ethernet (PoE) that connects the boot server and several RPis at distances up to 100 m, according to PoE standard.
 - Each RPi is capable of controlling sensors & actuators for an IoT (Internet of Things) application located within a 5 m range using the I2C (Inter-Integrated Circuit) protocol.
 
-The code in this folder is expected to be executed by the boot server and RPis. The IoT project expects to run docker containers in all them. The RPis 3 & 4 models do not depend on their unreliable SD disks for system disk. Instead, the SSD disk from the dedicated boot server will be used remotely in the regional LAN.
+The code in this folder is expected to be executed by the boot server and RPis. The IoT project expects to run Docker containers in all them. The RPis 3 & 4 models do not depend on their unreliable SD disks for system disk. Instead, the SSD disk from the dedicated boot server will be used remotely in the regional LAN.
 
 This folder provides the IoT OS support for the API and the corresponding boot backend. The scripts are based on the remote boot architecture described on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools). Some scripts are supposed to be activated directly by the API primitives. Others are just guidelines for the API code. During the development, the scripts were tested successfully using command lines.
 
