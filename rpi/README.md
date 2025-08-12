@@ -1,6 +1,6 @@
 # IoT OS
 
-This section considers an existing network conected to the cloud, composed of 'regions', as shown at picture below.
+This section considers an existing network conected to the cloud, composed of 'regions', as shown below.
 
 ![Region](region.png)
 
