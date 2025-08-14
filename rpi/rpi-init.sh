@@ -4,6 +4,9 @@
 # Docker install below starts with an update.
 sudo apt update
 sudo apt full-upgrade
+
+# Linux Kernel 6.12 expected to be the next upstream LTS (Long Term Support)
+# https://forums.raspberrypi.com/viewtopic.php?t=379745
 sudo rpi-update
 # sudo rpi-eeprom-update -d -a
 
