@@ -16,7 +16,7 @@
 #    restart: unless-stopped
 #    privileged: true
 #    network_mode: host
-#EOF
+#
 
 if [ "$EUID" -ne 0 ]; then
     echo "Please run as root"
