@@ -23,9 +23,9 @@ mkdir /srv/vl53l1x
 cp -r . /srv/vl53l1x
 
 echo "---- Restart"
-sudo systemctl daemon-reload
-sudo systemctl enable vl53l1x.service
-sudo systemctl restart vl53l1x.service
+systemctl daemon-reload
+systemctl enable vl53l1x.service
+systemctl restart vl53l1x.service
 
 echo "---- Status"
-sudo systemctl status vl53l1x.service
+systemctl status vl53l1x.service
