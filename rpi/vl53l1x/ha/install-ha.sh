@@ -23,7 +23,14 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
-cp --remove-destination configuration.yaml ~/.docker/ha/config
+echo "---- Requirements"
+if [ ! -d /home/$USER/.docker/ha/config/configuration.yaml ]; then
+    echo "Missing original Homeassistant configuration file"
+    exit
+fi
+
+echo "---- Configuration"
+cp --remove-destination configuration.yaml /home/$USER/.docker/ha/config
 echo "Added rest configuration for vl53l1x distance sensor"
 
 echo "---- Status"
