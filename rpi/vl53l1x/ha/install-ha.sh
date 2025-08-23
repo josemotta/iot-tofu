@@ -24,8 +24,8 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "---- Requirements"
-if [ ! -d ~/.docker/ha/config ]; then
-    echo "Missing ~/.docker/ha/config"
+if [ ! -d ~/.docker/ha/config/configuration.yaml ]; then
+    echo "Missing ~/.docker/ha/config/configuration.yaml"
     exit
 fi
 
