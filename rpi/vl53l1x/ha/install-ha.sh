@@ -25,12 +25,13 @@ fi
 
 echo "---- Requirements"
 if [ ! -d ~/.docker/ha/config ]; then
-echo "---- Creating Homeassistant directory"
-mkdir -p ~/.docker/ha/config
+    echo "Missing ~/.docker/ha/config"
+    exit
 fi
 
 echo "---- Configuration"
-cp configuration.yaml ~/.docker/ha/config
+cp --remove-destination configuration.yaml ~/.docker/ha/config
+echo "Added rest configuration for vl53l1x distance sensor"
 
 echo "---- Status"
 ls -l ~/.docker/ha/config
