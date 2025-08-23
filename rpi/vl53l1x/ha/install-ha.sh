@@ -23,13 +23,6 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
-echo "---- Requirements"
-if [ ! -d ~/.docker/ha/config/configuration.yaml ]; then
-    echo "Missing ~/.docker/ha/config/configuration.yaml"
-    exit
-fi
-
-echo "---- Configuration"
 cp --remove-destination configuration.yaml ~/.docker/ha/config
 echo "Added rest configuration for vl53l1x distance sensor"
 
