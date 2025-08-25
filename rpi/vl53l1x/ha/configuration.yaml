@@ -16,7 +16,7 @@ scene: !include scenes.yaml
 #  reload: always
 
 rest:
-  resource: 'http://127.0.0.1:5001/test'
+  resource: 'http://127.0.0.1:5000/test'
   scan_interval: 2
   sensor:
     - name: 'distance'
