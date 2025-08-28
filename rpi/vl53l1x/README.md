@@ -2,25 +2,15 @@
 
 The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor on the market with accurate ranging up to 4 m and fast ranging frequency up to 50 Hz.
 
-For more details, please check:
+![Circuit](https://ae01.alicdn.com/kf/HTB1aBBpdL2H8KJjy1zkq6xr7pXae.jpg)
 
-- VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
-- Qwiic_VL53L1X_Py API: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
-- API Reference: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/apiref.html
-- SparkFun API docs: https://docs.sparkfun.com/qwiic_vl53l1x_py/index.html
-- PyPi: https://pypi.org/project/sparkfun-qwiic-vl53l1x/
-- ST docs: https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html#documentation
-- ST manual: https://www.st.com/resource/en/user_manual/um2356-vl53l1x-api-user-manual-stmicroelectronics.pdf
-- ST app: https://www.st.com/resource/en/application_presentation/ultra-low-power-tof-sensors.pdf
-- SparkFun: https://www.sparkfun.com/sparkfun-distance-sensor-breakout-4-meter-vl53l1x-qwiic.html
-- SparkFun Schematics: https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf
-- SparkFun Qwiic Hat: https://cdn.sparkfun.com/assets/b/6/8/c/8/Qwiic_HAT_for_Raspberry_Pi.pdf
-- SparkFun Github: https://github.com/sparkfun/qwiic_vl53l1x_py
-- Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
-
-Please note this backend is expected to be **installed at RPIs**, not at Tofu boot server.
+- Qwiic VL53L1X: https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf
+- VL53L0/1XV2: https://cdn.awsli.com.br/945/945993/arquivos/vl53l0x.pdf
+- Order: https://pt.aliexpress.com/item/1005005643165013.html?spm=a2g0o.order_detail.order_detail_item.3.1da64c7fk9Ju0o
 
 ### Install backend at RPI
+
+Please note this backend is expected to be **installed at RPIs** with proper sensor, not at Tofu boot server.
 
 ```
 git clone https://github.com/josemotta/iot-tofu
@@ -29,9 +19,17 @@ sudo ./install-vl53l1x.sh
 
 ```
 
+Then append a 'distance' sensor to the existing Homeassistant configuration.
+
+```
+cd ha
+sudo install-ha.sh
+
+```
+
 ### Homeassistant
 
-Please check the ha folder for an example of the Homeassistant configuration for a 'distance sensor'.
+Please check [ha](./ha) folder for an example of a Homeassistant [configuration](./ha/configuration.yaml) for a 'distance' sensor.
 
 ### Using the API
 
@@ -42,7 +40,7 @@ The API calls & responses are detailed below.
 - /
 
 ```
-curl http://127.0.0.1:5001/
+curl http://127.0.0.1:5000/
 {
      "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
      "version": "0.1"
@@ -56,7 +54,7 @@ Call Qwiic methods list_devices() and scan(), returning their results.
 - /status
 
 ```
-curl http://127.0.0.1:5001/status
+curl http://127.0.0.1:5000/status
 {
      "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
      "devices": [[41, "Qwiic 4m Distance Sensor (ToF)", "QwiicVL53L1X"]],
@@ -67,12 +65,12 @@ curl http://127.0.0.1:5001/status
 
 #### Test Qwiic VL53L1X
 
-Takes 10 measures within 1 second and return the mean value.
+Take 10 measures sequentially in 60 ms intervals and return the mean value.
 
 - /test
 
 ```
-curl http://127.0.0.1:5001/test
+curl http://127.0.0.1:5000/test
 {
      "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
      "distance": 70.1,
@@ -85,7 +83,7 @@ curl http://127.0.0.1:5001/test
 Continuous testing.
 
 ```
-watch -x -n 1 curl http://127.0.0.1:5001/test
+watch -x -n 1 curl http://127.0.0.1:5000/test
 ```
 
 ### Reinstall and restart backend
@@ -94,3 +92,27 @@ watch -x -n 1 curl http://127.0.0.1:5001/test
 sudo ./restart-vl53l1x.sh
 
 ```
+
+### XSHUT (shutdown pin)
+
+Please note that SHUTX connection to RPI bus was modified from project. Tests demonstrated that it is not necessary to reset sensor before each measure. The [VL53L1X qwiic schematic](https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf) shows a fixed 10K pull-up resistor R2 for XSHUT, keeping it high all times.
+
+Then, original GPIO-21 was released and can be used for other purposes. The code related to SHUTX is commented for this reason.
+
+## More about VL53L1X
+
+- VL53L1X Datasheet: https://cdn.sparkfun.com/assets/b/f/2/9/8/VL53L1X_Datasheet.pdf
+- VL53L1X Datasheet: https://www.st.com/resource/en/datasheet/vl53l1x.pdf
+- Qwiic_VL53L1X_Py API: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/index.html
+- API Reference: https://qwiic-vl53l1x-py.readthedocs.io/en/latest/apiref.html
+- SparkFun API docs: https://docs.sparkfun.com/qwiic_vl53l1x_py/index.html
+- PyPi: https://pypi.org/project/sparkfun-qwiic-vl53l1x/
+- ST docs: https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html#documentation
+- ST manual: https://www.st.com/resource/en/user_manual/um2356-vl53l1x-api-user-manual-stmicroelectronics.pdf
+- ST app: https://www.st.com/resource/en/application_presentation/ultra-low-power-tof-sensors.pdf
+- SparkFun: https://www.sparkfun.com/sparkfun-distance-sensor-breakout-4-meter-vl53l1x-qwiic.html
+- SparkFun Schematics: https://cdn.sparkfun.com/assets/3/5/c/e/2/Qwiic_Distance_Sensor_-_VL53L1X.pdf
+- SparkFun Qwiic Hat: https://cdn.sparkfun.com/assets/b/6/8/c/8/Qwiic_HAT_for_Raspberry_Pi.pdf
+- SparkFun Github: https://github.com/sparkfun/qwiic_vl53l1x_py
+- Previous work with VL53L1X: https://github.com/josemotta/vl53l1x-python.
+- Projeto: https://www.usinainfo.com.br/blog/projeto-com-sensor-de-distancia-vl53l0x-e-arduino-para-alta-precisao/

@@ -15,9 +15,9 @@ The RPis should not depend on their unreliable SD disks for system disk. Instead
 
 The architecture, based on [raspberrypi.com](https://www.raspberrypi.com/documentation/computers/remote-access.html#using-pxetools), considers a distributed network connected through the cloud, composed of 'regions'. Each 'region' has a local LAN powered by PoE (Power over Ethernet) that connects the boot server and several RPis. Each RPi may have sensors & actuators for an IoT (Internet of Things) application.
 
-#### IoT Region with Boot Server for RPis
-
 ![Region](rpi/region.png)
+
+#### IoT Region with Boot Server for RPis
 
 - Each 'region' has a local LAN that includes a boot server handling several RPis.
 - Tofu is the boot server for all RPis in the regional LAN.

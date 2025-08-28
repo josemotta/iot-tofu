@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Add VL53L1X Time-of-Flight (ToF) laser-ranging sensor.
+#Add Htu21 humidity sensor.
 
 set -e
 cd "$(dirname "$0")"
@@ -17,15 +17,15 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 echo "---- Configuration"
-cp vl53l1x.service /lib/systemd/system/vl53l1x.service
-rm -f -r /srv/vl53l1x
-mkdir /srv/vl53l1x
-cp -r . /srv/vl53l1x
+cp htu21.service /lib/systemd/system/htu21.service
+rm -f -r /srv/htu21
+mkdir /srv/htu21
+cp -r . /srv/htu21
 
 echo "---- Restart"
-systemctl daemon-reload
-systemctl enable vl53l1x.service
-systemctl restart vl53l1x.service
+sudo systemctl daemon-reload
+sudo systemctl enable htu21.service
+sudo systemctl restart htu21.service
 
 echo "---- Status"
-systemctl status vl53l1x.service
+sudo systemctl status htu21.service
