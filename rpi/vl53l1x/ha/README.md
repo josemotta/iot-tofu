@@ -17,7 +17,7 @@ This is an example of a typical [configuration](configuration.yaml) file, expect
 
 ### Light interference
 
-A test near a window, even without direct sun exposure, shows that VL53L1X sensor is affected by daylight, ranging from small variations of 1 cm during the night until up to 5 cm during the day time. The sensor was aimed at the ceiling to measure a 2.2 m distance.
+A test near a window, even without direct sun exposure, shows that VL53L1X sensor is affected by daylight, ranging from small variations of 1 cm during the night until up to 5 cm during the day time. The sensor shown below was aimed at the ceiling to measure a 2.2 m distance.
 
 ![Day-night test](vl53l1x-ha-day-night-test.jpeg)
 
