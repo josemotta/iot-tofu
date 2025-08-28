@@ -19,9 +19,17 @@ sudo ./install-vl53l1x.sh
 
 ```
 
+Then append a 'distance' sensor to the existing Homeassistant configuration.
+
+```
+cd ha
+sudo install-ha.sh
+
+```
+
 ### Homeassistant
 
-Please check the ha folder for an example of the Homeassistant configuration for a 'distance sensor'.
+Please check also the ha folder for an example of a Homeassistant configuration for a 'distance' sensor.
 
 ### Using the API
 
