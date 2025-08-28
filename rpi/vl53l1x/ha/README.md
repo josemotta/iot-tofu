@@ -4,7 +4,7 @@
 
 The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor on the market with accurate ranging up to 4 m and fast ranging frequency up to 50 Hz.
 
-The Homeassistant 'distance sensor' includes a rest definition that can be appended to the current Homeassistant configuration using commands shown below:
+The Homeassistant 'distance sensor' includes a rest definition that can be appended to the current Homeassistant configuration using the commands shown below:
 
 ```
 git clone https://github.com/josemotta/iot-tofu
@@ -25,8 +25,8 @@ A test near a window, even without direct sun exposure, shows that VL53L1X senso
 
 ### Screenshots
 
+![Prototype](vl53l1x-test.jpg)
+
 ![Screenshot from Boot server terminal](vl53l1x-screenshot.jpg)
 
 ![Homeassistant Graph from distance sensor](vl53l1x-ha-test-8.png)
-
-![Prototype](vl53l1x-test.jpg)
