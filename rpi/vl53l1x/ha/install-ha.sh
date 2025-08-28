@@ -1,8 +1,7 @@
 #!/bin/bash
 
-#Add Homeassistant configuration for VL53L1X Time-of-Flight (ToF) laser-ranging sensor.
-#
-#Based on rpi/rpi-init.sh that creates Docker compose.yml below to launch Homeassistant container
+# Add Homeassistant configuration for VL53L1X Time-of-Flight (ToF) laser-ranging distance sensor.
+# Based on the Docker compose below, generated at rpi/rpi-init.sh to create the Homeassistant container.
 #
 #services:
 #  homeassistant:
@@ -23,16 +22,13 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
-echo "---- Requirements"
 if [ ! -d /home/$USER/.docker/ha/config/configuration.yaml ]; then
-    echo "Missing original Homeassistant configuration file"
+    echo "Missing expected Homeassistant configuration at ./docker/ha/config"
     exit
 fi
 
+cat << EOF | sudo tee -a /home/$USER/.docker/ha/config/configuration.yaml
 
-echo -n "hello" >> <filename>
-
-cat << EOF | sudo tee /etc/exports
 rest:
   resource: 'http://127.0.0.1:5000/test'
   scan_interval: 2
@@ -49,9 +45,8 @@ rest:
       device_class: specs
 EOF
 
-echo "---- Configuration"
-cp --remove-destination configuration.yaml /home/$USER/.docker/ha/config
-echo "Added rest configuration for vl53l1x distance sensor"
+echo "Appended homeassistant configuration for vl53l1x distance sensor"
 
-echo "---- Status"
-ls -l ~/.docker/ha/config
+echo "The directory & configuration file are shown below:"
+ls -l /home/$USER/.docker/ha/config/
+cat /home/$USER/.docker/ha/config/configuration.yaml
