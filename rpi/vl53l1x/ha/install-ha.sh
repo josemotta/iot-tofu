@@ -27,7 +27,7 @@ if [ ! -d /home/$USER/.docker/ha/config/configuration.yaml ]; then
     exit
 fi
 
-cat << EOF | sudo tee -a /home/$USER/.docker/ha/config/configuration.yaml
+cat << EOF | tee -a /home/$USER/.docker/ha/config/configuration.yaml
 
 rest:
   resource: 'http://127.0.0.1:5000/test'
