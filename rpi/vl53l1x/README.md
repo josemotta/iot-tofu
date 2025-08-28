@@ -29,7 +29,7 @@ sudo install-ha.sh
 
 ### Homeassistant
 
-Please check also the ha folder for an example of a Homeassistant configuration for a 'distance' sensor.
+Please check also the ha folder for an example of a Homeassistant [configuration](./ha/configuration.yaml) for a 'distance' sensor.
 
 ### Using the API
 
