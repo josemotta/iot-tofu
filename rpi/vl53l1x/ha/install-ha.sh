@@ -37,12 +37,6 @@ rest:
       value_template: '{{ value_json['distance'] | round(1) }}'
       device_class: distance
       unit_of_measurement: 'mm'
-    - name: 'chip'
-      value_template: '{{ value_json['chip'] }}'
-      device_class: specs
-    - name: 'version'
-      value_template: '{{ value_json['version'] }}'
-      device_class: specs
 EOF
 
 echo "Appended homeassistant configuration for vl53l1x distance sensor"
