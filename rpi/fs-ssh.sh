@@ -1,6 +1,6 @@
 #!/bin/bash
 
-raspi-config do_change_locale en_US.UTF-8 nonint
+raspi-config do_change_locale en_US.UTF-8 do_i2c 0 nonint
 
 rm -f /etc/ssh/ssh_host_*
 dpkg-reconfigure openssh-server
