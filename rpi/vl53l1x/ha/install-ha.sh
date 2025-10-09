@@ -50,6 +50,7 @@ cp ./sensors.yaml /home/$USER/.docker/ha/config/sensors.yaml
 
 echo "Appended homeassistant configuration for VL53L1X Time-of-Flight (ToF) laser-ranging sensor."
 
-echo "The directory & configuration file are shown below:"
+echo "The directory & configuration files are shown below:"
 ls -l /home/$USER/.docker/ha/config/
 cat /home/$USER/.docker/ha/config/configuration.yaml
+cat /home/$USER/.docker/ha/config/sensors.yaml
