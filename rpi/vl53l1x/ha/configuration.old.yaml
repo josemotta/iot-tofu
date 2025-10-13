@@ -1,0 +1,58 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+#automation: !include automations.yaml
+#scene: !include scenes.yaml
+#script: !include scripts.yaml
+
+# VL53L1X Time-of-Flight (ToF) laser-ranging sensor
+sensor: !include sensors.yaml
+
+# Accessing raw sensors data from files as part of the sysfs interface
+# to hwmon. At RPi OS, take a look under /sys/class/.
+#
+# https://www.kernel.org/doc/Documentation/hwmon/sysfs-interface
+#
+# Naming and data format standards for sysfs files:
+#
+#   The libsensors library offers an interface to the raw sensors data
+#   through the sysfs interface. Since lm-sensors 3.0.0, libsensors is
+#   completely chip-independent. It assumes that all the kernel drivers
+#   implement the standard sysfs interface described in this document.
+#
+command_line:
+  - sensor:
+      name: 'RPi CPU temperature'
+      command: 'cat /sys/class/thermal/cooling_device0/subsystem/thermal_zone0/temp'
+      scan_interval: 5
+      value_template: '{{ value | multiply(0.001) | round(1) }}'
+      device_class: temperature
+      unit_of_measurement: '°C'
+  - sensor:
+      name: 'RPi PoE current'
+      command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/current_now'
+      scan_interval: 5
+      value_template: '{{ value | multiply(0.001) | round(1) }}'
+      device_class: current
+      unit_of_measurement: 'mA'
+  - sensor:
+      name: 'RPi PoE max'
+      command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/current_max'
+      scan_interval: 5
+      value_template: '{{ value | multiply(0.001) | round(1) }}'
+      device_class: current
+      unit_of_measurement: 'mA'
+  - sensor:
+      name: 'RPi PoE status'
+      command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/health'
+      scan_interval: 5
+      value_template: '{{ value }}'
+# Unflashed SONOFF devices
+#sonoff:
+#  username: xuser
+#  password: xpass
+#  reload: always
