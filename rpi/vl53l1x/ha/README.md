@@ -15,7 +15,7 @@ sudo install-ha.sh
 
 This is an example of a typical [configuration](configuration.yaml) file, expected to be **installed at RPIs** with proper sensor, not at Tofu boot server. It also extracts raw sensors data (temperature & current) from files as part of the sysfs interface. The HomeAssistant Overview page for VL53L1X Time-of-Flight (ToF) laser-ranging sensor is shown below.
 
-![HomeAssistant VL53L1X Time-of-Flight (ToF) laser-ranging sensor](vl53l1x-screenshot2.png)
+![HomeAssistant VL53L1X Time-of-Flight (ToF) laser-ranging sensor](vl53l1x-screenshot3.png)
 
 ### Light interference
 
