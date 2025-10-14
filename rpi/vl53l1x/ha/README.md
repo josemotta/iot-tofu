@@ -29,7 +29,7 @@ A test near a window, even without direct sun exposure, shows that VL53L1X senso
 
 A custom 3D printed case was built for five prototypes, two of them are shown in the picture below:
 
-- Rpi#5 is loose & disconnected on the right, showing the RJ-45 connector that powers & connects it to the local LAN. There is also an external USB pen drive, needed to store Docker containers that do not support the remote boot disk.
+- Rpi#5 is loose & disconnected on the right, showing the RJ-45 connector that powers & connects it to the local LAN. It shows also the external USB pen drive, needed to store Docker containers that do not support the remote boot disk.
 
 - Rpi#1 prototype is being used for burn in tests and is expected to participate in the first official mission. It is fixed by DIN rail inside the pink waterproof plastic box. It is wired to PoE+ switch together with Tofu and both are powered by local LAN, up to a 100 meters away from PoE+ LAN switch. There are also four RJ-45 connectors in the 3D printed case specially designed for I2C pins to connect the VL53L1X sensor and/or other I2C devices.
 
