@@ -32,3 +32,7 @@ A test near a window, even without direct sun exposure, shows that VL53L1X senso
 ![Screenshot from Boot server terminal](vl53l1x-screenshot.jpg)
 
 ![Homeassistant Graph from distance sensor](vl53l1x-ha-test-8.png)
+
+![Homeassistant Rpi Cpu Temperature](vl53l1x-ha-cputemp.png)
+
+![Homeassistant PoE+ Fan Speed](vl53l1x-ha-fanspeed.png)
