@@ -22,25 +22,35 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
-if [ ! -d /home/$USER/.docker/ha/config/configuration.yaml ]; then
+if [ ! -d /home/$USER/.docker/ha/config/ ]; then
     echo "Missing expected Homeassistant configuration at ./docker/ha/config"
     exit
 fi
 
-cat << EOF | tee -a /home/$USER/.docker/ha/config/configuration.yaml
+cp ./configuration.yaml /home/$USER/.docker/ha/config/configuration.yaml
+cp ./secrets.yaml /home/$USER/.docker/ha/config/secrets.yaml
+cp ./sensors.yaml /home/$USER/.docker/ha/config/sensors.yaml
 
-rest:
-  resource: 'http://127.0.0.1:5000/test'
-  scan_interval: 2
-  sensor:
-    - name: 'distance'
-      value_template: '{{ value_json['distance'] | round(1) }}'
-      device_class: distance
-      unit_of_measurement: 'mm'
-EOF
+# if [ ! -d /home/$USER/.docker/ha/config/configuration.yaml ]; then
+#     echo "Missing expected Homeassistant configuration at ./docker/ha/config"
+#     exit
+# fi
 
-echo "Appended homeassistant configuration for vl53l1x distance sensor"
+# cat << EOF | tee -a /home/$USER/.docker/ha/config/configuration.yaml
 
-echo "The directory & configuration file are shown below:"
+# rest:
+#   resource: 'http://127.0.0.1:5000/test'
+#   scan_interval: 2
+#   sensor:
+#     - name: 'distance'
+#       value_template: '{{ value_json['distance'] | round(1) }}'
+#       device_class: distance
+#       unit_of_measurement: 'mm'
+# EOF
+
+echo "Appended homeassistant configuration for VL53L1X Time-of-Flight (ToF) laser-ranging sensor."
+
+echo "The directory & configuration files are shown below:"
 ls -l /home/$USER/.docker/ha/config/
 cat /home/$USER/.docker/ha/config/configuration.yaml
+cat /home/$USER/.docker/ha/config/sensors.yaml

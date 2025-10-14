@@ -19,6 +19,7 @@ HELP = "Usage:\n\
 LAN = None
 NFS_IP = None
 
+
 def cmd(cmd, print_out=False, print_cmd=True, can_fail=False):
     if print_cmd:
         print("# {}".format(cmd))
@@ -35,6 +36,7 @@ def cmd(cmd, print_out=False, print_cmd=True, can_fail=False):
         print(out)
 
     return out
+
 
 def add():
     serial = None
@@ -61,7 +63,7 @@ def add():
     # Validate serial
     serial = serial.lstrip("0")
     if not re.search("^[0-9a-f]{8}$", serial):
-            raise Exception("Invalid serial number {}".format(serial))
+        raise Exception("Invalid serial number {}".format(serial))
 
     print("Serial: {}".format(serial))
     owner = input("Owner name: ")
@@ -69,7 +71,7 @@ def add():
 
     print("Select a base image:")
     selection = ["I will prepare my own filesystem"] + os.listdir('/nfs/bases')
-    for i in range (0, len(selection)):
+    for i in range(0, len(selection)):
         print("\t{}. {}".format(i + 1, selection[i]))
 
     img_choice = input("Enter an option number: ")
@@ -105,7 +107,8 @@ def add():
     cmd("exportfs -a")
 
     # cmdline_txt = "dwc_otg.lpm_enable=0 root=/dev/nfs nfsroot={}:{} rw ip=dhcp rootwait elevator=deadline nfsrootdebug".format(NFS_IP, nfs_path)
-    cmdline_txt = "console=serial0,115200 console=tty1 root=/dev/nfs nfsroot={}:{},vers=4.1,proto=tcp rw ip=dhcp rootwait elevator=deadline nfsrootdebug\ncgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory".format(NFS_IP, nfs_path)
+    cmdline_txt = "console=serial0,115200 console=tty1 root=/dev/nfs nfsroot={}:{},vers=4.1,proto=tcp rw ip=dhcp rootwait elevator=deadline nfsrootdebug\ncgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory".format(
+        NFS_IP, nfs_path)
     cmd("echo \"{}\" > {}/cmdline.txt".format(cmdline_txt, tftp_path))
     cmd("echo \"{}\" > {}/owner".format(owner, tftp_path))
     cmd("echo \"{}\" > {}/name".format(name, tftp_path))
@@ -146,7 +149,7 @@ def add():
         fstab_txt = "\
         {}:{}/boot /boot nfs defaults,_netdev,vers=4.1,proto=tcp 0 0\n \
         proc /proc proc defaults 0 0\n \
-        /dev/sda1 /var/lib/docker ext4 noatime 0 1\n" \
+        /dev/sda1 /var/lib/docker ext4 noatime 0 0\n" \
         .format(NFS_IP, nfs_path)
         cmd("echo \"{}\" > {}/etc/fstab".format(fstab_txt, nfs_path))
 
@@ -161,21 +164,24 @@ def add():
         # cmd("umount /mnt/tmp")
         # cmd("kpartx -d -v {}".format(img), print_out=True)
     else:
-        print("You opted to prep your own system so please put files in:\n\t{}\n\t{}".format(tftp_path, nfs_path))
+        print("You opted to prep your own system so please put files in:\n\t{}\n\t{}".format(
+            tftp_path, nfs_path))
         print("I have wrote you a cmdline.txt so don't change it:")
         print(cmdline_txt)
 
     print("Should be working, you might have to wait SSH lets you in.")
 
+
 def remove():
     serial = sys.argv[2]
 
     if not re.search("^[0-9a-f]{8}$", serial):
-            raise Exception("Invalid serial number {}".format(serial))
+        raise Exception("Invalid serial number {}".format(serial))
 
     sure = ""
     while sure != "Y" and sure != "N":
-        sure = input("ARE YOU SURE YOU WANT TO DELETE {}? Y/N: ".format(serial))
+        sure = input(
+            "ARE YOU SURE YOU WANT TO DELETE {}? Y/N: ".format(serial))
 
     if sure == "N":
         print("Aborting")
@@ -211,6 +217,7 @@ def remove():
 
     # cmd("iptables-restore < /etc/iptables/rules.v4")
 
+
 def mac(serial):
     # MAC is least significant bits of serial
     # Example:
@@ -221,8 +228,9 @@ def mac(serial):
 
     # Insert colon every 2 chars. Stolen from stackoverflow
     s = suffix
-    s = ":".join(a+b for a,b in zip(s[::2], s[1::2]))
+    s = ":".join(a+b for a, b in zip(s[::2], s[1::2]))
     return prefix + s
+
 
 def ip(mac):
     # Hacky way of getting IP from Mac Address
@@ -237,6 +245,7 @@ def ip(mac):
 
     return ip
 
+
 def file_or_none(base, file):
     path = os.path.join(base, file)
     if not os.path.exists(path):
@@ -245,6 +254,7 @@ def file_or_none(base, file):
     with open(path, 'r') as fh:
         return fh.read()
 
+
 def list():
     tbl = [["Serial", "Owner", "Name", "MAC", "IP"]]
     pis = os.listdir("/tftpboot")
@@ -252,16 +262,20 @@ def list():
 
     for p in pis:
         base = os.path.join("/tftpboot", p)
-        tbl.append(["0x{}".format(p), file_or_none(base, "owner"), file_or_none(base, "name"), mac(p), ip(mac(p))])
+        tbl.append(["0x{}".format(p), file_or_none(base, "owner"),
+                   file_or_none(base, "name"), mac(p), ip(mac(p))])
 
     print(tabulate(tbl, headers="firstrow"))
+
 
 if __name__ == "__main__":
     if os.geteuid() != 0:
         exit("Please run with sudo or as root user")
 
-    LAN = cmd('ip -4 addr show dev eth0 | grep inet | cut -d " " -f6 | xargs ipcalc | grep Network | cut -d " " -f4', print_cmd=False).rstrip()
-    NFS_IP = cmd('ifconfig eth0 | grep "inet " | cut -d " " -f10', print_cmd=False).rstrip()
+    LAN = cmd('ip -4 addr show dev eth0 | grep inet | cut -d " " -f6 | xargs ipcalc | grep Network | cut -d " " -f4',
+              print_cmd=False).rstrip()
+    NFS_IP = cmd('ifconfig eth0 | grep "inet " | cut -d " " -f10',
+                 print_cmd=False).rstrip()
 
     if len(sys.argv) == 1:
         print(HELP)
