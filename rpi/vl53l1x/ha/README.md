@@ -46,3 +46,5 @@ A custom 3D printed case was built for five prototypes, two of them are shown be
 ![Homeassistant Rpi Cpu Temperature](vl53l1x-ha-cputemp.png)
 
 ![Homeassistant PoE+ Fan Speed](vl53l1x-ha-fanspeed.png)
+
+Check in the last couple images that after more jobs running at RPi, the CPU temperature increase was automatically controlled by raising the fan speed to 255 rpm. As well, later at night the temperature lowered and the fan speed was reduced to 64 rpm.
