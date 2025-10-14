@@ -33,9 +33,9 @@ A custom 3D printed case was built for five prototypes, two of them are shown be
 
 ![Prototype for burn-in tests](vl53l1x-burnin-prototype.JPG)
 
-- To the left, Rpi#1 prototype is being used for burn in tests and is expected to participate in the first official mission. It is fixed by DIN rail inside the waterproof pink plastic box. It is wired to PoE+ switch together with Tofu and both are powered by local LAN, up to a 100 meters away from PoE+ LAN switch. There are also four RJ-45 connectors in the 3D printed case specially designed for I2C pins to connect the VL53L1X sensor and/or other I2C devices.
+- To the left, Rpi#1 prototype is being used for burn in tests and is expected to participate in the first official mission. It is fixed by DIN rail inside the waterproof pink plastic box. It is wired to PoE+ switch together with Tofu and both are powered by local LAN, up to 100 meters away from PoE+ LAN switch. There are also four RJ-45 connectors in the 3D printed case specially designed for I2C pins to connect the VL53L1X sensor and/or other I2C devices.
 
-- Looking up, on the top of a wood stick, we see the VL53L1X sensor protected by a plastic cover. It is supposed to be installed on the top of a big tank, pointing down to measure the water level continuously 24 hours a day. Up to 5 meters away from Raspberry Pi the tests are running fine to propagate the I2C bus to the process.
+- Looking up, on the top of a wood stick, we see the VL53L1X sensor protected by a plastic cover. It is supposed to be installed on the top of a big tank, pointing down to measure the water level continuously 24 hours a day. Up to 5 meters away from Rpi#1 Raspberry Pi, current tests are running fine to propagate the I2C bus to the process.
 
 ### Screenshots
 
