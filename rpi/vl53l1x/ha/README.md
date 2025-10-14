@@ -41,7 +41,7 @@ A custom 3D printed case was built for five prototypes, two of them are shown in
 
 ![Screenshot from Boot server terminal](vl53l1x-screenshot.jpg)
 
-![Homeassistant Graph from distance sensor](vl53l1x-ha-test-8.png)
+![Homeassistant Graph from distance sensor](vl53l1x-ha-test-9.png)
 
 ![Homeassistant Rpi Cpu Temperature](vl53l1x-ha-cputemp.png)
 
