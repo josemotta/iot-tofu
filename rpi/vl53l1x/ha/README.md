@@ -52,8 +52,10 @@ The web browser is running at Tofu, since it has access to all RPis in the local
 
 ![Homeassistant Graph from distance sensor](vl53l1x-ha-test-9.png)
 
+After a test that increased RPi CPU load, the images below document the CPU temperature increase that was automatically controlled by raising the fan speed to 255 rpm. As well, later at night the temperature lowered and the fan speed was reduced to 64 rpm. The Homeassistant default setup takes care.
+
 ![Homeassistant Rpi Cpu Temperature](vl53l1x-ha-cputemp.png)
 
 ![Homeassistant PoE+ Fan Speed](vl53l1x-ha-fanspeed.png)
 
-Check in the last couple images that after more jobs running at RPi, the CPU temperature increase was automatically controlled by raising the fan speed to 255 rpm. As well, later at night the temperature lowered and the fan speed was reduced to 64 rpm.
+![Sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) is a virtual filesystem that provides a user-friendly interface to the kernel's device model, exporting information about hardware devices, drivers, and their relationships. It is mounted at /sys and allows user-space programs to view and configure devices by reading and writing to virtual files that represent kernel data structures.
