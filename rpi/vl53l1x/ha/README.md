@@ -50,6 +50,8 @@ The web browser is running at Tofu, since it has access to all RPis in the local
 
 ![Screenshot from Boot server terminal](vl53l1x-screenshot.jpg)
 
+After all tests, the most important characteristic for IoT applications is how long it works uninterruptly?
+
 ![Homeassistant Graph from distance sensor](vl53l1x-ha-test-9.png)
 
 After a test that increased RPi CPU load, the images below document the CPU temperature increase that was automatically controlled by raising the fan speed to 255 rpm. As well, later at night the temperature lowered and the fan speed was reduced to 64 rpm. The Homeassistant default setup handles this situation using the Sysfs interface.
