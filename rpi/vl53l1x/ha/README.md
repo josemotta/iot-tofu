@@ -58,4 +58,4 @@ After a test that increased RPi CPU load, the images below document the CPU temp
 
 ![Homeassistant PoE+ Fan Speed](vl53l1x-ha-fanspeed.png)
 
-![Sysfs](https://man7.org/linux/man-pages/man5/sysfs.5.html) is a virtual filesystem that provides a user-friendly interface to the kernel's device model, exporting information about hardware devices, drivers, and their relationships. It is mounted at /sys and allows user-space programs to view and configure devices by reading and writing to virtual files that represent kernel data structures.
+![Sysfs](https://en.wikipedia.org/wiki/Sysfs) is a virtual filesystem that provides a user-friendly interface to the kernel's device model, exporting information about hardware devices, drivers, and their relationships. It is mounted at /sys and allows user-space programs to view and configure devices by reading and writing to virtual files that represent kernel data structures.
