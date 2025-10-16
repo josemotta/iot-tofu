@@ -50,7 +50,7 @@ The web browser is running at Tofu, since it has access to all RPis in the local
 
 ![Screenshot from Boot server terminal](vl53l1x-screenshot.jpg)
 
-After all tests, the most important characteristic for IoT applications is how long it works uninterruptly?
+After all tests, the most important characteristic for the IoT applications we are aiming is: how long it works providing safe and reliable information, uninterruptly. For example, ´distance´ allows us to calculate how much water we have in a tank, based on the distance from water surface up to the VL53L1X sensor that is installed at the top. The arrangement should work all day, forever. Burn in tests pushed in this direction and were tested for 18 days full stable operation.
 
 ![Homeassistant Graph from distance sensor](vl53l1x-ha-test-9.png)
 
