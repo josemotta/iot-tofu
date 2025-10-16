@@ -54,7 +54,7 @@ After all tests, the most important characteristic for the IoT applications we a
 
 ![Homeassistant Graph from distance sensor](vl53l1x-ha-test-9.png)
 
-After a test that increased RPi CPU load, the images below document the CPU temperature increase that was automatically controlled by raising the fan speed to 255 rpm. As well, later at night the temperature lowered and the fan speed was reduced to 64 rpm. The Homeassistant default setup handles this situation using the Sysfs interface.
+After a test that increased RPi CPU load, the images below document the CPU temperature increase that was automatically controlled by raising the fan speed to 255 rpm. As well, later at night the temperature lowered and the fan speed was reduced to 64 rpm. The Homeassistant ![default setup](https://github.com/josemotta/iot-tofu/blob/sensor/rpi/vl53l1x/ha/configuration.yaml) handles this situation using the Sysfs interface.
 
 ![Homeassistant Rpi Cpu Temperature](vl53l1x-ha-cputemp.png)
 
