@@ -2,17 +2,17 @@
 
 # Choose wisely the necessary updates!
 # Docker install below starts with an update.
+sudo rpi-eeprom-update -d -a
 sudo apt update
 sudo apt full-upgrade
 
 # Linux Kernel 6.12 expected to be the next upstream LTS (Long Term Support)
 # https://forums.raspberrypi.com/viewtopic.php?t=379745
 sudo rpi-update
-# sudo rpi-eeprom-update -d -a
 
 # Clear docker folder
 if [ -d /var/lib/docker ]; then
-  sudo rm -r /var/lib/docker/*
+  sudo rm -rf /var/lib/docker
 fi
 
 # Install Docker
@@ -32,6 +32,7 @@ services:
     volumes:
       - .docker/ha/config:/config
       - /etc/localtime:/etc/localtime:ro
+      - /sys/class/thermal/cooling_device0/subsystem/thermal_zone0/temp:/thermal/thermal_zone0/temp
     ports:
       - 8123:8123
     restart: unless-stopped
