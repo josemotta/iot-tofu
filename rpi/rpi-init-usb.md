@@ -33,3 +33,7 @@ Format the partition with the ext4 filesystem. Replace sdX1 with your USB's part
 ### Eject the drive.
 
     sudo eject /dev/sdX
+
+### Useful links
+
+[Raspberry Pi Setup – Part 1 – Adding a Large External Drive](https://wassam.com/2020/04/26/raspberry-pi-setup-part-1-adding-a-large-external-drive/)
