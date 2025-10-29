@@ -2,7 +2,7 @@
 
 This is the default setup for TOFU Homeassistant.
 
-TOFU Homeassistant is able to be a super Homeassistant, since it has access to all APIs from PIs that are running on the local LAN. To exemplify, the Homeassistant 'distance' sensor includes a rest definition that can be appended to the current TOFU Homeassistant configuration using the commands shown below:
+TOFU Homeassistant is able to be a 'super' Homeassistant, since its local LAN grants him access to all APIs published by all RPis. To exemplify, the Homeassistant 'distance' sensor includes a rest definition that can be appended to the current TOFU Homeassistant configuration using the commands shown below:
 
 ```
 git clone https://github.com/josemotta/iot-tofu
