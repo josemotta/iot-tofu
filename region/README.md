@@ -16,4 +16,4 @@ This is a typical [configuration](configuration.yaml) file for the **Tofu boot s
 
 The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor on the market with accurate ranging up to 4 m and fast ranging frequency up to 50 Hz.
 
-This TOFU default configuration is supported by the [vl53l1x](../rpi/vl53l1x/) folder.
+This TOFU default configuration is supported by [vl53l1x](../rpi/vl53l1x/).
