@@ -12,6 +12,6 @@ sudo installalias.sh     #get shorter Docker commands
 
 ```
 
-This is a typical [configuration](configuration.yaml) file for the **Tofu boot server**. As shown by the [sensors.yaml](sensors.yaml), it is possible to configure calls to APIs running on the RPis, since they are directly accessed through the local LAN. It also extracts raw sensors data (temperature & current) from files as part of the Sysfs interface.
+This is a typical [configuration](configuration.yaml) for the **Tofu boot server**. As shown by the [sensors.yaml](sensors.yaml), it is possible to configure calls to APIs running on the RPis, since they are directly accessed through the local LAN. It also extracts raw sensors data (temperature & current) from files as part of the Sysfs interface.
 
 This TOFU default configuration is supported by [vl53l1x](../rpi/vl53l1x/). The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor, enhancing the ST FlightSense product family. It is the fastest miniature ToF sensor on the market with accurate ranging up to 4 m and fast ranging frequency up to 50 Hz.
