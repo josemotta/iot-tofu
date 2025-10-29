@@ -1,0 +1,8 @@
+# VL53L1X Time-of-Flight (ToF) laser-ranging sensor
+- platform: rest
+  name: 'distance'
+  resource: 'http://192.168.0.88:5000/test'
+  scan_interval: 2
+  value_template: "{{ value_json['distance'] | round(1) }}"
+  device_class: distance
+  unit_of_measurement: 'mm'
