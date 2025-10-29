@@ -7,6 +7,8 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
+# se vai rodar como root não dá pra usar $USER (pois vai ser root!)
+
 # Docker install below starts with an update.
 #sudo apt update
 #sudo apt full-upgrade
