@@ -1,4 +1,4 @@
-# Homeassistant
+# TOFU Homeassistant
 
 This is the default setup for TOFU Homeassistant.
 
