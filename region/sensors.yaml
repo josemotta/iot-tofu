@@ -1,6 +1,6 @@
 # VL53L1X Time-of-Flight (ToF) laser-ranging sensor
 - platform: rest
-  name: 'distance'
+  name: 'agua-ao-topo'
   resource: 'http://192.168.0.88:5000/test'
   scan_interval: 2
   value_template: "{{ value_json['distance'] | round(1) }}"
