@@ -31,11 +31,11 @@ command_line:
       value_template: '{{ value | multiply(0.001) | round(1) }}'
       device_class: temperature
       unit_of_measurement: '°C'
-  - sensor:
-      name: 'PoE online'
-      command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/online'
-      scan_interval: 5
-      value_template: '{{ value }}'
+  #- sensor:
+  #    name: 'PoE online'
+  #    command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/online'
+  #    scan_interval: 5
+  #    value_template: '{{ value }}'
   - sensor:
       name: 'PoE current'
       command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/current_now'
