@@ -61,7 +61,7 @@ command_line:
       scan_interval: 5
       value_template: '{{ value }}'
   - sensor:
-      name: 'Fan max'
+      name: 'Fan state max'
       command: 'cat /sys/class/thermal/cooling_device0/max_state'
       scan_interval: 5
       value_template: '{{ value }}'
