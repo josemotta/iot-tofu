@@ -25,48 +25,48 @@ scene: !include scenes.yaml
 #
 command_line:
   - sensor:
-      name: 'RPi CPU temperature'
+      name: 'CPU temperature'
       command: 'cat /sys/class/thermal/cooling_device0/subsystem/thermal_zone0/temp'
       scan_interval: 15
       value_template: '{{ value | multiply(0.001) | round(1) }}'
       device_class: temperature
       unit_of_measurement: '°C'
   - sensor:
-      name: 'RPi PoE online'
+      name: 'PoE online'
       command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/online'
       scan_interval: 5
       value_template: '{{ value }}'
   - sensor:
-      name: 'RPi PoE current'
+      name: 'PoE current'
       command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/current_now'
       scan_interval: 5
       value_template: '{{ value | multiply(0.001) | round(1) }}'
       device_class: current
       unit_of_measurement: 'mA'
   - sensor:
-      name: 'RPi PoE max'
+      name: 'PoE max'
       command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/current_max'
       scan_interval: 5
       value_template: '{{ value | multiply(0.001) | round(1) }}'
       device_class: current
       unit_of_measurement: 'mA'
   - sensor:
-      name: 'RPi PoE status'
+      name: 'PoE status'
       command: 'cat /sys/class/power_supply/rpi-poe/hwmon1/device/subsystem/rpi-poe/health'
       scan_interval: 5
       value_template: '{{ value }}'
   - sensor:
-      name: 'RPi Fan state'
+      name: 'Fan state'
       command: 'cat /sys/class/thermal/cooling_device0/cur_state'
       scan_interval: 5
       value_template: '{{ value }}'
   - sensor:
-      name: 'RPi Fan state max'
+      name: 'Fan max'
       command: 'cat /sys/class/thermal/cooling_device0/max_state'
       scan_interval: 5
       value_template: '{{ value }}'
   - sensor:
-      name: 'RPi Fan speed'
+      name: 'Fan speed'
       command: 'cat /sys/class/hwmon/hwmon3/device/hwmon/hwmon3/pwm1'
       scan_interval: 5
       value_template: '{{ value }}'
