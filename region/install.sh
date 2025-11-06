@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# Choose wisely the necessary updates!
+# Choose wisely and uncomment needed installs/updates!
 
-if [ "$EUID" -ne 0 ]; then
-    echo "Please run as root"
-    exit
-fi
-
-# se vai rodar como root não dá pra usar $USER (pois vai ser root!)
+#if [ "$EUID" -ne 0 ]; then
+#    echo "Please run as root"
+#    exit
+#fi
+# se for rodar como root não dá pra usar $USER (pois vai ser root!)
 
 # Docker install below starts with an update.
 #sudo apt update
@@ -43,8 +42,8 @@ services:
     network_mode: host
 EOF
 
-if [ ! -d /home/$USER/.docker/ha/config/ ]; then
-    echo "Missing expected Homeassistant configuration at ./docker/ha/config"
+if [ ! -d ~/.docker/ha/config/ ]; then
+    echo "Missing expected Homeassistant configuration directory at ~/.docker/ha/config"
     exit
 fi
 
