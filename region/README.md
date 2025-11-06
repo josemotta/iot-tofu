@@ -18,4 +18,4 @@ This is a typical [configuration](configuration.yaml) for the **Tofu boot server
 
 This configuration is supported by [vl53l1x](../rpi/vl53l1x/). The VL53L1X is a state-of-the-art, Time-of-Flight (ToF) laser-ranging sensor. It is the fastest miniature ToF sensor on the market with accurate ranging up to 4 m and fast ranging frequency up to 50 Hz.
 
-Check this link to [configure](https://www.jeffgeerling.com/blog/2021/taking-control-pi-poe-hats-overly-aggressive-fan) Pi's /boot/config.txt to control the speeds and temperatures when the fan runs on the PoE HAT.
+TODO: Check link to [configure](https://www.jeffgeerling.com/blog/2021/taking-control-pi-poe-hats-overly-aggressive-fan) Pi's /boot/config.txt to control the speeds and temperatures when the fan runs on the PoE HAT.
