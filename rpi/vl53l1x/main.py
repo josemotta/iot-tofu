@@ -10,7 +10,7 @@ from flask import Flask, request
 # import board
 
 # Back-end for VL53L1X Time-of-Flight (ToF) laser-ranging sensor
-VERSION = "0.1"
+VERSION = "0.2"
 
 # GPIO-21 pin connected to the sensor SHUTX pin
 # SHUTX_PIN_1 = 21
