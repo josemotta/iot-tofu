@@ -117,10 +117,10 @@ def test():
             i += 1
             # Write configuration bytes to initiate measurement
             ToF.start_ranging()
-            time.sleep(.020)
+            time.sleep(.140)
             # Get the result of the measurement from the sensor
             distance += ToF.get_distance()/5
-            time.sleep(.140)
+            time.sleep(.020)
             # Write configuration bytes to finish measurement
             ToF.stop_ranging()
             time.sleep(.020)
