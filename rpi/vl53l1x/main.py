@@ -12,7 +12,7 @@ from flask import Flask, request
 # Back-end for VL53L1X Time-of-Flight (ToF) laser-ranging sensor
 VERSION = "0.2"
 
-# Version 0.2: original version.
+# Version 0.1: original version.
 # Version 0.2: changed VL53L1X timing budget to 140 ms, allowing maximum distance mode 4 m.
 
 # GPIO-21 pin connected to the sensor SHUTX pin
