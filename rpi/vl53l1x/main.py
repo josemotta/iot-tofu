@@ -93,12 +93,13 @@ def test():
             time.sleep(.01)  # wait 10 ms
         print(" ... online after %d ms\n" % w)
 
-    # The VL53L1X timing budget can be set from 20 ms to 1000 ms
+    # The VL53L1X timing budget can be set from 20 ms to 1000 ms.
     # 20 ms for short distance mode
     # 33 ms minimum which can work all distance modes
     # 140 ms allows maximum distance mode 4 m (in the dark on a white chart) in long distance mode
+    # Thanks Felipe Kopp!
 
-    # Take 5 measures in ~700 ms & return the mean value
+    # Take 5 measures in ~900 ms & return the mean value
     i = 0
     distance = 0
 
