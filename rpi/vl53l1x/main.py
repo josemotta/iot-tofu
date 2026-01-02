@@ -86,6 +86,8 @@ def test():
 
     ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
 
+    ToF.set_measurement_timing_budget(140000)
+
     if (ToF.sensor_init() == None):  # returns 0 on a good init
         print("Sensor online!\n")
     else:
