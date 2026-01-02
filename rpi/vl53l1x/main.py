@@ -93,25 +93,30 @@ def test():
             time.sleep(.01)  # wait 10 ms
         print(" ... online after %d ms\n" % w)
 
-    # Take 10 measures in ~600 ms & return the mean value
+    # The VL53L1X timing budget can be set from 20 ms to 1000 ms
+    # 20 ms for short distance mode
+    # 33 ms minimum which can work all distance modes
+    # 140 ms allows maximum distance mode 4 m (in the dark on a white chart) in long distance mode
+
+    # Take 5 measures in ~700 ms & return the mean value
     i = 0
     distance = 0
 
     # GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
     # time.sleep(0.1)
 
-    while i < 10:
+    while i < 5:
         try:
             i += 1
             # Write configuration bytes to initiate measurement
             ToF.start_ranging()
-            time.sleep(.02)
+            time.sleep(.020)
             # Get the result of the measurement from the sensor
-            distance += ToF.get_distance()/10
-            time.sleep(.02)
+            distance += ToF.get_distance()/5
+            time.sleep(.140)
             # Write configuration bytes to finish measurement
             ToF.stop_ranging()
-            time.sleep(.02)
+            time.sleep(.020)
             print("Distance(mm): %s " % (distance))
 
         except Exception as e:
