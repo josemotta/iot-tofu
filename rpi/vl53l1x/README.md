@@ -78,6 +78,21 @@ curl http://127.0.0.1:5000/test
 }
 ```
 
+#### Single measure Qwiic VL53L1X
+
+Take 1 measure and return the value.
+
+- /single
+
+```
+curl http://127.0.0.1:5000/single
+{
+     "chip": "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
+     "distance": 70.1,
+     "version": "0.1"
+}
+```
+
 ### Measure every second
 
 Continuous testing.

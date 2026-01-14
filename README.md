@@ -89,4 +89,4 @@ sudo pxetools --add a10cd2e5
 
 ## Home-Assistant
 
-There are frontend websites for RPis created by the well known [Home Assistant](https://www.home-assistant.io/).
+There are docker containers running frontend websites at RPis using the well known [Home Assistant](https://www.home-assistant.io/).
