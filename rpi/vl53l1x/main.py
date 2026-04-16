@@ -140,5 +140,54 @@ def test():
     }
 
 
+@app.route('/single')
+def single():
+    print("VL53L1X Qwiic Single\n")
+
+    # Set GPIO for shutdown pin
+    # GPIO.setwarnings(True)
+    # GPIO.setmode(GPIO.BCM)
+    # GPIO.setup(SHUTX_PIN_1, GPIO.OUT)
+
+    # Reset sensor and enable it
+    # GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+    # time.sleep(0.1)  # wait 100 ms
+    # GPIO.output(SHUTX_PIN_1, GPIO.HIGH)
+    # time.sleep(0.1)  # wait 100 ms
+
+    ToF = qwiic_vl53l1x.QwiicVL53L1X(debug=1)
+
+    if (ToF.sensor_init() == None):  # returns 0 on a good init
+        print("Sensor online!\n")
+    else:
+        print("Waiting for sensor ...")
+        w = 0
+        while not (ToF.sensor_init() == None):
+            w += 10
+            time.sleep(.01)  # wait 10 ms
+        print(" ... online after %d ms\n" % w)
+
+    # Set distance mode (1=Short, 2=Long)
+    ToF.set_distance_mode(2)
+
+    distance = ToF.get_distance()
+
+    # Write configuration bytes to finish measurement
+    time.sleep(.010)
+    ToF.stop_ranging()
+
+    print("Distance(mm): %s " % (distance))
+
+    # Disable sensor
+    # GPIO.output(SHUTX_PIN_1, GPIO.LOW)
+    # time.sleep(0.1)
+
+    return {
+        'chip': "VL53L1X Time-of-Flight (ToF) laser-ranging sensor",
+        'distance': distance,
+        'version': VERSION
+    }
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
