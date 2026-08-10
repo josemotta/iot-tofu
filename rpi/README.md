@@ -2,7 +2,7 @@
 
 In computing, the Preboot eXecution Environment, often called PXE boot, is a specification describing a standardized client–server environment that boots a software assembly, retrieved from a network, on PXE-enabled clients. To set up a Raspberry Pi network (PXE) boot, you need a server host running DHCP, TFTP, and NFS and a client Raspberry Pi. Configure the client’s EEPROM boot order to prioritize network boot, and host the OS files on the network server so the client can boot without an SD card.
 
-This section considers an existing network conected to the cloud, composed of 'regions', as shown below.
+The _IoT OS_ been built in this section considers an existing network conected to the cloud, composed of _regions_, as shown below.
 
 ![Region](region.png)
 
