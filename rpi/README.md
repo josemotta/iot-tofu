@@ -1,6 +1,6 @@
 # IoT OS
 
-This section considers an existing network conected to the cloud, composed of 'regions', as shown below.
+In computing, the Preboot eXecution Environment, often called PXE boot, is a specification describing a standardized client–server environment that boots a software assembly, retrieved from a network, on PXE-enabled clients. This section considers an existing network conected to the cloud, composed of 'regions', as shown below.
 
 ![Region](region.png)
 
