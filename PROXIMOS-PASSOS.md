@@ -31,6 +31,22 @@ Setting up Claude Code...
 - Tackle your toughest work with Opus 5
 - Switch anytime with /model
 
+### Ao executar saiu mexendo
+
+```
+Let me verify the final file and that it builds/lints clean.
+
+  Read 1 file, ran 1 shell command
+
+Type check passes. Fixed the command injection in src/controllers/region.controller.ts:
+
+- Switched exec() (which spawns a shell and string-interpolates the command) to execFile(), passing arguments as an array so no shell parses the serial value — shell metacharacters like ; rm -rf / or `...` can no longer break out.
+- Added a whitelist regex (^[0-9a-fA-F]{8}$, matching the serial format shown in the README/pxetools examples) and reject anything else with 400 Bad Request before it ever reaches sudo pxetools.
+- Also converted the setup() handler's bash ${script} calls to execFile('bash', [script]) for consistency, even though those paths aren't user-controlled.
+
+✻ Brewed for 29s
+```
+
 ## O que foi feito neste PR
 
 Dois endpoints foram adicionados ao Boot-Back para incorporar os comandos `pxetools` que antes precisavam ser executados manualmente (conforme mencionado no README).

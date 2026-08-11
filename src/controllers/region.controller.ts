@@ -1,11 +1,14 @@
-import {post, requestBody, response} from '@loopback/rest';
-import {exec} from 'child_process';
+import {HttpErrors, post, requestBody, response} from '@loopback/rest';
+import {execFile} from 'child_process';
 import * as path from 'path';
 import {promisify} from 'util';
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 const RPI_DIR = path.resolve(__dirname, '../../rpi');
+
+// Serial numbers are 8-character hex strings, e.g. "9f55bbfd" (see README).
+const SERIAL_PATTERN = /^[0-9a-fA-F]{8}$/;
 
 export class RegionController {
   @post('/regions/setup')
@@ -27,11 +30,13 @@ export class RegionController {
     const installScript = path.join(RPI_DIR, 'pxetools-install.sh');
     const setupScript = path.join(RPI_DIR, 'pxetools-setup.sh');
 
-    const {stdout: installOut, stderr: installErr} = await execAsync(
-      `bash ${installScript}`,
+    const {stdout: installOut, stderr: installErr} = await execFileAsync(
+      'bash',
+      [installScript],
     );
-    const {stdout: setupOut, stderr: setupErr} = await execAsync(
-      `bash ${setupScript}`,
+    const {stdout: setupOut, stderr: setupErr} = await execFileAsync(
+      'bash',
+      [setupScript],
     );
 
     return {
@@ -71,9 +76,16 @@ export class RegionController {
     body: {serial: string},
   ): Promise<object> {
     const {serial} = body;
-    const {stdout, stderr} = await execAsync(
-      `sudo pxetools --add ${serial}`,
-    );
+    if (!SERIAL_PATTERN.test(serial)) {
+      throw new HttpErrors.BadRequest(
+        'serial must be an 8-character hex string',
+      );
+    }
+    const {stdout, stderr} = await execFileAsync('sudo', [
+      'pxetools',
+      '--add',
+      serial,
+    ]);
     return {output: stdout || stderr};
   }
 }
