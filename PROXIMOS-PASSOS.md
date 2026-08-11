@@ -17,6 +17,14 @@ sudo apt update && sudo apt install claude-desktop
 
 curl -fsSL https://claude.ai/install.sh | bash
 
+Setting up Claude Code...
+
+✔ Claude Code successfully installed!
+
+  Version: 2.1.227
+
+  Location: ~/.local/bin/claude
+
 ```
 
 - Sonnet 5 · Claude Pro
