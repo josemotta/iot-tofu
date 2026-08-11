@@ -121,13 +121,20 @@ Seguindo o mesmo padrão, as próximas APIs naturais seriam:
 - `DELETE /regions/rpi/:serial` → `sudo pxetools --remove <serial>`
 - `POST /regions/reset` → `rpi/pxetools-reset.sh`
 
-### 4. Deploy do frontend
+### 4. Corrigir `POST /regions/rpi` — comando `--add` é interativo
+
+Ao reverificar `region.controller.ts` contra `rpi/pxetools.py`, dois problemas impedem que o endpoint funcione como está hoje:
+
+- **`pxetools --add` pede input interativo.** Depois de validar o serial, [`add()`](rpi/pxetools.py#L68-L77) chama `input("Owner name: ")`, `input("Pi name: ")` e `input("Enter an option number: ")` (escolha da imagem base em `/nfs/bases`). O endpoint só envia `serial` no body e roda `execFile('sudo', ['pxetools', '--add', serial])` sem stdin conectado — o primeiro `input()` recebe EOF imediato, o Python lança `EOFError` e o processo sai com erro. Ou seja, o endpoint nunca completa um add de verdade, não é só falta de tratamento de erro (item 2 acima) — falta um jeito de repassar `owner`, `name` e a escolha de imagem pro processo filho.
+- **O container não tem `sudo` instalado.** `Dockerfile`/`Dockerfile.prod` rodam como usuário não-root `node` e só instalam `git curl bash` via apt — `sudo` nunca é instalado na imagem, e não há sudoers/NOPASSWD configurado em lugar nenhum. `privileged: true` no compose só estende capabilities do container, não instala `sudo` nem dá acesso ao filesystem do host Tofu para mexer em PXE/DHCP/TFTP. Existe `rpi/pipe.sh` (lê comandos de `~/pipe/pipe` e faz `eval`), que parece existir justamente para repassar comandos privilegiados do container pro host via o volume `/hostpipe` montado no compose — mas `region.controller.ts` não usa esse pipe, chama `sudo`/`bash` direto no processo do container. Como está, os dois endpoints devem falhar em produção com `sudo: command not found` em vez de configurar o host.
+
+### 5. Deploy do frontend
 
 - Criar repositório para o `iot-tofu-site`
 - Conectar na Vercel
 - Setar `NEXT_PUBLIC_API_URL` com o endereço público do Boot-Back
 
-### 5. CORS
+### 6. CORS
 
 Quando o frontend estiver num domínio público chamando a API, será necessário habilitar CORS no Boot-Back. No LoopBack4, isso é feito em `src/application.ts`:
 

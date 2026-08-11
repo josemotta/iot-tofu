@@ -175,7 +175,7 @@ def add():
 def remove():
     serial = sys.argv[2]
 
-    if not re.search("^[0-9a-f]{8}$", serial):
+    if not re.search("^[0-9a-fA-F]{8}$", serial):
         raise Exception("Invalid serial number {}".format(serial))
 
     sure = ""
