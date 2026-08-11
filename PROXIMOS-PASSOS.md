@@ -2,6 +2,8 @@
 
 ## Instalação Claude
 
+O `Claude` é um assistente de inteligência artificial generativa criado pela empresa Anthropic. Ele funciona baseado em grandes modelos de linguagem (LLMs), processando textos, imagens e códigos de programação para conversar, responder a perguntas e executar tarefas complexas de forma natural.
+
 ```bash
 sudo curl -fsSLo /usr/share/keyrings/claude-desktop-archive-keyring.asc https://downloads.claude.ai/claude-desktop/key.asc
 
