@@ -55,3 +55,37 @@ rpi/pxetools-setup.sh
 sudo pxetools --add 9f55bbfd
 sudo pxetools --add a10cd2e5
 ```
+
+## Posts
+
+### `POST /regions/setup`
+
+Executa em sequência:
+
+1. `rpi/pxetools-install.sh` — instala os serviços no servidor de boot
+2. `rpi/pxetools-setup.sh` — faz a configuração inicial
+
+Retorna:
+
+```json
+{
+  "install": "<output do script de instalação>",
+  "setup": "<output do script de setup>"
+}
+```
+
+### `POST /regions/rpi`
+
+Executa `sudo pxetools --add <serial>` com o número de série recebido no body.
+
+Body esperado:
+
+```json
+{"serial": "9f55bbfd"}
+```
+
+Retorna:
+
+```json
+{"output": "<output do pxetools>"}
+```

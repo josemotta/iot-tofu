@@ -47,42 +47,6 @@ Type check passes. Fixed the command injection in src/controllers/region.control
 ✻ Brewed for 29s
 ```
 
-## O que deverá ser feito neste PR
-
-Dois endpoints devem ser adicionados ao Boot-Back para incorporar os comandos `pxetools` que estão sendo executados manualmente (conforme mencionado no README).
-
-### `POST /regions/setup`
-
-Executa em sequência:
-
-1. `rpi/pxetools-install.sh` — instala os serviços no servidor de boot
-2. `rpi/pxetools-setup.sh` — faz a configuração inicial
-
-Retorna:
-
-```json
-{
-  "install": "<output do script de instalação>",
-  "setup": "<output do script de setup>"
-}
-```
-
-### `POST /regions/rpi`
-
-Executa `sudo pxetools --add <serial>` com o número de série recebido no body.
-
-Body esperado:
-
-```json
-{"serial": "9f55bbfd"}
-```
-
-Retorna:
-
-```json
-{"output": "<output do pxetools>"}
-```
-
 ---
 
 ## Frontend (site de configuração)
