@@ -56,7 +56,7 @@ sudo pxetools --add 9f55bbfd
 sudo pxetools --add a10cd2e5
 ```
 
-## Posts
+## API Posts
 
 ### `POST /regions/setup`
 
