@@ -10,7 +10,6 @@ pub   rsa4096 2026-03-30 [SCE]
       31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE
 uid                      Anthropic Claude Code Release Signing <security@anthropic.com>
 
-
 echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/claude-desktop-archive-keyring.asc] https://downloads.claude.ai/claude-desktop/apt/stable stable main" | sudo tee /etc/apt/sources.list.d/claude-desktop.list
 deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/claude-desktop-archive-keyring.asc] https://downloads.claude.ai/claude-desktop/apt/stable stable main
 
@@ -20,9 +19,9 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 ```
 
-- Sonnet 5 · Claude Pro · josemotta@bampli.com's Organization
-- Tackle your toughest work with Opus 5.
-- Switch anytime with /model.
+- Sonnet 5 · Claude Pro
+- Tackle your toughest work with Opus 5
+- Switch anytime with /model
 
 ## O que foi feito neste PR
 
