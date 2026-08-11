@@ -31,7 +31,7 @@ Setting up Claude Code...
 - Tackle your toughest work with Opus 5
 - Switch anytime with /model
 
-### Ao executar saiu mexendo
+### Claude saiu mexendo ...
 
 ```
 Let me verify the final file and that it builds/lints clean.
@@ -47,9 +47,9 @@ Type check passes. Fixed the command injection in src/controllers/region.control
 ✻ Brewed for 29s
 ```
 
-## O que foi feito neste PR
+## O que deverá ser feito neste PR
 
-Dois endpoints foram adicionados ao Boot-Back para incorporar os comandos `pxetools` que antes precisavam ser executados manualmente (conforme mencionado no README).
+Dois endpoints devem ser adicionados ao Boot-Back para incorporar os comandos `pxetools` que estão sendo executados manualmente (conforme mencionado no README).
 
 ### `POST /regions/setup`
 
