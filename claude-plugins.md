@@ -131,19 +131,7 @@ When Claude Code starts a session, it reads the skill descriptions from your ski
 
 ### How do I create a Claude Code skill?
 
-Create a folder at ~/.claude/skills/<name>/ and add a SKILL.md with frontmatter (name, description) and a body of instructions. Optionally add supporting files like templates or example code. The next Claude Code session will discover the skill and apply it when the description matches the current task.
-
-### Are there official Claude Code skills?
-
-Yes. Claude Code ships bundled skills including /simplify, /batch, /debug, /loop, and /claude-api. Teams often add their own project-specific skills on top, such as custom /commit, testing, or code-review workflows.
-
-- /batch: Spawns parallel work across multiple git worktrees. Hand it a list of tasks (“apply this refactor to these five packages”) and it creates worktrees, runs the work in parallel, and collects the results.
-- /simplify: Useful when the task or prompt has become too sprawling. It helps Claude reduce a messy ask into a smaller, clearer execution plan.
-- /debug: Focused on troubleshooting loops, reproductions, and narrowing root cause. It is the first bundled skill I would reach for when a session is stuck in “something is broken” mode.
-- /loop: Runs a prompt on repeat while the session stays open. Good for lightweight monitoring or repeated checks without building a separate automation system.
-- /claude-api: Useful when the task is specifically about Anthropic’s API surface rather than general code work.
-
-The description field is the most important part of a skill. It is what the model reads to decide whether to apply the skill.
+Create a folder at ~/.claude/skills/<name>/ and add a SKILL.md with frontmatter (name, description) and a body of instructions. Optionally add supporting files like templates or example code. The next Claude Code session will discover the skill and apply it when the description matches the current task. The description field is the most important part of a skill. It is what the model reads to decide whether to apply the skill.
 
 Patterns that work:
 
@@ -155,6 +143,16 @@ Patterns that fail:
 
 - Vague descriptions. “Helps with development” matches everything. The model triggers it constantly, polluting context.
 - Listing capabilities instead of conditions. “Knows how to write tests, run linters, format code” is a description of what the skill knows. The model needs to know when to use it.
+
+### Are there official Claude Code skills?
+
+Yes. Claude Code ships bundled skills including /simplify, /batch, /debug, /loop, and /claude-api. Teams often add their own project-specific skills on top, such as custom /commit, testing, or code-review workflows.
+
+- /batch: Spawns parallel work across multiple git worktrees. Hand it a list of tasks (“apply this refactor to these five packages”) and it creates worktrees, runs the work in parallel, and collects the results.
+- /simplify: Useful when the task or prompt has become too sprawling. It helps Claude reduce a messy ask into a smaller, clearer execution plan.
+- /debug: Focused on troubleshooting loops, reproductions, and narrowing root cause. It is the first bundled skill I would reach for when a session is stuck in “something is broken” mode.
+- /loop: Runs a prompt on repeat while the session stays open. Good for lightweight monitoring or repeated checks without building a separate automation system.
+- /claude-api: Useful when the task is specifically about Anthropic’s API surface rather than general code work.
 
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
