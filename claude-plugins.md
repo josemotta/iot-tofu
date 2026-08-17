@@ -56,7 +56,7 @@ Microsoft maintains the official Playwright MCP server. ExecuteAutomation ships 
 
 The best MCP servers for Claude Code in 2026, ranked and tested: GitHub, Context7, Playwright, Postgres, Exa, and the essential picks, with install commands and the context-cost tradeoffs of running many at once. A practical rule: three to six servers for most developers. Add one per project when a real need shows up, and remove any server the agent never calls. Start with GitHub plus one or two project-specific servers, then add Context7 if you frequently work across unfamiliar stacks.
 
-Further details from this article were added to the above list, please see the respective plugin. If you want a day-one setup to install and tune later:
+Further details from this article were added to the above list, please see the respective plugin. A day-one setup to install and tune later:
 
 - claude mcp add --transport http github https://api.githubcopilot.com/mcp
 - claude mcp add context7 -- npx -y @upstash/context7-mcp
