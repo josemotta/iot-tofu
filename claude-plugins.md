@@ -58,8 +58,6 @@ The best MCP servers for Claude Code in 2026, ranked and tested: GitHub, Context
 
 Further details from this article were added to the above list, please see the respective plugin.
 
-### A sensible starter pack
-
 If you want a day-one setup to install and tune later:
 
 claude mcp add --transport http github https://api.githubcopilot.com/mcp
