@@ -125,6 +125,9 @@ Claude Code skills explained: what they are, how to write one, the best built-in
 
 - Skills are instructions, MCP servers are tools. A skill tells the agent what to do. An MCP server gives it new things it can do.
 - Skills live in ~/.claude/skills/<name>/ for user scope or .claude/skills/<name>/ inside a project for project scope.
+- A skill is a folder with a SKILL.md (instructions and triggering conditions) plus optional supporting files (templates, examples, helper scripts).
+
+When Claude Code starts a session, it reads the skill descriptions from your skills directories. As the session progresses, the model decides whether the current task matches a skill’s description. If it matches, the skill’s instructions get loaded and applied.
 
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
