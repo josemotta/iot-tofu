@@ -58,6 +58,18 @@ The best MCP servers for Claude Code in 2026, ranked and tested: GitHub, Context
 
 Further details from this article were added to the above list, please see the respective plugin.
 
+### A sensible starter pack
+
+If you want a day-one setup to install and tune later:
+
+claude mcp add --transport http github https://api.githubcopilot.com/mcp
+
+claude mcp add context7 -- npx -y @upstash/context7-mcp
+
+claude mcp add --transport sse linear https://mcp.linear.app/sse
+
+Add Slack if your team lives there. Add Postgres, Sentry, Playwright, or a search server when the project demands them. **Resist installing servers you do not have a clear use for.** Each one expands the agent’s tool list, and a bloated tool list hurts the agent’s decision quality.
+
 ### Linear MCP server
 
 For teams that live in Linear, this turns Claude Code into a participant in the planning system. It reads tickets, updates status, leaves comments, and creates new issues. Linear ships an official hosted MCP server, so you authenticate in the browser on first connect.
@@ -72,18 +84,6 @@ A new species of product tool. Purpose-built for modern teams with AI workflows 
 - Build and deploy AI agents that work alongside your team. Work on complex tasks together or delegate entire issues end-to-end.
 - Understand code changes at a glance with structural diffs for human and agent output. Review, discuss, and merge — all within Linear.
 - Take the guesswork out of product development with project updates, analytics, and dashboards that surface what needs your attention.
-
-### A sensible starter pack
-
-If you want a day-one setup to install and tune later:
-
-claude mcp add --transport http github https://api.githubcopilot.com/mcp
-
-claude mcp add context7 -- npx -y @upstash/context7-mcp
-
-claude mcp add --transport sse linear https://mcp.linear.app/sse
-
-Add Slack if your team lives there. Add Postgres, Sentry, Playwright, or a search server when the project demands them. **Resist installing servers you do not have a clear use for.** Each one expands the agent’s tool list, and a bloated tool list hurts the agent’s decision quality.
 
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
