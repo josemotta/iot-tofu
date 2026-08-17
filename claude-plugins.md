@@ -10,6 +10,8 @@ Context7 is the plugin most experienced Claude Code users install first. It is a
 
 For teams shipping against fast-moving libraries (Next.js, Tailwind, LangChain, the Vercel AI SDK, Supabase), Context7 cuts an entire class of hallucinations. The tradeoff is latency: **every doc lookup adds tokens and a network round-trip**. Eliminates the most common category of Claude hallucination.
 
+- install: claude mcp add context7 -- npx -y @upstash/context7-mcp
+
 ### Frontend Design: Best for shipping UI that does not look like a 2023 Bootstrap template.
 
 Frontend Design is Anthropic's own plugin and the most-installed plugin in the official directory at roughly 277,000 installs by mid-2026. It exists because raw Claude Code produces functional but generic UI. Frontend Design wires the agent into design tokens, screenshots, layout reasoning, and a curated set of UI patterns so the components it ships actually look intentional.
@@ -38,9 +40,48 @@ The Composio team and most of the early adopters in the Anthropic dev community 
 
 The GitHub plugin connects Claude Code to your repositories, pull requests, issues, and Actions. The agent can read PR diffs, leave reviews, triage issues, search across repos, and run workflows. For any team using GitHub as the source of truth, which is most teams, this plugin removes the need to copy-paste between terminal and browser. It is the **most common second-install** after the LSP pack, and Anthropic actively maintains it as a partner plugin. Maintained by GitHub as an Anthropic partner.
 
+- install: claude mcp add --transport http github https://api.githubcopilot.com/mcp
+
+Authenticate with OAuth on first use, or pass a fine-grained personal access token as a header with -H "Authorization: Bearer ghp\_...". The older @modelcontextprotocol/server-github npm package is deprecated in favor of this official server. Scope the token to the repos and permissions Claude Code actually needs, and for team projects use a service account so the agent’s actions are auditable separately from your own. The server supports read-only mode and toolset selection, which is the easiest way to keep its large tool list from crowding the agent.
+
 ### Playwright Plugin: Best for end-to-end test authoring and execution by the agent.
 
 The Playwright plugin lets Claude Code author, run, and debug end-to-end tests against your app. Combined with **Chrome DevTools MCP** and **Frontend Design**, it closes the loop on UI changes: Claude builds, screenshots, verifies, then writes a regression test before the diff is committed. Generates Playwright tests from natural language specs. Playwright is also one of the few plugins where the ROI is easy to measure: test coverage written by the agent that would have been deferred or skipped manually.
+
+Microsoft maintains the official Playwright MCP server. ExecuteAutomation ships a popular community alternative, @executeautomation/playwright-mcp-server, if you prefer screenshot-based flows.
+
+- install: claude mcp add playwright -- npx @playwright/mcp@latest
+
+## [Best MCP Servers for Claude Code in 2026 (Ranked and Tested)](https://nimbalyst.com/blog/best-claude-code-mcp-servers/)
+
+The best MCP servers for Claude Code in 2026, ranked and tested: GitHub, Context7, Playwright, Postgres, Exa, and the essential picks, with install commands and the context-cost tradeoffs of running many at once. A practical rule: three to six servers for most developers. Add one per project when a real need shows up, and remove any server the agent never calls.
+
+Further details from this article were added to the above list, please see the respective plugin.
+
+### [Linear MCP server]
+
+For teams that live in Linear, this turns Claude Code into a participant in the planning system. It reads tickets, updates status, leaves comments, and creates new issues. Linear ships an official hosted MCP server, so you authenticate in the browser on first connect.
+
+- install: claude mcp add --transport sse linear https://mcp.linear.app/sse
+
+### [Linear – The system for product development](https://linear.app/)
+
+A new species of product tool. Purpose-built for modern teams with AI workflows at its core, Linear sets a new standard for planning and building products.
+
+- Plan and navigate from idea to launch. Align your team with product initiatives, strategic roadmaps, and clear, up-to-date PRDs.
+- Build and deploy AI agents that work alongside your team. Work on complex tasks together or delegate entire issues end-to-end.
+- Understand code changes at a glance with structural diffs for human and agent output. Review, discuss, and merge — all within Linear.
+- Take the guesswork out of product development with project updates, analytics, and dashboards that surface what needs your attention.
+
+### A sensible starter pack
+
+If you want a day-one setup to install and tune later:
+
+claude mcp add --transport http github https://api.githubcopilot.com/mcp
+claude mcp add context7 -- npx -y @upstash/context7-mcp
+claude mcp add --transport sse linear https://mcp.linear.app/sse
+
+Add Slack if your team lives there. Add Postgres, Sentry, Playwright, or a search server when the project demands them. **Resist installing servers you do not have a clear use for.** Each one expands the agent’s tool list, and a bloated tool list hurts the agent’s decision quality.
 
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
