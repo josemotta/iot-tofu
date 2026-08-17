@@ -1,36 +1,5 @@
 # Claude Plugins
 
-## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
-
-A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
-
-## [Connect Home Assistant to AI – Set Up an MCP Server for Claude, ChatGPT & Gemini](https://raspberry.tips/en/smart-home/home-assistant-mcp-server-ai-setup)
-
-The MCP server (Model Context Protocol) is an interface that lets AIs like Claude, ChatGPT, or Gemini talk directly to your Home Assistant. Instead of writing YAML yourself, you give the AI access to entities, automations, and dashboards – it handles the code. Runs as a free app/add-on on Home Assistant OS, community project (homeassistant-ai/ha-mcp).
-
-An MCP server changes that fundamentally. You connect Home Assistant directly to an AI of your choice – Claude, ChatGPT, or Gemini – and simply describe in plain language what you need: “Build me a sensor that shows today’s rainfall” or “Fix the automation in the kids’ room, the lights aren’t dimming correctly anymore.” The AI finds the right entities itself, writes the code, and sets it up in Home Assistant.
-
-## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
-
-In this video, we'll be learning about UV, a new and fast Python package manager from Astral, the makers of Ruff. We'll see how UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. We will cover how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
-
-## [Model Context Protocol servers](https://github.com/modelcontextprotocol/servers)
-
-This repository is a collection of reference implementations for the Model Context Protocol (MCP), as well as references to community-built servers and additional resources.
-
-The servers in this repository showcase the versatility and extensibility of MCP, demonstrating how it can be used to give Large Language Models (LLMs) secure, controlled access to tools and data sources. Typically, each MCP server is implemented with an MCP SDK:
-
-- C# MCP SDK
-- Go MCP SDK
-- Java MCP SDK
-- Kotlin MCP SDK
-- PHP MCP SDK
-- Python MCP SDK
-- Ruby MCP SDK
-- Rust MCP SDK
-- Swift MCP SDK
-- TypeScript MCP SDK
-
 ## [10 Best Claude Code Plugins in 2026](https://www.ayautomate.com/blog/best-claude-code-plugins)
 
 The best Claude Code plugins in 2026 are Context7 for live version-specific docs, Frontend Design for UI that looks shipped, Superpowers for structured TDD and sub-agent workflows, Chrome DevTools MCP for real-browser debugging, and Anthropic's LSP pack for accurate code intelligence. Round out the stack with the GitHub, Playwright, Semgrep, Linear, and Vercel plugins and you cover repo workflows, E2E tests, security scanning, backlog sync, and deploys.
@@ -82,6 +51,37 @@ It is the most common second-install after the LSP pack, and Anthropic actively 
 The Playwright plugin lets Claude Code author, run, and debug end-to-end tests against your app. Combined with **Chrome DevTools MCP** and **Frontend Design**, it closes the loop on UI changes: Claude builds, screenshots, verifies, then writes a regression test before the diff is committed.
 
 Generates Playwright tests from natural language specs. Playwright is also one of the few plugins where the ROI is easy to measure: test coverage written by the agent that would have been deferred or skipped manually.
+
+## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
+
+A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
+
+## [Connect Home Assistant to AI – Set Up an MCP Server for Claude, ChatGPT & Gemini](https://raspberry.tips/en/smart-home/home-assistant-mcp-server-ai-setup)
+
+The MCP server (Model Context Protocol) is an interface that lets AIs like Claude, ChatGPT, or Gemini talk directly to your Home Assistant. Instead of writing YAML yourself, you give the AI access to entities, automations, and dashboards – it handles the code. Runs as a free app/add-on on Home Assistant OS, community project (homeassistant-ai/ha-mcp).
+
+An MCP server changes that fundamentally. You connect Home Assistant directly to an AI of your choice – Claude, ChatGPT, or Gemini – and simply describe in plain language what you need: “Build me a sensor that shows today’s rainfall” or “Fix the automation in the kids’ room, the lights aren’t dimming correctly anymore.” The AI finds the right entities itself, writes the code, and sets it up in Home Assistant.
+
+## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
+
+In this video, we'll be learning about UV, a new and fast Python package manager from Astral, the makers of Ruff. We'll see how UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. We will cover how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
+
+## [Model Context Protocol servers](https://github.com/modelcontextprotocol/servers)
+
+This repository is a collection of reference implementations for the Model Context Protocol (MCP), as well as references to community-built servers and additional resources.
+
+The servers in this repository showcase the versatility and extensibility of MCP, demonstrating how it can be used to give Large Language Models (LLMs) secure, controlled access to tools and data sources. Typically, each MCP server is implemented with an MCP SDK:
+
+- C# MCP SDK
+- Go MCP SDK
+- Java MCP SDK
+- Kotlin MCP SDK
+- PHP MCP SDK
+- Python MCP SDK
+- Ruby MCP SDK
+- Rust MCP SDK
+- Swift MCP SDK
+- TypeScript MCP SDK
 
 ## Why Claude Hallucinates
 
