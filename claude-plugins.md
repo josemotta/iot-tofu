@@ -91,6 +91,10 @@ In ~/.claude/settings.json (user level) or .claude/settings.json in a project (p
 
 GitHub for issues and PRs, then the systems your project already depends on: Linear or Jira for ticketing, Slack for team comms, Postgres or Sentry for backend work, Playwright for UI verification. Claude Code already has built-in file tools, so a separate filesystem server is usually optional.
 
+### How do I debug MCP issues?
+
+Run claude mcp list to see registered servers, claude mcp test <name> to verify a single server, and tail the Claude Code logs for stderr output from the server process.
+
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
 A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
