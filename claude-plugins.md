@@ -166,16 +166,6 @@ Yes. Claude Code ships bundled skills including /simplify, /batch, /debug, /loop
 
 Both have a place. CLAUDE.md is loaded into every session in the project. Skills are loaded conditionally based on the description. For rules that apply to all work in the repo, CLAUDE.md is the right home. For rules that only apply to specific tasks (testing, commits, security review), skills are cleaner because they keep the context focused.
 
-## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
-
-A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
-
-## [Connect Home Assistant to AI – Set Up an MCP Server for Claude, ChatGPT & Gemini](https://raspberry.tips/en/smart-home/home-assistant-mcp-server-ai-setup)
-
-The MCP server (Model Context Protocol) is an interface that lets AIs like Claude, ChatGPT, or Gemini talk directly to your Home Assistant. Instead of writing YAML yourself, you give the AI access to entities, automations, and dashboards – it handles the code. Runs as a free app/add-on on Home Assistant OS, community project (homeassistant-ai/ha-mcp).
-
-An MCP server changes that fundamentally. You connect Home Assistant directly to an AI of your choice – Claude, ChatGPT, or Gemini – and simply describe in plain language what you need: “Build me a sensor that shows today’s rainfall” or “Fix the automation in the kids’ room, the lights aren’t dimming correctly anymore.” The AI finds the right entities itself, writes the code, and sets it up in Home Assistant.
-
 ## [Claude Code by Use Case](https://www.claudedirectory.org/for)
 
 ### [Claude Code setups for API development](https://www.claudedirectory.org/for/api-development)
@@ -189,6 +179,16 @@ REST, GraphQL, OpenAPI, SDK generation. Skills, agents, plugins, and MCP servers
 Build React, Vue, and Svelte interfaces with Claude Code in the loop. Skills, agents, plugins, and MCP servers for components, design systems, accessibility, and visual testing — including Claude Preview and Claude in Chrome for clicking through what you just built.
 
 136 items across skills, agents, plugins, MCP servers, prompts, hooks, and guides.
+
+## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
+
+A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
+
+## [Connect Home Assistant to AI – Set Up an MCP Server for Claude, ChatGPT & Gemini](https://raspberry.tips/en/smart-home/home-assistant-mcp-server-ai-setup)
+
+The MCP server (Model Context Protocol) is an interface that lets AIs like Claude, ChatGPT, or Gemini talk directly to your Home Assistant. Instead of writing YAML yourself, you give the AI access to entities, automations, and dashboards – it handles the code. Runs as a free app/add-on on Home Assistant OS, community project (homeassistant-ai/ha-mcp).
+
+An MCP server changes that fundamentally. You connect Home Assistant directly to an AI of your choice – Claude, ChatGPT, or Gemini – and simply describe in plain language what you need: “Build me a sensor that shows today’s rainfall” or “Fix the automation in the kids’ room, the lights aren’t dimming correctly anymore.” The AI finds the right entities itself, writes the code, and sets it up in Home Assistant.
 
 ## [Model Context Protocol servers](https://github.com/modelcontextprotocol/servers)
 
