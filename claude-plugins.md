@@ -110,8 +110,38 @@ The servers in this repository are intended as reference implementations to demo
 
 UV is a new and fast Python package manager from Astral, the makers of Ruff. UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. The video covers how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
 
+## [Claude Code MCP Setup: A Practical 2026 Guide](https://nimbalyst.com/blog/claude-code-mcp-setup/)
+
+How to configure MCP servers for Claude Code in 2026. Add GitHub, Slack, Linear, Playwright, and database servers, debug auth, and avoid common pitfalls. Claude Code MCP is a standard for letting Claude Code call external tools. Each MCP server exposes one or more tools. Claude Code discovers them at startup and includes them in the tool list it can use during a session.
+
+### Where do I configure MCP servers?
+
+In ~/.claude/settings.json (user level) or .claude/settings.json in a project (project level). Project settings override user settings.
+
+### What MCP servers should I install first?
+
+GitHub for issues and PRs, then the systems your project already depends on: Linear or Jira for ticketing, Slack for team comms, Postgres or Sentry for backend work, Playwright for UI verification. Claude Code already has built-in file tools, so a separate filesystem server is usually optional.
+
 ## Why Claude Hallucinates
 
 A hallucination in Claude occurs when the AI generates false, fabricated, or misleading information and presents it with total confidence. This happens because the model predicts statistical text patterns rather than pulling from a verified database, often misfiring when it recognizes a name or topic but lacks actual facts. Research by Anthropic shows that hallucinations happen when Claude recognizes a name or entity, which incorrectly suppresses its default "I don't know" mechanism. Common Signs of Hallucinations are invented academic citations, fake URLs, or non-existent research papers.
 
 To Prevent and Reduce Hallucinations, give explicit permission in your prompt or system instructions: "You are allowed to say 'I don’t know' if you are unsure". Ask for chain-of-thought logic before it provides a final conclusion.
+
+## Database choices
+
+For a Raspberry Pi (RPI) Linux environment, SQLite is best for low-power, single-user, or read-heavy local apps because it needs no server. PostgreSQL or MySQL/MariaDB are better if you need multi-user web apps. MongoDB is heavy and generally a poor fit for low-memory Pi boards.
+
+Be careful with permissions. Give Claude Code a read-only database role unless you explicitly want it to mutate.
+
+### Quick Comparison
+
+- SQLite: Best for tiny resource footprints, local scripts, logging, and single-user software.
+- MySQL / MariaDB: Best if you run a standard web stack (like WordPress) and need moderate multi-user support.
+- PostgreSQL: Best for advanced data types, complex queries, or robust relational needs, provided your Pi has enough RAM (like a Pi 4 or 5).
+- MongoDB: Worst choice due to high RAM usage and heavy disk I/O, unless you use a lightweight file-based mock.
+
+### Key Factors on Raspberry Pi
+
+- Memory (RAM) Limits: SQLite runs inside your app process with almost zero idle overhead. Postgres and MySQL run background daemon processes that consume tens or hundreds of megabytes of RAM constantly. MongoDB demands even more memory to run efficiently.
+- Concurrency: SQLite handles many simultaneous readers fine, but locks the whole file during writes. If you have heavy concurrent writing from multiple services, MariaDB or PostgreSQL handle row-level locking much better.
