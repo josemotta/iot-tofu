@@ -79,6 +79,18 @@ A new species of product tool. Purpose-built for modern teams with AI workflows 
 - Understand code changes at a glance with structural diffs for human and agent output. Review, discuss, and merge — all within Linear.
 - Take the guesswork out of product development with project updates, analytics, and dashboards that surface what needs your attention.
 
+## [Claude Code MCP Setup: A Practical 2026 Guide](https://nimbalyst.com/blog/claude-code-mcp-setup/)
+
+How to configure MCP servers for Claude Code in 2026. Add GitHub, Slack, Linear, Playwright, and database servers, debug auth, and avoid common pitfalls. Claude Code MCP is a standard for letting Claude Code call external tools. Each MCP server exposes one or more tools. Claude Code discovers them at startup and includes them in the tool list it can use during a session.
+
+### Where do I configure MCP servers?
+
+In ~/.claude/settings.json (user level) or .claude/settings.json in a project (project level). Project settings override user settings.
+
+### What MCP servers should I install first?
+
+GitHub for issues and PRs, then the systems your project already depends on: Linear or Jira for ticketing, Slack for team comms, Postgres or Sentry for backend work, Playwright for UI verification. Claude Code already has built-in file tools, so a separate filesystem server is usually optional.
+
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
 A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
@@ -109,18 +121,6 @@ The servers in this repository are intended as reference implementations to demo
 ## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
 
 UV is a new and fast Python package manager from Astral, the makers of Ruff. UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. The video covers how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
-
-## [Claude Code MCP Setup: A Practical 2026 Guide](https://nimbalyst.com/blog/claude-code-mcp-setup/)
-
-How to configure MCP servers for Claude Code in 2026. Add GitHub, Slack, Linear, Playwright, and database servers, debug auth, and avoid common pitfalls. Claude Code MCP is a standard for letting Claude Code call external tools. Each MCP server exposes one or more tools. Claude Code discovers them at startup and includes them in the tool list it can use during a session.
-
-### Where do I configure MCP servers?
-
-In ~/.claude/settings.json (user level) or .claude/settings.json in a project (project level). Project settings override user settings.
-
-### What MCP servers should I install first?
-
-GitHub for issues and PRs, then the systems your project already depends on: Linear or Jira for ticketing, Slack for team comms, Postgres or Sentry for backend work, Playwright for UI verification. Claude Code already has built-in file tools, so a separate filesystem server is usually optional.
 
 ## Why Claude Hallucinates
 
