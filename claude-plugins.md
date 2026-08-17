@@ -135,14 +135,14 @@ Create a folder at ~/.claude/skills/<name>/ and add a SKILL.md with frontmatter 
 
 Patterns that work:
 
-- Lead with the use condition. “Use this skill when [X].” The model parses this as a triage rule.
-- Name the artifact or output. “When generating tests” is more useful than “for testing work”.
-- Be explicit about scope. “Vitest and Playwright tests only” prevents the skill from triggering on unrelated test conversations.
+- **Lead with the use condition.** “Use this skill when [X].” The model parses this as a triage rule.
+- **Name the artifact or output.** “When generating tests” is more useful than “for testing work”.
+- **Be explicit about scope.** “Vitest and Playwright tests only” prevents the skill from triggering on unrelated test conversations.
 
 Patterns that fail:
 
-- Vague descriptions. “Helps with development” matches everything. The model triggers it constantly, polluting context.
-- Listing capabilities instead of conditions. “Knows how to write tests, run linters, format code” is a description of what the skill knows. The model needs to know when to use it.
+- **Vague descriptions.** “Helps with development” matches everything. The model triggers it constantly, polluting context.
+- **Listing capabilities instead of conditions.** “Knows how to write tests, run linters, format code” is a description of what the skill knows. The model needs to know when to use it.
 
 ### Are there official Claude Code skills?
 
