@@ -26,11 +26,11 @@ The value of Superpowers is structural. It nudges the agent into patterns that p
 
 Chrome DevTools MCP gives Claude direct access to a running browser via the Chrome DevTools Protocol. The agent can read network requests, inspect console errors, dump the DOM, run scripts in the page context, and screenshot what the user actually sees. For frontend bugs that only reproduce in the browser, this plugin is the difference between Claude guessing and Claude debugging.
 
-It pairs with Frontend Design to close the loop: Frontend Design helps ship UI, Chrome DevTools verifies it works. This is the recommended stack for any team shipping web frontends with Claude Code.
+It pairs with **Frontend Design** to close the loop: Frontend Design helps ship UI, Chrome DevTools verifies it works. This is the recommended stack for any team shipping web frontends with Claude Code.
 
 ### Anthropic Language Servers (LSP pack): Best for accurate code navigation and diagnostics across 12+ languages.
 
-The official LSP pack bundles 12 language servers into Claude Code: TypeScript, Python, Go, Rust, C/C++, Java, C#, Kotlin, PHP, Lua, and Swift. With LSPs active, Claude gets the same code intelligence your IDE has: real types, real symbol resolution, real diagnostics. This is the foundation plugin: install it before anything else if you work in a typed language. Maintained by Anthropic, not a community fork.
+The official LSP pack bundles 12 language servers into Claude Code: TypeScript, Python, Go, Rust, C/C++, Java, C#, Kotlin, PHP, Lua, and Swift. With LSPs active, Claude gets the same code intelligence your IDE has: real types, real symbol resolution, real diagnostics. This is the foundation plugin: **install it before anything else if you work in a typed language**. Maintained by Anthropic, not a community fork.
 
 The Composio team and most of the early adopters in the Anthropic dev community recommend starting any Claude Code setup with the LSP plugins for your stack. The improvement in agent accuracy on typed codebases is immediate and obvious.
 
@@ -38,7 +38,7 @@ The Composio team and most of the early adopters in the Anthropic dev community 
 
 The GitHub plugin connects Claude Code to your repositories, pull requests, issues, and Actions. The agent can read PR diffs, leave reviews, triage issues, search across repos, and run workflows. For any team using GitHub as the source of truth, which is most teams, this plugin removes the need to copy-paste between terminal and browser.
 
-It is the most common second-install after the LSP pack, and Anthropic actively maintains it as a partner plugin. Maintained by GitHub as an Anthropic partner.
+It is the **most common second-install** after the LSP pack, and Anthropic actively maintains it as a partner plugin. Maintained by GitHub as an Anthropic partner.
 
 ### Playwright Plugin: Best for end-to-end test authoring and execution by the agent.
 
@@ -56,10 +56,6 @@ The MCP server (Model Context Protocol) is an interface that lets AIs like Claud
 
 An MCP server changes that fundamentally. You connect Home Assistant directly to an AI of your choice – Claude, ChatGPT, or Gemini – and simply describe in plain language what you need: “Build me a sensor that shows today’s rainfall” or “Fix the automation in the kids’ room, the lights aren’t dimming correctly anymore.” The AI finds the right entities itself, writes the code, and sets it up in Home Assistant.
 
-## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
-
-In this video, we'll be learning about UV, a new and fast Python package manager from Astral, the makers of Ruff. We'll see how UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. We will cover how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
-
 ## [Model Context Protocol servers](https://github.com/modelcontextprotocol/servers)
 
 This repository is a collection of reference implementations for the Model Context Protocol (MCP), as well as references to community-built servers and additional resources.
@@ -76,6 +72,10 @@ The servers in this repository showcase the versatility and extensibility of MCP
 - Rust MCP SDK
 - Swift MCP SDK
 - TypeScript MCP SDK
+
+## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
+
+In this video, we'll be learning about UV, a new and fast Python package manager from Astral, the makers of Ruff. We'll see how UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. We will cover how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
 
 ## Why Claude Hallucinates
 
