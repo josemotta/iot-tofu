@@ -144,6 +144,14 @@ Patterns that fail:
 - **Vague descriptions.** “Helps with development” matches everything. The model triggers it constantly, polluting context.
 - **Listing capabilities instead of conditions.** “Knows how to write tests, run linters, format code” is a description of what the skill knows. The model needs to know when to use it.
 
+### Project-scope vs user-scope skills
+
+User scope (~/.claude/skills/) is right for your personal preferences and any conventions you carry across projects.
+
+Project scope (.claude/skills/ in a repo) is right for project-specific rules. Naming conventions, framework choices, where new files go. Commit project-scope skills with the repo so every developer gets them.
+
+Most production teams I have seen end up with a small library of project-scope skills (5 to 10) and a handful of personal user-scope skills. The project-scope skills compound the most: every contributor benefits from work that one person did once.
+
 ### Are there official Claude Code skills?
 
 Yes. Claude Code ships bundled skills including /simplify, /batch, /debug, /loop, and /claude-api. Teams often add their own project-specific skills on top, such as custom /commit, testing, or code-review workflows.
@@ -153,6 +161,10 @@ Yes. Claude Code ships bundled skills including /simplify, /batch, /debug, /loop
 - /debug: Focused on troubleshooting loops, reproductions, and narrowing root cause. It is the first bundled skill I would reach for when a session is stuck in “something is broken” mode.
 - /loop: Runs a prompt on repeat while the session stays open. Good for lightweight monitoring or repeated checks without building a separate automation system.
 - /claude-api: Useful when the task is specifically about Anthropic’s API surface rather than general code work.
+
+### Should I write a skill or update CLAUDE.md?
+
+Both have a place. CLAUDE.md is loaded into every session in the project. Skills are loaded conditionally based on the description. For rules that apply to all work in the repo, CLAUDE.md is the right home. For rules that only apply to specific tasks (testing, commits, security review), skills are cleaner because they keep the context focused.
 
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
