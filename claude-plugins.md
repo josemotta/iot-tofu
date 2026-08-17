@@ -54,9 +54,7 @@ An MCP server changes that fundamentally. You connect Home Assistant directly to
 
 ## [Model Context Protocol servers](https://github.com/modelcontextprotocol/servers)
 
-This repository is a collection of reference implementations for the Model Context Protocol (MCP), as well as references to community-built servers and additional resources.
-
-The servers in this repository showcase the versatility and extensibility of MCP, demonstrating how it can be used to give Large Language Models (LLMs) secure, controlled access to tools and data sources. Typically, each MCP server is implemented with an MCP SDK:
+This repository is a collection of reference implementations for the Model Context Protocol (MCP), as well as references to community-built servers and additional resources. The servers in this repository showcase the versatility and extensibility of MCP, demonstrating how it can be used to give Large Language Models (LLMs) secure, controlled access to tools and data sources. Typically, each MCP server is implemented with an MCP SDK:
 
 - C# MCP SDK
 - Go MCP SDK
@@ -68,6 +66,8 @@ The servers in this repository showcase the versatility and extensibility of MCP
 - Rust MCP SDK
 - Swift MCP SDK
 - TypeScript MCP SDK
+
+The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage. They are meant to serve as educational examples for developers building their own MCP servers, not as production-ready solutions. Developers should evaluate their own security requirements and implement appropriate safeguards based on their specific threat model and use case.
 
 ## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
 
