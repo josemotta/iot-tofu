@@ -95,6 +95,14 @@ GitHub for issues and PRs, then the systems your project already depends on: Lin
 
 Run claude mcp list to see registered servers, claude mcp test <name> to verify a single server, and tail the Claude Code logs for stderr output from the server process.
 
+### Configuration file layout
+
+Claude Code reads MCP configuration from two places:
+
+- User scope: ~/.claude/settings.json. Servers configured here are available to every Claude Code session you run.
+
+- Project scope: .claude/settings.json in the project root. Servers configured here are available only when you run Claude Code inside that project. Project scope overrides user scope, which is useful when one repo needs a different set of tools.
+
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
 A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
