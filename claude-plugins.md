@@ -70,7 +70,7 @@ For teams that live in Linear, this turns Claude Code into a participant in the 
 
 - install: claude mcp add --transport sse linear https://mcp.linear.app/sse
 
-### [Linear – The system for product development](https://linear.app/)
+## [Linear – The system for product development](https://linear.app/)
 
 A new species of product tool. Purpose-built for modern teams with AI workflows at its core, Linear sets a new standard for planning and building products.
 
