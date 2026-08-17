@@ -60,11 +60,11 @@ Further details from this article were added to the above list, please see the r
 
 If you want a day-one setup to install and tune later:
 
-claude mcp add --transport http github https://api.githubcopilot.com/mcp
+- claude mcp add --transport http github https://api.githubcopilot.com/mcp
 
-claude mcp add context7 -- npx -y @upstash/context7-mcp
+- claude mcp add context7 -- npx -y @upstash/context7-mcp
 
-claude mcp add --transport sse linear https://mcp.linear.app/sse
+- claude mcp add --transport sse linear https://mcp.linear.app/sse
 
 Add Slack if your team lives there. Add Postgres, Sentry, Playwright, or a search server when the project demands them. **Resist installing servers you do not have a clear use for.** Each one expands the agent’s tool list, and a **bloated tool list hurts the agent’s decision quality**.
 
