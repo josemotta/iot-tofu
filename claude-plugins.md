@@ -143,6 +143,19 @@ Yes. Claude Code ships bundled skills including /simplify, /batch, /debug, /loop
 - /loop: Runs a prompt on repeat while the session stays open. Good for lightweight monitoring or repeated checks without building a separate automation system.
 - /claude-api: Useful when the task is specifically about Anthropic’s API surface rather than general code work.
 
+The description field is the most important part of a skill. It is what the model reads to decide whether to apply the skill.
+
+Patterns that work:
+
+- Lead with the use condition. “Use this skill when [X].” The model parses this as a triage rule.
+- Name the artifact or output. “When generating tests” is more useful than “for testing work”.
+- Be explicit about scope. “Vitest and Playwright tests only” prevents the skill from triggering on unrelated test conversations.
+
+Patterns that fail:
+
+- Vague descriptions. “Helps with development” matches everything. The model triggers it constantly, polluting context.
+- Listing capabilities instead of conditions. “Knows how to write tests, run linters, format code” is a description of what the skill knows. The model needs to know when to use it.
+
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
 A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
