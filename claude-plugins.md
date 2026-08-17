@@ -58,7 +58,7 @@ The best MCP servers for Claude Code in 2026, ranked and tested: GitHub, Context
 
 Further details from this article were added to the above list, please see the respective plugin.
 
-### [Linear MCP server]
+### Linear MCP server
 
 For teams that live in Linear, this turns Claude Code into a participant in the planning system. It reads tickets, updates status, leaves comments, and creates new issues. Linear ships an official hosted MCP server, so you authenticate in the browser on first connect.
 
