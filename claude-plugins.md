@@ -41,45 +41,43 @@ The hard part is separating the plugins that meaningfully change the loop from t
 
 This guide compares the 10 best Claude Code plugins in 2026. Real features, honest pricing where it is publicly known, pros and cons, and a framework to pick the right stack for your codebase.
 
-### Free Plugins Overview
-
-#### Context7: Best for up-to-date library documentation injected into prompts.
+### Context7: Best for up-to-date library documentation injected into prompts.
 
 Context7 is the plugin most experienced Claude Code users install first. It is an MCP-backed plugin that pulls version-specific documentation straight from source repositories and injects it into the model's context window. Instead of Claude guessing the current React 19 or Next.js 16 API based on training data, it reads the actual docs at the moment you ask. As of June 2026, Anthropic's public directory reports roughly 348,000 installs.
 
 For teams shipping against fast-moving libraries (Next.js, Tailwind, LangChain, the Vercel AI SDK, Supabase), Context7 cuts an entire class of hallucinations. The tradeoff is latency: **every doc lookup adds tokens and a network round-trip**. Eliminates the most common category of Claude hallucination.
 
-#### Frontend Design: Best for shipping UI that does not look like a 2023 Bootstrap template.
+### Frontend Design: Best for shipping UI that does not look like a 2023 Bootstrap template.
 
 Frontend Design is Anthropic's own plugin and the most-installed plugin in the official directory at roughly 277,000 installs by mid-2026. It exists because raw Claude Code produces functional but generic UI. Frontend Design wires the agent into design tokens, screenshots, layout reasoning, and a curated set of UI patterns so the components it ships actually look intentional.
 
 For agencies and product teams that care about visual polish, this plugin is the difference between Claude generating a wireframe and Claude generating something a designer would not immediately rewrite. It pairs naturally with Chrome DevTools MCP for verifying the rendered output.
 
-#### Superpowers: Best for structured workflows: TDD, brainstorming, sub-agent driven dev.
+### Superpowers: Best for structured workflows: TDD, brainstorming, sub-agent driven dev.
 
 Superpowers reframes Claude Code from a single agent to a small dev team. It ships a curated set of workflows (brainstorming, sub-agent driven development, systematic debugging, red/green TDD, code review) plus tooling to author and test your own skills. With 752,000+ installs, it is one of the most popular community plugins in the marketplace.
 
 The value of Superpowers is structural. It nudges the agent into patterns that produce better code: write the test first, run the test, fix the failure, review the diff. If your team has tried Claude Code and felt like the agent rushes to a solution, Superpowers is the corrective. Battle-tested by a large community. Forces good habits: test first, review before merge.
 
-#### Chrome DevTools MCP: Best for live frontend debugging through the real browser.
+### Chrome DevTools MCP: Best for live frontend debugging through the real browser.
 
 Chrome DevTools MCP gives Claude direct access to a running browser via the Chrome DevTools Protocol. The agent can read network requests, inspect console errors, dump the DOM, run scripts in the page context, and screenshot what the user actually sees. For frontend bugs that only reproduce in the browser, this plugin is the difference between Claude guessing and Claude debugging.
 
 It pairs with Frontend Design to close the loop: Frontend Design helps ship UI, Chrome DevTools verifies it works. This is the recommended stack for any team shipping web frontends with Claude Code.
 
-#### Anthropic Language Servers (LSP pack): Best for accurate code navigation and diagnostics across 12+ languages.
+### Anthropic Language Servers (LSP pack): Best for accurate code navigation and diagnostics across 12+ languages.
 
 The official LSP pack bundles 12 language servers into Claude Code: TypeScript, Python, Go, Rust, C/C++, Java, C#, Kotlin, PHP, Lua, and Swift. With LSPs active, Claude gets the same code intelligence your IDE has: real types, real symbol resolution, real diagnostics. This is the foundation plugin: install it before anything else if you work in a typed language. Maintained by Anthropic, not a community fork.
 
 The Composio team and most of the early adopters in the Anthropic dev community recommend starting any Claude Code setup with the LSP plugins for your stack. The improvement in agent accuracy on typed codebases is immediate and obvious.
 
-#### GitHub Plugin: Best for PR review, issue triage, and repo context inside Claude.
+### GitHub Plugin: Best for PR review, issue triage, and repo context inside Claude.
 
 The GitHub plugin connects Claude Code to your repositories, pull requests, issues, and Actions. The agent can read PR diffs, leave reviews, triage issues, search across repos, and run workflows. For any team using GitHub as the source of truth, which is most teams, this plugin removes the need to copy-paste between terminal and browser.
 
 It is the most common second-install after the LSP pack, and Anthropic actively maintains it as a partner plugin. Maintained by GitHub as an Anthropic partner.
 
-#### Playwright Plugin: Best for end-to-end test authoring and execution by the agent.
+### Playwright Plugin: Best for end-to-end test authoring and execution by the agent.
 
 The Playwright plugin lets Claude Code author, run, and debug end-to-end tests against your app. Combined with **Chrome DevTools MCP** and **Frontend Design**, it closes the loop on UI changes: Claude builds, screenshots, verifies, then writes a regression test before the diff is committed.
 
