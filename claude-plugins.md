@@ -111,6 +111,21 @@ For most servers, user level is the right scope. GitHub, Slack, Linear, and your
 
 For database servers, monitoring servers, and project-specific APIs, project level is cleaner. Each repo gets only the tools it actually needs, and Claude Code’s tool list stays short.
 
+### Are MCP servers safe?
+
+MCP servers run as subprocesses on your machine with the credentials you give them. Treat them like any other CLI tool. Only install servers from trusted sources. Use scoped tokens with the minimum permissions the server needs. For database servers, prefer read-only roles unless you explicitly want write access.
+
+### Why is my MCP server not showing up in Claude Code?
+
+Three usual causes. First, the JSON in settings.json has a syntax error. Run it through jq. Second, the command does not resolve. Use absolute paths for binaries. Third, the server itself is failing on startup. Run it manually in a terminal to see stderr.
+
+## [Claude Code Skills: A Practical 2026 Guide ](https://nimbalyst.com/blog/claude-code-skills-guide/)
+
+Claude Code skills explained: what they are, how to write one, the best built-in skills, and how skills differ from MCP servers and subagents.
+
+- Skills are instructions, MCP servers are tools. A skill tells the agent what to do. An MCP server gives it new things it can do.
+- Skills live in ~/.claude/skills/<name>/ for user scope or .claude/skills/<name>/ inside a project for project scope.
+
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
 A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with Home Assistant. Using natural language, control smart home devices, query states, execute services and manage your automations.
