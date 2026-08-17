@@ -75,10 +75,6 @@ UV is a new and fast Python package manager from Astral, the makers of Ruff. UV 
 
 ## Why Claude Hallucinates
 
-A hallucination in Claude occurs when the AI generates false, fabricated, or misleading information and presents it with total confidence. This happens because the model predicts statistical text patterns rather than pulling from a verified database, often misfiring when it recognizes a name or topic but lacks actual facts.
-
-Research by Anthropic shows that hallucinations happen when Claude recognizes a name or entity, which incorrectly suppresses its default "I don't know" mechanism.
-
-Common Signs of Hallucinations are invented academic citations, fake URLs, or non-existent research papers.
+A hallucination in Claude occurs when the AI generates false, fabricated, or misleading information and presents it with total confidence. This happens because the model predicts statistical text patterns rather than pulling from a verified database, often misfiring when it recognizes a name or topic but lacks actual facts. Research by Anthropic shows that hallucinations happen when Claude recognizes a name or entity, which incorrectly suppresses its default "I don't know" mechanism. Common Signs of Hallucinations are invented academic citations, fake URLs, or non-existent research papers.
 
 To Prevent and Reduce Hallucinations, give explicit permission in your prompt or system instructions: "You are allowed to say 'I don’t know' if you are unsure". Ask for chain-of-thought logic before it provides a final conclusion.
