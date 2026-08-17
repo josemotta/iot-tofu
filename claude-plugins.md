@@ -54,16 +54,12 @@ Microsoft maintains the official Playwright MCP server. ExecuteAutomation ships 
 
 ## [Best MCP Servers for Claude Code in 2026 (Ranked and Tested)](https://nimbalyst.com/blog/best-claude-code-mcp-servers/)
 
-The best MCP servers for Claude Code in 2026, ranked and tested: GitHub, Context7, Playwright, Postgres, Exa, and the essential picks, with install commands and the context-cost tradeoffs of running many at once. A practical rule: three to six servers for most developers. Add one per project when a real need shows up, and remove any server the agent never calls.
+The best MCP servers for Claude Code in 2026, ranked and tested: GitHub, Context7, Playwright, Postgres, Exa, and the essential picks, with install commands and the context-cost tradeoffs of running many at once. A practical rule: three to six servers for most developers. Add one per project when a real need shows up, and remove any server the agent never calls. Start with GitHub plus one or two project-specific servers, then add Context7 if you frequently work across unfamiliar stacks.
 
-Further details from this article were added to the above list, please see the respective plugin.
-
-If you want a day-one setup to install and tune later:
+Further details from this article were added to the above list, please see the respective plugin. If you want a day-one setup to install and tune later:
 
 - claude mcp add --transport http github https://api.githubcopilot.com/mcp
-
 - claude mcp add context7 -- npx -y @upstash/context7-mcp
-
 - claude mcp add --transport sse linear https://mcp.linear.app/sse
 
 Add Slack if your team lives there. Add Postgres, Sentry, Playwright, or a search server when the project demands them. **Resist installing servers you do not have a clear use for.** Each one expands the agent’s tool list, and a **bloated tool list hurts the agent’s decision quality**.
