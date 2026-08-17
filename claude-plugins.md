@@ -176,6 +176,20 @@ The MCP server (Model Context Protocol) is an interface that lets AIs like Claud
 
 An MCP server changes that fundamentally. You connect Home Assistant directly to an AI of your choice – Claude, ChatGPT, or Gemini – and simply describe in plain language what you need: “Build me a sensor that shows today’s rainfall” or “Fix the automation in the kids’ room, the lights aren’t dimming correctly anymore.” The AI finds the right entities itself, writes the code, and sets it up in Home Assistant.
 
+## [Claude Code by Use Case](https://www.claudedirectory.org/for)
+
+### [Claude Code setups for API development](https://www.claudedirectory.org/for/api-development)
+
+REST, GraphQL, OpenAPI, SDK generation. Skills, agents, plugins, and MCP servers that help Claude Code design, document, and implement APIs end-to-end — from spec to typed client to webhook receiver.
+
+634 items across skills, agents, plugins, MCP servers, prompts, hooks, and guides.
+
+### [Claude Code setups for frontend and UI development](https://www.claudedirectory.org/for/frontend)
+
+Build React, Vue, and Svelte interfaces with Claude Code in the loop. Skills, agents, plugins, and MCP servers for components, design systems, accessibility, and visual testing — including Claude Preview and Claude in Chrome for clicking through what you just built.
+
+136 items across skills, agents, plugins, MCP servers, prompts, hooks, and guides.
+
 ## [Model Context Protocol servers](https://github.com/modelcontextprotocol/servers)
 
 This repository is a collection of reference implementations for the Model Context Protocol (MCP), as well as references to community-built servers and additional resources. The servers in this repository showcase the versatility and extensibility of MCP, demonstrating how it can be used to give Large Language Models (LLMs) secure, controlled access to tools and data sources. Typically, each MCP server is implemented with an MCP SDK:
