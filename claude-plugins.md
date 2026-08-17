@@ -36,15 +36,11 @@ The Composio team and most of the early adopters in the Anthropic dev community 
 
 ### GitHub Plugin: Best for PR review, issue triage, and repo context inside Claude.
 
-The GitHub plugin connects Claude Code to your repositories, pull requests, issues, and Actions. The agent can read PR diffs, leave reviews, triage issues, search across repos, and run workflows. For any team using GitHub as the source of truth, which is most teams, this plugin removes the need to copy-paste between terminal and browser.
-
-It is the **most common second-install** after the LSP pack, and Anthropic actively maintains it as a partner plugin. Maintained by GitHub as an Anthropic partner.
+The GitHub plugin connects Claude Code to your repositories, pull requests, issues, and Actions. The agent can read PR diffs, leave reviews, triage issues, search across repos, and run workflows. For any team using GitHub as the source of truth, which is most teams, this plugin removes the need to copy-paste between terminal and browser. It is the **most common second-install** after the LSP pack, and Anthropic actively maintains it as a partner plugin. Maintained by GitHub as an Anthropic partner.
 
 ### Playwright Plugin: Best for end-to-end test authoring and execution by the agent.
 
-The Playwright plugin lets Claude Code author, run, and debug end-to-end tests against your app. Combined with **Chrome DevTools MCP** and **Frontend Design**, it closes the loop on UI changes: Claude builds, screenshots, verifies, then writes a regression test before the diff is committed.
-
-Generates Playwright tests from natural language specs. Playwright is also one of the few plugins where the ROI is easy to measure: test coverage written by the agent that would have been deferred or skipped manually.
+The Playwright plugin lets Claude Code author, run, and debug end-to-end tests against your app. Combined with **Chrome DevTools MCP** and **Frontend Design**, it closes the loop on UI changes: Claude builds, screenshots, verifies, then writes a regression test before the diff is committed. Generates Playwright tests from natural language specs. Playwright is also one of the few plugins where the ROI is easy to measure: test coverage written by the agent that would have been deferred or skipped manually.
 
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
