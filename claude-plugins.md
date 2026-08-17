@@ -71,7 +71,7 @@ The servers in this repository showcase the versatility and extensibility of MCP
 
 ## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
 
-In this video, we'll be learning about UV, a new and fast Python package manager from Astral, the makers of Ruff. We'll see how UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. We will cover how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
+UV is a new and fast Python package manager from Astral, the makers of Ruff. UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. The video covers how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
 
 ## Why Claude Hallucinates
 
