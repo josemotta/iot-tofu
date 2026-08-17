@@ -42,7 +42,11 @@ The GitHub plugin connects Claude Code to your repositories, pull requests, issu
 
 - install: claude mcp add --transport http github https://api.githubcopilot.com/mcp
 
-Authenticate with OAuth on first use, or pass a fine-grained personal access token as a header with -H "Authorization: Bearer ghp\_...". The older @modelcontextprotocol/server-github npm package is deprecated in favor of this official server. Scope the token to the repos and permissions Claude Code actually needs, and for team projects use a service account so the agent’s actions are auditable separately from your own. The server supports read-only mode and toolset selection, which is the easiest way to keep its large tool list from crowding the agent.
+Authenticate with OAuth on first use, or pass a fine-grained personal access token as a header with -H "Authorization: Bearer ghp\_...". Generate a fine-grained personal access token with repo, read:org, and workflow scopes for most workflows.
+
+Scope the token to the repos and permissions Claude Code actually needs, and for team projects use a service account so the agent’s actions are auditable separately from your own. The server supports read-only mode and toolset selection, which is the easiest way to keep its large tool list from crowding the agent.
+
+The older @modelcontextprotocol/server-github npm package is deprecated in favor of this official server.
 
 ### Playwright Plugin: Best for end-to-end test authoring and execution by the agent.
 
@@ -62,7 +66,7 @@ Further details from this article were added to the above list, please see the r
 - claude mcp add context7 -- npx -y @upstash/context7-mcp
 - claude mcp add --transport sse linear https://mcp.linear.app/sse
 
-Add Slack if your team lives there. Add Postgres, Sentry, Playwright, or a search server when the project demands them. **Resist installing servers you do not have a clear use for.** Each one expands the agent’s tool list, and a **bloated tool list hurts the agent’s decision quality**.
+**A short tool list matters more than people expect.** The model has to consider every tool on every turn. A bloated tool list slows the agent down and increases the chance it picks the wrong tool. Add Slack if your team lives there. Add Postgres, Sentry, Playwright, or a search server when the project demands them. **Resist installing servers you do not have a clear use for.** Each one expands the agent’s tool list, and a **bloated tool list hurts the agent’s decision quality**.
 
 ### Linear MCP server
 
@@ -102,6 +106,10 @@ Claude Code reads MCP configuration from two places:
 - User scope: ~/.claude/settings.json. Servers configured here are available to every Claude Code session you run.
 
 - Project scope: .claude/settings.json in the project root. Servers configured here are available only when you run Claude Code inside that project. Project scope overrides user scope, which is useful when one repo needs a different set of tools.
+
+For most servers, user level is the right scope. GitHub, Slack, Linear, and your filesystem are stable across projects.
+
+For database servers, monitoring servers, and project-specific APIs, project level is cleaner. Each repo gets only the tools it actually needs, and Claude Code’s tool list stays short.
 
 ## [The Unofficial and Awesome Home Assistant MCP Server](https://github.com/homeassistant-ai/ha-mcp)
 
