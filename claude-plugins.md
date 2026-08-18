@@ -211,6 +211,10 @@ The servers in this repository are intended as reference implementations to demo
 
 UV is a new and fast Python package manager from Astral, the makers of Ruff. UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. The video covers how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
 
+## [I Asked Claude Code to Build a Node.js Backend Using the Best Frameworks: AI Benchmark](https://www.youtube.com/watch?v=kslslNdT-i0)
+
+Github repo: [AI Agent Backend Framework Comparison: Order Management System](https://github.com/simon-johansson/framework-ai-test-2026/)
+
 ## Why Claude Hallucinates
 
 A hallucination in Claude occurs when the AI generates false, fabricated, or misleading information and presents it with total confidence. This happens because the model predicts statistical text patterns rather than pulling from a verified database, often misfiring when it recognizes a name or topic but lacks actual facts. Research by Anthropic shows that hallucinations happen when Claude recognizes a name or entity, which incorrectly suppresses its default "I don't know" mechanism. Common Signs of Hallucinations are invented academic citations, fake URLs, or non-existent research papers.
