@@ -217,7 +217,7 @@ Github repo: [AI Agent Backend Framework Comparison: Order Management System](ht
 
 An experiment to evaluate how well AI coding agents work with different backend frameworks. Each subfolder contains a complete order management system generated entirely by Claude Code using the same specification.
 
-## The Experiment
+### The Experiment
 
 All systems were generated one-shot (single prompt) from identical requirements (see framework-eval-prompt.md in each folder). The AI agent was given a detailed specification for an order management system and asked to implement it using each framework. No human code was written.
 
