@@ -253,6 +253,18 @@ A small e-commerce order management system featuring:
 
 These systems were generated using [Claude Code](https://code.claude.com/docs/en/overview) with the [superpowers](https://github.com/obra/superpowers) plugin for enhanced workflow capabilities.
 
+## [Best Backend Framework for Claude Code (2026)](https://encore.dev/articles/best-backend-framework-claude-code-2026)
+
+We benchmarked Claude Code on five TypeScript backend frameworks. Only one shipped production-ready code on the first pass, and only one had a CLAUDE.md and MCP server in the box.
+
+Which TypeScript backend framework is best to use with Claude Code?
+
+To answer that we took Claude Code, pointed it at the same realistic backend project (an HTTP API with persistence, a pub/sub event, a daily cron, and distributed tracing), and ran it on five frameworks (Encore, Express, Fastify, Hono, and NestJS) using the same prompts, the same model, the same Postgres setup, and the same VM. We graded the output against a 36-check production-readiness rubric.
+
+The short answer is that Encore is the only framework in the benchmark that both ships materials Claude Code reads in (a CLAUDE.md, an MCP server, llms.txt plus llms-full.txt, and a dedicated AI-integration docs page) and provides framework primitives the agent reaches for by default, and it is the only framework where Claude's first draft was production-ready.
+
+Full benchmark, prompts, starters, and transcripts at github.com/encoredev/ai-backend-benchmark.
+
 ## Why Claude Hallucinates
 
 A hallucination in Claude occurs when the AI generates false, fabricated, or misleading information and presents it with total confidence. This happens because the model predicts statistical text patterns rather than pulling from a verified database, often misfiring when it recognizes a name or topic but lacks actual facts. Research by Anthropic shows that hallucinations happen when Claude recognizes a name or entity, which incorrectly suppresses its default "I don't know" mechanism. Common Signs of Hallucinations are invented academic citations, fake URLs, or non-existent research papers.
