@@ -261,6 +261,14 @@ The short answer is that Encore is the only framework in the benchmark that both
 
 Full benchmark, prompts, starters, and transcripts at [ai-backend-benchmark](https://github.com/encoredev/ai-backend-benchmark).
 
+## [AI-Powered Development](https://encore.dev/features/ai-development)
+
+Encore gives AI coding assistants superpowers. With MCP integration and Encore-specific rules, AI understands your architecture, can provision infrastructure in AWS/GCP with guardrails, and generates type-safe code that follows your patterns.
+
+### Works with your AI tools
+
+Encore's MCP server integrates with any AI coding assistant that supports the Model Context Protocol. Connect Cursor, Claude Code, GitHub Copilot, Antigravity, or any other MCP-compatible tool. The MCP server runs locally and gives AI assistants deep insight into your application's architecture, APIs, database schemas, and traces.
+
 ## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
 
 UV is a new and fast Python package manager from Astral, the makers of Ruff. UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. The video covers how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
