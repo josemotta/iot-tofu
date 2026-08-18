@@ -215,6 +215,32 @@ UV is a new and fast Python package manager from Astral, the makers of Ruff. UV 
 
 Github repo: [AI Agent Backend Framework Comparison: Order Management System](https://github.com/simon-johansson/framework-ai-test-2026/)
 
+An experiment to evaluate how well AI coding agents work with different backend frameworks. Each subfolder contains a complete order management system generated entirely by Claude Code using the same specification.
+
+## The Experiment
+
+All systems were generated one-shot (single prompt) from identical requirements (see framework-eval-prompt.md in each folder). The AI agent was given a detailed specification for an order management system and asked to implement it using each framework. No human code was written.
+
+### The System
+
+A small e-commerce order management system featuring:
+
+- **Products API** - Full CRUD with validation
+- **Orders API** - Order creation with stock verification and automatic inventory deduction
+- **PostgreSQL** - Data persistence with migrations
+- **Pub/Sub Events** - `order.created` and `stock.low` event handlers
+- **Cron Job** - Daily summary report of orders and low-stock products
+
+### Results by Framework
+
+| Framework   | Time to generate |
+| ----------- | ---------------- |
+| **Encore**  | 6m 19s           |
+| **NestJS**  | 9m 21s           |
+| **Hono**    | 18m 9s           |
+| **Fastify** | 22m 7s           |
+| **Express** | 30m 7s           |
+
 ## Why Claude Hallucinates
 
 A hallucination in Claude occurs when the AI generates false, fabricated, or misleading information and presents it with total confidence. This happens because the model predicts statistical text patterns rather than pulling from a verified database, often misfiring when it recognizes a name or topic but lacks actual facts. Research by Anthropic shows that hallucinations happen when Claude recognizes a name or entity, which incorrectly suppresses its default "I don't know" mechanism. Common Signs of Hallucinations are invented academic citations, fake URLs, or non-existent research papers.
