@@ -263,7 +263,7 @@ To answer that we took Claude Code, pointed it at the same realistic backend pro
 
 The short answer is that Encore is the only framework in the benchmark that both ships materials Claude Code reads in (a CLAUDE.md, an MCP server, llms.txt plus llms-full.txt, and a dedicated AI-integration docs page) and provides framework primitives the agent reaches for by default, and it is the only framework where Claude's first draft was production-ready.
 
-Full benchmark, prompts, starters, and transcripts at [ai-backend-benchmark](github.com/encoredev/ai-backend-benchmark).
+Full benchmark, prompts, starters, and transcripts at [ai-backend-benchmark](https://github.com/encoredev/ai-backend-benchmark).
 
 ## Why Claude Hallucinates
 
