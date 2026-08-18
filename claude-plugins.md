@@ -241,6 +241,18 @@ A small e-commerce order management system featuring:
 | **Fastify** | 22m 7s           |
 | **Express** | 30m 7s           |
 
+### Key Takeaways
+
+1. **AI agents are now really REALLY good.** If you're still writing all of your code by hand or only using AI for autocomplete, you are falling behind.
+
+2. **A good plan with constraints works.** Giving the AI a clear specification with validation requirements and business logic produces impressive results.
+
+3. **Feedback loops matter.** Giving the AI agent a clear way to test and verify the system speeds up generation and reduces token usage. Encore's MCP server integration is a great example of this.
+
+### Tools Used
+
+These systems were generated using [Claude Code](https://code.claude.com/docs/en/overview) with the [superpowers](https://github.com/obra/superpowers) plugin for enhanced workflow capabilities.
+
 ## Why Claude Hallucinates
 
 A hallucination in Claude occurs when the AI generates false, fabricated, or misleading information and presents it with total confidence. This happens because the model predicts statistical text patterns rather than pulling from a verified database, often misfiring when it recognizes a name or topic but lacks actual facts. Research by Anthropic shows that hallucinations happen when Claude recognizes a name or entity, which incorrectly suppresses its default "I don't know" mechanism. Common Signs of Hallucinations are invented academic citations, fake URLs, or non-existent research papers.
