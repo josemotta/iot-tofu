@@ -207,10 +207,6 @@ This repository is a collection of reference implementations for the Model Conte
 
 The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage. They are meant to serve as educational examples for developers building their own MCP servers, not as production-ready solutions. Developers should evaluate their own security requirements and implement appropriate safeguards based on their specific threat model and use case.
 
-## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
-
-UV is a new and fast Python package manager from Astral, the makers of Ruff. UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. The video covers how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
-
 ## [I Asked Claude Code to Build a Node.js Backend Using the Best Frameworks](https://www.youtube.com/watch?v=kslslNdT-i0)
 
 Github repo: [AI Agent Backend Framework Comparison: Order Management System](https://github.com/simon-johansson/framework-ai-test-2026/)
@@ -264,6 +260,10 @@ To answer that we took Claude Code, pointed it at the same realistic backend pro
 The short answer is that Encore is the only framework in the benchmark that both ships materials Claude Code reads in (a CLAUDE.md, an MCP server, llms.txt plus llms-full.txt, and a dedicated AI-integration docs page) and provides framework primitives the agent reaches for by default, and it is the only framework where Claude's first draft was production-ready.
 
 Full benchmark, prompts, starters, and transcripts at [ai-backend-benchmark](https://github.com/encoredev/ai-backend-benchmark).
+
+## [UV - A Faster, All-in-One Package Manager to Replace Pip and Venv ](https://www.youtube.com/watch?v=AMdG7IjgSPM)
+
+UV is a new and fast Python package manager from Astral, the makers of Ruff. UV aims to simplify your Python workflow by acting as an extremely fast, all-in-one replacement for tools like pip, venv, virtualenv, pip-tools, and pipx. The video covers how to install UV, initialize projects, add and manage dependencies using pyproject.toml and lock files, automatically handle virtual environments, run scripts, and even install and manage global Python tools.
 
 ## Why Claude Hallucinates
 
