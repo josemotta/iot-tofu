@@ -91,9 +91,27 @@ sudo pxetools --add a10cd2e5
 
 There are docker containers running frontend websites at RPis using the well known [Home Assistant](https://www.home-assistant.io/).
 
-## API
+## API for Loopback
 
-### API for Loopback
+A Claude skill or custom configuration for the IBM LoopBack 4 framework equips AI coding assistants like Claude Code with deep context on TypeScript-based models, controllers, repositories, and dependency injection patterns used in LoopBack architecture
+
+Core Capabilities of a LoopBack 4 Skill
+
+- Scaffolding Guidance: Generates correct CLI-style commands and directory structures for applications, controllers, and datasources.
+- Decorator Mastery: Properly implements TypeScript decorators like @model, @property, @repository, and @get/@post` routing annotations.
+- DI & IoC Understanding: Configures binding scopes, providers, and component integrations unique to LoopBack 4's inversion of control container.
+- Testing Conventions: Aligns with standard project setup, using Mocha, Supertest, and acceptance/integration/unit testing layouts under src/**tests**/.
+
+### Setting Up a LoopBack 4 Skill File (CLAUDE.md)
+
+To give Claude persistent instructions for a LoopBack 4 repository, place a CLAUDE.md file in your project root with build and test rules:
+
+- Build Commands: npm run build or lb-tsc
+- Test Commands: npm test (runs unit, integration, and acceptance tests in dist/**tests**)
+- Lint/Format: npm run lint and npm run prettier:fix
+- Architecture Rules: Enforce strict separation between Controllers (HTTP layer), Repositories (Data access), and Models (Business data).
+
+### Useful links
 
 https://github.com/loopbackio/loopback-next/blob/master/README.md
 
