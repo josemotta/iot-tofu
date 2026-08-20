@@ -45,7 +45,7 @@ When prompted for the datasource:
 
 Run the lb4 model command for each entity. Copy and paste the property configurations exactly as prompted by the CLI:
 
-Create the User Model
+##### Create the User Model
 
 > lb4 model User
 
@@ -54,7 +54,7 @@ Create the User Model
 - Property: email ➔ Type: string, Required: yes
 - Property: name ➔ Type: string, Required: no
 
-Create the Product Model
+##### Create the Product Model
 
 > lb4 model Product
 
@@ -64,7 +64,7 @@ Create the Product Model
 - Property: price ➔ Type: number, Required: yes
 - Property: stock ➔ Type: number, Required: yes
 
-Create the Order Model
+##### Create the Order Model
 
 > lb4 model Order
 
