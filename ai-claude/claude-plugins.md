@@ -327,3 +327,21 @@ Encore's static infrastructure analysis, strong TypeScript/Go backend framework 
 - Verbose Decorators: LoopBack 4 relies on heavy metadata and abstract IoC (Inversion of Control) patterns that frequently confuse standard LLMs, leading to broken boilerplate code.
 
 - Slower Modern Momentum: It lacks modern built-in primitives for event-driven, distributed cloud architectures that modern AI tooling optimizes for out of the box.
+
+## TypeScript/Node frameworks to develop open API backends with Claude AI support
+
+When developing type-safe OpenAPI backends optimized for AI orchestration with Anthropic's Claude, you need frameworks that seamlessly parse schema validation into structured TypeScript types. AI engines like Claude Code and the Claude Agent SDK perform exceptionally well when a framework explicitly generates OpenAPI documentation and Zod schemas from your source code.
+
+### 1. Encore.ts (The Top Choice for Claude Integration)
+
+Encore.ts is currently the fastest and most efficient framework for Claude-assisted backend development. It uses static analysis to automatically generate type-safe OpenAPI specs, type definitions, and architecture diagrams straight from your TypeScript code without manual configuration.
+
+- Claude Optimization: Benchmarks show Claude Code can build a complete backend using Encore up to 5x faster than traditional frameworks. This speed is driven by Encore's built-in Model Context Protocol (MCP) server, allowing Claude to inspect your local routing graph, call test endpoints, and immediately debug infrastructure issues.
+
+- OpenAPI Support: Native, fully automated OpenAPI schema generation without decorator bloat.
+
+- Best For: Teams using AI agents for automated coding, rapid scaffolding, and zero-config infrastructure.
+
+### 2. Hono
+
+### 3. Fastify
