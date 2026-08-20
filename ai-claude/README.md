@@ -1,4 +1,4 @@
-## API for Loopback (AI Overview)
+# Claude AI for Loopback
 
 A **Claude skill or custom configuration for the IBM LoopBack 4 framework** equips AI coding assistants like Claude Code with deep context on TypeScript-based models, controllers, repositories, and dependency injection patterns used in LoopBack architecture.
 
