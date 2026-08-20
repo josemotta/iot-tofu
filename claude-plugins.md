@@ -296,3 +296,34 @@ Be careful with permissions. Give Claude Code a read-only database role unless y
 
 - Memory (RAM) Limits: SQLite runs inside your app process with almost zero idle overhead. Postgres and MySQL run background daemon processes that consume tens or hundreds of megabytes of RAM constantly. MongoDB demands even more memory to run efficiently.
 - Concurrency: SQLite handles many simultaneous readers fine, but locks the whole file during writes. If you have heavy concurrent writing from multiple services, MariaDB or PostgreSQL handle row-level locking much better.
+
+## API for Loopback
+
+A Claude skill or custom configuration for the IBM LoopBack 4 framework equips AI coding assistants like Claude Code with deep context on TypeScript-based models, controllers, repositories, and dependency injection patterns used in LoopBack architecture
+
+Core Capabilities of a LoopBack 4 Skill
+
+- Scaffolding Guidance: Generates correct CLI-style commands and directory structures for applications, controllers, and datasources.
+- Decorator Mastery: Properly implements TypeScript decorators like @model, @property, @repository, and @get/@post` routing annotations.
+- DI & IoC Understanding: Configures binding scopes, providers, and component integrations unique to LoopBack 4's inversion of control container.
+- Testing Conventions: Aligns with standard project setup, using Mocha, Supertest, and acceptance/integration/unit testing layouts under src/**tests**/.
+
+### Setting Up a LoopBack 4 Skill File (CLAUDE.md)
+
+To give Claude persistent instructions for a LoopBack 4 repository, place a CLAUDE.md file in your project root with build and test rules:
+
+- Build Commands: npm run build or lb-tsc
+- Test Commands: npm test (runs unit, integration, and acceptance tests in dist/**tests**)
+- Lint/Format: npm run lint and npm run prettier:fix
+- Architecture Rules: Enforce strict separation between Controllers (HTTP layer), Repositories (Data access), and Models (Business data).
+
+### Useful links
+
+https://github.com/loopbackio/loopback-next/blob/master/README.md
+
+Check the [API documentation](https://loopback.io/doc/en/lb4/apidocs.index.html)
+for all the API usages in each package.
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+https://github.com/loopbackio/loopback-next/blob/master/CLAUDE.md
