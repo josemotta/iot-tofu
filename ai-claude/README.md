@@ -20,6 +20,8 @@ To give Claude persistent instructions for a LoopBack 4 repository, place a CLAU
 - Lint/Format: npm run lint and npm run prettier:fix
 - Architecture Rules: Enforce strict separation between Controllers (HTTP layer), Repositories (Data access), and Models (Business data).
 
+The current CLAUDE.md file was extracted from https://github.com/loopbackio/loopback-next/blob/master/CLAUDE.md and adjusted accordingly.
+
 ## Claude Skill for LoopBack 4 and MySQL (AI Overview)
 
 A complete, custom Claude Skill profile optimized for a new LoopBack 4 and MySQL project. Save this content as .clauderules or loopback4-mysql-skill.md in the root directory of your workspace. When you start a chat, point Claude to this file to instantly align its code generation with LoopBack 4's architecture.
