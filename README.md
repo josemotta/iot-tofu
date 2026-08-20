@@ -90,3 +90,16 @@ sudo pxetools --add a10cd2e5
 ## Home-Assistant
 
 There are docker containers running frontend websites at RPis using the well known [Home Assistant](https://www.home-assistant.io/).
+
+## API
+
+### API for Loopback
+
+https://github.com/loopbackio/loopback-next/blob/master/README.md
+
+Check the [API documentation](https://loopback.io/doc/en/lb4/apidocs.index.html)
+for all the API usages in each package.
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+https://github.com/loopbackio/loopback-next/blob/master/CLAUDE.md
