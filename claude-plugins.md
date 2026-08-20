@@ -334,7 +334,7 @@ https://github.com/loopbackio/loopback-next/blob/master/CLAUDE.md
 
 You can save a prompt-based skill file locally in your project instructions or Claude configuration:
 
-# LoopBack 4 Framework Guidelines
+#### LoopBack 4 Framework Guidelines
 
 - **Core Stack:** TypeScript, Node.js, OpenJS Foundation (formerly IBM).
 - **Architecture:** Domain-Driven Design using Models, Repositories, Controllers, and Datasources.
