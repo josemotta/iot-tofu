@@ -308,7 +308,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 https://github.com/loopbackio/loopback-next/blob/master/CLAUDE.md
 
-## API project with AI support is it better loopback4 or Encore?
+## Loopback4 or Encore for an API project with AI support?
 
 For a new API project leveraging AI-assisted development (like Cursor or GitHub Copilot), Encore is significantly better than LoopBack 4.
 
