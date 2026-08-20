@@ -24,7 +24,7 @@ To give Claude persistent instructions for a LoopBack 4 repository, place a CLAU
 
 A complete, custom Claude Skill profile optimized for a new LoopBack 4 and MySQL project. Save this content as .clauderules or loopback4-mysql-skill.md in the root directory of your workspace. When you start a chat, point Claude to this file to instantly align its code generation with LoopBack 4's architecture.
 
-_saved on ./ai-claude/loopback4-skill.md_
+_saved on loopback4-skill.md_
 
 ### CLI commands
 
