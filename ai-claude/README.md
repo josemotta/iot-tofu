@@ -28,7 +28,7 @@ _saved on loopback4-skill.md_
 
 ### CLI commands
 
-Model with users, orders, products. For a MySQL database-backed application, run these sequential LoopBack 4 CLI commands inside your terminal.
+To get your application up and running with Model containing users, orders, products using a MySQL database-backed application, run these sequential LoopBack 4 CLI commands inside your terminal.
 
 #### 1. Initialize the Project & Connect MySQL
 
